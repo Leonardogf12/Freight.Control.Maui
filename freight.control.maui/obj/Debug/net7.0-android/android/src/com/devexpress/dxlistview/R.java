@@ -937,10 +937,10 @@ public final class R {
 		public static final int notification_template_icon_low_bg = 0x7f070112;
 		public static final int notification_tile_bg = 0x7f070113;
 		public static final int notify_panel_notification_icon_bg = 0x7f070114;
-		public static final int test_level_drawable = 0x7f07011a;
-		public static final int tooltip_frame_dark = 0x7f07011b;
-		public static final int tooltip_frame_light = 0x7f07011c;
-		public static final int watermark = 0x7f07011f;
+		public static final int test_level_drawable = 0x7f07011b;
+		public static final int tooltip_frame_dark = 0x7f07011c;
+		public static final int tooltip_frame_light = 0x7f07011d;
+		public static final int watermark = 0x7f070120;
 	}
 	public static final class id {
 		public static final int NO_DEBUG = 0x7f080006;

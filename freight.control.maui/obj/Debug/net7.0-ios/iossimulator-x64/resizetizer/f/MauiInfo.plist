@@ -4,7 +4,6 @@
 <dict>
   <key>UIAppFonts</key>
   <array>
-	<string>MauiInfo.plist</string>
 	<string>Montserrat-Bold.ttf</string>
 	<string>Montserrat-Regular.ttf</string>
 	<string>Montserrat-SemiBold.ttf</string>

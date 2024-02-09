@@ -4,7 +4,7 @@ AreAnyAssembliesTrimmed=false
 				AOTCompiler=/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Runtime.AOT.osx-x64.Cross.maccatalyst-x64/7.0.15/Sdk/../tools/mono-aot-cross
 				AOTOutputDirectory=obj/Debug/net7.0-maccatalyst/maccatalyst-x64/nativelibraries/aot-output/
 				AppBundleManifestPath=bin/Debug/net7.0-maccatalyst/maccatalyst-x64/freight.control.maui.app/Contents/Info.plist
-				CacheDirectory=/Users/leonardofazolo/Projects/freight.control.maui/freight.control.maui/obj/Debug/net7.0-maccatalyst/maccatalyst-x64/linker-cache
+				CacheDirectory=/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-maccatalyst/maccatalyst-x64/linker-cache
 				
 				Debug=true
 				DeploymentTarget=13.1
@@ -183,7 +183,7 @@ FrameworkAssembly=System.Private.CoreLib
 				Interpreter=all
 				IntermediateLinkDir=obj/Debug/net7.0-maccatalyst/maccatalyst-x64/linked/
 				InvariantGlobalization=false
-				ItemsDirectory=/Users/leonardofazolo/Projects/freight.control.maui/freight.control.maui/obj/Debug/net7.0-maccatalyst/maccatalyst-x64/linker-items
+				ItemsDirectory=/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-maccatalyst/maccatalyst-x64/linker-items
 				IsAppExtension=false
 				IsSimulatorBuild=False
 				LibMonoLinkMode=static

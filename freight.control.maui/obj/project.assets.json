@@ -43674,11 +43674,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/leonardofazolo/Projects/freight.control.maui/freight.control.maui/freight.control.maui.csproj",
+      "projectUniqueName": "/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/freight.control.maui.csproj",
       "projectName": "freight.control.maui",
-      "projectPath": "/Users/leonardofazolo/Projects/freight.control.maui/freight.control.maui/freight.control.maui.csproj",
+      "projectPath": "/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/freight.control.maui.csproj",
       "packagesPath": "/Users/leonardofazolo/.nuget/packages/",
-      "outputPath": "/Users/leonardofazolo/Projects/freight.control.maui/freight.control.maui/obj/",
+      "outputPath": "/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/obj/",
       "projectStyle": "PackageReference",
       "crossTargeting": true,
       "configFilePaths": [

@@ -2,6 +2,7 @@
 using freight.control.maui.MVVM.ViewModels;
 using freight.control.maui.MVVM.Views;
 using Microsoft.Extensions.Logging;
+using SkiaSharp.Views.Maui.Controls.Hosting;
 
 namespace freight.control.maui;
 
@@ -12,6 +13,7 @@ public static class MauiProgram
 		var builder = MauiApp.CreateBuilder();
 		builder
 			.UseMauiApp<App>()
+            .UseSkiaSharp()
 #if DEBUG
             .EnableHotReload()
 #endif
@@ -26,9 +28,9 @@ public static class MauiProgram
 
 #if DEBUG
 		builder.Logging.AddDebug();
-#endif
+#endif       
 
-		builder.Services.AddTransient<FreightView>();
+        builder.Services.AddTransient<FreightView>();
         builder.Services.AddTransient<AddFreightView>();
         builder.Services.AddTransient<DetailFreightView>();
 

@@ -11071,12 +11071,13 @@ public final class R {
     public static final int searchicon=0x7f070117;
     public static final int shipment=0x7f070118;
     public static final int splash=0x7f070119;
-    public static final int test_level_drawable=0x7f07011a;
-    public static final int tooltip_frame_dark=0x7f07011b;
-    public static final int tooltip_frame_light=0x7f07011c;
-    public static final int trash=0x7f07011d;
-    public static final int truck=0x7f07011e;
-    public static final int watermark=0x7f07011f;
+    public static final int splash_load=0x7f07011a;
+    public static final int test_level_drawable=0x7f07011b;
+    public static final int tooltip_frame_dark=0x7f07011c;
+    public static final int tooltip_frame_light=0x7f07011d;
+    public static final int trash=0x7f07011e;
+    public static final int truck=0x7f07011f;
+    public static final int watermark=0x7f070120;
   }
   public static final class id {
     public static final int ALT=0x7f080000;
@@ -11836,6 +11837,10 @@ public final class R {
     public static final int appicon_round=0x7f0d0003;
     public static final int ic_launcher=0x7f0d0004;
     public static final int ic_launcher_round=0x7f0d0005;
+    public static final int logo_app=0x7f0d0006;
+    public static final int logo_app_background=0x7f0d0007;
+    public static final int logo_app_foreground=0x7f0d0008;
+    public static final int logo_app_round=0x7f0d0009;
   }
   public static final class plurals {
     public static final int mtrl_badge_content_description=0x7f0e0000;

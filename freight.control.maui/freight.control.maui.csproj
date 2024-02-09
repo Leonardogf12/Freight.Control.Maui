@@ -38,10 +38,13 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#080E2C" /> <!--512BD4-->
+		<!--<MauiIcon Include="Resources\AppIcon\logo_app.svg" ForegroundFile="Resources\AppIcon\logo_app_truck.svg" Color="#080E2C" /> -->
+		 <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#080E2C" />
 
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#080E2C" BaseSize="128,128" />
+		<MauiSplashScreen Include="Resources\Splash\splash_load.svg" Color="#080E2C" BaseSize="128,128" />
+		<!--<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#080E2C" BaseSize="128,128" /> -->
+
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
@@ -113,6 +116,9 @@
 	  <None Remove="Components\Others\" />
 	  <None Remove="Resources\Raw\loading_truck.json" />
 	  <None Remove="Resources\Raw\truck_driver.json" />
+	  <None Remove="Resources\Splash\splash_load.svg" />
+	  <None Remove="Resources\AppIcon\logo_app_truck.svg" />
+	  <None Remove="Resources\AppIcon\logo_app.svg" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="MVVM\" />
@@ -166,6 +172,9 @@
 	  <BundleResource Include="Resources\Fonts\Montserrat-SemiBold.ttf" />
 	  <BundleResource Include="Resources\Raw\loading_truck.json" />
 	  <BundleResource Include="Resources\Raw\truck_driver.json" />
+	  <BundleResource Include="Resources\Splash\splash_load.svg" />
+	  <BundleResource Include="Resources\AppIcon\appiconfg.svg" />
+	  <BundleResource Include="Resources\AppIcon\appicon.svg" />
 	</ItemGroup>
 	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0-android'">
 	  <PackageReference Include="DevExpress.Maui.Controls" Version="23.1.8" />

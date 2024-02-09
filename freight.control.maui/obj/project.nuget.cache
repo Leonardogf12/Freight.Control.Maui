@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "qVrM1f2aKqDtp7QPx8YgCg1hww2xyf5jFmIS8gLsXMmdXuJqBd9htoy15TW7p2FyNl0VS3EOEcmU+6Im8X6nvA==",
+  "dgSpecHash": "hQ+xbSpIud5YS5qjBfFAJzdbrKq6oouh4wa0e27wpX+euF3VlPq/tnBztsrf+xiF8hKb8oVDpebLKW47EW3rwg==",
   "success": true,
-  "projectFilePath": "/Users/leonardofazolo/Projects/freight.control.maui/freight.control.maui/freight.control.maui.csproj",
+  "projectFilePath": "/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/freight.control.maui.csproj",
   "expectedPackageFiles": [
     "/Users/leonardofazolo/.nuget/packages/communitytoolkit.maui.markup/3.3.1/communitytoolkit.maui.markup.3.3.1.nupkg.sha512",
     "/Users/leonardofazolo/.nuget/packages/devexpress.data/23.1.8/devexpress.data.23.1.8.nupkg.sha512",

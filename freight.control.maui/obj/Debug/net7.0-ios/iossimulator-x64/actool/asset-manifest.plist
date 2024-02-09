@@ -6,10 +6,10 @@
 	<dict>
 		<key>output-files</key>
 		<array>
-			<string>/Users/leonardofazolo/Projects/freight.control.maui/freight.control.maui/obj/Debug/net7.0-ios/iossimulator-x64/actool/bundle/Assets.car</string>
-			<string>/Users/leonardofazolo/Projects/freight.control.maui/freight.control.maui/obj/Debug/net7.0-ios/iossimulator-x64/actool/bundle/appicon60x60@2x.png</string>
-			<string>/Users/leonardofazolo/Projects/freight.control.maui/freight.control.maui/obj/Debug/net7.0-ios/iossimulator-x64/actool/bundle/appicon76x76@2x~ipad.png</string>
-			<string>/Users/leonardofazolo/Projects/freight.control.maui/freight.control.maui/obj/Debug/net7.0-ios/iossimulator-x64/actool/partial-info.plist</string>
+			<string>/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-ios/iossimulator-x64/actool/bundle/Assets.car</string>
+			<string>/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-ios/iossimulator-x64/actool/bundle/appicon60x60@2x.png</string>
+			<string>/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-ios/iossimulator-x64/actool/bundle/appicon76x76@2x~ipad.png</string>
+			<string>/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-ios/iossimulator-x64/actool/partial-info.plist</string>
 		</array>
 	</dict>
 </dict>

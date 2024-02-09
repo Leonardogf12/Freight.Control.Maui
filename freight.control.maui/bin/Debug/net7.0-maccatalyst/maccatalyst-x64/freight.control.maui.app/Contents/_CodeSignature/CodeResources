@@ -10,7 +10,19 @@
 		</data>
 		<key>Resources/Assets.car</key>
 		<data>
-		wmWrF27IzTUy5/GG+mrEVJCtUCU=
+		25Qk1QYUJCm3LhJwGGwjwhHGqtA=
+		</data>
+		<key>Resources/Fonts/Montserrat-Bold.ttf</key>
+		<data>
+		BAUtw7hGYJIW3h4MvOwzfGtudPY=
+		</data>
+		<key>Resources/Fonts/Montserrat-Regular.ttf</key>
+		<data>
+		3leqA+SCH9vmw07CyJXotckU6Dc=
+		</data>
+		<key>Resources/Fonts/Montserrat-SemiBold.ttf</key>
+		<data>
+		hYDeyCS722ziTQTTqvNgd2M58Kc=
 		</data>
 		<key>Resources/Images/add.svg</key>
 		<data>
@@ -62,7 +74,7 @@
 		</data>
 		<key>Resources/Images/money.svg</key>
 		<data>
-		vxP6RqHZQma24j+ko/2dHxkJ3io=
+		CE4p0zLewIiuvdFgYOo17FI9iGI=
 		</data>
 		<key>Resources/Images/shipment.svg</key>
 		<data>
@@ -76,13 +88,21 @@
 		<data>
 		WTvBi2WVpxeSX7YGxTG5j8taTeM=
 		</data>
-		<key>Resources/MauiInfo.plist</key>
-		<data>
-		iEtuUGCV6JM3gxS/pO33swhmpp8=
-		</data>
 		<key>Resources/MonoTouchDebugConfiguration.txt</key>
 		<data>
 		oowkf1sL6T19nanXUObgmuayWqM=
+		</data>
+		<key>Resources/Montserrat-Bold.ttf</key>
+		<data>
+		BAUtw7hGYJIW3h4MvOwzfGtudPY=
+		</data>
+		<key>Resources/Montserrat-Regular.ttf</key>
+		<data>
+		3leqA+SCH9vmw07CyJXotckU6Dc=
+		</data>
+		<key>Resources/Montserrat-SemiBold.ttf</key>
+		<data>
+		hYDeyCS722ziTQTTqvNgd2M58Kc=
 		</data>
 		<key>Resources/OpenSans-Regular.ttf</key>
 		<data>
@@ -91,6 +111,14 @@
 		<key>Resources/OpenSans-Semibold.ttf</key>
 		<data>
 		iuIlP5RitX7eqyYnMfGIMnFMn/g=
+		</data>
+		<key>Resources/Raw/loading_truck.json</key>
+		<data>
+		GWNctcH/WYOScLYNEE+ZIpqMgW4=
+		</data>
+		<key>Resources/Raw/truck_driver.json</key>
+		<data>
+		QNG0+I3L9ukMqJt1OY7gXd6cHto=
 		</data>
 		<key>Resources/add.png</key>
 		<data>
@@ -240,6 +268,10 @@
 		<data>
 		bBC1abk7c8r0KKLQcfQFSQHNc+s=
 		</data>
+		<key>Resources/loading_truck.json</key>
+		<data>
+		GWNctcH/WYOScLYNEE+ZIpqMgW4=
+		</data>
 		<key>Resources/local.png</key>
 		<data>
 		/afH1Z8kz6J/bMGwH6UL8i5yXWU=
@@ -254,15 +286,15 @@
 		</data>
 		<key>Resources/money.png</key>
 		<data>
-		62iRLkDn4ihdv6lEiVbi0OA0EB8=
+		IRcvS8fetZ1ijtN+iT/Stgu6ZPA=
 		</data>
 		<key>Resources/money@2x.png</key>
 		<data>
-		tV+eP0z2F3OZGqVF15U/EkNokiE=
+		nVkp9VCSRIbTmSh1+yA+VAL5uKE=
 		</data>
 		<key>Resources/money@3x.png</key>
 		<data>
-		z+hWVrvaQjiBYFCmK4vXg0760Zg=
+		C3szx05b/8FaSBbEEnqmKKeKrYA=
 		</data>
 		<key>Resources/shipment.png</key>
 		<data>
@@ -300,9 +332,29 @@
 		<data>
 		q2wcLETGM/5/gEO/xKaPnz8Hvm0=
 		</data>
+		<key>Resources/truck_driver.json</key>
+		<data>
+		QNG0+I3L9ukMqJt1OY7gXd6cHto=
+		</data>
 	</dict>
 	<key>files2</key>
 	<dict>
+		<key>Frameworks/libSkiaSharp.framework</key>
+		<dict>
+			<key>cdhash</key>
+			<data>
+			BgdXzBAbnKEl1NwouPD6e+VRtYg=
+			</data>
+			<key>requirement</key>
+			<string>cdhash H"060757cc101b9ca125d4dc28b8f0fa7be551b588"</string>
+		</dict>
+		<key>MonoBundle/CommunityToolkit.Maui.Markup.dll</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			t7vnCoHJErIkbFVLgEcM3XrEBW/wqyhViIW64H/3ntQ=
+			</data>
+		</dict>
 		<key>MonoBundle/DotNet.Meteor.HotReload.Plugin.dll</key>
 		<dict>
 			<key>hash2</key>
@@ -455,6 +507,118 @@
 			<key>hash2</key>
 			<data>
 			cLTYiy4SHmR+ck+oa3w6jte69/SE3W2RLL8Al1220sw=
+			</data>
+		</dict>
+		<key>MonoBundle/Newtonsoft.Json.dll</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			XZbuUbKv9ZIDnuvC7SA9n1X935wIgvs00/DgeDdJVKU=
+			</data>
+		</dict>
+		<key>MonoBundle/SQLite-net.dll</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			G0Du6FIHrGQku+Pmrey48gKNhArHSSzdTDxdZdMFkb4=
+			</data>
+		</dict>
+		<key>MonoBundle/SQLiteNetExtensions.dll</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			ykjaxNSocRsd7GT56sejOvXLSUHDSn4rbArYg/K3MoY=
+			</data>
+		</dict>
+		<key>MonoBundle/SQLitePCLRaw.batteries_v2.dll</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			gjRl7mHFSQpOKgD38Ukom8XjI2Qb7Y2DHmKnJAHBPO0=
+			</data>
+		</dict>
+		<key>MonoBundle/SQLitePCLRaw.core.dll</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			/PVEeB8v7dLBKhYEuuqRGF/x/WPs4aFwG8KDOi6Bj88=
+			</data>
+		</dict>
+		<key>MonoBundle/SQLitePCLRaw.provider.dynamic_cdecl.dll</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			YxzjSFoM6B6DdY51ZlBLuPieRwVU1U6KUk3Ki7FBgy8=
+			</data>
+		</dict>
+		<key>MonoBundle/SQLitePCLRaw.provider.e_sqlite3.dll</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			ufA5Q2ko2qNnUW/ASAsWjtusKnPXAGFBFMRPlGgOsJI=
+			</data>
+		</dict>
+		<key>MonoBundle/SQLitePCLRaw.provider.sqlite3.dll</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			Z0I1ECXrfMyjjWhYWDvueXdZEZQTwYO9+TbOBVLK2W4=
+			</data>
+		</dict>
+		<key>MonoBundle/SkiaSharp.Extended.UI.dll</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			gN1HK8GrmhuGY4Lfys7VDSFbxHidU6XGqPzzAj742xM=
+			</data>
+		</dict>
+		<key>MonoBundle/SkiaSharp.Extended.dll</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			cOajVazoa1UaGRnIZeeQKaBkedBOzUXkJ299k3wqbQE=
+			</data>
+		</dict>
+		<key>MonoBundle/SkiaSharp.SceneGraph.dll</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			k9Plb82oiJ626yNadSmYo/MevtHOJn5RqPDeO+TNp0Q=
+			</data>
+		</dict>
+		<key>MonoBundle/SkiaSharp.Skottie.dll</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			B9hDHyyTTP+gLpP38jbcEVFXfRPK4rhZ+ov9c/b5pLk=
+			</data>
+		</dict>
+		<key>MonoBundle/SkiaSharp.Views.Maui.Controls.dll</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			9WS5MGLaPvzR27JK3xS408jMfKIBpY+ZCDotZl+QUok=
+			</data>
+		</dict>
+		<key>MonoBundle/SkiaSharp.Views.Maui.Core.dll</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			pboLkELbX8hqI72mi65PGJrE/NRRkFDpJ0FydcZpcW0=
+			</data>
+		</dict>
+		<key>MonoBundle/SkiaSharp.Views.iOS.dll</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			AXPPNSTHl6GFmN1lHxOK5JWa5elW3PqU2H59WFtShE0=
+			</data>
+		</dict>
+		<key>MonoBundle/SkiaSharp.dll</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			zW/CePbNuSRe7T1TMTizjXIlE/nQ58mEErrBT5CjgcU=
 			</data>
 		</dict>
 		<key>MonoBundle/System.AppContext.dll</key>
@@ -1595,14 +1759,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			UaxWa6kDiconRXgYdhAi93mxrUpmEm+zVvY8qQzLl6A=
+			6aIeXWaI+ASAjZ8L46BSPV7PbhUUUyMPMZNJ3DQN8Ys=
 			</data>
 		</dict>
 		<key>MonoBundle/freight.control.maui.pdb</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			I7ViUZpdMbhUnR3Ss9UXbjFECwHLcCjA+/ZvDMkvShw=
+			1sT5kmSl0a+w5YYB6UfFak9PhyXqRkKVJ0fB11XAfiU=
 			</data>
 		</dict>
 		<key>MonoBundle/icudt.dat</key>
@@ -1610,6 +1774,13 @@
 			<key>hash2</key>
 			<data>
 			UYBgm2eduvMCWTliUcl318YqSMD3lImc247xRKSYF5Q=
+			</data>
+		</dict>
+		<key>MonoBundle/libe_sqlite3.dylib</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			QKIMwqY1K6lFTpTm48amBThzLMj6FXErurbAse83CPs=
 			</data>
 		</dict>
 		<key>MonoBundle/mscorlib.dll</key>
@@ -1644,7 +1815,28 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			EAecn/ut6WJlrgbM1Dg6Ot+070Mma7TYBbeW1g3opzQ=
+			rRepTK8/SmYTQJBaaM5wz3EZrJnmK2ypUxfVf3Rz1qk=
+			</data>
+		</dict>
+		<key>Resources/Fonts/Montserrat-Bold.ttf</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			GJrrKFvpnwtY5FTdLcPL80ptuESp7ybrxZCReP93xb4=
+			</data>
+		</dict>
+		<key>Resources/Fonts/Montserrat-Regular.ttf</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			3P6N8p5VP71lUhL5QwDLHnBMbNFH+nqYy0vNnrksZwc=
+			</data>
+		</dict>
+		<key>Resources/Fonts/Montserrat-SemiBold.ttf</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			FBi9TXTDW/pHPUBLi5Sz6DeE76Mu2YdaKKLoNEnQKUI=
 			</data>
 		</dict>
 		<key>Resources/Images/add.svg</key>
@@ -1735,7 +1927,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			gxbtoCc0+ePrHb8ju7xgjVgKQTuuGJqjZpigEy5EMqI=
+			mIrxiRzghTd0PsCokU4TsKClFlTEmTuY9788lKuSDVg=
 			</data>
 		</dict>
 		<key>Resources/Images/shipment.svg</key>
@@ -1759,18 +1951,32 @@
 			zeqqHW2e9YKXJsqRzFDx34rO6vmMViLhnbQXQ56yE7U=
 			</data>
 		</dict>
-		<key>Resources/MauiInfo.plist</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			tx0KXqEC+DvcCGyogQTEQWHcCWJYYqH24NtPwhpQEjo=
-			</data>
-		</dict>
 		<key>Resources/MonoTouchDebugConfiguration.txt</key>
 		<dict>
 			<key>hash2</key>
 			<data>
 			RS51BO98d+zhJWK1abJOyD5jB4nYJnWJPtL2DZyA/zw=
+			</data>
+		</dict>
+		<key>Resources/Montserrat-Bold.ttf</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			GJrrKFvpnwtY5FTdLcPL80ptuESp7ybrxZCReP93xb4=
+			</data>
+		</dict>
+		<key>Resources/Montserrat-Regular.ttf</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			3P6N8p5VP71lUhL5QwDLHnBMbNFH+nqYy0vNnrksZwc=
+			</data>
+		</dict>
+		<key>Resources/Montserrat-SemiBold.ttf</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			FBi9TXTDW/pHPUBLi5Sz6DeE76Mu2YdaKKLoNEnQKUI=
 			</data>
 		</dict>
 		<key>Resources/OpenSans-Regular.ttf</key>
@@ -1785,6 +1991,20 @@
 			<key>hash2</key>
 			<data>
 			Dei5msrhHM0ckeNafVKkir+rMTFZWbRyoM+v4teOidU=
+			</data>
+		</dict>
+		<key>Resources/Raw/loading_truck.json</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			cH5MwbBkDJVWCr72xVFgi761pJgKLIiNpRuyAyq2gQA=
+			</data>
+		</dict>
+		<key>Resources/Raw/truck_driver.json</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			fLVpa+AdWK7DLLaWY4ryCfVGXpTP9LvT5R7iPdVpkSM=
 			</data>
 		</dict>
 		<key>Resources/add.png</key>
@@ -2046,6 +2266,13 @@
 			0PQvtt3XzQ6dBnNG1NM2wRdvR5/Jr8A+kZpeBO3JKZk=
 			</data>
 		</dict>
+		<key>Resources/loading_truck.json</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			cH5MwbBkDJVWCr72xVFgi761pJgKLIiNpRuyAyq2gQA=
+			</data>
+		</dict>
 		<key>Resources/local.png</key>
 		<dict>
 			<key>hash2</key>
@@ -2071,21 +2298,21 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			mn8FCEiyo3ozPalUw/cudJ92Syl9oYcvn3RL7JDr0sw=
+			cyzSOWwgzr1VyXHc4XAg21Ebgx3H8xDo4unZ3T4FCJ0=
 			</data>
 		</dict>
 		<key>Resources/money@2x.png</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			p7X8VPgT+oncQtY2TjbdrE6C24v1ImTlswpB1wkspOk=
+			NSRtbPOMzULbLslkpzN/RC5gO33iM0Y6SwteMmD+e5I=
 			</data>
 		</dict>
 		<key>Resources/money@3x.png</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			e3BLRuI5YlwF3Op7kNdmVlJIIdo0e4Q6ZEWsizCYIH0=
+			Eu4y4tcAZv8JS8hCrJU+dbaRHEp+hRqwE4MjFpld8k0=
 			</data>
 		</dict>
 		<key>Resources/shipment.png</key>
@@ -2149,6 +2376,13 @@
 			<key>hash2</key>
 			<data>
 			iC4rmTOYN/B/qMPtoh0Lno68T/GVIPUoqNvE7FKBQdI=
+			</data>
+		</dict>
+		<key>Resources/truck_driver.json</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			fLVpa+AdWK7DLLaWY4ryCfVGXpTP9LvT5R7iPdVpkSM=
 			</data>
 		</dict>
 	</dict>

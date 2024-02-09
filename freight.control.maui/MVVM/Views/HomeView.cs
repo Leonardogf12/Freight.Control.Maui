@@ -9,12 +9,11 @@ public class HomeView : BaseContentPage
     ClickAnimation ClickAnimation = new();
 
     public HomeView()
-	{
+	{               
         BackgroundColor = App.GetResource<Color>("PrimaryDark");
-
-		Content = BuildHomeView();
+      
+		Content = BuildHomeView();       
     }
-
 
     #region UI
 
@@ -45,13 +44,12 @@ public class HomeView : BaseContentPage
         var tapGestureRecognizer = new TapGestureRecognizer();
         tapGestureRecognizer.Tapped += TapGestureRecognizer_Tapped_GoToFreightView;
         border.GestureRecognizers.Add(tapGestureRecognizer);
-
-
+        
         var imagemButton = new Image
         {
             Source = ImageSource.FromFile("truck"),
             HeightRequest = 80
-        };
+        }; 
 
         border.Content = imagemButton;
         stack.Children.Add(border);
