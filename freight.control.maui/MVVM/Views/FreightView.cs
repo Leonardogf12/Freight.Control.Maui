@@ -381,7 +381,7 @@ public class FreightView : BaseContentPage
 
     private async void ClickedButtonToFuel(object sender, EventArgs e)
     {
-        await App.Current.MainPage.DisplayAlert("To Fuel", "Future implementation", "Ok");
+        await App.Current.MainPage.Navigation.PushAsync(new ToFuelView());
     }
 
     private async void ClickedButtonEdit(object sender, EventArgs e)
