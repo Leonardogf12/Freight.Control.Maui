@@ -1,0 +1,178 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net7.0-android;net7.0-ios;net7.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows10.0.19041.0</TargetFrameworks>
+		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
+		<!-- <TargetFrameworks>$(TargetFrameworks);net7.0-tizen</TargetFrameworks> -->
+		<OutputType>Exe</OutputType>
+		<RootNamespace>freight.control.maui</RootNamespace>
+		<UseMaui>true</UseMaui>
+		<SingleProject>true</SingleProject>
+		<ImplicitUsings>enable</ImplicitUsings>
+
+		<!-- Display name -->
+		<ApplicationTitle>ConFrete</ApplicationTitle>
+
+		<!-- App Identifier -->
+		<ApplicationId>com.companyname.freight.control.maui</ApplicationId>
+		<ApplicationIdGuid>8790d1ce-8d82-4495-b30d-ef0451136bf5</ApplicationIdGuid>
+
+		<!-- Versions -->
+		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+		<ApplicationVersion>1</ApplicationVersion>
+
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">11.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">13.1</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-ios|AnyCPU'">
+	  <CreatePackage>false</CreatePackage>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+	  <WarningLevel>4</WarningLevel>
+	</PropertyGroup>
+	<ItemGroup>
+		<!-- App Icon -->
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#080E2C" /> <!--512BD4-->
+
+		<!-- Splash Screen -->
+		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#080E2C" BaseSize="128,128" />
+
+		<!-- Images -->
+		<MauiImage Include="Resources\Images\*" />
+		<MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208" />
+
+		<!-- Custom Fonts -->
+		<MauiFont Include="Resources\Fonts\*" />
+
+		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
+		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="DotNetMeteor.HotReload.Plugin" Version="3.*" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+		<PackageReference Include="CommunityToolkit.Maui.Markup" Version="3.3.1" />
+		<PackageReference Include="SkiaSharp.Extended.UI.Maui" Version="2.0.0-preview.86" />
+		<PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
+		<PackageReference Include="SQLitePCLRaw.provider.dynamic_cdecl" Version="2.1.8" />
+		<PackageReference Include="SQLitePCLRaw.core" Version="2.1.8" />
+		<PackageReference Include="SQLitePCLRaw.provider.sqlite3" Version="2.1.8" />
+		<PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.8" />
+		<PackageReference Include="SQLiteNetExtensions" Version="2.1.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="MVVM\" />
+	  <None Remove="MVVM\Views\" />
+	  <None Remove="Resources\Images\add_40.svg" />
+	  <None Remove="Resources\Images\back_white_40.svg" />
+	  <None Remove="Resources\Images\calendar_40.svg" />
+	  <None Remove="Resources\Images\comment_40.svg" />
+	  <None Remove="Resources\Images\export_40.svg" />
+	  <None Remove="Resources\Images\filter_40.svg" />
+	  <None Remove="Resources\Images\fuel_40.svg" />
+	  <None Remove="Resources\Images\km_40.svg" />
+	  <None Remove="Resources\Images\landing_40.svg" />
+	  <None Remove="Resources\Images\liters_40.svg" />
+	  <None Remove="Resources\Images\local_40.svg" />
+	  <None Remove="Resources\Images\money_40.svg" />
+	  <None Remove="Resources\Images\shipment_40.svg" />
+	  <None Remove="Resources\Images\trash_40.svg" />
+	  <None Remove="Resources\Images\back_white_40-1.svg" />
+	  <None Remove="Resources\Images\truck.svg" />
+	  <None Remove="Resources\Images\back_primary_dark.svg" />
+	  <None Remove="Resources\Images\export.svg" />
+	  <None Remove="Resources\Images\fuel.svg" />
+	  <None Remove="Resources\Images\add.svg" />
+	  <None Remove="Resources\Images\shipment.svg" />
+	  <None Remove="Resources\Images\trash.svg" />
+	  <None Remove="Resources\Images\back_white.svg" />
+	  <None Remove="Resources\Images\local.svg" />
+	  <None Remove="Resources\Images\filter.svg" />
+	  <None Remove="Resources\Images\comment.svg" />
+	  <None Remove="Resources\Images\calendar.svg" />
+	  <None Remove="Resources\Images\liters.svg" />
+	  <None Remove="Resources\Images\km.svg" />
+	  <None Remove="Resources\Images\landing.svg" />
+	  <None Remove="MVVM\ViewModels\" />
+	  <None Remove="MVVM\Models\" />
+	  <None Remove="Controls\" />
+	  <None Remove="Controls\Animations\" />
+	  <None Remove="Components\" />
+	  <None Remove="Resources\Images\money.svg" />
+	  <None Remove="Resources\Fonts\Montserrat-Bold.ttf" />
+	  <None Remove="Resources\Fonts\Montserrat-Regular.ttf" />
+	  <None Remove="Resources\Fonts\Montserrat-SemiBold.ttf" />
+	  <None Remove="MVVM\Base\" />
+	  <None Remove="Components\Others\" />
+	  <None Remove="Resources\Raw\loading_truck.json" />
+	  <None Remove="Resources\Raw\truck_driver.json" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="MVVM\" />
+	  <Folder Include="MVVM\Views\" />
+	  <Folder Include="MVVM\ViewModels\" />
+	  <Folder Include="MVVM\Models\" />
+	  <Folder Include="Controls\" />
+	  <Folder Include="Controls\Animations\" />
+	  <Folder Include="Components\" />
+	  <Folder Include="MVVM\Base\" />
+	  <Folder Include="Components\Others\" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Compile Remove="MVVM\HomeView2.cs" />
+	  <Compile Remove="MVVM\HomeView.cs" />
+	</ItemGroup>
+	<ItemGroup>
+	  <BundleResource Include="Resources\Images\add.svg" />
+	  <BundleResource Include="Resources\Images\back_white.svg" />
+	  <BundleResource Include="Resources\Images\calendar.svg" />
+	  <BundleResource Include="Resources\Images\comment.svg" />
+	  <BundleResource Include="Resources\Images\export.svg" />
+	  <BundleResource Include="Resources\Images\filter.svg" />
+	  <BundleResource Include="Resources\Images\fuel.svg" />
+	  <BundleResource Include="Resources\Images\km.svg" />
+	  <BundleResource Include="Resources\Images\landing.svg" />
+	  <BundleResource Include="Resources\Images\liters.svg" />
+	  <BundleResource Include="Resources\Images\local.svg" />
+	  <BundleResource Include="Resources\Images\money.svg" />
+	  <BundleResource Include="Resources\Images\shipment.svg" />
+	  <BundleResource Include="Resources\Images\trash.svg" />
+	  <BundleResource Include="Resources\Images\back_primary_dark.svg" />
+	  <BundleResource Include="Resources\Images\truck.svg" />
+	  <BundleResource Include="Resources\Images\back_primary_dark.svg" />
+	  <BundleResource Include="Resources\Images\export.svg" />
+	  <BundleResource Include="Resources\Images\fuel.svg" />
+	  <BundleResource Include="Resources\Images\add.svg" />
+	  <BundleResource Include="Resources\Images\shipment.svg" />
+	  <BundleResource Include="Resources\Images\trash.svg" />
+	  <BundleResource Include="Resources\Images\back_white.svg" />
+	  <BundleResource Include="Resources\Images\local.svg" />
+	  <BundleResource Include="Resources\Images\filter.svg" />
+	  <BundleResource Include="Resources\Images\comment.svg" />
+	  <BundleResource Include="Resources\Images\calendar.svg" />
+	  <BundleResource Include="Resources\Images\liters.svg" />
+	  <BundleResource Include="Resources\Images\km.svg" />
+	  <BundleResource Include="Resources\Images\landing.svg" />
+	  <BundleResource Include="Resources\Images\money.svg" />
+	  <BundleResource Include="Resources\Fonts\Montserrat-Bold.ttf" />
+	  <BundleResource Include="Resources\Fonts\Montserrat-Regular.ttf" />
+	  <BundleResource Include="Resources\Fonts\Montserrat-SemiBold.ttf" />
+	  <BundleResource Include="Resources\Raw\loading_truck.json" />
+	  <BundleResource Include="Resources\Raw\truck_driver.json" />
+	</ItemGroup>
+	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0-android'">
+	  <PackageReference Include="DevExpress.Maui.Controls" Version="23.1.8" />
+	  <PackageReference Include="DevExpress.Maui.Editors" Version="23.1.8" />
+	</ItemGroup>
+	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0-ios'">
+	  <PackageReference Include="DevExpress.Maui.Controls" Version="23.1.8" />
+	  <PackageReference Include="DevExpress.Maui.Editors" Version="23.1.8" />
+	</ItemGroup>
+</Project>

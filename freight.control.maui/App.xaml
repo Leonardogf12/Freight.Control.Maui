@@ -1,0 +1,63 @@
+﻿<?xml version = "1.0" encoding = "UTF-8" ?>
+<Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:freight.control.maui"
+             x:Class="freight.control.maui.App">
+    <Application.Resources>
+        <ResourceDictionary>
+
+            <!-- New Colors -->
+            <Color x:Key="PrimaryDark">#080E2C</Color>
+            <Color x:Key="PrimaryDarkLight">#333850</Color>
+            <Color x:Key="PrimaryGreen">#A5F3DD</Color>
+            <Color x:Key="SecondaryGreen">#D1E8E2</Color>
+            <Color x:Key="TertiaryGreen">#CCD9D5</Color>
+
+            
+            <!-- My Styles -->
+            <Style x:Key="buttonDarkLight" TargetType="Button">
+                <Setter Property="Padding" Value="1" />
+                <Setter Property="HeightRequest" Value="30" />
+                <Setter Property="CornerRadius" Value="15" />
+                <Setter Property="BackgroundColor" Value="{StaticResource PrimaryDarkLight}" />
+                <Setter Property="FontFamily" Value="MontserratSemiBold" />  
+                <Setter Property="TextColor" Value="White" />
+            </Style>
+ 
+            <Style x:Key="buttonTertiaryGreen" TargetType="Button">
+                <Setter Property="Padding" Value="1" />
+                <Setter Property="HeightRequest" Value="30" />
+                <Setter Property="CornerRadius" Value="8" />
+                <Setter Property="TextColor" Value="Black" />              
+                <Setter Property="FontFamily" Value="MontserratSemiBold" />  
+                <Setter Property="BackgroundColor" Value="{StaticResource TertiaryGreen}" />
+            </Style>
+
+            <Style x:Key="buttonDarkPrimary" TargetType="Button">       
+                <Setter Property="HeightRequest" Value="45" />
+                <Setter Property="WidthRequest" Value="200" />
+                <Setter Property="CornerRadius" Value="25" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="BackgroundColor" Value="{StaticResource PrimaryDark}" />
+                <Setter Property="TextColor" Value="White" />       
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="FontFamily" Value="MontserratSemiBold" />  
+            <Setter Property="HorizontalOptions" Value="Center" />
+
+            </Style>
+                <Style x:Key="labelTitleView" TargetType="Label">     
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="FontFamily" Value="MontserratSemiBold" />                           
+            </Style>
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
+                <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>              
+    </Application.Resources>
+</Application>
+
