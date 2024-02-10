@@ -1,9 +1,10 @@
-﻿namespace freight.control.maui;
+﻿using freight.control.maui.Data;
+
+namespace freight.control.maui;
 
 public partial class App : Application
 {
     public static string WhatIsThePlatform;
-
 
 	public App()
 	{
@@ -35,5 +36,25 @@ public partial class App : Application
        
         return default(T);
     }
+
+    #region DB
+
+    private static DbApp _dbApp;
+    public static DbApp DbApp
+    {
+        get
+        {
+            if(_dbApp == null)
+            {
+                _dbApp = new DbApp(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "confretedata.db3"));
+            }
+
+            return _dbApp;
+        }
+    }
+
+    public const string dbPath = "/data/user/0/com.companyname.freight.control.maui/files/confretedata.db3";
+
+    #endregion
 }
 

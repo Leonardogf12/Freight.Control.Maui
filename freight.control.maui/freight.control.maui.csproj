@@ -119,6 +119,8 @@
 	  <None Remove="Resources\Splash\splash_load.svg" />
 	  <None Remove="Resources\AppIcon\logo_app_truck.svg" />
 	  <None Remove="Resources\AppIcon\logo_app.svg" />
+	  <None Remove="Data\" />
+	  <None Remove="Repositories\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="MVVM\" />
@@ -130,6 +132,8 @@
 	  <Folder Include="Components\" />
 	  <Folder Include="MVVM\Base\" />
 	  <Folder Include="Components\Others\" />
+	  <Folder Include="Data\" />
+	  <Folder Include="Repositories\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Compile Remove="MVVM\HomeView2.cs" />
