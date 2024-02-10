@@ -366,7 +366,7 @@ public class FreightView : BaseContentPage
 
     private async void ClickedButtonExport(object sender, EventArgs e)
     {
-        await App.Current.MainPage.DisplayAlert("Export", "Future implementation", "Ok");
+        await Navigation.PushAsync(new ExportView());
     }
 
     private async void TapGestureRecognizer_Tapped_DeleteItem(object sender, TappedEventArgs e)

@@ -234,7 +234,7 @@ public class ToFuelView : BaseContentPage
             StrokeShape = new RoundRectangle
             {
                 CornerRadius = new CornerRadius(10)
-            }
+            },
         };
 
         var gridFuel = new Grid
@@ -248,15 +248,15 @@ public class ToFuelView : BaseContentPage
             {
                 new () {Width = GridLength.Star},
                 new () {Width = GridLength.Star},
-            },
-            ColumnSpacing = 5
+            },            
+            RowSpacing = 10,
         };
         
         var liters = new EntryTextFieldCustom("liters", "Litros");
         liters.Entry.SetBinding(Entry.TextProperty, nameof(ViewModel.ToFuelModel.Liters));
         gridFuel.Add(liters, 0, 0);
         
-        var amountSpentFuel = new EntryTextFieldCustom("monay", "Valor");
+        var amountSpentFuel = new EntryTextFieldCustom("money", "Valor");
         amountSpentFuel.Entry.SetBinding(Entry.TextProperty, nameof(ViewModel.ToFuelModel.AmountSpentFuel));
         gridFuel.Add(amountSpentFuel, 1, 0);
 
@@ -265,22 +265,27 @@ public class ToFuelView : BaseContentPage
             Text = "Valor do Litro:",
             FontFamily = "MontserratRegular",
             FontSize = 16,
-            TextColor = App.GetResource<Color>("PrimaryDark")
+            TextColor = App.GetResource<Color>("PrimaryDark"),
+            Margin = new Thickness(10,0,0,10),            
         };
         gridFuel.Add(titleValuePerLiter, 0, 1);
 
         var contentValuePerLiter = new Label
-        {           
+        {            
             FontFamily = "MontserratRegular",
             FontSize = 16,
             TextColor = Colors.LightGray,
+            HorizontalOptions = LayoutOptions.End,
+            Margin = new Thickness(0, 0, 10, 0),
         };       
         contentValuePerLiter.SetBinding(Entry.TextProperty, nameof(ViewModel.ToFuelModel.ValuePerLiter));
         gridFuel.Add(contentValuePerLiter, 1, 1);
 
         borderFuel.Content = gridFuel;
 
-        contentGridBorderForm.Add(borderFuel, 0,2);
+        contentGridBorderForm.SetColumnSpan(borderFuel,2);
+        contentGridBorderForm.Add(borderFuel, 0, 2);
+
 
         var expenses = new EntryTextFieldCustom("money", "Despesas");
         expenses.Entry.SetBinding(Entry.TextProperty, nameof(ViewModel.ToFuelModel.Expenses));

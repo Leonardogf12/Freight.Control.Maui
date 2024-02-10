@@ -5,6 +5,7 @@ namespace freight.control.maui.Components;
 public class DatePickerFieldCustom : ContentView
 {
     public DatePicker DatePicker { get; set; }
+
     public Border Border { get; set; }
 
     public  DatePickerFieldCustom(string nameIcon = "calendar")

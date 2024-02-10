@@ -32,8 +32,32 @@ public class ToFuelViewModel : BaseViewModel
     }
 
 
-    public string FreightTravelDate => FreightModel.TravelDate.ToShortDateString();
+    private string _litersToFuel;
+    public string LitersToFuel
+    {
+        get => _litersToFuel;
+        set
+        {
+            _litersToFuel = value;
+            OnPropertyChanged();
+        }
+    }
 
+
+    private string _valueOfToFuel;
+    public string ValueOfToFuel
+    {
+        get => _valueOfToFuel;
+        set
+        {
+            _valueOfToFuel = value;
+            OnPropertyChanged();
+        }
+    }
+
+
+    public string FreightTravelDate => FreightModel.TravelDate.ToShortDateString();
+    
     #endregion
 
     public ToFuelViewModel()
