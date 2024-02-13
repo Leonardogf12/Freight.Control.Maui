@@ -806,3 +806,9 @@
 /Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-ios/iossimulator-x64/freight.control.maui.pdb
 /Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-ios/iossimulator-x64/freight.control.maui.genruntimeconfig.cache
 /Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-ios/iossimulator-x64/ref/freight.control.maui.dll
+/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-ios/iossimulator-x64/resizetizer/r/empty_tank.png
+/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-ios/iossimulator-x64/resizetizer/r/empty_tank@2x.png
+/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-ios/iossimulator-x64/resizetizer/r/empty_tank@3x.png
+/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-ios/iossimulator-x64/resizetizer/r/splash_load.png
+/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-ios/iossimulator-x64/resizetizer/r/splash_load@2x.png
+/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-ios/iossimulator-x64/resizetizer/r/splash_load@3x.png

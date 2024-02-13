@@ -2464,3 +2464,8 @@
 /Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-android/resizetizer/r/mipmap-xxxhdpi/logo_app.png
 /Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-android/resizetizer/r/mipmap-xxxhdpi/logo_app_background.png
 /Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-android/resizetizer/r/mipmap-xxxhdpi/logo_app_foreground.png
+/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-android/resizetizer/r/drawable-hdpi/empty_tank.png
+/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-android/resizetizer/r/drawable-mdpi/empty_tank.png
+/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-android/resizetizer/r/drawable-xhdpi/empty_tank.png
+/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-android/resizetizer/r/drawable-xxhdpi/empty_tank.png
+/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-android/resizetizer/r/drawable-xxxhdpi/empty_tank.png

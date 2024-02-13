@@ -1,5 +1,6 @@
 ﻿using freight.control.maui.Components;
 using freight.control.maui.Controls.Animations;
+using freight.control.maui.Controls.ControlCheckers;
 using freight.control.maui.MVVM.Base.Views;
 using freight.control.maui.MVVM.ViewModels;
 using Microsoft.Maui.Controls.Shapes;
@@ -8,7 +9,6 @@ namespace freight.control.maui.MVVM.Views;
 
 public class ToFuelView : BaseContentPage
 {
-
     public ToFuelViewModel ViewModel = new();
 
     public ClickAnimation ClickAnimation = new();
@@ -111,7 +111,7 @@ public class ToFuelView : BaseContentPage
         {
             Orientation = StackOrientation.Vertical,
             Spacing = 5,
-            Margin = new Thickness(10,0,0,0)
+            Margin = new Thickness(15,0,0,0)
         };
 
         var stackDate = new StackLayout
@@ -133,7 +133,7 @@ public class ToFuelView : BaseContentPage
             FontSize = 14,
             TextColor = App.GetResource<Color>("PrimaryDark")
         };
-        contentDate.SetBinding(Label.TextProperty, nameof(ViewModel.FreightTravelDate));
+        contentDate.SetBinding(Label.TextProperty, nameof(ViewModel.DetailTravelDate));
         stackDate.Children.Add(contentDate);
 
         stack.Children.Add(stackDate);
@@ -157,7 +157,7 @@ public class ToFuelView : BaseContentPage
             FontSize = 14,
             TextColor = App.GetResource<Color>("PrimaryDark")
         };
-        contentOrigin.SetBinding(Label.TextProperty, nameof(ViewModel.FreightModel.Origin));
+        contentOrigin.SetBinding(Label.TextProperty, nameof(ViewModel.DetailOrigin));
         stackOrigin.Children.Add(contentOrigin);
 
         stack.Children.Add(stackOrigin);
@@ -169,7 +169,7 @@ public class ToFuelView : BaseContentPage
         };
         var titleDestination = new Label
         {
-            Text = "Origem:",
+            Text = "Destino:",
             FontFamily = "MontserratSemiBold",
             FontSize = 14,
             TextColor = App.GetResource<Color>("PrimaryDark")
@@ -181,8 +181,8 @@ public class ToFuelView : BaseContentPage
             FontSize = 14,
             TextColor = App.GetResource<Color>("PrimaryDark")
         };
-        stackDestination.SetBinding(Label.TextProperty, nameof(ViewModel.FreightModel.Destination));
-        stackOrigin.Children.Add(contentDestination);
+        contentDestination.SetBinding(Label.TextProperty, nameof(ViewModel.DetailDestination));
+        stackDestination.Children.Add(contentDestination);
 
         stack.Children.Add(stackDestination);
 
@@ -221,7 +221,7 @@ public class ToFuelView : BaseContentPage
         };
 
         var date = new DatePickerFieldCustom();
-        date.DatePicker.SetBinding(DatePicker.DateProperty, nameof(ViewModel.ToFuelModel.Date));
+        date.DatePicker.SetBinding(DatePicker.DateProperty, nameof(ViewModel.Date));
         contentGridBorderForm.SetColumnSpan(date, 2);
         contentGridBorderForm.Add(date, 0, 0);
 
@@ -253,11 +253,17 @@ public class ToFuelView : BaseContentPage
         };
         
         var liters = new EntryTextFieldCustom("liters", "Litros");
-        liters.Entry.SetBinding(Entry.TextProperty, nameof(ViewModel.ToFuelModel.Liters));
+        liters.Entry.TextChanged += TextChangedEntryLiters;
+        liters.Entry.Keyboard = Keyboard.Numeric;
+        liters.Entry.SetBinding(Entry.TextProperty, nameof(ViewModel.Liters));
+        liters.Border.SetBinding(Border.StrokeProperty, nameof(ViewModel.StrokeLiters));
         gridFuel.Add(liters, 0, 0);
         
         var amountSpentFuel = new EntryTextFieldCustom("money", "Valor");
-        amountSpentFuel.Entry.SetBinding(Entry.TextProperty, nameof(ViewModel.ToFuelModel.AmountSpentFuel));
+        amountSpentFuel.Entry.TextChanged += TextChangedEntryAmountSpentFuel;
+        amountSpentFuel.Entry.Keyboard = Keyboard.Numeric;
+        amountSpentFuel.Entry.SetBinding(Entry.TextProperty, nameof(ViewModel.AmountSpentFuel));
+        amountSpentFuel.Border.SetBinding(Border.StrokeProperty, nameof(ViewModel.StrokeAmountSpentFuel));
         gridFuel.Add(amountSpentFuel, 1, 0);
 
         var titleValuePerLiter = new Label
@@ -278,7 +284,7 @@ public class ToFuelView : BaseContentPage
             HorizontalOptions = LayoutOptions.End,
             Margin = new Thickness(0, 0, 10, 0),
         };       
-        contentValuePerLiter.SetBinding(Entry.TextProperty, nameof(ViewModel.ToFuelModel.ValuePerLiter));
+        contentValuePerLiter.SetBinding(Entry.TextProperty, nameof(ViewModel.ValuePerLiter));   
         gridFuel.Add(contentValuePerLiter, 1, 1);
 
         borderFuel.Content = gridFuel;
@@ -288,18 +294,78 @@ public class ToFuelView : BaseContentPage
 
 
         var expenses = new EntryTextFieldCustom("money", "Despesas");
-        expenses.Entry.SetBinding(Entry.TextProperty, nameof(ViewModel.ToFuelModel.Expenses));
+        expenses.Entry.TextChanged += TextChangedEntryExpenses;
+        expenses.Entry.Keyboard = Keyboard.Numeric;
+        expenses.Entry.SetBinding(Entry.TextProperty, nameof(ViewModel.Expenses));
+        expenses.Border.SetBinding(Border.StrokeProperty, nameof(ViewModel.StrokeExpenses));
         contentGridBorderForm.SetColumnSpan(expenses, 2);
         contentGridBorderForm.Add(expenses, 0, 3);
 
         var observation = new EditorTextFieldCustom("comment", "Observação");
-        observation.Editor.SetBinding(Editor.TextProperty, nameof(ViewModel.ToFuelModel.Observation));
+        observation.Editor.SetBinding(Editor.TextProperty, nameof(ViewModel.Observation));
         contentGridBorderForm.SetColumnSpan(observation, 2);
         contentGridBorderForm.Add(observation, 0, 5);
 
         borderForm.Content = contentGridBorderForm;
 
         mainGrid.Add(borderForm, 0, 2);
+    }
+   
+    private void TextChangedEntryLiters(object sender, TextChangedEventArgs e)
+    {
+        var text = e.NewTextValue;
+
+        if (string.IsNullOrEmpty(text))
+        {
+            SetColorDefaultLitersFieldBorder();
+            return;
+        }
+
+        if (!CheckTheEntrys.IsValidDouble(text))
+        {
+            ViewModel.StrokeLiters = Colors.Red;
+            return;
+        }
+
+        SetColorDefaultLitersFieldBorder();
+    }
+    
+    private void TextChangedEntryAmountSpentFuel(object sender, TextChangedEventArgs e)
+    {
+        var text = e.NewTextValue;
+
+        if (string.IsNullOrEmpty(text))
+        {
+            SetColorDefaultAmountSpentFuelFieldBorder();
+            return;
+        }
+
+        if (!CheckTheEntrys.IsValidDouble(text))
+        {
+            ViewModel.StrokeAmountSpentFuel = Colors.Red;
+            return;
+        }
+
+        SetColorDefaultAmountSpentFuelFieldBorder();
+    }
+
+    private void TextChangedEntryExpenses(object sender, TextChangedEventArgs e)
+    {
+        var text = e.NewTextValue;
+
+        if (string.IsNullOrEmpty(text))
+        {
+            SetColorDefaultExpensesFieldBorder();
+            return;
+        }
+
+        if (!CheckTheEntrys.IsValidDouble(text))
+        {
+            ViewModel.StrokeExpenses = Colors.Red;
+            return;
+        }
+
+        SetColorDefaultExpensesFieldBorder();
     }
 
     private void CreateButtonSave(Grid mainGrid)
@@ -337,6 +403,14 @@ public class ToFuelView : BaseContentPage
     #endregion
 
     #region Actions
+
+    private void SetColorDefaultLitersFieldBorder() => ViewModel.StrokeLiters = Colors.LightGray;
+
+    private void SetColorDefaultAmountSpentFuelFieldBorder() => ViewModel.StrokeAmountSpentFuel = Colors.LightGray;
+
+    private void SetColorDefaultExpensesFieldBorder() => ViewModel.StrokeExpenses = Colors.LightGray;
+
+
     #endregion
 
 }

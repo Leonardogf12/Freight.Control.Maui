@@ -11,7 +11,6 @@ public class DetailFreightView : BaseContentPage
 {
     public DetailFreightViewModel ViewModel = new();
 
-
     public ClickAnimation ClickAnimation = new();
 
     public DetailFreightView()
@@ -37,6 +36,9 @@ public class DetailFreightView : BaseContentPage
         CreateTitleToFuel(mainGrid);
 
         CreateCollectionDetailFreight(mainGrid);
+
+        CreateStackWithEmptyCollection(mainGrid);
+
 
         return mainGrid;
     }
@@ -539,6 +541,24 @@ public class DetailFreightView : BaseContentPage
         return button;
     }
 
+    private void CreateStackWithEmptyCollection(Grid mainGrid)
+    {
+        var label = new Label
+        {
+            Text = "Você ainda não abasteceu nesta viagem.",
+            FontSize = 14,
+            FontFamily = "MontserratRegular",
+            TextColor = Colors.Gray,           
+            HorizontalTextAlignment = TextAlignment.Center,
+            VerticalOptions = LayoutOptions.Center,
+            HorizontalOptions = LayoutOptions.Center,
+        };
+
+        label.SetBinding(Label.IsVisibleProperty, nameof(ViewModel.IsVisibleTextPhraseToFuelEmpty));
+      
+        mainGrid.Add(label, 0,3);
+    }
+
     #endregion
 
     #region Events
@@ -553,12 +573,20 @@ public class DetailFreightView : BaseContentPage
     }
 
     private async void TapGestureRecognizer_Tapped_DeleteItem(object sender, TappedEventArgs e)
-    {
-        var element = sender as Image;
+    {      
+        if (sender is Image element)
+        {
+            await ClickAnimation.SetFadeOnElement(element);
 
-        await ClickAnimation.SetFadeOnElement(element);
+            var result = await DisplayAlert("Excluir", "Deseja realmente excluir este abastecimento?", "Sim", "Não");
 
-        await DisplayAlert("Delete Item", "future implamentation...", "Ok");
+            if (!result) return;
+
+            if (element.BindingContext is ToFuelModel item)
+            {
+                await ViewModel.DeleteSupply(item);
+            }
+        }        
     }
 
     private async void ClickedButtonEdit(object sender, EventArgs e)

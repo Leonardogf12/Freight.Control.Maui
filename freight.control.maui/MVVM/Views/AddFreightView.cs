@@ -66,7 +66,7 @@ public class AddFreightView : BaseContentPage
             ColumnDefinitions = new ColumnDefinitionCollection
             {
                 new () { Width = GridLength.Star},
-                new () { Width = GridLength.Star},
+                new () { Width = GridLength.Auto},
                 new () { Width = GridLength.Star},
             },
             ColumnSpacing = 15,
@@ -89,11 +89,11 @@ public class AddFreightView : BaseContentPage
         contentGridStackTitle.Add(imageBackButton, 0, 0);
 
         var labelTitle = new Label
-        {
-            Text = "Frete",
+        {            
             TextColor = (Color)App.Current.Resources["PrimaryDark"],
             Style = (Style)App.Current.Resources["labelTitleView"],
         };
+        labelTitle.SetBinding(Label.TextProperty, nameof(ViewModel.TextTitlePage));
         contentGridStackTitle.Add(labelTitle, 1, 0);
 
         stackTitle.Children.Add(contentGridStackTitle);

@@ -121,6 +121,8 @@
 	  <None Remove="Resources\AppIcon\logo_app.svg" />
 	  <None Remove="Data\" />
 	  <None Remove="Repositories\" />
+	  <None Remove="Services\" />
+	  <None Remove="Resources\Images\empty_tank.svg" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="MVVM\" />
@@ -134,6 +136,7 @@
 	  <Folder Include="Components\Others\" />
 	  <Folder Include="Data\" />
 	  <Folder Include="Repositories\" />
+	  <Folder Include="Services\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Compile Remove="MVVM\HomeView2.cs" />
@@ -179,6 +182,7 @@
 	  <BundleResource Include="Resources\Splash\splash_load.svg" />
 	  <BundleResource Include="Resources\AppIcon\appiconfg.svg" />
 	  <BundleResource Include="Resources\AppIcon\appicon.svg" />
+	  <BundleResource Include="Resources\Images\empty_tank.svg" />
 	</ItemGroup>
 	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0-android'">
 	  <PackageReference Include="DevExpress.Maui.Controls" Version="23.1.8" />

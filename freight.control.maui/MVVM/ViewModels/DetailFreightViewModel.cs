@@ -1,11 +1,18 @@
 ﻿using System.Collections.ObjectModel;
 using freight.control.maui.MVVM.Base.ViewModels;
 using freight.control.maui.MVVM.Models;
+using freight.control.maui.Repositories;
 
 namespace freight.control.maui.MVVM.ViewModels;
 
+[QueryProperty(nameof(SelectedFreightToDetail), "SelectedFreightToDetail")]
 public class DetailFreightViewModel : BaseViewModel
 {
+
+    private readonly ToFuelRepository _toFuelRepository;
+
+    #region Properties
+   
     private ObservableCollection<ToFuelModel> _toFuelCollection = new();
     public ObservableCollection<ToFuelModel> ToFuelCollection
     {
@@ -30,7 +37,29 @@ public class DetailFreightViewModel : BaseViewModel
     }
 
 
+    private FreightModel _selectedFreightToDetail;
+    public FreightModel SelectedFreightToDetail
+    {
+        get => _selectedFreightToDetail;
+        set
+        {
+            _selectedFreightToDetail = value;
+            OnPropertyChanged();
 
+            SetValuesToDetails();
+        }
+    }
+
+    private bool _isVisibleTextPhraseToFuelEmpty = false;
+    public bool IsVisibleTextPhraseToFuelEmpty
+    {
+        get => _isVisibleTextPhraseToFuelEmpty;
+        set
+        {
+            _isVisibleTextPhraseToFuelEmpty = value;
+            OnPropertyChanged();
+        }
+    }
 
 
     #region DetailFreight
@@ -143,74 +172,75 @@ public class DetailFreightViewModel : BaseViewModel
 
     #endregion
 
+    #endregion
+
     public DetailFreightViewModel()
     {
+        _toFuelRepository = new();
     }
 
-    private void LoadToFuelsMock()
+    #region Private Methods
+
+    private void SetValuesToDetails()
+    {
+        DetailTravelDate = SelectedFreightToDetail.TravelDate.ToShortDateString();
+        DetailOrigin = SelectedFreightToDetail.Origin;
+        DetailDestination = SelectedFreightToDetail.Destination;
+        DetailKm = SelectedFreightToDetail.Kilometer.ToString();
+        DetailTotalFreight = SelectedFreightToDetail.FreightValue.ToString("c");        
+    }
+
+    private void CheckForItemsInCollection()
+    {
+        IsVisibleTextPhraseToFuelEmpty = ToFuelCollection.Count == 0;
+    }
+
+    private async void LoadCollection()
     {
         ToFuelCollection.Clear();
 
-        var list = new List<ToFuelModel> {
-            new ToFuelModel
-            {
-                Date = DateTime.Now,
-                Liters = 150.50,
-                AmountSpentFuel = 580.65M,
-                ValuePerLiter = 5.65M,
-                Expenses = 75M,
-                Observation = "Observacao de numero 1"
-            },
-            new ToFuelModel
-            {
-                Date = DateTime.Now.AddDays(2),
-                Liters = 320.00,
-                AmountSpentFuel = 754.45M,
-                ValuePerLiter = 6.55M,
-                Expenses = 90M,
-                Observation = "Outra observacao"
-            },
-            new ToFuelModel
-            {
-                Date = DateTime.Now.AddDays(4),
-                Liters = 360.00,
-                AmountSpentFuel = 640.78M,
-                ValuePerLiter = 5.55M,
-                Expenses = 15M,
-                Observation = "Terceira observacao, e dessa vez é maior que as outras."
-            },
-
-        };
+        var list = await _toFuelRepository.GetAllById(SelectedFreightToDetail.Id);
 
         ToFuelCollection = new ObservableCollection<ToFuelModel>(list);
 
+        CheckForItemsInCollection();
+
+        CalcTotalFuelAndSpent();
     }
 
-    private void LoadDetailFreightMock()
+    private void CalcTotalFuelAndSpent()
     {
-       
-        DetailFreightModel = new FreightModel
-        {
-            Destination = "Sao PAulo SP",
-            Origin = "Linhares ES",
-            Kilometer = 1500.00,
-            FreightValue = 6500M,
-            TravelDate = DateTime.Now,
-            Observation = "observacao teste para ver como ficou",            
-        };
-
-        DetailTravelDate = DetailFreightModel.TravelDate.ToShortDateString();
-        DetailOrigin = DetailFreightModel.Origin;
-        DetailDestination = DetailFreightModel.Destination;
-        DetailKm = DetailFreightModel.Kilometer.ToString();
-        DetailTotalFreight = DetailFreightModel.FreightValue.ToString("c");
-        TotalFuel = ToFuelCollection.Select(x=>x.Liters).Sum().ToString();
+        TotalFuel = ToFuelCollection.Select(x => x.Liters).Sum().ToString();
         TotalSpentLiters = ToFuelCollection.Select(x => x.AmountSpentFuel).Sum().ToString("c");
+    }
+
+    #endregion
+
+    #region Public Methods
+
+    public async Task DeleteSupply(ToFuelModel model)
+    {
+        var result = await _toFuelRepository.DeleteAsync(model);
+       
+        if (result > 0)
+        {
+            ToFuelCollection.Remove(model);
+
+            await App.Current.MainPage.DisplayAlert("Sucesso", "Item excluido com sucesso!", "Ok");
+        }
+        else
+        {
+            await App.Current.MainPage.DisplayAlert("Ops", "Parece que ocorreu um problema. Favor tentar novamente.", "Ok");
+        }
+
+        CheckForItemsInCollection();
+        CalcTotalFuelAndSpent();
     }
 
     public void OnAppearing()
     {
-        LoadToFuelsMock();
-        LoadDetailFreightMock();
+        LoadCollection();      
     }
+
+    #endregion
 }

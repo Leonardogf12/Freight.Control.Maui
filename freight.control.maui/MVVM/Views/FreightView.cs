@@ -2,18 +2,23 @@
 using freight.control.maui.MVVM.Base.Views;
 using freight.control.maui.MVVM.Models;
 using freight.control.maui.MVVM.ViewModels;
+using freight.control.maui.Services;
 using Microsoft.Maui.Controls.Shapes;
 
 namespace freight.control.maui.MVVM.Views;
 
 public class FreightView : BaseContentPage
 {
+    private readonly INavigationService _navigationService;
+
     public FreightViewModel ViewModel = new();
 
     ClickAnimation ClickAnimation = new();
 
-    public FreightView()
+    public FreightView(INavigationService navigationService)
 	{
+        _navigationService = navigationService;
+
         BackgroundColor = App.GetResource<Color>("PrimaryDark");
 
 		Content = BuildFreightView();
@@ -30,6 +35,8 @@ public class FreightView : BaseContentPage
         CreateStackHeader(mainGrid);
 
         CreateCollectionFreight(mainGrid);
+
+        CreateLabelAddNewFreights(mainGrid);
 
         return mainGrid;
     }
@@ -341,6 +348,23 @@ public class FreightView : BaseContentPage
         return button;
     }
 
+    private void CreateLabelAddNewFreights(Grid contentGridBorder)
+    {
+        var label = new Label
+        {
+            Text = "Clique em Novo para adicionar um frete",
+            FontSize = 14,
+            FontFamily = "MontserratRegular",
+            TextColor = Colors.Gray,
+            VerticalOptions = LayoutOptions.Center,
+            HorizontalOptions = LayoutOptions.Center
+        };
+        label.SetBinding(Label.IsVisibleProperty, nameof(ViewModel.IsVisibleTextAddNewFreight));
+
+        contentGridBorder.SetRowSpan(label,3);
+        contentGridBorder.Children.Add(label);
+    }
+
     #endregion
 
     #region Events
@@ -370,23 +394,68 @@ public class FreightView : BaseContentPage
     }
 
     private async void TapGestureRecognizer_Tapped_DeleteItem(object sender, TappedEventArgs e)
-    {
-        await App.Current.MainPage.DisplayAlert("Delete Item", "Future implementation", "Ok");
+    {                   
+        if (sender is Image element)
+        {
+            await ClickAnimation.SetFadeOnElement(element);
+
+            var result = await DisplayAlert("Excluir", "Deseja realmente excluir este frete?", "Sim", "Não");
+
+            if (!result) return;
+
+            if (element.BindingContext is FreightModel item)
+            {
+                await ViewModel.DeleteFreight(item);
+            }
+        }       
     }
 
     private async void ClickedButtonSee(object sender, EventArgs e)
     {
-        await App.Current.MainPage.Navigation.PushAsync(new DetailFreightView());
+        if (sender is Button element)
+        {
+            if (element.BindingContext is FreightModel item)
+            {
+                Dictionary<string, object> obj = new Dictionary<string, object>
+                {
+                    { "SelectedFreightToDetail", item }
+                };
+
+                await _navigationService.NavigationToPageAsync<DetailFreightView>(parameters: obj);
+            }
+        }
     }
 
     private async void ClickedButtonToFuel(object sender, EventArgs e)
     {
-        await App.Current.MainPage.Navigation.PushAsync(new ToFuelView());
+        if (sender is Button element)
+        {
+            if (element.BindingContext is FreightModel item)
+            {
+                Dictionary<string, object> obj = new Dictionary<string, object>
+                {
+                    { "DetailsFreight", item }
+                };
+
+                await _navigationService.NavigationToPageAsync<ToFuelView>(parameters: obj);
+            }
+        }
     }
 
     private async void ClickedButtonEdit(object sender, EventArgs e)
     {
-        await App.Current.MainPage.DisplayAlert("Edit", "Future implementation", "Ok");
+        if (sender is Button element)
+        {
+            if (element.BindingContext is FreightModel item)
+            {
+                Dictionary<string, object> obj = new Dictionary<string, object>
+                {
+                    { "SelectedFreightToEdit", item }
+                };
+
+                await _navigationService.NavigationToPageAsync<AddFreightView>(parameters: obj);
+            }
+        }        
     }
 
     #endregion

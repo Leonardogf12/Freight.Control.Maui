@@ -40,6 +40,7 @@ obj/Debug/net7.0-android/resizetizer/r/drawable-xhdpi/money.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-xhdpi/local.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-xhdpi/back_white.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-xhdpi/trash.png
+obj/Debug/net7.0-android/resizetizer/r/drawable-xhdpi/empty_tank.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-xhdpi/truck.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-xxhdpi/shipment.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-xxhdpi/add.png
@@ -59,6 +60,7 @@ obj/Debug/net7.0-android/resizetizer/r/drawable-xxhdpi/money.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-xxhdpi/local.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-xxhdpi/back_white.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-xxhdpi/trash.png
+obj/Debug/net7.0-android/resizetizer/r/drawable-xxhdpi/empty_tank.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-xxhdpi/truck.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-hdpi/shipment.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-hdpi/add.png
@@ -78,6 +80,7 @@ obj/Debug/net7.0-android/resizetizer/r/drawable-hdpi/money.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-hdpi/local.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-hdpi/back_white.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-hdpi/trash.png
+obj/Debug/net7.0-android/resizetizer/r/drawable-hdpi/empty_tank.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-hdpi/truck.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-mdpi/shipment.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-mdpi/add.png
@@ -97,6 +100,7 @@ obj/Debug/net7.0-android/resizetizer/r/drawable-mdpi/money.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-mdpi/local.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-mdpi/back_white.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-mdpi/trash.png
+obj/Debug/net7.0-android/resizetizer/r/drawable-mdpi/empty_tank.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-mdpi/truck.png
 obj/Debug/net7.0-android/resizetizer/r/mipmap-xhdpi/logo_app.png
 obj/Debug/net7.0-android/resizetizer/r/mipmap-xhdpi/appicon_foreground.png
@@ -122,6 +126,7 @@ obj/Debug/net7.0-android/resizetizer/r/drawable-xxxhdpi/money.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-xxxhdpi/local.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-xxxhdpi/back_white.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-xxxhdpi/trash.png
+obj/Debug/net7.0-android/resizetizer/r/drawable-xxxhdpi/empty_tank.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-xxxhdpi/truck.png
 obj/Debug/net7.0-android/resizetizer/r/mipmap-anydpi-v26/logo_app.xml
 obj/Debug/net7.0-android/resizetizer/r/mipmap-anydpi-v26/appicon_round.xml

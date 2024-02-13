@@ -11,4 +11,29 @@ public class ToFuelRepository : GenericRepository<ToFuelModel>
 	{
 		_db = new SQLiteAsyncConnection(App.dbPath);
     }
+
+	public async Task<IEnumerable<ToFuelModel>> GetAllById(int id)
+	{
+		return await _db.Table<ToFuelModel>().Where(x => x.FreightModelId == id).ToListAsync();
+	}
+
+	public async Task<bool> DeleteByIdFreightAsync(int id)
+	{
+		try
+		{
+            var list = await GetAllById(id);
+
+			if (!list.Any()) return false;
+
+			await Task.WhenAll(list.Select(x =>_db.DeleteAsync(x)));
+
+			return true;
+        }
+		catch (Exception ex)
+		{
+			Console.WriteLine($"Falha ao deletar alguns registros de Abastecimento. Conferir detalhes em => {ex.Message}");
+			return false;
+		}
+		
+	}
 }

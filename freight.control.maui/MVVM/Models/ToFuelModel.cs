@@ -1,5 +1,6 @@
 ﻿using ForeignKeyAttribute = SQLiteNetExtensions.Attributes.ForeignKeyAttribute;
 using SQLite;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace freight.control.maui.MVVM.Models;
 
@@ -24,10 +25,15 @@ public class ToFuelModel
     public int  FreightModelId { get; set; }
 
 
+    [NotMapped]
     public string ToFuelDateCustom => Date.ToShortDateString();
-	public string AmountSpentFuelCustom => AmountSpentFuel.ToString("c");
+    [NotMapped]
+    public string AmountSpentFuelCustom => AmountSpentFuel.ToString("c");
+    [NotMapped]
     public string ExpensesCustom => Expenses.ToString("c");
-	public string ValuePerLiterCustom => ValuePerLiter.ToString("c");
+    [NotMapped]
+    public string ValuePerLiterCustom => ValuePerLiter.ToString("c");
+
 
 }
 

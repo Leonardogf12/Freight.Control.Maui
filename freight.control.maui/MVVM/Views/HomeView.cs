@@ -68,7 +68,8 @@ public class HomeView : BaseContentPage
 
         await ClickAnimation.SetFadeOnElement(element);
 
-        await App.Current.MainPage.Navigation.PushAsync(new FreightView());
+        await Shell.Current.GoToAsync("FreightView");
+        //await App.Current.MainPage.Navigation.PushAsync(new FreightView(null));
     }
 
     #endregion
