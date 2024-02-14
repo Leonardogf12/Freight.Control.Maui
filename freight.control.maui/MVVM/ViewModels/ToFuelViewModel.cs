@@ -5,12 +5,15 @@ using freight.control.maui.Repositories;
 namespace freight.control.maui.MVVM.ViewModels;
 
 [QueryProperty(nameof(DetailsFreight), "DetailsFreight")]
+[QueryProperty(nameof(SelectedToFuelToEdit), "SelectedToFuelToEdit")]
 public class ToFuelViewModel : BaseViewModel
 {
     private readonly ToFuelRepository _toFuelRepository;
 
+    private readonly FreightRepository _freightRepository;
+
     #region Properties
-        
+
     private DateTime _date = DateTime.Now;
     public DateTime Date
     {
@@ -128,7 +131,7 @@ public class ToFuelViewModel : BaseViewModel
             _detailsFreight = value;
             OnPropertyChanged();
 
-            SetValuesToDetail();
+            SetValuesToDetail(isCreating: true);
         }
     }
 
@@ -167,27 +170,47 @@ public class ToFuelViewModel : BaseViewModel
             OnPropertyChanged();
         }
     }
-    
+
+
+    private ToFuelModel _selectedToFuelToEdit = new();
+    public ToFuelModel SelectedToFuelToEdit
+    {
+        get => _selectedToFuelToEdit;
+        set
+        {
+            _selectedToFuelToEdit = value;
+            OnPropertyChanged();
+
+            SetValuesToDetail(isCreating: false);
+        }
+    }
+
     #endregion
 
     public ToFuelViewModel()
 	{
-        _toFuelRepository = new ToFuelRepository();
-
+        _toFuelRepository = new();
+        _freightRepository = new();
     }
 
     public async void OnSave()
     {
-        var model = new ToFuelModel();
-        model.FreightModelId = DetailsFreight.Id;
-        model.Date = Date;
-        model.Liters = double.Parse(Liters);     
-        model.AmountSpentFuel = Convert.ToDecimal(AmountSpentFuel);
-        model.ValuePerLiter = Convert.ToDecimal(AmountSpentFuel) / Convert.ToDecimal(Liters);
-        model.Expenses = Convert.ToDecimal(Expenses);
-        model.Observation = Observation;
+        if(SelectedToFuelToEdit.Id > 0) {
+          
+            var edited = await _toFuelRepository.UpdateAsync(CreateModelToAddOrEdit());
 
-        var result = await _toFuelRepository.SaveAsync(model);
+            if (edited > 0)
+            {
+                await App.Current.MainPage.DisplayAlert("Sucesso", "Abastecimento editado com sucesso!", "Ok");
+                return;
+            }
+
+            await App.Current.MainPage.DisplayAlert("Ops", "Parece que houve um erro durante a edição do abastecimento. Por favor, tente novamente.", "Ok");
+
+            return;
+        }
+       
+        var result = await _toFuelRepository.SaveAsync(CreateModelToAddOrEdit());
 
         if (result > 0)
         {
@@ -198,14 +221,48 @@ public class ToFuelViewModel : BaseViewModel
         await App.Current.MainPage.DisplayAlert("Ops", "Parece que houve um erro durante a criação do abastecimento. Por favor, tente novamente.", "Ok");
     }
 
-
     #region Private Methods
 
-    private void SetValuesToDetail()
+    private ToFuelModel CreateModelToAddOrEdit()
     {
-        DetailTravelDate = DetailsFreight.TravelDateCustom;
-        DetailOrigin = DetailsFreight.Origin;
-        DetailDestination = DetailsFreight.Destination;
+        var model = new ToFuelModel();
+        model.FreightModelId = SelectedToFuelToEdit.Id > 0 ? SelectedToFuelToEdit.Id : DetailsFreight.Id;
+        model.Date = Date;
+        model.Liters = double.Parse(Liters);
+        model.AmountSpentFuel = Convert.ToDecimal(AmountSpentFuel);
+        model.ValuePerLiter = Convert.ToDecimal(AmountSpentFuel) / Convert.ToDecimal(Liters);
+        model.Expenses = Convert.ToDecimal(Expenses);
+        model.Observation = Observation;
+
+        return model;
+    }
+
+    private async void SetValuesToDetail(bool isCreating)
+    {
+        if (isCreating)
+        {
+            DetailTravelDate = DetailsFreight.TravelDateCustom;
+            DetailOrigin = DetailsFreight.Origin;
+            DetailDestination = DetailsFreight.Destination;
+            return;
+        }
+        else
+        {
+            var item = await _freightRepository.GetById(SelectedToFuelToEdit.FreightModelId);
+
+            if (item == null) return;
+
+            DetailTravelDate = item.TravelDate.ToShortDateString();
+            DetailOrigin = item.Origin;
+            DetailDestination = item.Destination;
+            Date = SelectedToFuelToEdit.Date;
+            Liters = SelectedToFuelToEdit.Liters.ToString();
+            AmountSpentFuel = SelectedToFuelToEdit.AmountSpentFuel.ToString();
+
+            ValuePerLiter = SelectedToFuelToEdit.ValuePerLiter.ToString("c");
+            Expenses = SelectedToFuelToEdit.Expenses.ToString();
+            Observation = SelectedToFuelToEdit.Observation?? "";
+        }
     }
 
     #endregion

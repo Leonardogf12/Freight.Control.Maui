@@ -3,18 +3,23 @@ using freight.control.maui.Controls.Animations;
 using freight.control.maui.MVVM.Base.Views;
 using freight.control.maui.MVVM.Models;
 using freight.control.maui.MVVM.ViewModels;
+using freight.control.maui.Services;
 using Microsoft.Maui.Controls.Shapes;
 
 namespace freight.control.maui.MVVM.Views;
 
 public class DetailFreightView : BaseContentPage
 {
+    private readonly INavigationService _navigationService;
+
     public DetailFreightViewModel ViewModel = new();
 
     public ClickAnimation ClickAnimation = new();
 
-    public DetailFreightView()
+    public DetailFreightView(INavigationService navigationService)
 	{
+        _navigationService = navigationService;
+
         BackgroundColor = App.GetResource<Color>("PrimaryDark");
 
         Content = BuildDetailFreightView();
@@ -591,7 +596,18 @@ public class DetailFreightView : BaseContentPage
 
     private async void ClickedButtonEdit(object sender, EventArgs e)
     {
-        await DisplayAlert("Edit Item", "future implamentation...", "Ok");
+        if (sender is Button element)
+        {
+            if (element.BindingContext is ToFuelModel item)
+            {
+                Dictionary<string, object> obj = new Dictionary<string, object>
+                {
+                    { "SelectedToFuelToEdit", item }
+                };
+
+                await _navigationService.NavigationToPageAsync<ToFuelView>(parameters: obj);
+            }
+        }
     }
 
     #endregion

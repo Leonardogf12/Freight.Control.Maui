@@ -12,6 +12,8 @@
             <Color x:Key="PrimaryGreen">#A5F3DD</Color>
             <Color x:Key="SecondaryGreen">#D1E8E2</Color>
             <Color x:Key="TertiaryGreen">#CCD9D5</Color>
+            <Color x:Key="ColorOfIcons">#6A7777</Color>
+
 
             
             <!-- My Styles -->

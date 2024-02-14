@@ -284,7 +284,7 @@ public class ToFuelView : BaseContentPage
             HorizontalOptions = LayoutOptions.End,
             Margin = new Thickness(0, 0, 10, 0),
         };       
-        contentValuePerLiter.SetBinding(Entry.TextProperty, nameof(ViewModel.ValuePerLiter));   
+        contentValuePerLiter.SetBinding(Label.TextProperty, nameof(ViewModel.ValuePerLiter));   
         gridFuel.Add(contentValuePerLiter, 1, 1);
 
         borderFuel.Content = gridFuel;

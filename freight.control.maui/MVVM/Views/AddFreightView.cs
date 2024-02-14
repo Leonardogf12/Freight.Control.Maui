@@ -4,6 +4,7 @@ using Microsoft.Maui.Controls.Shapes;
 using freight.control.maui.Controls.ControlCheckers;
 using freight.control.maui.MVVM.Base.Views;
 using freight.control.maui.Controls.Animations;
+using DevExpress.Maui.Editors;
 
 namespace freight.control.maui.MVVM.Views;
 
@@ -147,19 +148,43 @@ public class AddFreightView : BaseContentPage
         contentGridBorderForm.SetColumnSpan(destination, 2);
         contentGridBorderForm.Add(destination, 0, 2);
 
+        var kmTextEditDX = new TextEdit
+        {
+            PlaceholderText = "Km",
+            PlaceholderColor = Colors.LightGray,
+            FocusedBorderColor = Colors.Gray,
+            TextColor = App.GetResource<Color>("PrimaryDark"),
+            CursorColor = App.GetResource<Color>("PrimaryDark"),
+            ClearIconColor = App.GetResource<Color>("PrimaryDark"),
+            AffixColor = App.GetResource<Color>("PrimaryDark"),
+            StartIcon = ImageSource.FromFile("km"),
+            IconColor = App.GetResource<Color>("ColorOfIcons"),
+            IconIndent = 25,
+            IsLabelFloating = false,            
+            LabelText = null,
+            Margin = new Thickness(10,15,10,0),
+            HeightRequest = 50,
+            Keyboard = Keyboard.Numeric,
+            CornerRadius = 8,
+            Mask = "00000",
+            MaskPlaceholderChar = '0'
+        };
+        contentGridBorderForm.SetColumnSpan(kmTextEditDX, 2);
+        contentGridBorderForm.Add(kmTextEditDX, 0, 3);
+
         var km = new EntryTextFieldCustom("km", "Km");
         km.Entry.Keyboard = Keyboard.Numeric;
         km.Entry.SetBinding(Entry.TextProperty, nameof(AddFreightViewModel.Kilometer));
         km.Border.SetBinding(Border.StrokeProperty, nameof(AddFreightViewModel.StrokeKm));
         km.Entry.TextChanged += TextChangedEntryKm;
-        contentGridBorderForm.Add(km, 0, 3);
+        //contentGridBorderForm.Add(km, 0, 3);
 
         var freigthField = new EntryTextFieldCustom("money", "Valor");
         freigthField.Entry.Keyboard = Keyboard.Numeric;
         freigthField.Entry.SetBinding(Entry.TextProperty, nameof(AddFreightViewModel.FreightValue));
         freigthField.Border.SetBinding(Border.StrokeProperty, nameof(AddFreightViewModel.StrokeFreight));
         freigthField.Entry.TextChanged += TextChangedEntryFreight;
-        contentGridBorderForm.Add(freigthField, 1, 3);
+        //contentGridBorderForm.Add(freigthField, 1, 3);
 
         var observation = new EditorTextFieldCustom("comment", "Observação");
         observation.Editor.SetBinding(Editor.TextProperty, nameof(AddFreightViewModel.Observation));
@@ -191,6 +216,16 @@ public class AddFreightView : BaseContentPage
     private void TextChangedEntryKm(object sender, TextChangedEventArgs e)
     {
         var text = e.NewTextValue;
+
+        /*
+        if (e.NewTextValue.Contains("."))
+        {
+            if (e.NewTextValue.Length - 1 - e.NewTextValue.IndexOf(".") > 2)
+            {
+                var s = e.NewTextValue.Substring(0, e.NewTextValue.IndexOf(".") + 2 + 1);
+                ViewModel.Kilometer = s;                
+            }
+        } */
 
         if (string.IsNullOrEmpty(text))
         {

@@ -11,4 +11,9 @@ public class FreightRepository : GenericRepository<FreightModel>
     {
         _db = new SQLiteAsyncConnection(App.dbPath);
     }
+
+    public async Task<FreightModel> GetById(int id)
+    {
+        return await _db.Table<FreightModel>().Where(x => x.Id == id).FirstAsync();
+    }
 }

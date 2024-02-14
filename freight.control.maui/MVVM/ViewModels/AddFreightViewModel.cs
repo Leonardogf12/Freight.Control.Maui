@@ -176,8 +176,8 @@ public class AddFreightViewModel : BaseViewModel
         model.TravelDate = TravelDate;
         model.Origin = Origin;
         model.Destination = Destination;
-        model.Kilometer = Convert.ToDouble(Kilometer);
-        model.FreightValue = Convert.ToDecimal(FreightValue);
+        model.Kilometer = Convert.ToDouble(Kilometer.Replace(".",","));
+        model.FreightValue = Convert.ToDecimal(FreightValue.Replace(".", ","));
         model.Observation = Observation;
 
         var result = await _freightRepository.SaveAsync(model);
