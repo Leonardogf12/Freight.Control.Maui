@@ -1,10 +1,10 @@
-﻿using freight.control.maui.Components;
-using freight.control.maui.MVVM.ViewModels;
-using Microsoft.Maui.Controls.Shapes;
+﻿using DevExpress.Maui.Editors;
+using freight.control.maui.Components;
+using freight.control.maui.Controls.Animations;
 using freight.control.maui.Controls.ControlCheckers;
 using freight.control.maui.MVVM.Base.Views;
-using freight.control.maui.Controls.Animations;
-using DevExpress.Maui.Editors;
+using freight.control.maui.MVVM.ViewModels;
+using Microsoft.Maui.Controls.Shapes;
 
 namespace freight.control.maui.MVVM.Views;
 
@@ -130,70 +130,140 @@ public class AddFreightView : BaseContentPage
             {
                 new () { Width = GridLength.Star},
                 new () { Width = GridLength.Star},
+                new () { Width = GridLength.Star},
+                new () { Width = GridLength.Star},               
             }
         };
 
-        var travel = new DatePickerFieldCustom();
-        travel.DatePicker.SetBinding(DatePicker.DateProperty, nameof(AddFreightViewModel.TravelDate));
-        contentGridBorderForm.SetColumnSpan(travel, 2);
-        contentGridBorderForm.Add(travel, 0, 0);
+        CreateTravelDateFieldForm(contentGridBorderForm);
 
-        var origin = new EntryTextFieldCustom("local", "Origem");
-        origin.Entry.SetBinding(Entry.TextProperty, nameof(AddFreightViewModel.Origin));
-        contentGridBorderForm.SetColumnSpan(origin, 2);
-        contentGridBorderForm.Add(origin, 0, 1);
+        CreateOriginFieldForm(contentGridBorderForm);
 
-        var destination = new EntryTextFieldCustom("local", "Destino");
-        destination.Entry.SetBinding(Entry.TextProperty, nameof(AddFreightViewModel.Destination));
-        contentGridBorderForm.SetColumnSpan(destination, 2);
-        contentGridBorderForm.Add(destination, 0, 2);
+        CreateDestinationFieldForm(contentGridBorderForm);
 
-        var kmTextEditDX = new TextEdit
-        {
-            PlaceholderText = "Km",
-            PlaceholderColor = Colors.LightGray,
-            FocusedBorderColor = Colors.Gray,
-            TextColor = App.GetResource<Color>("PrimaryDark"),
-            CursorColor = App.GetResource<Color>("PrimaryDark"),
-            ClearIconColor = App.GetResource<Color>("PrimaryDark"),
-            AffixColor = App.GetResource<Color>("PrimaryDark"),
-            StartIcon = ImageSource.FromFile("km"),
-            IconColor = App.GetResource<Color>("ColorOfIcons"),
-            IconIndent = 25,
-            IsLabelFloating = false,            
-            LabelText = null,
-            Margin = new Thickness(10,15,10,0),
-            HeightRequest = 50,
-            Keyboard = Keyboard.Numeric,
-            CornerRadius = 8,
-            Mask = "00000",
-            MaskPlaceholderChar = '0'
-        };
-        contentGridBorderForm.SetColumnSpan(kmTextEditDX, 2);
-        contentGridBorderForm.Add(kmTextEditDX, 0, 3);
+        CreateKmFieldForm(contentGridBorderForm);
 
-        var km = new EntryTextFieldCustom("km", "Km");
-        km.Entry.Keyboard = Keyboard.Numeric;
-        km.Entry.SetBinding(Entry.TextProperty, nameof(AddFreightViewModel.Kilometer));
-        km.Border.SetBinding(Border.StrokeProperty, nameof(AddFreightViewModel.StrokeKm));
-        km.Entry.TextChanged += TextChangedEntryKm;
-        //contentGridBorderForm.Add(km, 0, 3);
+        CreateFreightValueFieldForm(contentGridBorderForm);
 
-        var freigthField = new EntryTextFieldCustom("money", "Valor");
-        freigthField.Entry.Keyboard = Keyboard.Numeric;
-        freigthField.Entry.SetBinding(Entry.TextProperty, nameof(AddFreightViewModel.FreightValue));
-        freigthField.Border.SetBinding(Border.StrokeProperty, nameof(AddFreightViewModel.StrokeFreight));
-        freigthField.Entry.TextChanged += TextChangedEntryFreight;
-        //contentGridBorderForm.Add(freigthField, 1, 3);
-
-        var observation = new EditorTextFieldCustom("comment", "Observação");
-        observation.Editor.SetBinding(Editor.TextProperty, nameof(AddFreightViewModel.Observation));
-        contentGridBorderForm.SetColumnSpan(observation, 2);
-        contentGridBorderForm.Add(observation, 0, 5);
-
+        CreateObservationFieldCustom(contentGridBorderForm);
+    
         borderForm.Content = contentGridBorderForm;
 
         mainGrid.Add(borderForm, 0, 1);
+    }
+   
+    private void CreateTravelDateFieldForm(Grid contentGridBorderForm)
+    {
+        var travel = new DatePickerFieldCustom();
+        travel.DatePicker.SetBinding(DatePicker.DateProperty, nameof(AddFreightViewModel.TravelDate));
+        contentGridBorderForm.SetColumnSpan(travel, 5);
+        contentGridBorderForm.Add(travel, 0, 0);
+    }
+
+    private void CreateOriginFieldForm(Grid contentGridBorderForm)
+    {
+        var grid = new Grid
+        {
+            ColumnDefinitions = new ColumnDefinitionCollection
+            {
+                new () { Width = GridLength.Star},
+                new () { Width = GridLength.Star},
+                new () { Width = GridLength.Star},
+                new () { Width = GridLength.Star},
+                new () { Width = GridLength.Star},
+            }
+        };
+
+        var originUf = new ComboboxEditCustom(icon: "uf_24")
+        {           
+            Margin = new Thickness(10, 15, 5, 0),           
+        };
+        originUf.SetBinding(ItemsEditBase.ItemsSourceProperty, nameof(ViewModel.OriginUfCollection));
+        originUf.SetBinding(ComboBoxEdit.SelectedItemProperty, nameof(ViewModel.SelectedItemOriginUf));       
+        grid.SetColumnSpan(originUf, 2);
+        grid.Add(originUf, 0, 1);
+
+        var origin = new ComboboxEditCustom(icon: "local_24")
+        {           
+            Margin = new Thickness(0, 15, 10, 0),           
+        };
+        origin.SetBinding(ItemsEditBase.ItemsSourceProperty, nameof(ViewModel.OriginCollection));
+        grid.SetColumnSpan(origin, 3);
+        grid.Add(origin, 2, 1);
+
+        contentGridBorderForm.SetColumnSpan(grid, 5);
+        contentGridBorderForm.Add(grid, 0, 1);
+    }
+   
+    private void CreateDestinationFieldForm(Grid contentGridBorderForm)
+    {
+        var grid = new Grid
+        {
+            ColumnDefinitions = new ColumnDefinitionCollection
+            {
+                new () { Width = GridLength.Star},
+                new () { Width = GridLength.Star},
+                new () { Width = GridLength.Star},
+                new () { Width = GridLength.Star},
+                new () { Width = GridLength.Star},
+            }
+        };
+
+        var destinationUf = new ComboboxEditCustom(icon: "uf_24")
+        {
+            Margin = new Thickness(10, 15, 5, 0),
+        };
+        destinationUf.SetBinding(ItemsEditBase.ItemsSourceProperty, nameof(ViewModel.DestinationUfCollection));
+        destinationUf.SetBinding(ComboBoxEdit.SelectedItemProperty, nameof(ViewModel.SelectedItemDestinationUf));       
+        grid.SetColumnSpan(destinationUf, 2);
+        grid.Add(destinationUf, 0, 1);
+
+        var destination = new ComboboxEditCustom(icon: "local_24")
+        {
+            Margin = new Thickness(0, 15, 10, 0),
+        };
+        destination.SetBinding(ItemsEditBase.ItemsSourceProperty, nameof(ViewModel.DestinationCollection));
+        grid.SetColumnSpan(destination, 3);
+        grid.Add(destination, 2, 1);
+
+        contentGridBorderForm.SetColumnSpan(grid, 5);
+        contentGridBorderForm.Add(grid, 0, 2);
+    }
+
+    private void CreateKmFieldForm(Grid contentGridBorderForm)
+    {
+        var km = new TextEditCustom(icon: "km_24", placeholder: "Km: 1000", keyboard: Keyboard.Numeric)
+        {
+            Margin = new Thickness(10, 15, 5, 0),
+        };
+        km.SetBinding(TextEditBase.TextProperty, nameof(ViewModel.Kilometer));
+        km.SetBinding(EditBase.BorderColorProperty, nameof(ViewModel.BorderColorKm));
+        km.SetBinding(EditBase.FocusedBorderColorProperty, nameof(ViewModel.BorderColorFocusedKm));
+        km.TextChanged += Km_TextChanged;
+        contentGridBorderForm.SetColumnSpan(km, 2);
+        contentGridBorderForm.Add(km, 0, 3);
+    }
+
+    private void CreateFreightValueFieldForm(Grid contentGridBorderForm)
+    {
+        var freigthField = new TextEditCustom(icon: "money_24", placeholder: "R$ 1000.00", keyboard: Keyboard.Numeric)
+        {
+            Margin = new Thickness(0, 15, 10, 0),
+        };
+        freigthField.SetBinding(TextEditBase.TextProperty, nameof(ViewModel.FreightValue));
+        freigthField.SetBinding(EditBase.BorderColorProperty, nameof(ViewModel.BorderColorFreightValue));
+        freigthField.SetBinding(EditBase.FocusedBorderColorProperty, nameof(ViewModel.BorderColorFocusedFreightValue));
+        freigthField.TextChanged += FreigthField_TextChanged;
+        contentGridBorderForm.SetColumnSpan(freigthField, 2);
+        contentGridBorderForm.Add(freigthField, 2, 3);
+    }
+
+    private void CreateObservationFieldCustom(Grid contentGridBorderForm)
+    {
+        var observation = new MultilineEditCustom(icon: "comment_24", placeholder: "Observacão");
+        observation.SetBinding(TextEditBase.TextProperty, nameof(ViewModel.Observation));
+        contentGridBorderForm.SetColumnSpan(observation, 4);
+        contentGridBorderForm.Add(observation, 0, 5);
     }
 
     private void CreateButtonSave(Grid mainGrid)
@@ -212,56 +282,52 @@ public class AddFreightView : BaseContentPage
     #endregion
 
     #region Events
-
-    private void TextChangedEntryKm(object sender, TextChangedEventArgs e)
+    
+    private void Km_TextChanged(object sender, EventArgs e)
     {
-        var text = e.NewTextValue;
+        var element = sender as TextEdit;
 
-        /*
-        if (e.NewTextValue.Contains("."))
-        {
-            if (e.NewTextValue.Length - 1 - e.NewTextValue.IndexOf(".") > 2)
-            {
-                var s = e.NewTextValue.Substring(0, e.NewTextValue.IndexOf(".") + 2 + 1);
-                ViewModel.Kilometer = s;                
-            }
-        } */
+        var text = element.Text;
 
         if (string.IsNullOrEmpty(text))
         {
-            SetColorDefaultKmFieldBorder();
+            SetBorderColorDefaultKmField();
             return;
         }
 
-        if (!CheckTheEntrys.IsValidDouble(text))
+        if (!CheckTheEntrys.IsValidEntry(text, CheckTheEntrys.patternKilometer))
         {
-            ViewModel.StrokeKm = Colors.Red;
+            ViewModel.BorderColorKm = Colors.Red;
+            ViewModel.BorderColorFocusedKm = Colors.Red;
             return;
         }
 
-        SetColorDefaultKmFieldBorder();
+        SetBorderColorDefaultKmField();
     }
 
-    private void TextChangedEntryFreight(object sender, TextChangedEventArgs e)
+    private void FreigthField_TextChanged(object sender, EventArgs e)
     {
-        var text = e.NewTextValue;
+        var element = sender as TextEdit;
+
+        var text = element.Text;
 
         if (string.IsNullOrEmpty(text))
         {
-
-            SetColorDefaultFreightFieldBorder();
+            SetBorderColorDefaultFreightField();
             return;
         }
 
-        if (!CheckTheEntrys.IsValidDouble(text))
+        if (!CheckTheEntrys.IsValidEntry(text, CheckTheEntrys.patternMoney))
         {
-            ViewModel.StrokeFreight = Colors.Red;
+            ViewModel.BorderColorFreightValue = Colors.Red;
+            ViewModel.BorderColorFocusedFreightValue = Colors.Red;
+
             return;
         }
 
-        SetColorDefaultFreightFieldBorder();
+        SetBorderColorDefaultFreightField();
     }
-
+    
     private void SaveClicked(object sender, EventArgs e)
     {
         ViewModel.OnSave();
@@ -280,9 +346,23 @@ public class AddFreightView : BaseContentPage
 
     #region Actions
 
-    private void SetColorDefaultKmFieldBorder() => ViewModel.StrokeKm = Colors.LightGray;
+    private void SetBorderColorDefaultKmField()
+    {
+       ViewModel.BorderColorKm = Colors.LightGray;
+       ViewModel.BorderColorFocusedKm = Colors.Gray;
+    }
 
-    private void SetColorDefaultFreightFieldBorder() => ViewModel.StrokeFreight = Colors.LightGray;
+    private void SetBorderColorDefaultFreightField()
+    {
+        ViewModel.BorderColorFreightValue = Colors.LightGray;
+        ViewModel.BorderColorFocusedFreightValue = Colors.Gray;
+    }
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        ViewModel.OnAppearing();
+    }
 
     #endregion
 }

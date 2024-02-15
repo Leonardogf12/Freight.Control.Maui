@@ -13,9 +13,8 @@
             <Color x:Key="SecondaryGreen">#D1E8E2</Color>
             <Color x:Key="TertiaryGreen">#CCD9D5</Color>
             <Color x:Key="ColorOfIcons">#6A7777</Color>
-
-
-            
+            <Color x:Key="BorderGray400">#919191</Color>
+          
             <!-- My Styles -->
             <Style x:Key="buttonDarkLight" TargetType="Button">
                 <Setter Property="Padding" Value="1" />

@@ -1,34 +1,44 @@
-﻿<Properties StartupConfiguration="{15687626-2468-4B49-B8B5-F034392697A3}|Default" GitUserInfo="UsingMD">
-  <MonoDevelop.MonoDroid LastDeploySdkVersion="33.0.95" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="freight.control.maui/MVVM/Views/FreightView.cs">
+﻿<Properties GitUserInfo="UsingMD" StartupConfiguration="{15687626-2468-4B49-B8B5-F034392697A3}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="freight.control.maui/Services/DataIbgeService.cs">
     <Files>
-      <File FileName="freight.control.maui/MVVM/Views/AddFreightView.cs" Line="1" Column="1" />
-      <File FileName="freight.control.maui/MVVM/ViewModels/AddFreightViewModel.cs" Line="139" Column="23" />
-      <File FileName="freight.control.maui/MVVM/Views/FreightView.cs" Line="418" Column="38" />
-      <File FileName="freight.control.maui/MVVM/ViewModels/FreightViewModel.cs" Line="54" Column="1" />
+      <File FileName="freight.control.maui/MVVM/Views/AddFreightView.cs" />
+      <File FileName="freight.control.maui/MVVM/ViewModels/AddFreightViewModel.cs" />
+      <File FileName="freight.control.maui/Services/DataIbgeService.cs" Line="57" Column="18" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="freight.control.maui">
-            <Node name="freight.control.maui">
-              <Node name="MVVM">
-                <Node name="Views">
-                  <Node name="FreightView.cs" selected="True" />
-                </Node>
+          <Node name="freight.control.maui" expanded="True">
+            <Node name="freight.control.maui" expanded="True">
+              <Node name="Components" expanded="True" />
+              <Node name="Controls" expanded="True" />
+              <Node name="MVVM" expanded="True">
+                <Node name="ViewModels" expanded="True" />
+                <Node name="Views" expanded="True" />
+              </Node>
+              <Node name="Services" expanded="True">
+                <Node name="DataIbgeService.cs" selected="True" />
               </Node>
             </Node>
           </Node>
         </State>
       </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State>
+          <Value>text</Value>
+        </State>
+      </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.MonoDroid LastDeploySdkVersion="33.0.95" />
   <Xamarin.Addins.Core.Project ActiveDebugTarget="MyAppleMacCatalystID" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/Services/DataIbgeService.cs" relfile="freight.control.maui/Services/DataIbgeService.cs" line="60" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.freight.control.maui PreferredExecutionTarget="MyAppleMacCatalystID" Xamarin.HotReload.DebuggerTimeoutException.freight.control.maui.HideInfoBar="True" Xamarin.HotReload.WrongLinkerErrorInfoBar.freight.control.maui.HideInfoBar="True" />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.ItemProperties.freight.control.maui PreferredExecutionTarget="MyAppleMacCatalystID" />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
 </Properties>

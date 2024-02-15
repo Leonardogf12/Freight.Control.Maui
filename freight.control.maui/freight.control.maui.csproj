@@ -101,7 +101,6 @@
 	  <None Remove="Resources\Images\comment.svg" />
 	  <None Remove="Resources\Images\calendar.svg" />
 	  <None Remove="Resources\Images\liters.svg" />
-	  <None Remove="Resources\Images\km.svg" />
 	  <None Remove="Resources\Images\landing.svg" />
 	  <None Remove="MVVM\ViewModels\" />
 	  <None Remove="MVVM\Models\" />
@@ -123,6 +122,13 @@
 	  <None Remove="Repositories\" />
 	  <None Remove="Services\" />
 	  <None Remove="Resources\Images\empty_tank.svg" />
+	  <None Remove="Resources\Images\km_32.svg" />
+	  <None Remove="Resources\Images\calendar_24.svg" />
+	  <None Remove="Resources\Images\comment_24.svg" />
+	  <None Remove="Resources\Images\local_24.svg" />
+	  <None Remove="Resources\Images\money_24.svg" />
+	  <None Remove="Resources\Images\uf_24.svg" />
+	  <None Remove="Resources\Images\combobox_24.svg" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="MVVM\" />
@@ -150,7 +156,6 @@
 	  <BundleResource Include="Resources\Images\export.svg" />
 	  <BundleResource Include="Resources\Images\filter.svg" />
 	  <BundleResource Include="Resources\Images\fuel.svg" />
-	  <BundleResource Include="Resources\Images\km.svg" />
 	  <BundleResource Include="Resources\Images\landing.svg" />
 	  <BundleResource Include="Resources\Images\liters.svg" />
 	  <BundleResource Include="Resources\Images\local.svg" />
@@ -171,7 +176,6 @@
 	  <BundleResource Include="Resources\Images\comment.svg" />
 	  <BundleResource Include="Resources\Images\calendar.svg" />
 	  <BundleResource Include="Resources\Images\liters.svg" />
-	  <BundleResource Include="Resources\Images\km.svg" />
 	  <BundleResource Include="Resources\Images\landing.svg" />
 	  <BundleResource Include="Resources\Images\money.svg" />
 	  <BundleResource Include="Resources\Fonts\Montserrat-Bold.ttf" />
@@ -183,6 +187,13 @@
 	  <BundleResource Include="Resources\AppIcon\appiconfg.svg" />
 	  <BundleResource Include="Resources\AppIcon\appicon.svg" />
 	  <BundleResource Include="Resources\Images\empty_tank.svg" />
+	  <BundleResource Include="Resources\Images\km_24.svg" />
+	  <BundleResource Include="Resources\Images\calendar_24.svg" />
+	  <BundleResource Include="Resources\Images\comment_24.svg" />
+	  <BundleResource Include="Resources\Images\local_24.svg" />
+	  <BundleResource Include="Resources\Images\money_24.svg" />
+	  <BundleResource Include="Resources\Images\uf_24.svg" />
+	  <BundleResource Include="Resources\Images\combobox_24.svg" />
 	</ItemGroup>
 	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0-android'">
 	  <PackageReference Include="DevExpress.Maui.Controls" Version="23.1.8" />

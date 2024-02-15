@@ -321,7 +321,7 @@ public class ToFuelView : BaseContentPage
             return;
         }
 
-        if (!CheckTheEntrys.IsValidDouble(text))
+        if (!CheckTheEntrys.IsValidEntry(text, CheckTheEntrys.patternLiters))
         {
             ViewModel.StrokeLiters = Colors.Red;
             return;
@@ -340,7 +340,7 @@ public class ToFuelView : BaseContentPage
             return;
         }
 
-        if (!CheckTheEntrys.IsValidDouble(text))
+        if (!CheckTheEntrys.IsValidEntry(text, CheckTheEntrys.patternMoney))
         {
             ViewModel.StrokeAmountSpentFuel = Colors.Red;
             return;
@@ -359,7 +359,7 @@ public class ToFuelView : BaseContentPage
             return;
         }
 
-        if (!CheckTheEntrys.IsValidDouble(text))
+        if (!CheckTheEntrys.IsValidEntry(text, CheckTheEntrys.patternMoney))
         {
             ViewModel.StrokeExpenses = Colors.Red;
             return;

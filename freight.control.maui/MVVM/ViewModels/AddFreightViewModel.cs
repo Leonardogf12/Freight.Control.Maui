@@ -1,8 +1,10 @@
-﻿using System.Windows.Input;
+﻿using System.Collections.ObjectModel;
+using System.Windows.Input;
+using freight.control.maui.Controls;
 using freight.control.maui.MVVM.Base.ViewModels;
 using freight.control.maui.MVVM.Models;
 using freight.control.maui.Repositories;
-using static Android.Graphics.ColorSpace;
+using freight.control.maui.Services;
 
 namespace freight.control.maui.MVVM.ViewModels;
 
@@ -85,30 +87,54 @@ public class AddFreightViewModel : BaseViewModel
     }
 
 
-    private Color _strokeFreight = Colors.LightGray;
-    public Color StrokeFreight
+    private Color _borderColorFreightValue = Colors.LightGray;
+    public Color BorderColorFreightValue
     {
-        get => _strokeFreight;
+        get => _borderColorFreightValue;
         set
         {
-            _strokeFreight = value;
+            _borderColorFreightValue = value;
             OnPropertyChanged();
         }
     }
 
 
-    private Color _strokeKm = Colors.LightGray;
-    public Color StrokeKm
+    private Color _borderColorFocusedFreightValue = Colors.Gray;
+    public Color BorderColorFocusedFreightValue
     {
-        get => _strokeKm;
+        get => _borderColorFocusedFreightValue;
         set
         {
-            _strokeKm = value;
+            _borderColorFocusedFreightValue = value;
             OnPropertyChanged();
         }
     }
 
 
+    private Color _borderColorKm = Colors.LightGray;
+    public Color BorderColorKm
+    {
+        get => _borderColorKm;
+        set
+        {
+            _borderColorKm = value;
+            OnPropertyChanged();
+        }
+    }
+
+
+    private Color _borderColorFocusedKm = Colors.Gray;
+    public Color BorderColorFocusedKm
+    {
+        get => _borderColorFocusedKm;
+        set
+        {
+            _borderColorFocusedKm = value;
+            OnPropertyChanged();
+        }
+    }
+
+    
     private string _textTitlePage = "Frete";
     public string TextTitlePage
     {
@@ -134,6 +160,85 @@ public class AddFreightViewModel : BaseViewModel
         }
     }
 
+
+    private ObservableCollection<string> _originCollection = new();
+    public ObservableCollection<string> OriginCollection
+    {
+        get => _originCollection;
+        set
+        {
+            _originCollection = value;
+            OnPropertyChanged();
+        }
+    }
+
+    private ObservableCollection<string> _originUfCollection = new();
+    public ObservableCollection<string> OriginUfCollection
+    {
+        get => _originUfCollection;
+        set
+        {
+            _originUfCollection = value;
+            OnPropertyChanged();
+        }
+    }
+
+
+    private string _selectedItemOriginUf;
+    public string SelectedItemOriginUf
+    {
+        get => _selectedItemOriginUf;
+        set
+        {
+            _selectedItemOriginUf = value;
+            OnPropertyChanged();
+
+            if (string.IsNullOrEmpty(SelectedItemOriginUf)) return;
+
+            ChangedItemOriginUf(SelectedItemOriginUf);
+        }
+    }
+
+  
+    private ObservableCollection<string> _destinationCollection = new();
+    public ObservableCollection<string> DestinationCollection
+    {
+        get => _destinationCollection;
+        set
+        {
+            _destinationCollection = value;
+            OnPropertyChanged();
+        }
+    }
+
+
+    private ObservableCollection<string> _destinationUfCollection = new();
+    public ObservableCollection<string> DestinationUfCollection
+    {
+        get => _destinationUfCollection;
+        set
+        {
+            _destinationUfCollection = value;
+            OnPropertyChanged();           
+        }
+    }
+
+
+    private string _selectedItemDestinationUf;
+    public string SelectedItemDestinationUf
+    {
+        get => _selectedItemDestinationUf;
+        set
+        {
+            _selectedItemDestinationUf = value;
+            OnPropertyChanged();
+
+            if (string.IsNullOrEmpty(SelectedItemDestinationUf)) return;
+
+            ChangedItemDestinationUf(SelectedItemDestinationUf);
+        }
+    }
+
     #endregion
 
     public ICommand SaveCommand { get; set; }
@@ -141,10 +246,35 @@ public class AddFreightViewModel : BaseViewModel
     public AddFreightViewModel()
     {
         _freightRepository = new FreightRepository();
-        SaveCommand = new Command(OnSave);       
-    }
+        SaveCommand = new Command(OnSave);
 
+    }
+  
     #region Private Methods
+
+    private async Task EditFreight()
+    {
+        var item = new FreightModel
+        {
+            Id = SelectedFreightToEdit.Id,
+            TravelDate = TravelDate,
+            Origin = Origin,
+            Destination = Destination,
+            Kilometer = Convert.ToDouble(Kilometer),
+            FreightValue = Convert.ToDecimal(FreightValue),
+            Observation = Observation
+        };
+
+        var result = await _freightRepository.UpdateAsync(item);
+
+        if (result > 0)
+        {
+            await App.Current.MainPage.DisplayAlert("Sucesso", "Frete editado com sucesso!", "Ok");
+            return;
+        }
+
+        await App.Current.MainPage.DisplayAlert("Ops", "Parece que houve um erro durante a edição do Frete. Por favor, tente novamente.", "Ok");
+    }
 
     private void SetValuesToEdit()
     {
@@ -158,6 +288,16 @@ public class AddFreightViewModel : BaseViewModel
             FreightValue = SelectedFreightToEdit.FreightValue.ToString();
             Observation = SelectedFreightToEdit.Observation;
         }
+    }
+
+    private async void ChangedItemOriginUf(string state)
+    {    
+        OriginCollection = new ObservableCollection<string>(await LoadCitiesByState(state));
+    }
+
+    private async void ChangedItemDestinationUf(string state)
+    {
+        DestinationCollection = new ObservableCollection<string>(await LoadCitiesByState(state));
     }
 
     #endregion
@@ -190,29 +330,29 @@ public class AddFreightViewModel : BaseViewModel
 
         await App.Current.MainPage.DisplayAlert("Ops", "Parece que houve um erro durante a criação do Frete. Por favor, tente novamente.", "Ok");
     }
-
-    private async Task EditFreight()
+      
+    private void LoadStateAcronyms()
     {
-        var item = new FreightModel
-        {
-            Id = SelectedFreightToEdit.Id,
-            TravelDate = TravelDate,
-            Origin = Origin,
-            Destination = Destination,
-            Kilometer = Convert.ToDouble(Kilometer),
-            FreightValue = Convert.ToDecimal(FreightValue),
-            Observation = Observation
-        };
+        OriginUfCollection = new ObservableCollection<string>(StateAcronymsStr.GetAll());
+        DestinationUfCollection = new ObservableCollection<string>(StateAcronymsStr.GetAll());
+    }
 
-        var result = await _freightRepository.UpdateAsync(item);
+    public void OnAppearing()
+    {
+        LoadStateAcronyms();
+    }
 
-        if (result > 0)
-        {
-            await App.Current.MainPage.DisplayAlert("Sucesso", "Frete editado com sucesso!", "Ok");
-            return;
-        }
+    #endregion
 
-        await App.Current.MainPage.DisplayAlert("Ops", "Parece que houve um erro durante a edição do Frete. Por favor, tente novamente.", "Ok");
+    #region MOCK
+
+    private async Task<List<string>> LoadCitiesByState(string state)
+    {
+        List<Municipio> list = await DataIbgeService.GetCitiesByCodeState(state);
+
+        var newList = list.Select(x => x.Nome).ToList();
+
+        return newList;
     }
 
     #endregion
