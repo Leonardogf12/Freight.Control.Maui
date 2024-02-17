@@ -247,7 +247,6 @@ public class AddFreightViewModel : BaseViewModel
     {
         _freightRepository = new FreightRepository();
         SaveCommand = new Command(OnSave);
-
     }
   
     #region Private Methods
@@ -291,13 +290,34 @@ public class AddFreightViewModel : BaseViewModel
     }
 
     private async void ChangedItemOriginUf(string state)
-    {    
+    {        
         OriginCollection = new ObservableCollection<string>(await LoadCitiesByState(state));
     }
 
     private async void ChangedItemDestinationUf(string state)
-    {
+    {        
         DestinationCollection = new ObservableCollection<string>(await LoadCitiesByState(state));
+    }
+
+    private async Task<List<string>> LoadCitiesByState(string state)
+    {
+        IsBusy = true;
+
+        try
+        {           
+            var list = await DataIbgeService.GetCitiesByCodeState(state);
+
+            return list.Select(x => x.Nome).ToList();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+            return new List<string>();
+        }
+        finally
+        {
+            IsBusy = false;
+        }       
     }
 
     #endregion
@@ -342,18 +362,5 @@ public class AddFreightViewModel : BaseViewModel
         LoadStateAcronyms();
     }
 
-    #endregion
-
-    #region MOCK
-
-    private async Task<List<string>> LoadCitiesByState(string state)
-    {
-        List<Municipio> list = await DataIbgeService.GetCitiesByCodeState(state);
-
-        var newList = list.Select(x => x.Nome).ToList();
-
-        return newList;
-    }
-
-    #endregion
+    #endregion   
 }

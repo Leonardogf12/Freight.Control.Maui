@@ -21,6 +21,7 @@ public class ComboboxEditCustom : ComboBoxEdit
         ClearIconColor = App.GetResource<Color>("BorderGray400");
         IconColor = App.GetResource<Color>("ColorOfIcons");
         IconVerticalAlignment = LayoutAlignment.Center;
-        TextVerticalAlignment = TextAlignment.Center; 
+        TextVerticalAlignment = TextAlignment.Center;
+        IsFilterEnabled = false;        
 	}
 }

@@ -1,4 +1,5 @@
-﻿using DevExpress.Maui;
+﻿using CommunityToolkit.Maui;
+using DevExpress.Maui;
 using DotNet.Meteor.HotReload.Plugin;
 using freight.control.maui.MVVM.ViewModels;
 using freight.control.maui.MVVM.Views;
@@ -17,6 +18,7 @@ public static class MauiProgram
 			.UseMauiApp<App>()
             .UseSkiaSharp()
             .UseDevExpress()
+            .UseMauiCommunityToolkit()
 #if DEBUG
             .EnableHotReload()
 #endif

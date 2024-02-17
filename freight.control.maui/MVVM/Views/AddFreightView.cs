@@ -17,12 +17,14 @@ public class AddFreightView : BaseContentPage
     public AddFreightView()
 	{
         BackgroundColor = Colors.White;
-
+       
         Content = BuildAddFreightView();
 
+        CreateLoadingPopupView(this, ViewModel);
+       
         BindingContext = ViewModel;
     }
-
+  
     #region UI
 
     private View BuildAddFreightView()
@@ -164,6 +166,11 @@ public class AddFreightView : BaseContentPage
     {
         var grid = new Grid
         {
+            RowDefinitions = new RowDefinitionCollection
+            {
+                new () { Height = GridLength.Star},
+                new () { Height = GridLength.Star},
+            },
             ColumnDefinitions = new ColumnDefinitionCollection
             {
                 new () { Width = GridLength.Star},
@@ -171,12 +178,25 @@ public class AddFreightView : BaseContentPage
                 new () { Width = GridLength.Star},
                 new () { Width = GridLength.Star},
                 new () { Width = GridLength.Star},
-            }
+            },
+            Margin = new Thickness(0, 15, 0, 0),
+            RowSpacing = 3
         };
+
+        var title = new Label
+        {
+            Text = "Origem",
+            FontFamily = "MontserratRegular",
+            FontSize = 16,            
+            VerticalOptions = LayoutOptions.Center,           
+            Margin = new Thickness(10, 0, 0, 0),
+        };
+        grid.SetColumnSpan(title, 5);
+        grid.Add(title, 0, 0);
 
         var originUf = new ComboboxEditCustom(icon: "uf_24")
         {           
-            Margin = new Thickness(10, 15, 5, 0),           
+            Margin = new Thickness(10, 0, 5, 0),           
         };
         originUf.SetBinding(ItemsEditBase.ItemsSourceProperty, nameof(ViewModel.OriginUfCollection));
         originUf.SetBinding(ComboBoxEdit.SelectedItemProperty, nameof(ViewModel.SelectedItemOriginUf));       
@@ -185,12 +205,12 @@ public class AddFreightView : BaseContentPage
 
         var origin = new ComboboxEditCustom(icon: "local_24")
         {           
-            Margin = new Thickness(0, 15, 10, 0),           
+            Margin = new Thickness(0, 0, 10, 0),           
         };
         origin.SetBinding(ItemsEditBase.ItemsSourceProperty, nameof(ViewModel.OriginCollection));
         grid.SetColumnSpan(origin, 3);
         grid.Add(origin, 2, 1);
-
+            
         contentGridBorderForm.SetColumnSpan(grid, 5);
         contentGridBorderForm.Add(grid, 0, 1);
     }
@@ -199,6 +219,11 @@ public class AddFreightView : BaseContentPage
     {
         var grid = new Grid
         {
+            RowDefinitions = new RowDefinitionCollection
+            {
+                new () { Height = GridLength.Auto},
+                new () { Height = GridLength.Star},
+            },
             ColumnDefinitions = new ColumnDefinitionCollection
             {
                 new () { Width = GridLength.Star},
@@ -206,12 +231,26 @@ public class AddFreightView : BaseContentPage
                 new () { Width = GridLength.Star},
                 new () { Width = GridLength.Star},
                 new () { Width = GridLength.Star},
-            }
+            },
+            Margin = new Thickness(0, 15, 0, 0),
+            RowSpacing = 3
         };
+
+        var title = new Label
+        {
+            Text = "Destino",
+            FontFamily = "MontserratRegular",
+            FontSize = 16,
+            HorizontalOptions = LayoutOptions.Start,
+            VerticalOptions = LayoutOptions.Center,
+            Margin = new Thickness(10, 0, 0, 0),
+        };
+        grid.SetColumnSpan(title, 5);
+        grid.Add(title, 0, 0);
 
         var destinationUf = new ComboboxEditCustom(icon: "uf_24")
         {
-            Margin = new Thickness(10, 15, 5, 0),
+            Margin = new Thickness(10, 0, 5, 0),
         };
         destinationUf.SetBinding(ItemsEditBase.ItemsSourceProperty, nameof(ViewModel.DestinationUfCollection));
         destinationUf.SetBinding(ComboBoxEdit.SelectedItemProperty, nameof(ViewModel.SelectedItemDestinationUf));       
@@ -220,7 +259,7 @@ public class AddFreightView : BaseContentPage
 
         var destination = new ComboboxEditCustom(icon: "local_24")
         {
-            Margin = new Thickness(0, 15, 10, 0),
+            Margin = new Thickness(0, 0, 10, 0),
         };
         destination.SetBinding(ItemsEditBase.ItemsSourceProperty, nameof(ViewModel.DestinationCollection));
         grid.SetColumnSpan(destination, 3);
@@ -231,7 +270,7 @@ public class AddFreightView : BaseContentPage
     }
 
     private void CreateKmFieldForm(Grid contentGridBorderForm)
-    {
+    {        
         var km = new TextEditCustom(icon: "km_24", placeholder: "Km: 1000", keyboard: Keyboard.Numeric)
         {
             Margin = new Thickness(10, 15, 5, 0),
@@ -329,7 +368,7 @@ public class AddFreightView : BaseContentPage
     }
     
     private void SaveClicked(object sender, EventArgs e)
-    {
+    {        
         ViewModel.OnSave();
     }
 
@@ -363,6 +402,6 @@ public class AddFreightView : BaseContentPage
         base.OnAppearing();
         ViewModel.OnAppearing();
     }
-
+  
     #endregion
 }

@@ -185,3 +185,7 @@ SkiaSharp.Extended.UI.aar
 SkiaSharp.Views.Android.aar
 SQLitePCLRaw.lib.e_sqlite3.android.aar
 Xamarin.Google.Crypto.Tink.Android.aar
+CommunityToolkit.Maui.Core.dll
+CommunityToolkit.Maui.dll
+CommunityToolkit.Maui.Core.aar
+CommunityToolkit.Maui.aar

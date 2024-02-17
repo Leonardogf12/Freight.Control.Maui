@@ -8,6 +8,8 @@ public class MonoPackageManager_Resources {
 		"Microsoft.Maui.Controls.Xaml.dll",
 		"Microsoft.Maui.Controls.dll",
 		"Microsoft.Maui.Essentials.dll",
+		"CommunityToolkit.Maui.dll",
+		"CommunityToolkit.Maui.Core.dll",
 		"CommunityToolkit.Maui.Markup.dll",
 		"DevExpress.Data.v23.1.dll",
 		"DevExpress.Android.CollectionView.dll",

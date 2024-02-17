@@ -68,6 +68,7 @@
 		<PackageReference Include="SQLitePCLRaw.provider.sqlite3" Version="2.1.8" />
 		<PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.8" />
 		<PackageReference Include="SQLiteNetExtensions" Version="2.1.0" />
+		<PackageReference Include="CommunityToolkit.Maui" Version="6.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -129,6 +130,7 @@
 	  <None Remove="Resources\Images\money_24.svg" />
 	  <None Remove="Resources\Images\uf_24.svg" />
 	  <None Remove="Resources\Images\combobox_24.svg" />
+	  <None Remove="Components\Popups\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="MVVM\" />
@@ -143,6 +145,7 @@
 	  <Folder Include="Data\" />
 	  <Folder Include="Repositories\" />
 	  <Folder Include="Services\" />
+	  <Folder Include="Components\Popups\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Compile Remove="MVVM\HomeView2.cs" />

@@ -2524,3 +2524,10 @@
 /Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-android/resizetizer/r/drawable-xhdpi/combobox_24.png
 /Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-android/resizetizer/r/drawable-xxhdpi/combobox_24.png
 /Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-android/resizetizer/r/drawable-xxxhdpi/combobox_24.png
+/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-android/android/assets/CommunityToolkit.Maui.Core.dll
+/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-android/android/assets/CommunityToolkit.Maui.dll
+/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-android/android/src/crc64159f3caeb1269279/MauiDrawingView.java
+/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-android/android/src/crc64159f3caeb1269279/MauiPopup.java
+/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-android/android/src/crc64159f3caeb1269279/MauiSemanticOrderView.java
+/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-android/android/src/crc648fc34c62be8fbbff/Snackbar_SnackbarCallback.java
+/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-android/android/src/crc64d6358e7bf64fbac4/SpeechToTextImplementation_SpeechRecognitionListener.java

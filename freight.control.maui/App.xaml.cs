@@ -1,4 +1,8 @@
-﻿using freight.control.maui.Data;
+﻿using AndroidX.Lifecycle;
+using freight.control.maui.Components.Popups;
+using freight.control.maui.Data;
+using freight.control.maui.MVVM.Base.ViewModels;
+using SkiaSharp.Extended.UI.Controls;
 
 namespace freight.control.maui;
 
@@ -6,7 +10,11 @@ public partial class App : Application
 {
     public static string WhatIsThePlatform;
 
-	public App()
+    public static SKLottieView SKLottieViewIsBusy { get; set; }
+
+    public static PopupLoadingView PopupLoading = new();
+
+    public App()
 	{
         CheckDevice();
 
@@ -35,7 +43,7 @@ public partial class App : Application
         }
        
         return default(T);
-    }
+    }  
 
     #region DB
 

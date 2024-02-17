@@ -1,44 +1,44 @@
-﻿<Properties GitUserInfo="UsingMD" StartupConfiguration="{15687626-2468-4B49-B8B5-F034392697A3}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="freight.control.maui/Services/DataIbgeService.cs">
+﻿<Properties StartupConfiguration="{15687626-2468-4B49-B8B5-F034392697A3}|Default" GitUserInfo="UsingMD">
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/MVVM/Base/BaseContentPage.cs" relfile="freight.control.maui/MVVM/Base/BaseContentPage.cs" line="27" column="1" />
+      <Breakpoint file="/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/MVVM/Base/BaseContentPage.cs" relfile="freight.control.maui/MVVM/Base/BaseContentPage.cs" line="32" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.MonoDroid LastDeploySdkVersion="33.0.95" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <Xamarin.Addins.Core.Project ActiveDebugTarget="MyAppleMacCatalystID" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="freight.control.maui/MVVM/Base/BaseContentPage.cs">
     <Files>
-      <File FileName="freight.control.maui/MVVM/Views/AddFreightView.cs" />
       <File FileName="freight.control.maui/MVVM/ViewModels/AddFreightViewModel.cs" />
-      <File FileName="freight.control.maui/Services/DataIbgeService.cs" Line="57" Column="18" />
+      <File FileName="freight.control.maui/MVVM/Base/BaseContentPage.cs" Line="33" Column="22" />
+      <File FileName="freight.control.maui/MVVM/Views/AddFreightView.cs" />
+      <File FileName="freight.control.maui/MVVM/Base/BaseViewModel.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="freight.control.maui" expanded="True">
             <Node name="freight.control.maui" expanded="True">
-              <Node name="Components" expanded="True" />
-              <Node name="Controls" expanded="True" />
               <Node name="MVVM" expanded="True">
+                <Node name="Base" expanded="True">
+                  <Node name="BaseContentPage.cs" selected="True" />
+                </Node>
                 <Node name="ViewModels" expanded="True" />
                 <Node name="Views" expanded="True" />
               </Node>
-              <Node name="Services" expanded="True">
-                <Node name="DataIbgeService.cs" selected="True" />
+              <Node name="Resources" expanded="True">
+                <Node name="Raw" expanded="True" />
               </Node>
+              <Node name="Services" expanded="True" />
+              <Node name="App.xaml" expanded="True" />
             </Node>
           </Node>
         </State>
       </Pad>
-      <Pad Id="MonoDevelop.Debugger.WatchPad">
-        <State>
-          <Value>text</Value>
-        </State>
-      </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.MonoDroid LastDeploySdkVersion="33.0.95" />
-  <Xamarin.Addins.Core.Project ActiveDebugTarget="MyAppleMacCatalystID" />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/Services/DataIbgeService.cs" relfile="freight.control.maui/Services/DataIbgeService.cs" line="60" column="1" />
-    </BreakpointStore>
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.ItemProperties.freight.control.maui PreferredExecutionTarget="MyAppleMacCatalystID" Xamarin.HotReload.WrongLinkerErrorInfoBar.freight.control.maui.HideInfoBar="True" Xamarin.HotReload.DebuggerTimeoutException.freight.control.maui.HideInfoBar="True" />
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.ItemProperties.freight.control.maui PreferredExecutionTarget="MyAppleMacCatalystID" Xamarin.HotReload.DebuggerTimeoutException.freight.control.maui.HideInfoBar="True" Xamarin.HotReload.WrongLinkerErrorInfoBar.freight.control.maui.HideInfoBar="True" />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>
