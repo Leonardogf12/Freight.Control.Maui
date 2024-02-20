@@ -1,32 +1,20 @@
-﻿<Properties StartupConfiguration="{15687626-2468-4B49-B8B5-F034392697A3}|Default" GitUserInfo="UsingMD">
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/MVVM/Base/BaseContentPage.cs" relfile="freight.control.maui/MVVM/Base/BaseContentPage.cs" line="27" column="1" />
-      <Breakpoint file="/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/MVVM/Base/BaseContentPage.cs" relfile="freight.control.maui/MVVM/Base/BaseContentPage.cs" line="32" column="1" />
-    </BreakpointStore>
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.MonoDroid LastDeploySdkVersion="33.0.95" />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <Xamarin.Addins.Core.Project ActiveDebugTarget="MyAppleMacCatalystID" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="freight.control.maui/MVVM/Base/BaseContentPage.cs">
+﻿<Properties GitUserInfo="UsingMD" StartupConfiguration="{15687626-2468-4B49-B8B5-F034392697A3}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="freight.control.maui/MVVM/Views/AddFreightView.cs">
     <Files>
-      <File FileName="freight.control.maui/MVVM/ViewModels/AddFreightViewModel.cs" />
-      <File FileName="freight.control.maui/MVVM/Base/BaseContentPage.cs" Line="33" Column="22" />
-      <File FileName="freight.control.maui/MVVM/Views/AddFreightView.cs" />
-      <File FileName="freight.control.maui/MVVM/Base/BaseViewModel.cs" />
+      <File FileName="freight.control.maui/MVVM/Views/AddFreightView.cs" Line="182" Column="15" />
+      <File FileName="freight.control.maui/MVVM/ViewModels/AddFreightViewModel.cs" Line="16" Column="5" />
+      <File FileName="freight.control.maui/Components/ComboboxEditCustom.cs" Line="5" Column="47" />
+      <File FileName="freight.control.maui/App.xaml" Line="14" Column="40" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="freight.control.maui" expanded="True">
-            <Node name="freight.control.maui" expanded="True">
-              <Node name="MVVM" expanded="True">
-                <Node name="Base" expanded="True">
-                  <Node name="BaseContentPage.cs" selected="True" />
+          <Node name="freight.control.maui">
+            <Node name="freight.control.maui">
+              <Node name="MVVM">
+                <Node name="Views">
+                  <Node name="AddFreightView.cs" selected="True" />
                 </Node>
-                <Node name="ViewModels" expanded="True" />
-                <Node name="Views" expanded="True" />
               </Node>
               <Node name="Resources" expanded="True">
                 <Node name="Raw" expanded="True" />
@@ -37,8 +25,20 @@
           </Node>
         </State>
       </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.freight.control.maui PreferredExecutionTarget="MyAppleMacCatalystID" Xamarin.HotReload.WrongLinkerErrorInfoBar.freight.control.maui.HideInfoBar="True" Xamarin.HotReload.DebuggerTimeoutException.freight.control.maui.HideInfoBar="True" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MultiItemStartupConfigurations />
+  <Xamarin.Addins.Core.Project ActiveDebugTarget="Android.RQCT702DM4M" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/MVVM/ViewModels/AddFreightViewModel.cs" relfile="freight.control.maui/MVVM/ViewModels/AddFreightViewModel.cs" line="339" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.freight.control.maui Xamarin.HotReload.DebuggerTimeoutException.freight.control.maui.HideInfoBar="True" Xamarin.HotReload.WrongLinkerErrorInfoBar.freight.control.maui.HideInfoBar="True" PreferredExecutionTarget="Android.RQCT702DM4M" />
+  <MonoDevelop.MonoDroid LastDeploySdkVersion="33.0.95" />
 </Properties>

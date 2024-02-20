@@ -25,32 +25,7 @@ public class AddFreightViewModel : BaseViewModel
             OnPropertyChanged();
         }
     }
-
-
-    private string _origin;
-    public string Origin
-    {
-        get => _origin;
-        set
-        {
-            _origin = value;
-            OnPropertyChanged();
-        }
-    }
-
-
-    private string _destination;
-    public string Destination
-    {
-        get => _destination;
-        set
-        {
-            _destination = value;
-            OnPropertyChanged();
-        }
-    }
-
-
+   
     private string _kilometer;
     public string Kilometer
     {
@@ -61,7 +36,6 @@ public class AddFreightViewModel : BaseViewModel
             OnPropertyChanged();
         }
     }
-
 
     private string _freightValue;
     public string FreightValue
@@ -74,7 +48,6 @@ public class AddFreightViewModel : BaseViewModel
         }
     }
 
-
     private string _observation;
     public string Observation
     {
@@ -85,7 +58,6 @@ public class AddFreightViewModel : BaseViewModel
             OnPropertyChanged();
         }
     }
-
 
     private Color _borderColorFreightValue = Colors.LightGray;
     public Color BorderColorFreightValue
@@ -98,7 +70,6 @@ public class AddFreightViewModel : BaseViewModel
         }
     }
 
-
     private Color _borderColorFocusedFreightValue = Colors.Gray;
     public Color BorderColorFocusedFreightValue
     {
@@ -109,7 +80,6 @@ public class AddFreightViewModel : BaseViewModel
             OnPropertyChanged();
         }
     }
-
 
     private Color _borderColorKm = Colors.LightGray;
     public Color BorderColorKm
@@ -122,7 +92,6 @@ public class AddFreightViewModel : BaseViewModel
         }
     }
 
-
     private Color _borderColorFocusedKm = Colors.Gray;
     public Color BorderColorFocusedKm
     {
@@ -133,7 +102,6 @@ public class AddFreightViewModel : BaseViewModel
             OnPropertyChanged();
         }
     }
-
     
     private string _textTitlePage = "Frete";
     public string TextTitlePage
@@ -145,7 +113,6 @@ public class AddFreightViewModel : BaseViewModel
             OnPropertyChanged();
         }
     }
-
 
     private FreightModel _selectedFreightToEdit;
     public FreightModel SelectedFreightToEdit
@@ -159,8 +126,7 @@ public class AddFreightViewModel : BaseViewModel
             SetValuesToEdit();
         }
     }
-
-
+   
     private ObservableCollection<string> _originCollection = new();
     public ObservableCollection<string> OriginCollection
     {
@@ -183,7 +149,6 @@ public class AddFreightViewModel : BaseViewModel
         }
     }
 
-
     private string _selectedItemOriginUf;
     public string SelectedItemOriginUf
     {
@@ -192,14 +157,20 @@ public class AddFreightViewModel : BaseViewModel
         {
             _selectedItemOriginUf = value;
             OnPropertyChanged();
-
-            if (string.IsNullOrEmpty(SelectedItemOriginUf)) return;
-
-            ChangedItemOriginUf(SelectedItemOriginUf);
         }
     }
 
-  
+    private string _selectedItemOrigin;
+    public string SelectedItemOrigin
+    {
+        get => _selectedItemOrigin;
+        set
+        {
+            _selectedItemOrigin = value;
+            OnPropertyChanged();
+        }
+    }
+   
     private ObservableCollection<string> _destinationCollection = new();
     public ObservableCollection<string> DestinationCollection
     {
@@ -211,7 +182,6 @@ public class AddFreightViewModel : BaseViewModel
         }
     }
 
-
     private ObservableCollection<string> _destinationUfCollection = new();
     public ObservableCollection<string> DestinationUfCollection
     {
@@ -219,11 +189,10 @@ public class AddFreightViewModel : BaseViewModel
         set
         {
             _destinationUfCollection = value;
-            OnPropertyChanged();           
+            OnPropertyChanged();
         }
     }
-
-
+    
     private string _selectedItemDestinationUf;
     public string SelectedItemDestinationUf
     {
@@ -232,10 +201,17 @@ public class AddFreightViewModel : BaseViewModel
         {
             _selectedItemDestinationUf = value;
             OnPropertyChanged();
+        }
+    }
 
-            if (string.IsNullOrEmpty(SelectedItemDestinationUf)) return;
-
-            ChangedItemDestinationUf(SelectedItemDestinationUf);
+    private string _selectedItemDestination;
+    public string SelectedItemDestination
+    {
+        get => _selectedItemDestination;
+        set
+        {
+            _selectedItemDestination = value;
+            OnPropertyChanged();
         }
     }
 
@@ -253,26 +229,36 @@ public class AddFreightViewModel : BaseViewModel
 
     private async Task EditFreight()
     {
-        var item = new FreightModel
+        try
         {
-            Id = SelectedFreightToEdit.Id,
-            TravelDate = TravelDate,
-            Origin = Origin,
-            Destination = Destination,
-            Kilometer = Convert.ToDouble(Kilometer),
-            FreightValue = Convert.ToDecimal(FreightValue),
-            Observation = Observation
-        };
+            var item = new FreightModel
+            {
+                Id = SelectedFreightToEdit.Id,
+                TravelDate = TravelDate,
+                OriginUf = SelectedItemOriginUf,
+                Origin = SelectedItemOrigin,
+                DestinationUf = SelectedItemDestinationUf,
+                Destination = SelectedItemDestination,
+                Kilometer = Convert.ToDouble(Kilometer),
+                FreightValue = Convert.ToDecimal(FreightValue),
+                Observation = Observation
+            };
 
-        var result = await _freightRepository.UpdateAsync(item);
+            var result = await _freightRepository.UpdateAsync(item);
 
-        if (result > 0)
-        {
-            await App.Current.MainPage.DisplayAlert("Sucesso", "Frete editado com sucesso!", "Ok");
-            return;
+            if (result > 0)
+            {
+                await App.Current.MainPage.DisplayAlert("Sucesso", "Frete editado com sucesso!", "Ok");
+                return;
+            }
+
+            await App.Current.MainPage.DisplayAlert("Ops", "Parece que houve um erro durante a edição do Frete. Por favor, tente novamente.", "Ok");
         }
-
-        await App.Current.MainPage.DisplayAlert("Ops", "Parece que houve um erro durante a edição do Frete. Por favor, tente novamente.", "Ok");
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        
     }
 
     private void SetValuesToEdit()
@@ -281,24 +267,16 @@ public class AddFreightViewModel : BaseViewModel
         {
             TextTitlePage = "Editar Frete";
             TravelDate = SelectedFreightToEdit.TravelDate;
-            Origin = SelectedFreightToEdit.Origin;
-            Destination = SelectedFreightToEdit.Destination;
+            SelectedItemOriginUf = SelectedFreightToEdit.OriginUf;
+            SelectedItemOrigin = SelectedFreightToEdit.Origin;
+            SelectedItemDestinationUf = SelectedFreightToEdit.DestinationUf;
+            SelectedItemDestination = SelectedFreightToEdit.Destination;
             Kilometer = SelectedFreightToEdit.Kilometer.ToString();
             FreightValue = SelectedFreightToEdit.FreightValue.ToString();
             Observation = SelectedFreightToEdit.Observation;
         }
     }
-
-    private async void ChangedItemOriginUf(string state)
-    {        
-        OriginCollection = new ObservableCollection<string>(await LoadCitiesByState(state));
-    }
-
-    private async void ChangedItemDestinationUf(string state)
-    {        
-        DestinationCollection = new ObservableCollection<string>(await LoadCitiesByState(state));
-    }
-
+   
     private async Task<List<string>> LoadCitiesByState(string state)
     {
         IsBusy = true;
@@ -317,7 +295,7 @@ public class AddFreightViewModel : BaseViewModel
         finally
         {
             IsBusy = false;
-        }       
+        }      
     }
 
     #endregion
@@ -334,8 +312,10 @@ public class AddFreightViewModel : BaseViewModel
 
         var model = new FreightModel();
         model.TravelDate = TravelDate;
-        model.Origin = Origin;
-        model.Destination = Destination;
+        model.OriginUf = SelectedItemOriginUf;
+        model.Origin = SelectedItemOrigin;
+        model.DestinationUf = SelectedItemDestinationUf;
+        model.Destination = SelectedItemDestination;
         model.Kilometer = Convert.ToDouble(Kilometer.Replace(".",","));
         model.FreightValue = Convert.ToDecimal(FreightValue.Replace(".", ","));
         model.Observation = Observation;
@@ -355,6 +335,16 @@ public class AddFreightViewModel : BaseViewModel
     {
         OriginUfCollection = new ObservableCollection<string>(StateAcronymsStr.GetAll());
         DestinationUfCollection = new ObservableCollection<string>(StateAcronymsStr.GetAll());
+    }
+
+    public async void ChangedItemOriginUf(string state)
+    {
+        OriginCollection = new ObservableCollection<string>(await LoadCitiesByState(state));
+    }
+
+    public async void ChangedItemDestinationUf(string state)
+    {
+        DestinationCollection = new ObservableCollection<string>(await LoadCitiesByState(state));
     }
 
     public void OnAppearing()

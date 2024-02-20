@@ -8,7 +8,7 @@ public class ComboboxEditCustom : ComboBoxEdit
 	{
         HeightRequest = 50;
         Keyboard = Keyboard.Default;
-        Margin = new Thickness(10, 15, 5, 0); // Margin = new Thickness(0, 15, 10, 0),
+        Margin = new Thickness(10, 0, 5, 0); // Margin = new Thickness(0, 15, 10, 0),
         CornerRadius = 10;
         IsLabelFloating = false;         
         PlaceholderColor = Colors.LightGray;
@@ -22,6 +22,8 @@ public class ComboboxEditCustom : ComboBoxEdit
         IconColor = App.GetResource<Color>("ColorOfIcons");
         IconVerticalAlignment = LayoutAlignment.Center;
         TextVerticalAlignment = TextAlignment.Center;
-        IsFilterEnabled = false;        
-	}
+        IsFilterEnabled = false;
+        DropDownBackgroundColor = App.GetResource<Color>("TertiaryGreen");
+        DropDownItemTextColor = App.GetResource<Color>("PrimaryDark");
+    }
 }

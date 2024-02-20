@@ -3,6 +3,7 @@ using freight.control.maui.Components;
 using freight.control.maui.Controls.Animations;
 using freight.control.maui.Controls.ControlCheckers;
 using freight.control.maui.MVVM.Base.Views;
+using freight.control.maui.MVVM.Models;
 using freight.control.maui.MVVM.ViewModels;
 using Microsoft.Maui.Controls.Shapes;
 
@@ -179,7 +180,7 @@ public class AddFreightView : BaseContentPage
                 new () { Width = GridLength.Star},
                 new () { Width = GridLength.Star},
             },
-            Margin = new Thickness(0, 15, 0, 0),
+            //Margin = new Thickness(0, 15, 0, 0),
             RowSpacing = 3
         };
 
@@ -199,6 +200,7 @@ public class AddFreightView : BaseContentPage
             Margin = new Thickness(10, 0, 5, 0),           
         };
         originUf.SetBinding(ItemsEditBase.ItemsSourceProperty, nameof(ViewModel.OriginUfCollection));
+        originUf.SelectionChanged += OriginUf_SelectionChanged;
         originUf.SetBinding(ComboBoxEdit.SelectedItemProperty, nameof(ViewModel.SelectedItemOriginUf));       
         grid.SetColumnSpan(originUf, 2);
         grid.Add(originUf, 0, 1);
@@ -208,6 +210,7 @@ public class AddFreightView : BaseContentPage
             Margin = new Thickness(0, 0, 10, 0),           
         };
         origin.SetBinding(ItemsEditBase.ItemsSourceProperty, nameof(ViewModel.OriginCollection));
+        origin.SetBinding(ComboBoxEdit.SelectedItemProperty, nameof(ViewModel.SelectedItemOrigin));
         grid.SetColumnSpan(origin, 3);
         grid.Add(origin, 2, 1);
             
@@ -232,7 +235,7 @@ public class AddFreightView : BaseContentPage
                 new () { Width = GridLength.Star},
                 new () { Width = GridLength.Star},
             },
-            Margin = new Thickness(0, 15, 0, 0),
+            //Margin = new Thickness(0, 0, 0, 0),
             RowSpacing = 3
         };
 
@@ -253,7 +256,8 @@ public class AddFreightView : BaseContentPage
             Margin = new Thickness(10, 0, 5, 0),
         };
         destinationUf.SetBinding(ItemsEditBase.ItemsSourceProperty, nameof(ViewModel.DestinationUfCollection));
-        destinationUf.SetBinding(ComboBoxEdit.SelectedItemProperty, nameof(ViewModel.SelectedItemDestinationUf));       
+        destinationUf.SetBinding(ComboBoxEdit.SelectedItemProperty, nameof(ViewModel.SelectedItemDestinationUf));
+        destinationUf.SelectionChanged += DestinationUf_SelectionChanged;
         grid.SetColumnSpan(destinationUf, 2);
         grid.Add(destinationUf, 0, 1);
 
@@ -262,12 +266,15 @@ public class AddFreightView : BaseContentPage
             Margin = new Thickness(0, 0, 10, 0),
         };
         destination.SetBinding(ItemsEditBase.ItemsSourceProperty, nameof(ViewModel.DestinationCollection));
+        destination.SetBinding(ComboBoxEdit.SelectedItemProperty, nameof(ViewModel.SelectedItemDestination));
         grid.SetColumnSpan(destination, 3);
         grid.Add(destination, 2, 1);
 
         contentGridBorderForm.SetColumnSpan(grid, 5);
         contentGridBorderForm.Add(grid, 0, 2);
     }
+
+   
 
     private void CreateKmFieldForm(Grid contentGridBorderForm)
     {        
@@ -321,7 +328,32 @@ public class AddFreightView : BaseContentPage
     #endregion
 
     #region Events
-    
+
+    private void OriginUf_SelectionChanged(object sender, EventArgs e)
+    {       
+        if(sender is ComboBoxEdit element)
+        {
+            if(element.SelectedItem is string uf)
+            {                
+                ViewModel.SelectedItemOriginUf = uf;
+                ViewModel.ChangedItemOriginUf(uf);
+            }
+        }
+    }
+
+    private void DestinationUf_SelectionChanged(object sender, EventArgs e)
+    {
+        if (sender is ComboBoxEdit element)
+        {
+            if (element.SelectedItem is string uf)
+            {
+                ViewModel.SelectedItemDestinationUf = uf;
+                ViewModel.ChangedItemDestinationUf(uf);
+            }
+        }
+    }
+
+
     private void Km_TextChanged(object sender, EventArgs e)
     {
         var element = sender as TextEdit;
