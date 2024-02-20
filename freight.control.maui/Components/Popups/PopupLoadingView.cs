@@ -5,6 +5,8 @@ namespace freight.control.maui.Components.Popups;
 
 public class PopupLoadingView : Popup
 {
+	public bool IsOpen = false;
+
 	public PopupLoadingView()
 	{
 		Color = Colors.Transparent;

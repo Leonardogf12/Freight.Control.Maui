@@ -24,18 +24,24 @@ public class BaseContentPage : ContentPage
             if (a.PropertyName == "IsBusy")
             {
                 MainThread.BeginInvokeOnMainThread(async () => {
-
+                   
                     if (vm.IsBusy)
                     {
-                        App.PopupLoading = new();
-                        await page.ShowPopupAsync(App.PopupLoading);
+                        if(App.PopupLoading == null) 
+                        {
+                            App.PopupLoading = new();
+                        }
+
+                        await page.ShowPopupAsync(App.PopupLoading);                                            
                     }
                     else
                     {
-                        await App.PopupLoading.CloseAsync();
-                        App.PopupLoading = null;
-                    }
+                        if(App.PopupLoading == null) return;
 
+                        await App.PopupLoading.CloseAsync();
+                  
+                        App.PopupLoading = null;                        
+                    }                    
                 });
             }
         };       

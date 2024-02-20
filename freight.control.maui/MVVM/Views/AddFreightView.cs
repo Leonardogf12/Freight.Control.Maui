@@ -201,7 +201,7 @@ public class AddFreightView : BaseContentPage
         };
         originUf.SetBinding(ItemsEditBase.ItemsSourceProperty, nameof(ViewModel.OriginUfCollection));
         originUf.SelectionChanged += OriginUf_SelectionChanged;
-        originUf.SetBinding(ComboBoxEdit.SelectedItemProperty, nameof(ViewModel.SelectedItemOriginUf));       
+        originUf.SetBinding(ComboBoxEdit.SelectedItemProperty, nameof(ViewModel.SelectedItemOriginUf), BindingMode.TwoWay);       
         grid.SetColumnSpan(originUf, 2);
         grid.Add(originUf, 0, 1);
 
@@ -210,7 +210,7 @@ public class AddFreightView : BaseContentPage
             Margin = new Thickness(0, 0, 10, 0),           
         };
         origin.SetBinding(ItemsEditBase.ItemsSourceProperty, nameof(ViewModel.OriginCollection));
-        origin.SetBinding(ComboBoxEdit.SelectedItemProperty, nameof(ViewModel.SelectedItemOrigin));
+        origin.SetBinding(ComboBoxEdit.SelectedItemProperty, nameof(ViewModel.SelectedItemOrigin), BindingMode.TwoWay);
         grid.SetColumnSpan(origin, 3);
         grid.Add(origin, 2, 1);
             
@@ -256,8 +256,8 @@ public class AddFreightView : BaseContentPage
             Margin = new Thickness(10, 0, 5, 0),
         };
         destinationUf.SetBinding(ItemsEditBase.ItemsSourceProperty, nameof(ViewModel.DestinationUfCollection));
-        destinationUf.SetBinding(ComboBoxEdit.SelectedItemProperty, nameof(ViewModel.SelectedItemDestinationUf));
         destinationUf.SelectionChanged += DestinationUf_SelectionChanged;
+        destinationUf.SetBinding(ComboBoxEdit.SelectedItemProperty, nameof(ViewModel.SelectedItemDestinationUf), BindingMode.TwoWay);       
         grid.SetColumnSpan(destinationUf, 2);
         grid.Add(destinationUf, 0, 1);
 

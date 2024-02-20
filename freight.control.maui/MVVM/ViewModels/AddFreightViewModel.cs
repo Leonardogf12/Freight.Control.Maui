@@ -261,20 +261,22 @@ public class AddFreightViewModel : BaseViewModel
         
     }
 
-    private void SetValuesToEdit()
+    private Task SetValuesToEdit()
     {
         if (SelectedFreightToEdit != null)
         {
             TextTitlePage = "Editar Frete";
             TravelDate = SelectedFreightToEdit.TravelDate;
             SelectedItemOriginUf = SelectedFreightToEdit.OriginUf;
-            SelectedItemOrigin = SelectedFreightToEdit.Origin;
-            SelectedItemDestinationUf = SelectedFreightToEdit.DestinationUf;
-            SelectedItemDestination = SelectedFreightToEdit.Destination;
+            SelectedItemOrigin = SelectedFreightToEdit.Origin;            
             Kilometer = SelectedFreightToEdit.Kilometer.ToString();
             FreightValue = SelectedFreightToEdit.FreightValue.ToString();
             Observation = SelectedFreightToEdit.Observation;
+            SelectedItemDestinationUf = SelectedFreightToEdit.DestinationUf;
+            SelectedItemDestination = SelectedFreightToEdit.Destination;
         }
+
+        return Task.CompletedTask;
     }
    
     private async Task<List<string>> LoadCitiesByState(string state)
