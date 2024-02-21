@@ -1,4 +1,7 @@
-﻿using freight.control.maui.Controls.Animations;
+﻿using AndroidX.Lifecycle;
+using DevExpress.Maui.Controls;
+using freight.control.maui.Components;
+using freight.control.maui.Controls.Animations;
 using freight.control.maui.MVVM.Base.Views;
 using freight.control.maui.MVVM.Models;
 using freight.control.maui.MVVM.ViewModels;
@@ -14,6 +17,11 @@ public class FreightView : BaseContentPage
     public FreightViewModel ViewModel = new();
 
     ClickAnimation ClickAnimation = new();
+
+    public BottomSheet BottomSheetFilter;
+
+    public BottomSheet BottomSheetExport;
+
 
     public FreightView(INavigationService navigationService)
 	{
@@ -31,12 +39,16 @@ public class FreightView : BaseContentPage
     private View BuildFreightView()
     {       
         var mainGrid = CreateMainGrid();
-
+        
         CreateStackHeader(mainGrid);
 
         CreateCollectionFreight(mainGrid);
 
         CreateLabelAddNewFreights(mainGrid);
+
+        CreateBottomSheetFilter(mainGrid);
+
+        CreateBottomSheetExport(mainGrid);
 
         return mainGrid;
     }
@@ -112,6 +124,13 @@ public class FreightView : BaseContentPage
 
     private void CreateCollectionFreight(Grid mainGrid)
     {
+        var refresh = new RefreshView
+        {
+            RefreshColor = App.GetResource<Color>("PrimaryDark")
+        };
+        refresh.SetBinding(RefreshView.IsRefreshingProperty, nameof(ViewModel.IsRefreshingView));
+        refresh.Command = ViewModel.RefreshingCommand;
+        
         var collection = new CollectionView
         {
             BackgroundColor = Colors.White,
@@ -119,7 +138,10 @@ public class FreightView : BaseContentPage
         };
         collection.SetBinding(CollectionView.ItemsSourceProperty, nameof(FreightViewModel.FreightCollection));
 
-        mainGrid.Add(collection, 0, 1); 
+        //mainGrid.Add(collection, 0, 1);
+
+        refresh.Content = collection;
+        mainGrid.Add(refresh, 0, 1);
     }
 
     private View CreateItemTemplateFreight()
@@ -409,6 +431,28 @@ public class FreightView : BaseContentPage
         contentGridBorder.Children.Add(label);
     }
 
+    private void CreateBottomSheetFilter(Grid mainGrid)
+    {       
+        var bottomSheetFilter = new BottomSheetFilterDateCustom(title: "Filtrar", textButton: "Confirmar", EventFilter);
+        bottomSheetFilter.DatePickerFieldCustomInitialDate.DatePicker.SetBinding(DatePicker.DateProperty, nameof(ViewModel.InitialDate));
+        bottomSheetFilter.DatePickerFieldCustomFinalDate.DatePicker.SetBinding(DatePicker.DateProperty, nameof(ViewModel.FinalDate));
+
+        BottomSheetFilter = bottomSheetFilter;
+
+        mainGrid.Add(BottomSheetFilter, 0, 1);
+    }
+
+    private void CreateBottomSheetExport(Grid mainGrid)
+    {
+        var bottomSheetExport = new BottomSheetFilterDateCustom(title: "Exportar", textButton: "Exportar", EventExport);
+        bottomSheetExport.DatePickerFieldCustomInitialDate.DatePicker.SetBinding(DatePicker.DateProperty, nameof(ViewModel.InitialDate));
+        bottomSheetExport.DatePickerFieldCustomFinalDate.DatePicker.SetBinding(DatePicker.DateProperty, nameof(ViewModel.FinalDate));
+
+        BottomSheetExport = bottomSheetExport;
+
+        mainGrid.Add(BottomSheetExport, 0, 1);
+    }
+       
     #endregion
 
     #region Events
@@ -427,14 +471,14 @@ public class FreightView : BaseContentPage
         await App.Current.MainPage.Navigation.PushAsync(new AddFreightView());
     }
 
-    private async void ClickedButtonFilter(object sender, EventArgs e)
-    {
-        await App.Current.MainPage.DisplayAlert("Filter", "Future implementation", "Ok");
+    private void ClickedButtonFilter(object sender, EventArgs e)
+    {     
+        BottomSheetFilter.State = BottomSheetState.HalfExpanded;
     }
 
-    private async void ClickedButtonExport(object sender, EventArgs e)
-    {
-        await Navigation.PushAsync(new ExportView());
+    private void ClickedButtonExport(object sender, EventArgs e)
+    {        
+        BottomSheetExport.State = BottomSheetState.HalfExpanded;       
     }
 
     private async void TapGestureRecognizer_Tapped_DeleteItem(object sender, TappedEventArgs e)
@@ -500,6 +544,18 @@ public class FreightView : BaseContentPage
                 await _navigationService.NavigationToPageAsync<AddFreightView>(parameters: obj);
             }
         }        
+    }
+
+    private async void EventFilter(object sender, EventArgs e)
+    {
+        await ViewModel.FilterFreights();
+        BottomSheetFilter.State = BottomSheetState.Hidden;
+    }
+
+    private async void EventExport(object sender, EventArgs e)
+    {
+        await ViewModel.FilterFreights();
+        BottomSheetExport.State = BottomSheetState.Hidden;
     }
 
     #endregion

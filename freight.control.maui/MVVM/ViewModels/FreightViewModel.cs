@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Windows.Input;
 using freight.control.maui.MVVM.Base.ViewModels;
 using freight.control.maui.MVVM.Models;
 using freight.control.maui.Repositories;
@@ -44,11 +45,58 @@ public class FreightViewModel : BaseViewModel
         }
     }
 
+    private DateTime _initialDate = DateTime.Now;
+    public DateTime InitialDate
+    {
+
+        get => _initialDate;
+        set
+        {
+            _initialDate = value;
+            OnPropertyChanged();
+        }
+    }
+
+
+    private DateTime _finalDate = DateTime.Now;
+    public DateTime FinalDate
+    {
+
+        get => _finalDate;
+        set
+        {
+            _finalDate = value;
+            OnPropertyChanged();
+        }
+    }
+
+    private bool _isRefreshingView;
+    public bool IsRefreshingView
+    {
+        get => _isRefreshingView;
+        set
+        {
+            _isRefreshingView = value;
+            OnPropertyChanged();
+        }
+    }
+
+
+    public ICommand RefreshingCommand;
 
     public FreightViewModel()
     {
         _freightRepository = new();
         _toFuelRepository = new();
+
+        RefreshingCommand = new Command(OnRefreshingCommand);
+    }
+
+    private async void OnRefreshingCommand()
+    {
+        await LoadFreigths();
+
+        IsRefreshingView = false;
     }
 
     private void CheckIfThereAreFreightItemsInCollection()
@@ -90,5 +138,35 @@ public class FreightViewModel : BaseViewModel
     public async void OnAppearing()
     {
         await LoadFreigths();        
+    }
+
+    public async Task FilterFreights()
+    {
+        if (!CheckDatesToFilterData())
+        {
+            await App.Current.MainPage.DisplayAlert("Ops", "A data final deve ser maior ou igual a data inicial. Favor verificar.", "Ok");
+            return;
+        }
+       
+        var dataFiltered = await _freightRepository.GetByDateInitialAndFinal(initial: InitialDate, final: FinalDate);
+
+        if (!dataFiltered.Any())
+        {
+            await App.Current.MainPage.DisplayAlert("Filtro", "Nenhum registro foi encontrado para o período informado.", "Ok");
+            return;
+        }
+
+        FreightCollection.Clear();
+
+        FreightCollection = new ObservableCollection<FreightModel>(dataFiltered);
+    }
+
+    private bool CheckDatesToFilterData()
+    {
+        if (FinalDate < InitialDate) return false;
+
+        if (InitialDate > FinalDate) return false;
+
+        return true;
     }
 }

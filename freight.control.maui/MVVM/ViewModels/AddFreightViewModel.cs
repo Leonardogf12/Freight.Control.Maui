@@ -234,7 +234,7 @@ public class AddFreightViewModel : BaseViewModel
             var item = new FreightModel
             {
                 Id = SelectedFreightToEdit.Id,
-                TravelDate = TravelDate,
+                TravelDate = TravelDate.Date,
                 OriginUf = SelectedItemOriginUf,
                 Origin = SelectedItemOrigin,
                 DestinationUf = SelectedItemDestinationUf,
@@ -313,7 +313,7 @@ public class AddFreightViewModel : BaseViewModel
         }
 
         var model = new FreightModel();
-        model.TravelDate = TravelDate;
+        model.TravelDate = TravelDate.Date;
         model.OriginUf = SelectedItemOriginUf;
         model.Origin = SelectedItemOrigin;
         model.DestinationUf = SelectedItemDestinationUf;
