@@ -8,7 +8,7 @@ public class DatePickerFieldCustom : ContentView
 
     public Border Border { get; set; }
 
-    public  DatePickerFieldCustom(string nameIcon = "calendar")
+    public  DatePickerFieldCustom(string nameIcon = "calendar_24")
 	{
         Border = new Border
         {
@@ -16,7 +16,7 @@ public class DatePickerFieldCustom : ContentView
             Background = Colors.Transparent,
             StrokeThickness = 1,
             Margin = Device.RuntimePlatform == Device.Android ? new Thickness(10, 15, 10, 0) : 20,
-            HeightRequest = 50,
+            HeightRequest = 55,
             StrokeShape = new RoundRectangle
             {
                 CornerRadius = new CornerRadius(8)
@@ -36,8 +36,7 @@ public class DatePickerFieldCustom : ContentView
         var icon = new Image
         {
             Source = nameIcon,
-            Margin = new Thickness(10,0,0,0),
-            HeightRequest = 30,
+            Margin = new Thickness(10,0,0,0),          
             VerticalOptions = LayoutOptions.Center,
         };
         contentGridBorder.Add(icon, 0);

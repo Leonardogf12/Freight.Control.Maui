@@ -131,6 +131,7 @@
 	  <None Remove="Resources\Images\uf_24.svg" />
 	  <None Remove="Resources\Images\combobox_24.svg" />
 	  <None Remove="Components\Popups\" />
+	  <None Remove="Resources\Images\liters_24.svg" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="MVVM\" />
@@ -197,6 +198,7 @@
 	  <BundleResource Include="Resources\Images\money_24.svg" />
 	  <BundleResource Include="Resources\Images\uf_24.svg" />
 	  <BundleResource Include="Resources\Images\combobox_24.svg" />
+	  <BundleResource Include="Resources\Images\liters_24.svg" />
 	</ItemGroup>
 	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0-android'">
 	  <PackageReference Include="DevExpress.Maui.Controls" Version="23.1.8" />

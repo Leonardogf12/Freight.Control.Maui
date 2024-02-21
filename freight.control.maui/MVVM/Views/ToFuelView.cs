@@ -1,4 +1,5 @@
-﻿using freight.control.maui.Components;
+﻿using DevExpress.Maui.Editors;
+using freight.control.maui.Components;
 using freight.control.maui.Controls.Animations;
 using freight.control.maui.Controls.ControlCheckers;
 using freight.control.maui.MVVM.Base.Views;
@@ -12,6 +13,8 @@ public class ToFuelView : BaseContentPage
     public ToFuelViewModel ViewModel = new();
 
     public ClickAnimation ClickAnimation = new();
+
+    public int Calc = 0;
 
     public ToFuelView()
 	{
@@ -38,7 +41,6 @@ public class ToFuelView : BaseContentPage
 
         return mainGrid;
     }
-
    
     private Grid CreateMainGrid()
     {
@@ -220,11 +222,29 @@ public class ToFuelView : BaseContentPage
             }
         };
 
+        CreateToFuelDateFieldForm(contentGridBorderForm);
+
+        CreateFuelBoxFieldForm(contentGridBorderForm);
+
+        CreateExpensesFieldForm(contentGridBorderForm);
+
+        CreateObservationFieldForm(contentGridBorderForm);      
+
+        borderForm.Content = contentGridBorderForm;
+
+        mainGrid.Add(borderForm, 0, 2);
+    }
+   
+    private void CreateToFuelDateFieldForm(Grid contentGridBorderForm)
+    {
         var date = new DatePickerFieldCustom();
         date.DatePicker.SetBinding(DatePicker.DateProperty, nameof(ViewModel.Date));
         contentGridBorderForm.SetColumnSpan(date, 2);
         contentGridBorderForm.Add(date, 0, 0);
+    }
 
+    private void CreateFuelBoxFieldForm(Grid contentGridBorderForm)
+    {
         var borderFuel = new Border
         {
             Stroke = Colors.LightGray,
@@ -248,22 +268,22 @@ public class ToFuelView : BaseContentPage
             {
                 new () {Width = GridLength.Star},
                 new () {Width = GridLength.Star},
-            },            
+            },
             RowSpacing = 10,
         };
-        
-        var liters = new EntryTextFieldCustom("liters", "Litros");
-        liters.Entry.TextChanged += TextChangedEntryLiters;
-        liters.Entry.Keyboard = Keyboard.Numeric;
-        liters.Entry.SetBinding(Entry.TextProperty, nameof(ViewModel.Liters));
-        liters.Border.SetBinding(Border.StrokeProperty, nameof(ViewModel.StrokeLiters));
+
+        var liters = new TextEditCustom(icon: "liters_24", placeholder: "Litros", keyboard: Keyboard.Numeric);      
+        liters.SetBinding(TextEditBase.TextProperty, nameof(ViewModel.Liters));
+        liters.SetBinding(EditBase.BorderColorProperty, nameof(ViewModel.BorderColorLiters));
+        liters.SetBinding(EditBase.FocusedBorderColorProperty, nameof(ViewModel.BorderColorFocusedLiters));
+        liters.TextChanged += Liters_TextChanged;
         gridFuel.Add(liters, 0, 0);
-        
-        var amountSpentFuel = new EntryTextFieldCustom("money", "Valor");
-        amountSpentFuel.Entry.TextChanged += TextChangedEntryAmountSpentFuel;
-        amountSpentFuel.Entry.Keyboard = Keyboard.Numeric;
-        amountSpentFuel.Entry.SetBinding(Entry.TextProperty, nameof(ViewModel.AmountSpentFuel));
-        amountSpentFuel.Border.SetBinding(Border.StrokeProperty, nameof(ViewModel.StrokeAmountSpentFuel));
+
+        var amountSpentFuel = new TextEditCustom(icon: "money_24", placeholder: "Valor", keyboard: Keyboard.Numeric);              
+        amountSpentFuel.SetBinding(TextEditBase.TextProperty, nameof(ViewModel.AmountSpentFuel));
+        amountSpentFuel.SetBinding(EditBase.BorderColorProperty, nameof(ViewModel.BorderColorAmountSpentFuel));
+        amountSpentFuel.SetBinding(EditBase.FocusedBorderColorProperty, nameof(ViewModel.BorderColorFocusedAmountSpentFuel));
+        amountSpentFuel.TextChanged += AmountSpentFuel_TextChanged; ;
         gridFuel.Add(amountSpentFuel, 1, 0);
 
         var titleValuePerLiter = new Label
@@ -272,100 +292,44 @@ public class ToFuelView : BaseContentPage
             FontFamily = "MontserratRegular",
             FontSize = 16,
             TextColor = App.GetResource<Color>("PrimaryDark"),
-            Margin = new Thickness(10,0,0,10),            
+            Margin = new Thickness(10, 0, 0, 10),
         };
         gridFuel.Add(titleValuePerLiter, 0, 1);
 
         var contentValuePerLiter = new Label
-        {            
+        {
             FontFamily = "MontserratRegular",
             FontSize = 16,
             TextColor = Colors.LightGray,
             HorizontalOptions = LayoutOptions.End,
             Margin = new Thickness(0, 0, 10, 0),
-        };       
-        contentValuePerLiter.SetBinding(Label.TextProperty, nameof(ViewModel.ValuePerLiter));   
+        };
+        contentValuePerLiter.SetBinding(Label.TextProperty, nameof(ViewModel.ValuePerLiter));
         gridFuel.Add(contentValuePerLiter, 1, 1);
 
         borderFuel.Content = gridFuel;
 
-        contentGridBorderForm.SetColumnSpan(borderFuel,2);
+        contentGridBorderForm.SetColumnSpan(borderFuel, 2);
         contentGridBorderForm.Add(borderFuel, 0, 2);
-
-
-        var expenses = new EntryTextFieldCustom("money", "Despesas");
-        expenses.Entry.TextChanged += TextChangedEntryExpenses;
-        expenses.Entry.Keyboard = Keyboard.Numeric;
-        expenses.Entry.SetBinding(Entry.TextProperty, nameof(ViewModel.Expenses));
-        expenses.Border.SetBinding(Border.StrokeProperty, nameof(ViewModel.StrokeExpenses));
-        contentGridBorderForm.SetColumnSpan(expenses, 2);
-        contentGridBorderForm.Add(expenses, 0, 3);
-
-        var observation = new EditorTextFieldCustom("comment", "Observação");
-        observation.Editor.SetBinding(Editor.TextProperty, nameof(ViewModel.Observation));
-        contentGridBorderForm.SetColumnSpan(observation, 2);
-        contentGridBorderForm.Add(observation, 0, 5);
-
-        borderForm.Content = contentGridBorderForm;
-
-        mainGrid.Add(borderForm, 0, 2);
     }
    
-    private void TextChangedEntryLiters(object sender, TextChangedEventArgs e)
+    private void CreateExpensesFieldForm(Grid contentGridBorderForm)
     {
-        var text = e.NewTextValue;
+        var expenses = new TextEditCustom(icon: "money_24", placeholder: "Despesas", keyboard: Keyboard.Numeric);           
+        expenses.SetBinding(TextEditBase.TextProperty, nameof(ViewModel.Expenses));
+        expenses.SetBinding(EditBase.BorderColorProperty, nameof(ViewModel.BorderColorExpenses));
+        expenses.SetBinding(EditBase.FocusedBorderColorProperty, nameof(ViewModel.BorderColorFocusedExpenses));
+        expenses.TextChanged += Expenses_TextChanged;
+        contentGridBorderForm.SetColumnSpan(expenses, 2);
+        contentGridBorderForm.Add(expenses, 0, 3);
+    }  
 
-        if (string.IsNullOrEmpty(text))
-        {
-            SetColorDefaultLitersFieldBorder();
-            return;
-        }
-
-        if (!CheckTheEntrys.IsValidEntry(text, CheckTheEntrys.patternLiters))
-        {
-            ViewModel.StrokeLiters = Colors.Red;
-            return;
-        }
-
-        SetColorDefaultLitersFieldBorder();
-    }
-    
-    private void TextChangedEntryAmountSpentFuel(object sender, TextChangedEventArgs e)
+    private void CreateObservationFieldForm(Grid contentGridBorderForm)
     {
-        var text = e.NewTextValue;
-
-        if (string.IsNullOrEmpty(text))
-        {
-            SetColorDefaultAmountSpentFuelFieldBorder();
-            return;
-        }
-
-        if (!CheckTheEntrys.IsValidEntry(text, CheckTheEntrys.patternMoney))
-        {
-            ViewModel.StrokeAmountSpentFuel = Colors.Red;
-            return;
-        }
-
-        SetColorDefaultAmountSpentFuelFieldBorder();
-    }
-
-    private void TextChangedEntryExpenses(object sender, TextChangedEventArgs e)
-    {
-        var text = e.NewTextValue;
-
-        if (string.IsNullOrEmpty(text))
-        {
-            SetColorDefaultExpensesFieldBorder();
-            return;
-        }
-
-        if (!CheckTheEntrys.IsValidEntry(text, CheckTheEntrys.patternMoney))
-        {
-            ViewModel.StrokeExpenses = Colors.Red;
-            return;
-        }
-
-        SetColorDefaultExpensesFieldBorder();
+        var observation = new MultilineEditCustom(icon: "comment_24", placeholder: "Observacão");
+        observation.SetBinding(TextEditBase.TextProperty, nameof(ViewModel.Observation));
+        contentGridBorderForm.SetColumnSpan(observation, 2);
+        contentGridBorderForm.Add(observation, 0, 5);
     }
 
     private void CreateButtonSave(Grid mainGrid)
@@ -392,8 +356,62 @@ public class ToFuelView : BaseContentPage
         await ClickAnimation.SetFadeOnElement(element);
 
         await App.Current.MainPage.Navigation.PopAsync();
+    }  
+
+    private void Liters_TextChanged(object sender, EventArgs e)
+    {
+        if (string.IsNullOrEmpty(GetValueStringOfObject(sender)))
+        {
+            ViewModel.ValuePerLiter = Calc.ToString("c");
+            SetBorderColorDefaultLitersField();
+            return;
+        }
+
+        if (!CheckTheEntrys.IsValidEntry(GetValueStringOfObject(sender), CheckTheEntrys.patternLiters))
+        {
+            ViewModel.BorderColorLiters = Colors.Red;
+            return;
+        }
+
+        SetBorderColorDefaultLitersField();
+        ViewModel.CalculatePriceOfFuel();
+    }
+      
+    private void AmountSpentFuel_TextChanged(object sender, EventArgs e)
+    {       
+        if (string.IsNullOrEmpty(GetValueStringOfObject(sender)))
+        {
+            ViewModel.ValuePerLiter = Calc.ToString("c");
+            SetBorderColorDefaultAmountSpentFuelField();
+            return;
+        }
+
+        if (!CheckTheEntrys.IsValidEntry(GetValueStringOfObject(sender), CheckTheEntrys.patternMoney))
+        {
+            ViewModel.BorderColorAmountSpentFuel = Colors.Red;
+            return;
+        }
+
+        SetBorderColorDefaultAmountSpentFuelField();
+        ViewModel.CalculatePriceOfFuel();
     }
 
+    private void Expenses_TextChanged(object sender, EventArgs e)
+    {       
+        if (string.IsNullOrEmpty(GetValueStringOfObject(sender)))
+        {
+            SetBorderColorDefaultExpensesField();
+            return;
+        }
+
+        if (!CheckTheEntrys.IsValidEntry(GetValueStringOfObject(sender), CheckTheEntrys.patternMoney))
+        {
+            ViewModel.BorderColorExpenses = Colors.Red;
+            return;
+        }
+
+        SetBorderColorDefaultExpensesField();
+    }
 
     private void SaveClicked(object sender, EventArgs e)
     {
@@ -404,12 +422,29 @@ public class ToFuelView : BaseContentPage
 
     #region Actions
 
-    private void SetColorDefaultLitersFieldBorder() => ViewModel.StrokeLiters = Colors.LightGray;
+    private string GetValueStringOfObject(object sender)
+    {
+        var element = sender as TextEdit;
+        return element.Text;
+    }
 
-    private void SetColorDefaultAmountSpentFuelFieldBorder() => ViewModel.StrokeAmountSpentFuel = Colors.LightGray;
+    private void SetBorderColorDefaultLitersField()
+    {
+        ViewModel.BorderColorLiters = Colors.LightGray;
+        ViewModel.BorderColorFocusedLiters = Colors.Gray;
+    }
 
-    private void SetColorDefaultExpensesFieldBorder() => ViewModel.StrokeExpenses = Colors.LightGray;
+    private void SetBorderColorDefaultAmountSpentFuelField()
+    {
+        ViewModel.BorderColorAmountSpentFuel = Colors.LightGray;
+        ViewModel.BorderColorFocusedAmountSpentFuel = Colors.Gray;
+    }
 
+    private void SetBorderColorDefaultExpensesField()
+    {
+        ViewModel.BorderColorExpenses = Colors.LightGray;
+        ViewModel.BorderColorFocusedExpenses = Colors.Gray;
+    }
 
     #endregion
 

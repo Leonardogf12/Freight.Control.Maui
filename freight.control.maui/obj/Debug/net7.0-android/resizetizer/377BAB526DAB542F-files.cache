@@ -38,6 +38,7 @@ obj/Debug/net7.0-android/resizetizer/r/drawable-xhdpi/back_primary_dark.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-xhdpi/cobobox_24.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-xhdpi/splash.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-xhdpi/landing.png
+obj/Debug/net7.0-android/resizetizer/r/drawable-xhdpi/liters_24.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-xhdpi/km.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-xhdpi/uf_24.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-xhdpi/liters.png
@@ -69,6 +70,7 @@ obj/Debug/net7.0-android/resizetizer/r/drawable-xxhdpi/back_primary_dark.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-xxhdpi/cobobox_24.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-xxhdpi/splash.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-xxhdpi/landing.png
+obj/Debug/net7.0-android/resizetizer/r/drawable-xxhdpi/liters_24.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-xxhdpi/km.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-xxhdpi/uf_24.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-xxhdpi/liters.png
@@ -100,6 +102,7 @@ obj/Debug/net7.0-android/resizetizer/r/drawable-hdpi/back_primary_dark.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-hdpi/cobobox_24.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-hdpi/splash.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-hdpi/landing.png
+obj/Debug/net7.0-android/resizetizer/r/drawable-hdpi/liters_24.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-hdpi/km.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-hdpi/uf_24.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-hdpi/liters.png
@@ -131,6 +134,7 @@ obj/Debug/net7.0-android/resizetizer/r/drawable-mdpi/back_primary_dark.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-mdpi/cobobox_24.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-mdpi/splash.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-mdpi/landing.png
+obj/Debug/net7.0-android/resizetizer/r/drawable-mdpi/liters_24.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-mdpi/km.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-mdpi/uf_24.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-mdpi/liters.png
@@ -168,6 +172,7 @@ obj/Debug/net7.0-android/resizetizer/r/drawable-xxxhdpi/back_primary_dark.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-xxxhdpi/cobobox_24.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-xxxhdpi/splash.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-xxxhdpi/landing.png
+obj/Debug/net7.0-android/resizetizer/r/drawable-xxxhdpi/liters_24.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-xxxhdpi/km.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-xxxhdpi/uf_24.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-xxxhdpi/liters.png

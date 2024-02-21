@@ -234,8 +234,7 @@ public class AddFreightView : BaseContentPage
                 new () { Width = GridLength.Star},
                 new () { Width = GridLength.Star},
                 new () { Width = GridLength.Star},
-            },
-            //Margin = new Thickness(0, 0, 0, 0),
+            },          
             RowSpacing = 3
         };
 
@@ -273,9 +272,7 @@ public class AddFreightView : BaseContentPage
         contentGridBorderForm.SetColumnSpan(grid, 5);
         contentGridBorderForm.Add(grid, 0, 2);
     }
-
    
-
     private void CreateKmFieldForm(Grid contentGridBorderForm)
     {        
         var km = new TextEditCustom(icon: "km_24", placeholder: "Km: 1000", keyboard: Keyboard.Numeric)

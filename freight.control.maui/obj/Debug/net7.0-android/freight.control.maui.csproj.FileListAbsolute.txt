@@ -2531,3 +2531,8 @@
 /Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-android/android/src/crc64159f3caeb1269279/MauiSemanticOrderView.java
 /Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-android/android/src/crc648fc34c62be8fbbff/Snackbar_SnackbarCallback.java
 /Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-android/android/src/crc64d6358e7bf64fbac4/SpeechToTextImplementation_SpeechRecognitionListener.java
+/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-android/resizetizer/r/drawable-hdpi/liters_24.png
+/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-android/resizetizer/r/drawable-mdpi/liters_24.png
+/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-android/resizetizer/r/drawable-xhdpi/liters_24.png
+/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-android/resizetizer/r/drawable-xxhdpi/liters_24.png
+/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-android/resizetizer/r/drawable-xxxhdpi/liters_24.png

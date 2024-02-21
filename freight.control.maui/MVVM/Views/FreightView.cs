@@ -208,7 +208,7 @@ public class FreightView : BaseContentPage
         {
             Orientation = StackOrientation.Horizontal,
             Margin = new Thickness(10, 0, 10, 0),
-            Spacing = 10
+            Spacing = 5
         };
 
         var iconOrigin = new Image
@@ -231,6 +231,28 @@ public class FreightView : BaseContentPage
         labelOrigin.SetBinding(Label.TextProperty, nameof(FreightModel.Origin));
         stackOrigin.Children.Add(labelOrigin);
 
+        var divider = new Label
+        {
+            Text = "-",
+            TextColor = App.GetResource<Color>("PrimaryDark"),
+            FontFamily = "MontserratRegular",
+            FontSize = 16,
+            VerticalOptions = LayoutOptions.Center,
+            HorizontalOptions = LayoutOptions.Center
+        };      
+        stackOrigin.Children.Add(divider);
+
+        var labelUf = new Label
+        {
+            TextColor = App.GetResource<Color>("PrimaryDark"),
+            FontFamily = "MontserratRegular",
+            FontSize = 16,
+            VerticalOptions = LayoutOptions.Center,
+            HorizontalOptions = LayoutOptions.Center
+        };
+        labelUf.SetBinding(Label.TextProperty, nameof(FreightModel.OriginUf));
+        stackOrigin.Children.Add(labelUf);
+
         contentGridBorder.SetColumnSpan(stackOrigin, 3);
         contentGridBorder.Add(stackOrigin, 0, 1);
     }
@@ -241,7 +263,7 @@ public class FreightView : BaseContentPage
         {
             Orientation = StackOrientation.Horizontal,
             Margin = new Thickness(10, 0, 10, 0),
-            Spacing = 10
+            Spacing = 5
         };
 
         var iconDestination = new Image
@@ -263,6 +285,28 @@ public class FreightView : BaseContentPage
         };
         labelDestination.SetBinding(Label.TextProperty, nameof(FreightModel.Destination));
         stackDestination.Children.Add(labelDestination);
+
+        var divider = new Label
+        {
+            Text = "-",
+            TextColor = App.GetResource<Color>("PrimaryDark"),
+            FontFamily = "MontserratRegular",
+            FontSize = 16,
+            VerticalOptions = LayoutOptions.Center,
+            HorizontalOptions = LayoutOptions.Center
+        };
+        stackDestination.Children.Add(divider);
+
+        var labelUf = new Label
+        {
+            TextColor = App.GetResource<Color>("PrimaryDark"),
+            FontFamily = "MontserratRegular",
+            FontSize = 16,
+            VerticalOptions = LayoutOptions.Center,
+            HorizontalOptions = LayoutOptions.Center
+        };
+        labelUf.SetBinding(Label.TextProperty, nameof(FreightModel.DestinationUf));
+        stackDestination.Children.Add(labelUf);
 
         contentGridBorder.SetColumnSpan(stackDestination, 3);
         contentGridBorder.Add(stackDestination, 0, 2);

@@ -1,4 +1,5 @@
-﻿using freight.control.maui.MVVM.Base.ViewModels;
+﻿using AndroidX.Lifecycle;
+using freight.control.maui.MVVM.Base.ViewModels;
 using freight.control.maui.MVVM.Models;
 using freight.control.maui.Repositories;
 
@@ -38,18 +39,28 @@ public class ToFuelViewModel : BaseViewModel
     }
 
 
-    private Color _strokeLiters = Colors.LightGray;
-    public Color StrokeLiters
+    private Color _borderColorLiters = Colors.LightGray;
+    public Color BorderColorLiters
     {
-        get => _strokeLiters;
+        get => _borderColorLiters;
         set
         {
-            _strokeLiters = value;
+            _borderColorLiters = value;
             OnPropertyChanged();
         }
     }
 
-
+    private Color _borderColorFocusedLiters = Colors.Gray;
+    public Color BorderColorFocusedLiters
+    {
+        get => _borderColorFocusedLiters;
+        set
+        {
+            _borderColorFocusedLiters = value;
+            OnPropertyChanged();
+        }
+    }
+  
     private string _amountSpentFuel;
     public string AmountSpentFuel
     {
@@ -62,13 +73,25 @@ public class ToFuelViewModel : BaseViewModel
     }
 
 
-    private Color _strokeAmountSpentFuel = Colors.LightGray;
-    public Color StrokeAmountSpentFuel
+    private Color _borderColorAmountSpentFuel = Colors.LightGray;
+    public Color BorderColorAmountSpentFuel
     {
-        get => _strokeAmountSpentFuel;
+        get => _borderColorAmountSpentFuel;
         set
         {
-            _strokeAmountSpentFuel = value;
+            _borderColorAmountSpentFuel = value;
+            OnPropertyChanged();
+        }
+    }
+
+
+    private Color _borderColorFocusedAmountSpentFuel = Colors.Gray;
+    public Color BorderColorFocusedAmountSpentFuel
+    {
+        get => _borderColorFocusedAmountSpentFuel;
+        set
+        {
+            _borderColorFocusedAmountSpentFuel = value;
             OnPropertyChanged();
         }
     }
@@ -98,13 +121,25 @@ public class ToFuelViewModel : BaseViewModel
     }
 
 
-    private Color _strokeExpenses = Colors.LightGray;
-    public Color StrokeExpenses
+    private Color _borderColorExpenses = Colors.LightGray;
+    public Color BorderColorExpenses
     {
-        get => _strokeExpenses;
+        get => _borderColorExpenses;
         set
         {
-            _strokeExpenses = value;
+            _borderColorExpenses = value;
+            OnPropertyChanged();
+        }
+    }
+
+
+    private Color _borderColorFocusedExpenses = Colors.Gray;
+    public Color BorderColorFocusedExpenses
+    {
+        get => _borderColorFocusedExpenses;
+        set
+        {
+            _borderColorFocusedExpenses = value;
             OnPropertyChanged();
         }
     }
@@ -263,6 +298,22 @@ public class ToFuelViewModel : BaseViewModel
             Expenses = SelectedToFuelToEdit.Expenses.ToString();
             Observation = SelectedToFuelToEdit.Observation?? "";
         }
+    }
+
+    public void CalculatePriceOfFuel()
+    {
+        
+        decimal calc = 0;
+
+        if (string.IsNullOrEmpty(AmountSpentFuel) || string.IsNullOrEmpty(Liters))
+        {
+            ValuePerLiter = calc.ToString("c");
+            return;
+        }        
+
+        calc = Convert.ToDecimal(AmountSpentFuel.Replace(".",",")) / Convert.ToDecimal(Liters.Replace(".", ","));               
+        
+        ValuePerLiter = calc.ToString("c");
     }
 
     #endregion

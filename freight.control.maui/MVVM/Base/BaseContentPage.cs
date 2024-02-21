@@ -10,7 +10,7 @@ public class BaseContentPage : ContentPage
 	{
         Shell.SetNavBarIsVisible(this, false);
 		
-        Content = new Grid
+        Content = new ScrollView
 		{			
 		};
 	}

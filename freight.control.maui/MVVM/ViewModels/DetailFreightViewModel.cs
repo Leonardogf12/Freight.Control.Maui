@@ -184,8 +184,8 @@ public class DetailFreightViewModel : BaseViewModel
     private void SetValuesToDetails()
     {
         DetailTravelDate = SelectedFreightToDetail.TravelDate.ToShortDateString();
-        DetailOrigin = SelectedFreightToDetail.Origin;
-        DetailDestination = SelectedFreightToDetail.Destination;
+        DetailOrigin = $"{SelectedFreightToDetail.Origin} - {SelectedFreightToDetail.OriginUf}";
+        DetailDestination = $"{SelectedFreightToDetail.Destination} - {SelectedFreightToDetail.DestinationUf}";
         DetailKm = SelectedFreightToDetail.Kilometer.ToString();
         DetailTotalFreight = SelectedFreightToDetail.FreightValue.ToString("c");        
     }
