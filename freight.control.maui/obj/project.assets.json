@@ -44,22 +44,6 @@
           }
         }
       },
-      "CsvHelper/31.0.0": {
-        "type": "package",
-        "dependencies": {
-          "System.Linq.Async": "4.0.0"
-        },
-        "compile": {
-          "lib/net7.0/CsvHelper.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net7.0/CsvHelper.dll": {
-            "related": ".xml"
-          }
-        }
-      },
       "DevExpress.Data/23.1.8": {
         "type": "package",
         "dependencies": {
@@ -861,19 +845,6 @@
           "runtimes/win/lib/netcoreapp3.0/System.Drawing.Common.dll": {
             "assetType": "runtime",
             "rid": "win"
-          }
-        }
-      },
-      "System.Linq.Async/4.0.0": {
-        "type": "package",
-        "compile": {
-          "ref/netcoreapp3.0/System.Linq.Async.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netcoreapp3.0/System.Linq.Async.dll": {
-            "related": ".xml"
           }
         }
       },
@@ -2795,22 +2766,6 @@
           }
         }
       },
-      "CsvHelper/31.0.0": {
-        "type": "package",
-        "dependencies": {
-          "System.Linq.Async": "4.0.0"
-        },
-        "compile": {
-          "lib/net7.0/CsvHelper.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net7.0/CsvHelper.dll": {
-            "related": ".xml"
-          }
-        }
-      },
       "DevExpress.Data/23.1.8": {
         "type": "package",
         "dependencies": {
@@ -3563,19 +3518,6 @@
         },
         "runtime": {
           "runtimes/unix/lib/netcoreapp3.0/System.Drawing.Common.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "System.Linq.Async/4.0.0": {
-        "type": "package",
-        "compile": {
-          "ref/netcoreapp3.0/System.Linq.Async.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netcoreapp3.0/System.Linq.Async.dll": {
             "related": ".xml"
           }
         }
@@ -5476,22 +5418,6 @@
           }
         }
       },
-      "CsvHelper/31.0.0": {
-        "type": "package",
-        "dependencies": {
-          "System.Linq.Async": "4.0.0"
-        },
-        "compile": {
-          "lib/net7.0/CsvHelper.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net7.0/CsvHelper.dll": {
-            "related": ".xml"
-          }
-        }
-      },
       "DevExpress.Data/23.1.8": {
         "type": "package",
         "dependencies": {
@@ -6244,19 +6170,6 @@
         },
         "runtime": {
           "runtimes/unix/lib/netcoreapp3.0/System.Drawing.Common.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "System.Linq.Async/4.0.0": {
-        "type": "package",
-        "compile": {
-          "ref/netcoreapp3.0/System.Linq.Async.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netcoreapp3.0/System.Linq.Async.dll": {
             "related": ".xml"
           }
         }
@@ -8157,22 +8070,6 @@
           }
         }
       },
-      "CsvHelper/31.0.0": {
-        "type": "package",
-        "dependencies": {
-          "System.Linq.Async": "4.0.0"
-        },
-        "compile": {
-          "lib/net7.0/CsvHelper.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net7.0/CsvHelper.dll": {
-            "related": ".xml"
-          }
-        }
-      },
       "DevExpress.Data/23.1.8": {
         "type": "package",
         "dependencies": {
@@ -8925,19 +8822,6 @@
         },
         "runtime": {
           "runtimes/unix/lib/netcoreapp3.0/System.Drawing.Common.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "System.Linq.Async/4.0.0": {
-        "type": "package",
-        "compile": {
-          "ref/netcoreapp3.0/System.Linq.Async.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netcoreapp3.0/System.Linq.Async.dll": {
             "related": ".xml"
           }
         }
@@ -10838,22 +10722,6 @@
           }
         }
       },
-      "CsvHelper/31.0.0": {
-        "type": "package",
-        "dependencies": {
-          "System.Linq.Async": "4.0.0"
-        },
-        "compile": {
-          "lib/net7.0/CsvHelper.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net7.0/CsvHelper.dll": {
-            "related": ".xml"
-          }
-        }
-      },
       "DevExpress.Data/23.1.8": {
         "type": "package",
         "dependencies": {
@@ -11606,19 +11474,6 @@
         },
         "runtime": {
           "runtimes/unix/lib/netcoreapp3.0/System.Drawing.Common.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "System.Linq.Async/4.0.0": {
-        "type": "package",
-        "compile": {
-          "ref/netcoreapp3.0/System.Linq.Async.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netcoreapp3.0/System.Linq.Async.dll": {
             "related": ".xml"
           }
         }
@@ -13519,22 +13374,6 @@
           }
         }
       },
-      "CsvHelper/31.0.0": {
-        "type": "package",
-        "dependencies": {
-          "System.Linq.Async": "4.0.0"
-        },
-        "compile": {
-          "lib/net7.0/CsvHelper.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net7.0/CsvHelper.dll": {
-            "related": ".xml"
-          }
-        }
-      },
       "DevExpress.Data/23.1.8": {
         "type": "package",
         "dependencies": {
@@ -14281,19 +14120,6 @@
         },
         "runtime": {
           "runtimes/unix/lib/netcoreapp3.0/System.Drawing.Common.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "System.Linq.Async/4.0.0": {
-        "type": "package",
-        "compile": {
-          "ref/netcoreapp3.0/System.Linq.Async.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netcoreapp3.0/System.Linq.Async.dll": {
             "related": ".xml"
           }
         }
@@ -16194,22 +16020,6 @@
           }
         }
       },
-      "CsvHelper/31.0.0": {
-        "type": "package",
-        "dependencies": {
-          "System.Linq.Async": "4.0.0"
-        },
-        "compile": {
-          "lib/net7.0/CsvHelper.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net7.0/CsvHelper.dll": {
-            "related": ".xml"
-          }
-        }
-      },
       "DevExpress.Data/23.1.8": {
         "type": "package",
         "dependencies": {
@@ -16956,19 +16766,6 @@
         },
         "runtime": {
           "runtimes/unix/lib/netcoreapp3.0/System.Drawing.Common.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "System.Linq.Async/4.0.0": {
-        "type": "package",
-        "compile": {
-          "ref/netcoreapp3.0/System.Linq.Async.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netcoreapp3.0/System.Linq.Async.dll": {
             "related": ".xml"
           }
         }
@@ -18869,22 +18666,6 @@
           }
         }
       },
-      "CsvHelper/31.0.0": {
-        "type": "package",
-        "dependencies": {
-          "System.Linq.Async": "4.0.0"
-        },
-        "compile": {
-          "lib/net7.0/CsvHelper.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net7.0/CsvHelper.dll": {
-            "related": ".xml"
-          }
-        }
-      },
       "DevExpress.Data/23.1.8": {
         "type": "package",
         "dependencies": {
@@ -19910,19 +19691,6 @@
           "lib/netstandard1.6/System.Linq.dll": {}
         }
       },
-      "System.Linq.Async/4.0.0": {
-        "type": "package",
-        "compile": {
-          "ref/netcoreapp3.0/System.Linq.Async.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netcoreapp3.0/System.Linq.Async.dll": {
-            "related": ".xml"
-          }
-        }
-      },
       "System.Linq.Expressions/4.1.0": {
         "type": "package",
         "dependencies": {
@@ -20428,22 +20196,6 @@
         },
         "runtime": {
           "lib/net7.0/CommunityToolkit.Maui.Markup.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "CsvHelper/31.0.0": {
-        "type": "package",
-        "dependencies": {
-          "System.Linq.Async": "4.0.0"
-        },
-        "compile": {
-          "lib/net7.0/CsvHelper.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net7.0/CsvHelper.dll": {
             "related": ".xml"
           }
         }
@@ -21606,19 +21358,6 @@
         },
         "runtime": {
           "lib/netstandard1.6/System.Linq.dll": {}
-        }
-      },
-      "System.Linq.Async/4.0.0": {
-        "type": "package",
-        "compile": {
-          "ref/netcoreapp3.0/System.Linq.Async.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netcoreapp3.0/System.Linq.Async.dll": {
-            "related": ".xml"
-          }
         }
       },
       "System.Linq.Expressions/4.1.0": {
@@ -22130,22 +21869,6 @@
           }
         }
       },
-      "CsvHelper/31.0.0": {
-        "type": "package",
-        "dependencies": {
-          "System.Linq.Async": "4.0.0"
-        },
-        "compile": {
-          "lib/net7.0/CsvHelper.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net7.0/CsvHelper.dll": {
-            "related": ".xml"
-          }
-        }
-      },
       "DevExpress.Data/23.1.8": {
         "type": "package",
         "dependencies": {
@@ -23304,19 +23027,6 @@
         },
         "runtime": {
           "lib/netstandard1.6/System.Linq.dll": {}
-        }
-      },
-      "System.Linq.Async/4.0.0": {
-        "type": "package",
-        "compile": {
-          "ref/netcoreapp3.0/System.Linq.Async.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netcoreapp3.0/System.Linq.Async.dll": {
-            "related": ".xml"
-          }
         }
       },
       "System.Linq.Expressions/4.1.0": {
@@ -23828,22 +23538,6 @@
           }
         }
       },
-      "CsvHelper/31.0.0": {
-        "type": "package",
-        "dependencies": {
-          "System.Linq.Async": "4.0.0"
-        },
-        "compile": {
-          "lib/net7.0/CsvHelper.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net7.0/CsvHelper.dll": {
-            "related": ".xml"
-          }
-        }
-      },
       "DevExpress.Data/23.1.8": {
         "type": "package",
         "dependencies": {
@@ -25002,19 +24696,6 @@
         },
         "runtime": {
           "lib/netstandard1.6/System.Linq.dll": {}
-        }
-      },
-      "System.Linq.Async/4.0.0": {
-        "type": "package",
-        "compile": {
-          "ref/netcoreapp3.0/System.Linq.Async.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netcoreapp3.0/System.Linq.Async.dll": {
-            "related": ".xml"
-          }
         }
       },
       "System.Linq.Expressions/4.1.0": {
@@ -25526,22 +25207,6 @@
           }
         }
       },
-      "CsvHelper/31.0.0": {
-        "type": "package",
-        "dependencies": {
-          "System.Linq.Async": "4.0.0"
-        },
-        "compile": {
-          "lib/net7.0/CsvHelper.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net7.0/CsvHelper.dll": {
-            "related": ".xml"
-          }
-        }
-      },
       "DevExpress.Data/23.1.8": {
         "type": "package",
         "dependencies": {
@@ -26702,19 +26367,6 @@
           "lib/netstandard1.6/System.Linq.dll": {}
         }
       },
-      "System.Linq.Async/4.0.0": {
-        "type": "package",
-        "compile": {
-          "ref/netcoreapp3.0/System.Linq.Async.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netcoreapp3.0/System.Linq.Async.dll": {
-            "related": ".xml"
-          }
-        }
-      },
       "System.Linq.Expressions/4.1.0": {
         "type": "package",
         "dependencies": {
@@ -27220,22 +26872,6 @@
         },
         "runtime": {
           "lib/net7.0/CommunityToolkit.Maui.Markup.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "CsvHelper/31.0.0": {
-        "type": "package",
-        "dependencies": {
-          "System.Linq.Async": "4.0.0"
-        },
-        "compile": {
-          "lib/net7.0/CsvHelper.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net7.0/CsvHelper.dll": {
             "related": ".xml"
           }
         }
@@ -28412,19 +28048,6 @@
           "lib/netstandard1.6/System.Linq.dll": {}
         }
       },
-      "System.Linq.Async/4.0.0": {
-        "type": "package",
-        "compile": {
-          "ref/netcoreapp3.0/System.Linq.Async.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netcoreapp3.0/System.Linq.Async.dll": {
-            "related": ".xml"
-          }
-        }
-      },
       "System.Linq.Expressions/4.1.0": {
         "type": "package",
         "dependencies": {
@@ -28930,22 +28553,6 @@
         },
         "runtime": {
           "lib/net7.0/CommunityToolkit.Maui.Markup.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "CsvHelper/31.0.0": {
-        "type": "package",
-        "dependencies": {
-          "System.Linq.Async": "4.0.0"
-        },
-        "compile": {
-          "lib/net7.0/CsvHelper.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net7.0/CsvHelper.dll": {
             "related": ".xml"
           }
         }
@@ -30122,19 +29729,6 @@
           "lib/netstandard1.6/System.Linq.dll": {}
         }
       },
-      "System.Linq.Async/4.0.0": {
-        "type": "package",
-        "compile": {
-          "ref/netcoreapp3.0/System.Linq.Async.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netcoreapp3.0/System.Linq.Async.dll": {
-            "related": ".xml"
-          }
-        }
-      },
       "System.Linq.Expressions/4.1.0": {
         "type": "package",
         "dependencies": {
@@ -30640,22 +30234,6 @@
         },
         "runtime": {
           "lib/net7.0/CommunityToolkit.Maui.Markup.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "CsvHelper/31.0.0": {
-        "type": "package",
-        "dependencies": {
-          "System.Linq.Async": "4.0.0"
-        },
-        "compile": {
-          "lib/net7.0/CsvHelper.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net7.0/CsvHelper.dll": {
             "related": ".xml"
           }
         }
@@ -31535,19 +31113,6 @@
           "lib/netstandard1.6/System.Linq.dll": {}
         }
       },
-      "System.Linq.Async/4.0.0": {
-        "type": "package",
-        "compile": {
-          "ref/netcoreapp3.0/System.Linq.Async.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netcoreapp3.0/System.Linq.Async.dll": {
-            "related": ".xml"
-          }
-        }
-      },
       "System.Linq.Expressions/4.1.0": {
         "type": "package",
         "dependencies": {
@@ -32008,22 +31573,6 @@
         },
         "runtime": {
           "lib/net7.0/CommunityToolkit.Maui.Markup.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "CsvHelper/31.0.0": {
-        "type": "package",
-        "dependencies": {
-          "System.Linq.Async": "4.0.0"
-        },
-        "compile": {
-          "lib/net7.0/CsvHelper.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net7.0/CsvHelper.dll": {
             "related": ".xml"
           }
         }
@@ -33035,19 +32584,6 @@
           "lib/netstandard1.6/System.Linq.dll": {}
         }
       },
-      "System.Linq.Async/4.0.0": {
-        "type": "package",
-        "compile": {
-          "ref/netcoreapp3.0/System.Linq.Async.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netcoreapp3.0/System.Linq.Async.dll": {
-            "related": ".xml"
-          }
-        }
-      },
       "System.Linq.Expressions/4.1.0": {
         "type": "package",
         "dependencies": {
@@ -33524,22 +33060,6 @@
         },
         "runtime": {
           "lib/net7.0/CommunityToolkit.Maui.Markup.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "CsvHelper/31.0.0": {
-        "type": "package",
-        "dependencies": {
-          "System.Linq.Async": "4.0.0"
-        },
-        "compile": {
-          "lib/net7.0/CsvHelper.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net7.0/CsvHelper.dll": {
             "related": ".xml"
           }
         }
@@ -34551,19 +34071,6 @@
           "lib/netstandard1.6/System.Linq.dll": {}
         }
       },
-      "System.Linq.Async/4.0.0": {
-        "type": "package",
-        "compile": {
-          "ref/netcoreapp3.0/System.Linq.Async.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netcoreapp3.0/System.Linq.Async.dll": {
-            "related": ".xml"
-          }
-        }
-      },
       "System.Linq.Expressions/4.1.0": {
         "type": "package",
         "dependencies": {
@@ -35040,22 +34547,6 @@
         },
         "runtime": {
           "lib/net7.0/CommunityToolkit.Maui.Markup.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "CsvHelper/31.0.0": {
-        "type": "package",
-        "dependencies": {
-          "System.Linq.Async": "4.0.0"
-        },
-        "compile": {
-          "lib/net7.0/CsvHelper.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net7.0/CsvHelper.dll": {
             "related": ".xml"
           }
         }
@@ -36067,19 +35558,6 @@
           "lib/netstandard1.6/System.Linq.dll": {}
         }
       },
-      "System.Linq.Async/4.0.0": {
-        "type": "package",
-        "compile": {
-          "ref/netcoreapp3.0/System.Linq.Async.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netcoreapp3.0/System.Linq.Async.dll": {
-            "related": ".xml"
-          }
-        }
-      },
       "System.Linq.Expressions/4.1.0": {
         "type": "package",
         "dependencies": {
@@ -36556,22 +36034,6 @@
         },
         "runtime": {
           "lib/net7.0/CommunityToolkit.Maui.Markup.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "CsvHelper/31.0.0": {
-        "type": "package",
-        "dependencies": {
-          "System.Linq.Async": "4.0.0"
-        },
-        "compile": {
-          "lib/net7.0/CsvHelper.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net7.0/CsvHelper.dll": {
             "related": ".xml"
           }
         }
@@ -37583,19 +37045,6 @@
           "lib/netstandard1.6/System.Linq.dll": {}
         }
       },
-      "System.Linq.Async/4.0.0": {
-        "type": "package",
-        "compile": {
-          "ref/netcoreapp3.0/System.Linq.Async.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netcoreapp3.0/System.Linq.Async.dll": {
-            "related": ".xml"
-          }
-        }
-      },
       "System.Linq.Expressions/4.1.0": {
         "type": "package",
         "dependencies": {
@@ -38072,22 +37521,6 @@
         },
         "runtime": {
           "lib/net7.0/CommunityToolkit.Maui.Markup.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "CsvHelper/31.0.0": {
-        "type": "package",
-        "dependencies": {
-          "System.Linq.Async": "4.0.0"
-        },
-        "compile": {
-          "lib/net7.0/CsvHelper.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net7.0/CsvHelper.dll": {
             "related": ".xml"
           }
         }
@@ -39096,19 +38529,6 @@
           "lib/netstandard1.6/System.Linq.dll": {}
         }
       },
-      "System.Linq.Async/4.0.0": {
-        "type": "package",
-        "compile": {
-          "ref/netcoreapp3.0/System.Linq.Async.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netcoreapp3.0/System.Linq.Async.dll": {
-            "related": ".xml"
-          }
-        }
-      },
       "System.Linq.Expressions/4.1.0": {
         "type": "package",
         "dependencies": {
@@ -39585,22 +39005,6 @@
         },
         "runtime": {
           "lib/net7.0/CommunityToolkit.Maui.Markup.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "CsvHelper/31.0.0": {
-        "type": "package",
-        "dependencies": {
-          "System.Linq.Async": "4.0.0"
-        },
-        "compile": {
-          "lib/net7.0/CsvHelper.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net7.0/CsvHelper.dll": {
             "related": ".xml"
           }
         }
@@ -40618,19 +40022,6 @@
           "lib/netstandard1.6/System.Linq.dll": {}
         }
       },
-      "System.Linq.Async/4.0.0": {
-        "type": "package",
-        "compile": {
-          "ref/netcoreapp3.0/System.Linq.Async.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netcoreapp3.0/System.Linq.Async.dll": {
-            "related": ".xml"
-          }
-        }
-      },
       "System.Linq.Expressions/4.1.0": {
         "type": "package",
         "dependencies": {
@@ -41139,34 +40530,6 @@
         "lib/net7.0/CommunityToolkit.Maui.Markup.dll",
         "lib/net7.0/CommunityToolkit.Maui.Markup.xml",
         "nuget.png"
-      ]
-    },
-    "CsvHelper/31.0.0": {
-      "sha512": "PypRJq7AugnCJjq6Zu5EqFDTfRv7Gh+MtSH2T/kwiGmg1UHAflq4cE8j3uMkvXSxaayVtcwi+8hC0w+30YzzWA==",
-      "type": "package",
-      "path": "csvhelper/31.0.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "Icon.png",
-        "csvhelper.31.0.0.nupkg.sha512",
-        "csvhelper.nuspec",
-        "lib/net462/CsvHelper.dll",
-        "lib/net462/CsvHelper.xml",
-        "lib/net47/CsvHelper.dll",
-        "lib/net47/CsvHelper.xml",
-        "lib/net48/CsvHelper.dll",
-        "lib/net48/CsvHelper.xml",
-        "lib/net6.0/CsvHelper.dll",
-        "lib/net6.0/CsvHelper.xml",
-        "lib/net7.0/CsvHelper.dll",
-        "lib/net7.0/CsvHelper.xml",
-        "lib/net8.0/CsvHelper.dll",
-        "lib/net8.0/CsvHelper.xml",
-        "lib/netstandard2.0/CsvHelper.dll",
-        "lib/netstandard2.0/CsvHelper.xml",
-        "lib/netstandard2.1/CsvHelper.dll",
-        "lib/netstandard2.1/CsvHelper.xml"
       ]
     },
     "DevExpress.Data/23.1.8": {
@@ -44248,33 +43611,6 @@
         "ref/xamarinwatchos10/_._",
         "system.linq.4.1.0.nupkg.sha512",
         "system.linq.nuspec"
-      ]
-    },
-    "System.Linq.Async/4.0.0": {
-      "sha512": "WbiYEedFZeM+psmMyoCt1AKbZppAZg8Eq1ZTQ+521fGNeXqlgJj0tZYV5n1LsKRO5osQuitYxGNuzPTy3213sg==",
-      "type": "package",
-      "path": "system.linq.async/4.0.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "lib/net461/System.Linq.Async.dll",
-        "lib/net461/System.Linq.Async.xml",
-        "lib/netcoreapp3.0/System.Linq.Async.dll",
-        "lib/netcoreapp3.0/System.Linq.Async.xml",
-        "lib/netstandard2.0/System.Linq.Async.dll",
-        "lib/netstandard2.0/System.Linq.Async.xml",
-        "lib/netstandard2.1/System.Linq.Async.dll",
-        "lib/netstandard2.1/System.Linq.Async.xml",
-        "ref/net461/System.Linq.Async.dll",
-        "ref/net461/System.Linq.Async.xml",
-        "ref/netcoreapp3.0/System.Linq.Async.dll",
-        "ref/netcoreapp3.0/System.Linq.Async.xml",
-        "ref/netstandard2.0/System.Linq.Async.dll",
-        "ref/netstandard2.0/System.Linq.Async.xml",
-        "ref/netstandard2.1/System.Linq.Async.dll",
-        "ref/netstandard2.1/System.Linq.Async.xml",
-        "system.linq.async.4.0.0.nupkg.sha512",
-        "system.linq.async.nuspec"
       ]
     },
     "System.Linq.Expressions/4.1.0": {
@@ -48071,7 +47407,6 @@
     "net7.0-android33.0": [
       "CommunityToolkit.Maui >= 6.0.0",
       "CommunityToolkit.Maui.Markup >= 3.3.1",
-      "CsvHelper >= 31.0.0",
       "DevExpress.Maui.Controls >= 23.1.8",
       "DevExpress.Maui.Editors >= 23.1.8",
       "DotNetMeteor.HotReload.Plugin >= 3.*",
@@ -48103,7 +47438,6 @@
     "net7.0-ios16.1": [
       "CommunityToolkit.Maui >= 6.0.0",
       "CommunityToolkit.Maui.Markup >= 3.3.1",
-      "CsvHelper >= 31.0.0",
       "DevExpress.Maui.Controls >= 23.1.8",
       "DevExpress.Maui.Editors >= 23.1.8",
       "DotNetMeteor.HotReload.Plugin >= 3.*",
@@ -48124,7 +47458,6 @@
     "net7.0-maccatalyst16.1": [
       "CommunityToolkit.Maui >= 6.0.0",
       "CommunityToolkit.Maui.Markup >= 3.3.1",
-      "CsvHelper >= 31.0.0",
       "DotNetMeteor.HotReload.Plugin >= 3.*",
       "GemBox.Spreadsheet >= 49.0.1612",
       "Microsoft.Extensions.Configuration >= 7.0.0",
@@ -48198,10 +47531,6 @@
           "CommunityToolkit.Maui.Markup": {
             "target": "Package",
             "version": "[3.3.1, )"
-          },
-          "CsvHelper": {
-            "target": "Package",
-            "version": "[31.0.0, )"
           },
           "DevExpress.Maui.Controls": {
             "target": "Package",
@@ -48368,10 +47697,6 @@
             "target": "Package",
             "version": "[3.3.1, )"
           },
-          "CsvHelper": {
-            "target": "Package",
-            "version": "[31.0.0, )"
-          },
           "DevExpress.Maui.Controls": {
             "target": "Package",
             "version": "[23.1.8, )"
@@ -48481,10 +47806,6 @@
           "CommunityToolkit.Maui.Markup": {
             "target": "Package",
             "version": "[3.3.1, )"
-          },
-          "CsvHelper": {
-            "target": "Package",
-            "version": "[31.0.0, )"
           },
           "DotNetMeteor.HotReload.Plugin": {
             "target": "Package",

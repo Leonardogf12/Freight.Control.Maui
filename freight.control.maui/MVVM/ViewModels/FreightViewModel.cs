@@ -3,12 +3,14 @@ using System.Windows.Input;
 using freight.control.maui.MVVM.Base.ViewModels;
 using freight.control.maui.MVVM.Models;
 using freight.control.maui.Repositories;
-using CsvHelper;
 
 namespace freight.control.maui.MVVM.ViewModels;
 
 public class FreightViewModel : BaseViewModel
 {
+
+    #region Properties
+   
     private readonly FreightRepository _freightRepository;
     private readonly ToFuelRepository _toFuelRepository;
     
@@ -57,7 +59,6 @@ public class FreightViewModel : BaseViewModel
         }
     }
 
-
     private DateTime _finalDate = DateTime.Now;
     public DateTime FinalDate
     {
@@ -81,8 +82,9 @@ public class FreightViewModel : BaseViewModel
         }
     }
 
-
     public ICommand RefreshingCommand;
+
+    #endregion
 
     public FreightViewModel()
     {
@@ -92,6 +94,8 @@ public class FreightViewModel : BaseViewModel
         RefreshingCommand = new Command(OnRefreshingCommand);
     }
 
+    #region Methods Privates
+    
     private async void OnRefreshingCommand()
     {
         await LoadFreigths();
@@ -115,6 +119,19 @@ public class FreightViewModel : BaseViewModel
         CheckIfThereAreFreightItemsInCollection();
     }
 
+    private bool CheckDatesToFilterData()
+    {
+        if (FinalDate < InitialDate) return false;
+
+        if (InitialDate > FinalDate) return false;
+
+        return true;
+    }
+
+    #endregion
+
+    #region Methods Publics
+    
     public async Task DeleteFreight(FreightModel model)
     {
         var result = await _freightRepository.DeleteAsync(model);
@@ -160,16 +177,7 @@ public class FreightViewModel : BaseViewModel
 
         FreightCollection = new ObservableCollection<FreightModel>(dataFiltered);
     }
-
-    private bool CheckDatesToFilterData()
-    {
-        if (FinalDate < InitialDate) return false;
-
-        if (InitialDate > FinalDate) return false;
-
-        return true;
-    }
-
+   
     public async Task<List<FreightModel>> GetFreightsToExport()
     {       
         if (!CheckDatesToFilterData())
@@ -195,4 +203,5 @@ public class FreightViewModel : BaseViewModel
 
         return list.ToList();
     }
+    #endregion
 }

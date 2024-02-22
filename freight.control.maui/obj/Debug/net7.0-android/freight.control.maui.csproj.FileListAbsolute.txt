@@ -2545,3 +2545,14 @@
 /Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-android/android/assets/SixLabors.Fonts.dll
 /Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-android/android/assets/SixLabors.ImageSharp.dll
 /Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-android/android/assets/SixLabors.ImageSharp.Drawing.dll
+/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-android/android/assets/EPPlus.dll
+/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-android/android/assets/EPPlus.Interfaces.dll
+/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-android/android/assets/EPPlus.System.Drawing.dll
+/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-android/android/assets/Microsoft.Extensions.Configuration.FileExtensions.dll
+/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-android/android/assets/Microsoft.Extensions.Configuration.Json.dll
+/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-android/android/assets/Microsoft.Extensions.FileProviders.Abstractions.dll
+/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-android/android/assets/Microsoft.Extensions.FileProviders.Physical.dll
+/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-android/android/assets/Microsoft.Extensions.FileSystemGlobbing.dll
+/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-android/android/assets/Microsoft.IO.RecyclableMemoryStream.dll
+/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-android/android/assets/Microsoft.Win32.SystemEvents.dll
+/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-android/android/assets/System.Security.Cryptography.Pkcs.dll

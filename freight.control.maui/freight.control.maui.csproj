@@ -69,7 +69,6 @@
 		<PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.8" />
 		<PackageReference Include="SQLiteNetExtensions" Version="2.1.0" />
 		<PackageReference Include="CommunityToolkit.Maui" Version="6.0.0" />
-		<PackageReference Include="CsvHelper" Version="31.0.0" />
 		<PackageReference Include="GemBox.Spreadsheet" Version="49.0.1612" />
 	</ItemGroup>
 

@@ -1,5 +1,4 @@
 ﻿using System.Text;
-using CommunityToolkit.Maui.Storage;
 using DevExpress.Maui.Controls;
 using freight.control.maui.Components;
 using freight.control.maui.Controls.Animations;
@@ -7,9 +6,7 @@ using freight.control.maui.MVVM.Base.Views;
 using freight.control.maui.MVVM.Models;
 using freight.control.maui.MVVM.ViewModels;
 using freight.control.maui.Services;
-using GemBox.Spreadsheet;
 using Microsoft.Maui.Controls.Shapes;
-using static Android.Content.ClipData;
 using Style = Microsoft.Maui.Controls.Style;
 
 namespace freight.control.maui.MVVM.Views;
@@ -17,11 +14,10 @@ namespace freight.control.maui.MVVM.Views;
 public class FreightView : BaseContentPage
 {
     private readonly INavigationService _navigationService;
-
-    private readonly IFileSaver _fileSaver;
-    CancellationTokenSource cancellationToken = new();
-
+  
     public FreightViewModel ViewModel = new();
+
+    #region Properties
 
     ClickAnimation ClickAnimation = new();
 
@@ -29,13 +25,11 @@ public class FreightView : BaseContentPage
 
     public BottomSheet BottomSheetExport;
 
+    #endregion
 
-    public FreightView(INavigationService navigationService, IFileSaver fileSaver)
+    public FreightView(INavigationService navigationService)
 	{
-        _navigationService = navigationService;
-        _fileSaver = fileSaver;
-
-        SpreadsheetInfo.SetLicense("FREE-LIMITED-KEY");
+        _navigationService = navigationService;   
 
         BackgroundColor = App.GetResource<Color>("PrimaryDark");
 
@@ -408,20 +402,7 @@ public class FreightView : BaseContentPage
         contentGridBorder.SetColumnSpan(stack,4);
         contentGridBorder.Add(stack, 0, 4);
     }
-   
-    private Button CreateBaseButton(string text, string style, EventHandler clicked)
-    {
-        var button = new Button
-        {
-            Text = text,
-            Style = App.GetResource<Style>(style),
-        };
-
-        button.Clicked += clicked;
-
-        return button;
-    }
-
+     
     private void CreateLabelAddNewFreights(Grid contentGridBorder)
     {
         var label = new Label
@@ -554,6 +535,19 @@ public class FreightView : BaseContentPage
         }        
     }
 
+    private Button CreateBaseButton(string text, string style, EventHandler clicked)
+    {
+        var button = new Button
+        {
+            Text = text,
+            Style = App.GetResource<Style>(style),
+        };
+
+        button.Clicked += clicked;
+
+        return button;
+    }
+
     private async void EventFilter(object sender, EventArgs e)
     {
         await ViewModel.FilterFreights();
@@ -566,58 +560,59 @@ public class FreightView : BaseContentPage
 
         try
         {            
-            string nameFileFreight = $"fretes{DateTime.Now.ToString("dd-MM-yy-hh-mm-ss")}.csv";            
+            string nameFile = $"fretes{DateTime.Now.ToString("dd-MM-yy-hh-mm-ss")}.csv";            
 
             string path = System.IO.Path.Combine(Android.App.Application.Context.FilesDir.AbsolutePath, "/storage/emulated/0/Documents/");
         
-            string filePath = System.IO.Path.Combine(path, nameFileFreight);
+            string filePath = System.IO.Path.Combine(path, nameFile);
             
             var utf8 = new UTF8Encoding(true);
 
-            var data = await ViewModel.GetFreightsToExport();
+            var freightsData = await ViewModel.GetFreightsToExport();
 
-            if (data == null) return;
+            if (freightsData == null) return;
 
-            var AmountFreight = data.Select(x => x.FreightValue).Sum();
+            var totalFreight = freightsData.Select(x => x.FreightValue).Sum();
 
             using (var writer = new StreamWriter(filePath, false, utf8))
-            {
-                await writer.WriteAsync($"Código (#);Data;Origem;Destino;Distância (KM);Valor (R$);Observação");
+            {                
+                await writer.WriteAsync($"Código #;Data;Origem;Destino;Distância (KM);Valor (R$);Observação");
                
-                foreach (var item in data)
+                foreach (var freight in freightsData)
                 {
-                    await writer.WriteAsync($"\n# {item.Id};" +
-                                            $"{item.TravelDate.ToShortDateString()};" +
-                                            $"{item.Origin} - {item.OriginUf};" +
-                                            $"{item.Destination} - {item.DestinationUf};" +
-                                            $"{item.Kilometer};" +
-                                            $"{item.FreightValue.ToString("c")};" +
-                                            $"{item.Observation}");                    
+                    await writer.WriteAsync($"\n# {freight.Id};" +
+                                            $"{freight.TravelDate.ToShortDateString()};" +
+                                            $"{freight.Origin} - {freight.OriginUf};" +
+                                            $"{freight.Destination} - {freight.DestinationUf};" +
+                                            $"{freight.Kilometer};" +
+                                            $"{freight.FreightValue:c};" +
+                                            $"{freight.Observation}");                    
                 }
-               
+
+
                 await writer.WriteLineAsync();
-                await writer.WriteAsync($"-;-;-;-;-;Total Valor: {AmountFreight.ToString("c")};-");
+                await writer.WriteAsync($"-;-;-;-;-;Total Valor: {totalFreight:c};-");
                 await writer.WriteLineAsync();
                 await writer.WriteLineAsync();
-                await writer.WriteAsync($"Código (#);Data;Litros (Lt);Valor (R$);Valor/Litro (R$);Despesas (R$);Observação");
+                await writer.WriteAsync($"Código #;Data;Litros (Lt);Valor (R$);Valor/Litro (R$);Despesas (R$);Observação");
 
                 double totalLiters = 0;
                 decimal totalValue = 0;
                 decimal totalExpenses = 0;
 
-                foreach (var item in data)
+                foreach (var item in freightsData)
                 {
                     var supplies = await ViewModel.GetFreightSupplies(item);
 
                     foreach(var fuel in supplies)
                     {
                         await writer.WriteAsync($"\n# {fuel.FreightModelId};" +
-                                          $"{fuel.Date.ToShortDateString()};" +
-                                          $"{fuel.Liters};" +
-                                          $"{fuel.AmountSpentFuel.ToString("c")};" +
-                                          $"{fuel.ValuePerLiter.ToString("c")};" +
-                                          $"{fuel.Expenses.ToString("c")};" +
-                                          $"{fuel.Observation}");
+                                                $"{fuel.Date.ToShortDateString()};" +
+                                                $"{fuel.Liters};" +
+                                                $"{fuel.AmountSpentFuel:c};" +
+                                                $"{fuel.ValuePerLiter:c};" +
+                                                $"{fuel.Expenses:c};" +
+                                                $"{fuel.Observation}");
                         
                         totalLiters += fuel.Liters;
                         totalValue += fuel.AmountSpentFuel;
@@ -626,9 +621,9 @@ public class FreightView : BaseContentPage
                 }
                
                 await writer.WriteLineAsync();
-                await writer.WriteAsync($"-;-;Total Litros: {totalLiters};Total Valor: {totalValue.ToString("c")};-;Total Despesas: {totalExpenses.ToString("c")};-");
+                await writer.WriteAsync($"-;-;Total Litros: {totalLiters};Total Valor: {totalValue:c};-;Total Despesas: {totalExpenses:c};-");
                 await writer.WriteLineAsync();
-                await writer.WriteAsync($"Total Geral: {(AmountFreight + totalValue + totalExpenses).ToString("c")};-;-;-;-;-;-");
+                await writer.WriteAsync($"Total Geral: {totalFreight - totalValue - totalExpenses:c};-;-;-;-;-;-");
             }            
 
             await DisplayAlert("Sucesso", "Arquivo exportado com sucesso. O arquivo foi salvo em: Documentos.", "Ok");
@@ -645,8 +640,8 @@ public class FreightView : BaseContentPage
         {
             ViewModel.IsBusy = false;
         }
-    }
-   
+    }    
+
     #endregion
 
     #region Actions

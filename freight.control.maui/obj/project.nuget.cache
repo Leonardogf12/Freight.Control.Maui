@@ -1,13 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "lrvv0TrCYclDEoebPgwKvU49yO61hQVIamycbgjG4j+QBs6Q3Qkc4n0m/fMtDwpasfmrUrZlgktn6li6U+EVdQ==",
+  "dgSpecHash": "rahzjgaGhnCIIbpTH+Hf5usx3NCEZsN61e41RCCzWNwcKzHj5b88Bm/GpMo4xwmmWNI2DlaaQH+S97y/5FQ3Wg==",
   "success": true,
   "projectFilePath": "/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/freight.control.maui.csproj",
   "expectedPackageFiles": [
     "/Users/leonardofazolo/.nuget/packages/communitytoolkit.maui/6.0.0/communitytoolkit.maui.6.0.0.nupkg.sha512",
     "/Users/leonardofazolo/.nuget/packages/communitytoolkit.maui.core/6.0.0/communitytoolkit.maui.core.6.0.0.nupkg.sha512",
     "/Users/leonardofazolo/.nuget/packages/communitytoolkit.maui.markup/3.3.1/communitytoolkit.maui.markup.3.3.1.nupkg.sha512",
-    "/Users/leonardofazolo/.nuget/packages/csvhelper/31.0.0/csvhelper.31.0.0.nupkg.sha512",
     "/Users/leonardofazolo/.nuget/packages/devexpress.data/23.1.8/devexpress.data.23.1.8.nupkg.sha512",
     "/Users/leonardofazolo/.nuget/packages/devexpress.maui.collectionview/23.1.8/devexpress.maui.collectionview.23.1.8.nupkg.sha512",
     "/Users/leonardofazolo/.nuget/packages/devexpress.maui.controls/23.1.8/devexpress.maui.controls.23.1.8.nupkg.sha512",
@@ -94,7 +93,6 @@
     "/Users/leonardofazolo/.nuget/packages/system.io.filesystem/4.0.1/system.io.filesystem.4.0.1.nupkg.sha512",
     "/Users/leonardofazolo/.nuget/packages/system.io.filesystem.primitives/4.0.1/system.io.filesystem.primitives.4.0.1.nupkg.sha512",
     "/Users/leonardofazolo/.nuget/packages/system.linq/4.1.0/system.linq.4.1.0.nupkg.sha512",
-    "/Users/leonardofazolo/.nuget/packages/system.linq.async/4.0.0/system.linq.async.4.0.0.nupkg.sha512",
     "/Users/leonardofazolo/.nuget/packages/system.linq.expressions/4.1.0/system.linq.expressions.4.1.0.nupkg.sha512",
     "/Users/leonardofazolo/.nuget/packages/system.memory/4.5.3/system.memory.4.5.3.nupkg.sha512",
     "/Users/leonardofazolo/.nuget/packages/system.objectmodel/4.0.12/system.objectmodel.4.0.12.nupkg.sha512",
