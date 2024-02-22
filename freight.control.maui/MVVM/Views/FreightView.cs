@@ -1,4 +1,5 @@
-﻿using AndroidX.Lifecycle;
+﻿using System.Text;
+using CommunityToolkit.Maui.Storage;
 using DevExpress.Maui.Controls;
 using freight.control.maui.Components;
 using freight.control.maui.Controls.Animations;
@@ -6,13 +7,19 @@ using freight.control.maui.MVVM.Base.Views;
 using freight.control.maui.MVVM.Models;
 using freight.control.maui.MVVM.ViewModels;
 using freight.control.maui.Services;
+using GemBox.Spreadsheet;
 using Microsoft.Maui.Controls.Shapes;
+using static Android.Content.ClipData;
+using Style = Microsoft.Maui.Controls.Style;
 
 namespace freight.control.maui.MVVM.Views;
 
 public class FreightView : BaseContentPage
 {
     private readonly INavigationService _navigationService;
+
+    private readonly IFileSaver _fileSaver;
+    CancellationTokenSource cancellationToken = new();
 
     public FreightViewModel ViewModel = new();
 
@@ -23,9 +30,12 @@ public class FreightView : BaseContentPage
     public BottomSheet BottomSheetExport;
 
 
-    public FreightView(INavigationService navigationService)
+    public FreightView(INavigationService navigationService, IFileSaver fileSaver)
 	{
         _navigationService = navigationService;
+        _fileSaver = fileSaver;
+
+        SpreadsheetInfo.SetLicense("FREE-LIMITED-KEY");
 
         BackgroundColor = App.GetResource<Color>("PrimaryDark");
 
@@ -136,9 +146,7 @@ public class FreightView : BaseContentPage
             BackgroundColor = Colors.White,
             ItemTemplate = new DataTemplate(CreateItemTemplateFreight),
         };
-        collection.SetBinding(CollectionView.ItemsSourceProperty, nameof(FreightViewModel.FreightCollection));
-
-        //mainGrid.Add(collection, 0, 1);
+        collection.SetBinding(CollectionView.ItemsSourceProperty, nameof(FreightViewModel.FreightCollection));       
 
         refresh.Content = collection;
         mainGrid.Add(refresh, 0, 1);
@@ -554,10 +562,91 @@ public class FreightView : BaseContentPage
 
     private async void EventExport(object sender, EventArgs e)
     {
-        await ViewModel.FilterFreights();
-        BottomSheetExport.State = BottomSheetState.Hidden;
-    }
+        ViewModel.IsBusy = true;
 
+        try
+        {            
+            string nameFileFreight = $"fretes{DateTime.Now.ToString("dd-MM-yy-hh-mm-ss")}.csv";            
+
+            string path = System.IO.Path.Combine(Android.App.Application.Context.FilesDir.AbsolutePath, "/storage/emulated/0/Documents/");
+        
+            string filePath = System.IO.Path.Combine(path, nameFileFreight);
+            
+            var utf8 = new UTF8Encoding(true);
+
+            var data = await ViewModel.GetFreightsToExport();
+
+            if (data == null) return;
+
+            var AmountFreight = data.Select(x => x.FreightValue).Sum();
+
+            using (var writer = new StreamWriter(filePath, false, utf8))
+            {
+                await writer.WriteAsync($"Código (#);Data;Origem;Destino;Distância (KM);Valor (R$);Observação");
+               
+                foreach (var item in data)
+                {
+                    await writer.WriteAsync($"\n# {item.Id};" +
+                                            $"{item.TravelDate.ToShortDateString()};" +
+                                            $"{item.Origin} - {item.OriginUf};" +
+                                            $"{item.Destination} - {item.DestinationUf};" +
+                                            $"{item.Kilometer};" +
+                                            $"{item.FreightValue.ToString("c")};" +
+                                            $"{item.Observation}");                    
+                }
+               
+                await writer.WriteLineAsync();
+                await writer.WriteAsync($"-;-;-;-;-;Total Valor: {AmountFreight.ToString("c")};-");
+                await writer.WriteLineAsync();
+                await writer.WriteLineAsync();
+                await writer.WriteAsync($"Código (#);Data;Litros (Lt);Valor (R$);Valor/Litro (R$);Despesas (R$);Observação");
+
+                double totalLiters = 0;
+                decimal totalValue = 0;
+                decimal totalExpenses = 0;
+
+                foreach (var item in data)
+                {
+                    var supplies = await ViewModel.GetFreightSupplies(item);
+
+                    foreach(var fuel in supplies)
+                    {
+                        await writer.WriteAsync($"\n# {fuel.FreightModelId};" +
+                                          $"{fuel.Date.ToShortDateString()};" +
+                                          $"{fuel.Liters};" +
+                                          $"{fuel.AmountSpentFuel.ToString("c")};" +
+                                          $"{fuel.ValuePerLiter.ToString("c")};" +
+                                          $"{fuel.Expenses.ToString("c")};" +
+                                          $"{fuel.Observation}");
+                        
+                        totalLiters += fuel.Liters;
+                        totalValue += fuel.AmountSpentFuel;
+                        totalExpenses += fuel.Expenses;
+                    }                    
+                }
+               
+                await writer.WriteLineAsync();
+                await writer.WriteAsync($"-;-;Total Litros: {totalLiters};Total Valor: {totalValue.ToString("c")};-;Total Despesas: {totalExpenses.ToString("c")};-");
+                await writer.WriteLineAsync();
+                await writer.WriteAsync($"Total Geral: {(AmountFreight + totalValue + totalExpenses).ToString("c")};-;-;-;-;-;-");
+            }            
+
+            await DisplayAlert("Sucesso", "Arquivo exportado com sucesso. O arquivo foi salvo em: Documentos.", "Ok");
+
+            BottomSheetExport.State = BottomSheetState.Hidden;
+
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+            await DisplayAlert("Erro", "Parece que ocorreu um erro ao tentar exportar os fretes. Por favor, tente novamente.", "Ok");
+        }
+        finally
+        {
+            ViewModel.IsBusy = false;
+        }
+    }
+   
     #endregion
 
     #region Actions
@@ -571,6 +660,7 @@ public class FreightView : BaseContentPage
         vm.OnAppearing();
     }
 
-
     #endregion
 }
+
+

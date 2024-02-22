@@ -1,9 +1,11 @@
 ﻿using CommunityToolkit.Maui;
+using CommunityToolkit.Maui.Storage;
 using DevExpress.Maui;
 using DotNet.Meteor.HotReload.Plugin;
 using freight.control.maui.MVVM.ViewModels;
 using freight.control.maui.MVVM.Views;
 using freight.control.maui.Services;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using SkiaSharp.Views.Maui.Controls.Hosting;
 
@@ -31,9 +33,6 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 			});
 
-#if DEBUG
-		builder.Logging.AddDebug();
-#endif       
 
         builder.Services.AddTransient<FreightView>();
         builder.Services.AddTransient<AddFreightView>();
@@ -46,7 +45,12 @@ public static class MauiProgram
         builder.Services.AddTransient<ToFuelViewModel>();
 
         builder.Services.AddSingleton<INavigationService, NavigationService>();
+        builder.Services.AddSingleton<IFileSaver>(FileSaver.Default);
 
+#if DEBUG
+        builder.Logging.AddDebug();
+#endif       
+       
         return builder.Build();
 	}
 }

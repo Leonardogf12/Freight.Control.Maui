@@ -2536,3 +2536,12 @@
 /Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-android/resizetizer/r/drawable-xhdpi/liters_24.png
 /Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-android/resizetizer/r/drawable-xxhdpi/liters_24.png
 /Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-android/resizetizer/r/drawable-xxxhdpi/liters_24.png
+/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-android/android/assets/CsvHelper.dll
+/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-android/android/assets/System.Linq.Async.dll
+/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-android/android/assets/BouncyCastle.Crypto.dll
+/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-android/android/assets/GemBox.Spreadsheet.dll
+/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-android/android/assets/HarfBuzzSharp.dll
+/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-android/android/assets/HarfBuzzSharp.pdb
+/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-android/android/assets/SixLabors.Fonts.dll
+/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-android/android/assets/SixLabors.ImageSharp.dll
+/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-android/android/assets/SixLabors.ImageSharp.Drawing.dll

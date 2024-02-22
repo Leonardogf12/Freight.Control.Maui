@@ -59,6 +59,10 @@
               "target": "Package",
               "version": "[3.3.1, )"
             },
+            "CsvHelper": {
+              "target": "Package",
+              "version": "[31.0.0, )"
+            },
             "DevExpress.Maui.Controls": {
               "target": "Package",
               "version": "[23.1.8, )"
@@ -70,6 +74,10 @@
             "DotNetMeteor.HotReload.Plugin": {
               "target": "Package",
               "version": "[3.*, )"
+            },
+            "GemBox.Spreadsheet": {
+              "target": "Package",
+              "version": "[49.0.1612, )"
             },
             "Microsoft.Extensions.Configuration": {
               "target": "Package",
@@ -220,6 +228,10 @@
               "target": "Package",
               "version": "[3.3.1, )"
             },
+            "CsvHelper": {
+              "target": "Package",
+              "version": "[31.0.0, )"
+            },
             "DevExpress.Maui.Controls": {
               "target": "Package",
               "version": "[23.1.8, )"
@@ -231,6 +243,10 @@
             "DotNetMeteor.HotReload.Plugin": {
               "target": "Package",
               "version": "[3.*, )"
+            },
+            "GemBox.Spreadsheet": {
+              "target": "Package",
+              "version": "[49.0.1612, )"
             },
             "Microsoft.Extensions.Configuration": {
               "target": "Package",
@@ -326,9 +342,17 @@
               "target": "Package",
               "version": "[3.3.1, )"
             },
+            "CsvHelper": {
+              "target": "Package",
+              "version": "[31.0.0, )"
+            },
             "DotNetMeteor.HotReload.Plugin": {
               "target": "Package",
               "version": "[3.*, )"
+            },
+            "GemBox.Spreadsheet": {
+              "target": "Package",
+              "version": "[49.0.1612, )"
             },
             "Microsoft.Extensions.Configuration": {
               "target": "Package",

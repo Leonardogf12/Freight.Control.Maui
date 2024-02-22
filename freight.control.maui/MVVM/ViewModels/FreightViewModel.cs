@@ -3,6 +3,7 @@ using System.Windows.Input;
 using freight.control.maui.MVVM.Base.ViewModels;
 using freight.control.maui.MVVM.Models;
 using freight.control.maui.Repositories;
+using CsvHelper;
 
 namespace freight.control.maui.MVVM.ViewModels;
 
@@ -10,8 +11,7 @@ public class FreightViewModel : BaseViewModel
 {
     private readonly FreightRepository _freightRepository;
     private readonly ToFuelRepository _toFuelRepository;
-
-
+    
     private ObservableCollection<FreightModel> _freightCollection = new();
     public ObservableCollection<FreightModel> FreightCollection
 	{
@@ -87,7 +87,7 @@ public class FreightViewModel : BaseViewModel
     public FreightViewModel()
     {
         _freightRepository = new();
-        _toFuelRepository = new();
+        _toFuelRepository = new();        
 
         RefreshingCommand = new Command(OnRefreshingCommand);
     }
@@ -168,5 +168,31 @@ public class FreightViewModel : BaseViewModel
         if (InitialDate > FinalDate) return false;
 
         return true;
+    }
+
+    public async Task<List<FreightModel>> GetFreightsToExport()
+    {       
+        if (!CheckDatesToFilterData())
+        {
+            await App.Current.MainPage.DisplayAlert("Ops", "A data final deve ser maior ou igual a data inicial. Favor verificar.", "Ok");
+            return null;
+        }
+
+        var dataFiltered = await _freightRepository.GetByDateInitialAndFinal(initial: InitialDate, final: FinalDate);
+
+        if (!dataFiltered.Any())
+        {
+            await App.Current.MainPage.DisplayAlert("Filtro", "Nenhum registro foi encontrado para o período informado.", "Ok");
+            return null;
+        }
+
+        return dataFiltered;       
+    }
+
+    public async Task<List<ToFuelModel>> GetFreightSupplies(FreightModel item)
+    {
+        var list =  await _toFuelRepository.GetAllById(item.Id);
+
+        return list.ToList();
     }
 }

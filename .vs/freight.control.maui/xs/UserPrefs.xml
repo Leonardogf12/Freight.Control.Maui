@@ -1,39 +1,49 @@
 ﻿<Properties GitUserInfo="UsingMD" StartupConfiguration="{15687626-2468-4B49-B8B5-F034392697A3}|Default">
-  <Xamarin.Addins.Core.Project ActiveDebugTarget="MyAppleMacCatalystID" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="freight.control.maui/MVVM/Views/ToFuelView.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/MVVM/Views/FreightView.cs" relfile="freight.control.maui/MVVM/Views/FreightView.cs" line="609" column="1" />
+      <Breakpoint file="/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/MVVM/Views/FreightView.cs" relfile="freight.control.maui/MVVM/Views/FreightView.cs" line="590" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.MonoDroid LastDeploySdkVersion="33.0.95" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="freight.control.maui/MVVM/Views/FreightView.cs">
     <Files>
-      <File FileName="freight.control.maui/MVVM/Views/AddFreightView.cs" />
-      <File FileName="freight.control.maui/MVVM/Views/ToFuelView.cs" Line="393" Column="22" />
-      <File FileName="freight.control.maui/MVVM/ViewModels/ToFuelViewModel.cs" />
-      <File FileName="freight.control.maui/MVVM/Models/ToFuelModel.cs" />
+      <File FileName="freight.control.maui/MVVM/Views/FreightView.cs" Line="16" Column="43" />
+      <File FileName="freight.control.maui/MVVM/ViewModels/FreightViewModel.cs" Line="173" Column="62" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="freight.control.maui" expanded="True">
-            <Node name="freight.control.maui" expanded="True">
+            <Node name="freight.control.maui">
+              <Node name="Dependencies" selected="True" />
+              <Node name="Components" expanded="True" />
               <Node name="MVVM" expanded="True">
-                <Node name="Views" expanded="True">
-                  <Node name="ToFuelView.cs" selected="True" />
-                </Node>
+                <Node name="Models" expanded="True" />
+                <Node name="ViewModels" expanded="True" />
+                <Node name="Views" expanded="True" />
               </Node>
+              <Node name="Platforms">
+                <Node name="Android" expanded="True" />
+              </Node>
+              <Node name="Repositories" expanded="True" />
               <Node name="Resources" expanded="True">
-                <Node name="Raw" expanded="True" />
+                <Node name="Images" expanded="True" />
               </Node>
-              <Node name="Services" expanded="True" />
-              <Node name="App.xaml" expanded="True" />
             </Node>
           </Node>
         </State>
       </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State>
+          <Value>initial.Date</Value>
+        </State>
+      </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.freight.control.maui Xamarin.HotReload.DebuggerTimeoutException.freight.control.maui.HideInfoBar="True" Xamarin.HotReload.WrongLinkerErrorInfoBar.freight.control.maui.HideInfoBar="True" PreferredExecutionTarget="MyAppleMacCatalystID" />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.MonoDroid LastDeploySdkVersion="33.0.95" />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.freight.control.maui PreferredExecutionTarget="MyAppleMacCatalystID" Xamarin.HotReload.WrongLinkerErrorInfoBar.freight.control.maui.HideInfoBar="True" Xamarin.HotReload.DebuggerTimeoutException.freight.control.maui.HideInfoBar="True" />
+  <Xamarin.Addins.Core.Project ActiveDebugTarget="MyAppleMacCatalystID" />
 </Properties>
