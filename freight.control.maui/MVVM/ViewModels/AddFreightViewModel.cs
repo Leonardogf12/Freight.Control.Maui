@@ -215,6 +215,105 @@ public class AddFreightViewModel : BaseViewModel
         }
     }
 
+    private Color _borderColorFocusedOriginUf = Colors.Gray;
+    public Color BorderColorFocusedOriginUf
+    {
+        get => _borderColorFocusedOriginUf;
+        set
+        {
+            _borderColorFocusedOriginUf = value;
+            OnPropertyChanged();
+        }
+    }
+
+    private Color _borderColorOriginUf = Colors.LightGray;
+    public Color BorderColorOriginUf
+    {
+        get => _borderColorOriginUf;
+        set
+        {
+            _borderColorOriginUf = value;
+            OnPropertyChanged();
+        }
+    }
+
+    private Color _borderColorFocusedOrigin = Colors.Gray;
+    public Color BorderColorFocusedOrigin
+    {
+        get => _borderColorFocusedOrigin;
+        set
+        {
+            _borderColorFocusedOrigin = value;
+            OnPropertyChanged();
+        }
+    }
+
+    private Color _borderColorOrigin = Colors.LightGray;
+    public Color BorderColorOrigin
+    {
+        get => _borderColorOrigin;
+        set
+        {
+            _borderColorOrigin = value;
+            OnPropertyChanged();
+        }
+    }
+
+    private Color _borderColorFocusedDestinationUf = Colors.Gray;
+    public Color BorderColorFocusedDestinationUf
+    {
+        get => _borderColorFocusedDestinationUf;
+        set
+        {
+            _borderColorFocusedDestinationUf = value;
+            OnPropertyChanged();
+        }
+    }
+
+    private Color _borderColorDestinationUf = Colors.LightGray;
+    public Color BorderColorDestinationUf
+    {
+        get => _borderColorDestinationUf;
+        set
+        {
+            _borderColorDestinationUf = value;
+            OnPropertyChanged();
+        }
+    }
+
+    private Color _borderColorFocusedDestination = Colors.Gray;
+    public Color BorderColorFocusedDestination
+    {
+        get => _borderColorFocusedDestination;
+        set
+        {
+            _borderColorFocusedDestination = value;
+            OnPropertyChanged();
+        }
+    }
+
+    private Color _borderColorDestination = Colors.LightGray;
+    public Color BorderColorDestination
+    {
+        get => _borderColorDestination;
+        set
+        {
+            _borderColorDestination = value;
+            OnPropertyChanged();
+        }
+    }
+
+    private bool _isValidToSave = true;
+    public bool IsValidToSave
+    {
+        get => _isValidToSave;
+        set
+        {
+            _isValidToSave = value;
+            OnPropertyChanged();
+        }
+    }
+
     #endregion
 
     public ICommand SaveCommand { get; set; }

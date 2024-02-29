@@ -4,14 +4,16 @@ namespace freight.control.maui.Components;
 
 public class ComboboxEditCustom : ComboBoxEdit
 {
-	public ComboboxEditCustom(string icon = "")
+	public ComboboxEditCustom(string icon = "", string labelText = "")
 	{
-        HeightRequest = 50;
+        LabelText = labelText;       
+        LabelColor = Colors.LightGray;
+        FocusedLabelColor = Colors.Gray;
+        IsLabelFloating = true;        
+        HeightRequest = 60;
         Keyboard = Keyboard.Default;
         Margin = new Thickness(10, 0, 5, 0); // Margin = new Thickness(0, 15, 10, 0),
-        CornerRadius = 10;
-        IsLabelFloating = false;         
-        PlaceholderColor = Colors.LightGray;
+        CornerRadius = 10;                     
         IconIndent = 5;
         StartIcon = ImageSource.FromFile(icon);
         FocusedBorderColor = Colors.Gray;

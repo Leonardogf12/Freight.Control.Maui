@@ -1,5 +1,4 @@
-﻿using AndroidX.Lifecycle;
-using freight.control.maui.MVVM.Base.ViewModels;
+﻿using freight.control.maui.MVVM.Base.ViewModels;
 using freight.control.maui.MVVM.Models;
 using freight.control.maui.Repositories;
 

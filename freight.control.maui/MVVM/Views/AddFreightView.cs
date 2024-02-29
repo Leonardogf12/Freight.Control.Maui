@@ -3,7 +3,6 @@ using freight.control.maui.Components;
 using freight.control.maui.Controls.Animations;
 using freight.control.maui.Controls.ControlCheckers;
 using freight.control.maui.MVVM.Base.Views;
-using freight.control.maui.MVVM.Models;
 using freight.control.maui.MVVM.ViewModels;
 using Microsoft.Maui.Controls.Shapes;
 
@@ -179,10 +178,9 @@ public class AddFreightView : BaseContentPage
                 new () { Width = GridLength.Star},
                 new () { Width = GridLength.Star},
                 new () { Width = GridLength.Star},
-            },
-            //Margin = new Thickness(0, 15, 0, 0),
+            },        
             RowSpacing = 3
-        };
+        };     
 
         var title = new Label
         {
@@ -195,29 +193,35 @@ public class AddFreightView : BaseContentPage
         grid.SetColumnSpan(title, 5);
         grid.Add(title, 0, 0);
 
-        var originUf = new ComboboxEditCustom(icon: "uf_24")
+        var originUf = new ComboboxEditCustom(icon: "uf_24", labelText: "Uf")
         {           
             Margin = new Thickness(10, 0, 5, 0),           
         };
-        originUf.SetBinding(ItemsEditBase.ItemsSourceProperty, nameof(ViewModel.OriginUfCollection));
+        originUf.SetBinding(ItemsEditBase.ItemsSourceProperty, nameof(ViewModel.OriginUfCollection));        
+        originUf.SetBinding(ComboBoxEdit.SelectedItemProperty, nameof(ViewModel.SelectedItemOriginUf), BindingMode.TwoWay);
+        originUf.SetBinding(EditBase.BorderColorProperty, nameof(ViewModel.BorderColorOriginUf));
+        originUf.SetBinding(EditBase.FocusedBorderColorProperty, nameof(ViewModel.BorderColorFocusedOriginUf));
         originUf.SelectionChanged += OriginUf_SelectionChanged;
-        originUf.SetBinding(ComboBoxEdit.SelectedItemProperty, nameof(ViewModel.SelectedItemOriginUf), BindingMode.TwoWay);       
         grid.SetColumnSpan(originUf, 2);
         grid.Add(originUf, 0, 1);
 
-        var origin = new ComboboxEditCustom(icon: "local_24")
+        var origin = new ComboboxEditCustom(icon: "local_24", labelText: "Origem")
         {           
             Margin = new Thickness(0, 0, 10, 0),           
         };
         origin.SetBinding(ItemsEditBase.ItemsSourceProperty, nameof(ViewModel.OriginCollection));
         origin.SetBinding(ComboBoxEdit.SelectedItemProperty, nameof(ViewModel.SelectedItemOrigin), BindingMode.TwoWay);
+        origin.SetBinding(EditBase.BorderColorProperty, nameof(ViewModel.BorderColorOrigin));
+        origin.SetBinding(EditBase.FocusedBorderColorProperty, nameof(ViewModel.BorderColorFocusedOrigin));
+        origin.SelectionChanged += Origin_SelectionChanged;
+
         grid.SetColumnSpan(origin, 3);
         grid.Add(origin, 2, 1);
             
         contentGridBorderForm.SetColumnSpan(grid, 5);
         contentGridBorderForm.Add(grid, 0, 1);
     }
-   
+    
     private void CreateDestinationFieldForm(Grid contentGridBorderForm)
     {
         var grid = new Grid
@@ -250,22 +254,27 @@ public class AddFreightView : BaseContentPage
         grid.SetColumnSpan(title, 5);
         grid.Add(title, 0, 0);
 
-        var destinationUf = new ComboboxEditCustom(icon: "uf_24")
+        var destinationUf = new ComboboxEditCustom(icon: "uf_24", labelText: "Uf")
         {
             Margin = new Thickness(10, 0, 5, 0),
         };
-        destinationUf.SetBinding(ItemsEditBase.ItemsSourceProperty, nameof(ViewModel.DestinationUfCollection));
+        destinationUf.SetBinding(ItemsEditBase.ItemsSourceProperty, nameof(ViewModel.DestinationUfCollection));        
+        destinationUf.SetBinding(ComboBoxEdit.SelectedItemProperty, nameof(ViewModel.SelectedItemDestinationUf), BindingMode.TwoWay);
+        destinationUf.SetBinding(EditBase.BorderColorProperty, nameof(ViewModel.BorderColorDestinationUf));
+        destinationUf.SetBinding(EditBase.FocusedBorderColorProperty, nameof(ViewModel.BorderColorFocusedDestinationUf));
         destinationUf.SelectionChanged += DestinationUf_SelectionChanged;
-        destinationUf.SetBinding(ComboBoxEdit.SelectedItemProperty, nameof(ViewModel.SelectedItemDestinationUf), BindingMode.TwoWay);       
         grid.SetColumnSpan(destinationUf, 2);
         grid.Add(destinationUf, 0, 1);
 
-        var destination = new ComboboxEditCustom(icon: "local_24")
+        var destination = new ComboboxEditCustom(icon: "local_24", labelText: "Destino")
         {
             Margin = new Thickness(0, 0, 10, 0),
         };
         destination.SetBinding(ItemsEditBase.ItemsSourceProperty, nameof(ViewModel.DestinationCollection));
         destination.SetBinding(ComboBoxEdit.SelectedItemProperty, nameof(ViewModel.SelectedItemDestination));
+        destination.SetBinding(EditBase.BorderColorProperty, nameof(ViewModel.BorderColorDestination));
+        destination.SetBinding(EditBase.FocusedBorderColorProperty, nameof(ViewModel.BorderColorFocusedDestination));
+        destination.SelectionChanged += Destination_SelectionChanged;
         grid.SetColumnSpan(destination, 3);
         grid.Add(destination, 2, 1);
 
@@ -334,6 +343,18 @@ public class AddFreightView : BaseContentPage
             {                
                 ViewModel.SelectedItemOriginUf = uf;
                 ViewModel.ChangedItemOriginUf(uf);
+                SetBorderColorDefaultForDropdownOriginUf();
+            }
+        }
+    }
+
+    private void Origin_SelectionChanged(object sender, EventArgs e)
+    {
+        if (sender is ComboBoxEdit element)
+        {
+            if (element.SelectedItem is string city)
+            {
+                SetBorderColorDefaultForDropdownOrigin();
             }
         }
     }
@@ -346,10 +367,21 @@ public class AddFreightView : BaseContentPage
             {
                 ViewModel.SelectedItemDestinationUf = uf;
                 ViewModel.ChangedItemDestinationUf(uf);
+                SetBorderColorDefaultForDropdownDestinationUf();
             }
         }
     }
 
+    private void Destination_SelectionChanged(object sender, EventArgs e)
+    {
+        if (sender is ComboBoxEdit element)
+        {
+            if (element.SelectedItem is string city)
+            {
+                SetBorderColorDefaultForDropdownDestination();
+            }
+        }
+    }    
 
     private void Km_TextChanged(object sender, EventArgs e)
     {
@@ -357,50 +389,35 @@ public class AddFreightView : BaseContentPage
 
         var text = element.Text;
 
-        if (string.IsNullOrEmpty(text))
-        {
-            SetBorderColorDefaultKmField();
-            return;
-        }
-
-        if (!CheckTheEntrys.IsValidEntry(text, CheckTheEntrys.patternKilometer))
-        {
-            ViewModel.BorderColorKm = Colors.Red;
-            ViewModel.BorderColorFocusedKm = Colors.Red;
-            return;
-        }
-
-        SetBorderColorDefaultKmField();
+        SetBorderColorToElementKmTextField(text);        
     }
-
+   
     private void FreigthField_TextChanged(object sender, EventArgs e)
     {
         var element = sender as TextEdit;
 
         var text = element.Text;
 
-        if (string.IsNullOrEmpty(text))
-        {
-            SetBorderColorDefaultFreightField();
-            return;
-        }
-
-        if (!CheckTheEntrys.IsValidEntry(text, CheckTheEntrys.patternMoney))
-        {
-            ViewModel.BorderColorFreightValue = Colors.Red;
-            ViewModel.BorderColorFocusedFreightValue = Colors.Red;
-
-            return;
-        }
-
-        SetBorderColorDefaultFreightField();
+        SetBorderColorToElementFreightValueTextField(text);       
     }
-    
-    private void SaveClicked(object sender, EventArgs e)
+   
+    private async void SaveClicked(object sender, EventArgs e)
     {        
+        if (!ValidationOfFieldsOriginAndDestination())
+        {
+            await DisplayAlert("Atenção", "Um ou mais campos precisam de correção. Favor verificar.", "Ok");
+            return;
+        }
+
+        if (!CheckIfIsAllValidToSave())
+        {
+            await DisplayAlert("Atenção", "Um ou mais campos precisam de correção. Favor verificar.", "Ok");
+            return;
+        }
+
         ViewModel.OnSave();
     }
-
+   
     private async void TapGestureRecognizer_Tapped_GoBack(object sender, TappedEventArgs e)
     {
         View element = sender as Image;
@@ -424,6 +441,158 @@ public class AddFreightView : BaseContentPage
     {
         ViewModel.BorderColorFreightValue = Colors.LightGray;
         ViewModel.BorderColorFocusedFreightValue = Colors.Gray;
+    }
+
+    private void SetBorderColorToElementKmTextField(string text)
+    {
+        if (string.IsNullOrEmpty(text))
+        {
+            SetBorderColorDefaultKmField();
+            ViewModel.IsValidToSave = true;
+            return;
+        }
+
+        if (!CheckTheEntrys.IsValidEntry(text, CheckTheEntrys.patternKilometer))
+        {
+            ViewModel.BorderColorKm = Colors.Red;
+            ViewModel.BorderColorFocusedKm = Colors.Red;
+            ViewModel.IsValidToSave = false;
+            return;
+        }
+
+        SetBorderColorDefaultKmField();
+
+        ViewModel.IsValidToSave = true;
+    }
+
+    private void SetBorderColorToElementFreightValueTextField(string text)
+    {
+        if (string.IsNullOrEmpty(text))
+        {
+            SetBorderColorDefaultFreightField();
+            ViewModel.IsValidToSave = true;
+            return;
+        }
+
+        if (!CheckTheEntrys.IsValidEntry(text, CheckTheEntrys.patternMoney))
+        {
+            ViewModel.BorderColorFreightValue = Colors.Red;
+            ViewModel.BorderColorFocusedFreightValue = Colors.Red;
+            ViewModel.IsValidToSave = false;
+
+            return;
+        }
+
+        SetBorderColorDefaultFreightField();
+        ViewModel.IsValidToSave = true;
+    }
+
+    #region Origin
+
+    private void SetBorderColorForDropdownOriginUf()
+    {
+        ViewModel.BorderColorOriginUf = Colors.Red;
+        ViewModel.BorderColorFocusedOriginUf = Colors.Red;
+    }
+
+    private void SetBorderColorForDropdownOrigin()
+    {
+        ViewModel.BorderColorOrigin = Colors.Red;
+        ViewModel.BorderColorFocusedOrigin = Colors.Red;
+    }
+
+    private void SetBorderColorDefaultForDropdownOriginUf()
+    {
+        ViewModel.BorderColorOriginUf = Colors.LightGray;
+        ViewModel.BorderColorFocusedOriginUf = Colors.Gray;
+    }
+
+    private void SetBorderColorDefaultForDropdownOrigin()
+    {
+        ViewModel.BorderColorOrigin = Colors.LightGray;
+        ViewModel.BorderColorFocusedOrigin = Colors.Gray;
+    }
+
+    #endregion
+
+    #region Destination
+
+    private void SetBorderColorDefaultForDropdownDestinationUf()
+    {
+        ViewModel.BorderColorDestinationUf = Colors.LightGray;
+        ViewModel.BorderColorFocusedDestinationUf = Colors.Gray;
+    }
+
+    private void SetBorderColorDefaultForDropdownDestination()
+    {
+        ViewModel.BorderColorDestination = Colors.LightGray;
+        ViewModel.BorderColorFocusedDestination = Colors.Gray;
+    }
+
+    private void SetBorderColorForDropdownDestinationUf()
+    {
+        ViewModel.BorderColorDestinationUf = Colors.Red;
+        ViewModel.BorderColorFocusedDestinationUf = Colors.Red;
+    }
+
+    private void SetBorderColorForDropdownDestination()
+    {
+        ViewModel.BorderColorDestination = Colors.Red;
+        ViewModel.BorderColorFocusedDestination = Colors.Red;
+    }
+
+    #endregion
+   
+    private bool CheckIfIsAllValidToSave()
+    {
+        return ViewModel.IsValidToSave;
+    }
+
+    private bool ValidationOfFieldsOriginAndDestination()
+    {
+        bool isValid = true;
+
+        if (string.IsNullOrEmpty(ViewModel.SelectedItemOriginUf))
+        {
+            SetBorderColorForDropdownOriginUf();
+            isValid = false;
+        }
+        else
+        {
+            SetBorderColorDefaultForDropdownOriginUf();
+        }
+
+        if (string.IsNullOrEmpty(ViewModel.SelectedItemOrigin))
+        {
+            SetBorderColorForDropdownOrigin();
+            isValid = false;
+        }
+        else
+        {
+            SetBorderColorDefaultForDropdownOrigin();
+        }
+
+        if (string.IsNullOrEmpty(ViewModel.SelectedItemDestinationUf))
+        {
+            SetBorderColorForDropdownDestinationUf();
+            isValid = false;
+        }
+        else
+        {
+            SetBorderColorDefaultForDropdownDestinationUf();
+        }
+
+        if (string.IsNullOrEmpty(ViewModel.SelectedItemDestination))
+        {
+            SetBorderColorForDropdownDestination();
+            isValid = false;
+        }
+        else
+        {
+            SetBorderColorDefaultForDropdownDestination();
+        }
+
+        return isValid;
     }
 
     protected override void OnAppearing()
