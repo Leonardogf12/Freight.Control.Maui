@@ -1,4 +1,8 @@
-﻿namespace freight.control.maui.Controls.Animations;
+﻿using System.Threading.Tasks;
+using Microsoft.Maui;
+using Microsoft.Maui.Controls;
+
+namespace freight.control.maui.Controls.Animations;
 
 public class ClickAnimation
 {    

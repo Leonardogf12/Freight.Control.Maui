@@ -12,33 +12,33 @@ build_property.EnableSingleFileAnalyzer = true
 build_property.EnableTrimAnalyzer = false
 build_property.IncludeAllContentForSelfExtract = 
 build_property.RootNamespace = freight.control.maui
-build_property.ProjectDir = /Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/
+build_property.ProjectDir = /Users/leonardofazolo/Projects/GITHUB/Freight.Control.Maui/freight.control.maui/
 
-[/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/App.xaml]
+[/Users/leonardofazolo/Projects/GITHUB/Freight.Control.Maui/freight.control.maui/App.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = freight.control.maui.App.xaml
 build_metadata.AdditionalFiles.TargetPath = App.xaml
 build_metadata.AdditionalFiles.RelativePath = App.xaml
 
-[/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/AppShell.xaml]
+[/Users/leonardofazolo/Projects/GITHUB/Freight.Control.Maui/freight.control.maui/AppShell.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = freight.control.maui.AppShell.xaml
 build_metadata.AdditionalFiles.TargetPath = AppShell.xaml
 build_metadata.AdditionalFiles.RelativePath = AppShell.xaml
 
-[/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/MainPage.xaml]
+[/Users/leonardofazolo/Projects/GITHUB/Freight.Control.Maui/freight.control.maui/MainPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = freight.control.maui.MainPage.xaml
 build_metadata.AdditionalFiles.TargetPath = MainPage.xaml
 build_metadata.AdditionalFiles.RelativePath = MainPage.xaml
 
-[/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/Resources/Styles/Colors.xaml]
+[/Users/leonardofazolo/Projects/GITHUB/Freight.Control.Maui/freight.control.maui/Resources/Styles/Colors.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = freight.control.maui.Resources.Styles.Colors.xaml
 build_metadata.AdditionalFiles.TargetPath = Resources/Styles/Colors.xaml
 build_metadata.AdditionalFiles.RelativePath = Resources/Styles/Colors.xaml
 
-[/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/Resources/Styles/Styles.xaml]
+[/Users/leonardofazolo/Projects/GITHUB/Freight.Control.Maui/freight.control.maui/Resources/Styles/Styles.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = freight.control.maui.Resources.Styles.Styles.xaml
 build_metadata.AdditionalFiles.TargetPath = Resources/Styles/Styles.xaml

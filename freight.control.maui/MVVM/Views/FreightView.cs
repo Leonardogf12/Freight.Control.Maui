@@ -1,4 +1,7 @@
-﻿using System.Text;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Text;
 using DevExpress.Maui.Controls;
 using freight.control.maui.Components;
 using freight.control.maui.Controls.Animations;
@@ -6,7 +9,11 @@ using freight.control.maui.MVVM.Base.Views;
 using freight.control.maui.MVVM.Models;
 using freight.control.maui.MVVM.ViewModels;
 using freight.control.maui.Services;
+using Microsoft.Maui;
+using Microsoft.Maui.Controls;
 using Microsoft.Maui.Controls.Shapes;
+using Microsoft.Maui.Graphics;
+using Color = Microsoft.Maui.Graphics.Color;
 using Style = Microsoft.Maui.Controls.Style;
 
 namespace freight.control.maui.MVVM.Views;

@@ -7,6 +7,8 @@ using freight.control.maui.MVVM.Views;
 using freight.control.maui.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Maui.Controls.Hosting;
+using Microsoft.Maui.Hosting;
 using SkiaSharp.Views.Maui.Controls.Hosting;
 
 namespace freight.control.maui;

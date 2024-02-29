@@ -1,4 +1,9 @@
-﻿namespace freight.control.maui.Services;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.Maui;
+using Microsoft.Maui.Controls;
+
+namespace freight.control.maui.Services;
 
 public interface INavigationService
 {

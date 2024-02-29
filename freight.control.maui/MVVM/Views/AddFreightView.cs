@@ -1,10 +1,14 @@
-﻿using DevExpress.Maui.Editors;
+﻿using System;
+using DevExpress.Maui.Editors;
 using freight.control.maui.Components;
 using freight.control.maui.Controls.Animations;
 using freight.control.maui.Controls.ControlCheckers;
 using freight.control.maui.MVVM.Base.Views;
 using freight.control.maui.MVVM.ViewModels;
+using Microsoft.Maui;
+using Microsoft.Maui.Controls;
 using Microsoft.Maui.Controls.Shapes;
+using Microsoft.Maui.Graphics;
 
 namespace freight.control.maui.MVVM.Views;
 

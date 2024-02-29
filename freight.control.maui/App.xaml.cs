@@ -1,7 +1,8 @@
-﻿using AndroidX.Lifecycle;
+﻿using System;
+using System.IO;
 using freight.control.maui.Components.Popups;
 using freight.control.maui.Data;
-using freight.control.maui.MVVM.Base.ViewModels;
+using Microsoft.Maui.Controls;
 using SkiaSharp.Extended.UI.Controls;
 
 namespace freight.control.maui;

@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel;
 using CommunityToolkit.Maui.Views;
 using freight.control.maui.MVVM.Base.ViewModels;
+using Microsoft.Maui.ApplicationModel;
+using Microsoft.Maui.Controls;
 
 namespace freight.control.maui.MVVM.Base.Views;
 

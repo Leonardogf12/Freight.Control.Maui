@@ -1,4 +1,5 @@
 ﻿using freight.control.maui.MVVM.Views;
+using Microsoft.Maui.Controls;
 
 namespace freight.control.maui;
 

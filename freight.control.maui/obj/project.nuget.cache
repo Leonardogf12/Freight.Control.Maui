@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "rahzjgaGhnCIIbpTH+Hf5usx3NCEZsN61e41RCCzWNwcKzHj5b88Bm/GpMo4xwmmWNI2DlaaQH+S97y/5FQ3Wg==",
+  "dgSpecHash": "gYxjypUOaGLujSPR2HILNqBjnq5SZtemPnwuAuyem9KOCDBFhhllucSiLZVtXgo89WS9NjCHpoBQroUjDHo/uQ==",
   "success": true,
-  "projectFilePath": "/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/freight.control.maui.csproj",
+  "projectFilePath": "/Users/leonardofazolo/Projects/GITHUB/Freight.Control.Maui/freight.control.maui/freight.control.maui.csproj",
   "expectedPackageFiles": [
     "/Users/leonardofazolo/.nuget/packages/communitytoolkit.maui/6.0.0/communitytoolkit.maui.6.0.0.nupkg.sha512",
     "/Users/leonardofazolo/.nuget/packages/communitytoolkit.maui.core/6.0.0/communitytoolkit.maui.core.6.0.0.nupkg.sha512",
