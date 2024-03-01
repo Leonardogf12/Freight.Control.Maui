@@ -1,33 +1,38 @@
 ﻿<Properties GitUserInfo="UsingMD" StartupConfiguration="{15687626-2468-4B49-B8B5-F034392697A3}|Default">
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.Workbench ActiveDocument="freight.control.maui/MVVM/Views/AddFreightView.cs">
     <Files>
-      <File FileName="freight.control.maui/MVVM/Views/AddFreightView.cs" Line="432" Column="5" />
-      <File FileName="freight.control.maui/MVVM/ViewModels/AddFreightViewModel.cs" />
+      <File FileName="freight.control.maui/MVVM/Views/ToFuelView.cs" Line="437" Column="18" />
+      <File FileName="freight.control.maui/MVVM/ViewModels/ToFuelViewModel.cs" Line="252" Column="23" />
+      <File FileName="freight.control.maui/MVVM/Views/AddFreightView.cs" Line="555" Column="18" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="freight.control.maui" expanded="True">
-            <Node name="freight.control.maui" expanded="True">
+          <Node name="freight.control.maui">
+            <Node name="freight.control.maui">
+              <Node name="Components" expanded="True" />
               <Node name="MVVM" expanded="True">
                 <Node name="Views" expanded="True">
                   <Node name="AddFreightView.cs" selected="True" />
                 </Node>
               </Node>
-              <Node name="Services" expanded="True" />
+              <Node name="Repositories" expanded="True" />
             </Node>
           </Node>
         </State>
       </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.freight.control.maui Xamarin.HotReload.DebuggerTimeoutException.freight.control.maui.HideInfoBar="True" PreferredExecutionTarget="Android.RQCT702DM4M" Xamarin.HotReload.WrongLinkerErrorInfoBar.freight.control.maui.HideInfoBar="True" />
+  <Xamarin.Addins.Core.Project ActiveDebugTarget="MyAppleMacCatalystID" />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MultiItemStartupConfigurations />
-  <Xamarin.Addins.Core.Project ActiveDebugTarget="Android.RQCT702DM4M" />
+  <MonoDevelop.Ide.ItemProperties.freight.control.maui PreferredExecutionTarget="MyAppleMacCatalystID" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.MonoDroid LastDeploySdkVersion="33.0.95" />
 </Properties>

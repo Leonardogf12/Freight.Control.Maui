@@ -1,14 +1,10 @@
-﻿using System;
-using DevExpress.Maui.Editors;
+﻿using DevExpress.Maui.Editors;
 using freight.control.maui.Components;
 using freight.control.maui.Controls.Animations;
 using freight.control.maui.Controls.ControlCheckers;
 using freight.control.maui.MVVM.Base.Views;
 using freight.control.maui.MVVM.ViewModels;
-using Microsoft.Maui;
-using Microsoft.Maui.Controls;
 using Microsoft.Maui.Controls.Shapes;
-using Microsoft.Maui.Graphics;
 
 namespace freight.control.maui.MVVM.Views;
 
@@ -238,14 +234,16 @@ public class ToFuelView : BaseContentPage
 
         mainGrid.Add(borderForm, 0, 2);
     }
-   
+    
     private void CreateToFuelDateFieldForm(Grid contentGridBorderForm)
     {
         var date = new DatePickerFieldCustom();
         date.DatePicker.SetBinding(DatePicker.DateProperty, nameof(ViewModel.Date));
+        date.Border.SetBinding(Border.StrokeProperty, nameof(ViewModel.StrokeDate));
+        date.DatePicker.DateSelected += DatePicker_DateSelected;
         contentGridBorderForm.SetColumnSpan(date, 2);
         contentGridBorderForm.Add(date, 0, 0);
-    }
+    }    
 
     private void CreateFuelBoxFieldForm(Grid contentGridBorderForm)
     {
@@ -287,7 +285,7 @@ public class ToFuelView : BaseContentPage
         amountSpentFuel.SetBinding(TextEditBase.TextProperty, nameof(ViewModel.AmountSpentFuel));
         amountSpentFuel.SetBinding(EditBase.BorderColorProperty, nameof(ViewModel.BorderColorAmountSpentFuel));
         amountSpentFuel.SetBinding(EditBase.FocusedBorderColorProperty, nameof(ViewModel.BorderColorFocusedAmountSpentFuel));
-        amountSpentFuel.TextChanged += AmountSpentFuel_TextChanged; ;
+        amountSpentFuel.TextChanged += AmountSpentFuel_TextChanged;
         gridFuel.Add(amountSpentFuel, 1, 0);
 
         var titleValuePerLiter = new Label
@@ -353,6 +351,22 @@ public class ToFuelView : BaseContentPage
 
     #region Events
 
+    private async void DatePicker_DateSelected(object sender, DateChangedEventArgs e)
+    {
+        var element = sender as DatePicker;
+
+        var dateSelected = element.Date;
+
+        if (dateSelected < ViewModel.DetailsFreight.TravelDate)
+        {
+            await SetBorderColorErrorToDateField();
+           
+            return;
+        }
+
+        ViewModel.StrokeDate = Colors.LightGray;
+    }
+    
     private async void TapGestureRecognizer_Tapped_GoBack(object sender, TappedEventArgs e)
     {
         View element = sender as Image;
@@ -373,14 +387,14 @@ public class ToFuelView : BaseContentPage
 
         if (!CheckTheEntrys.IsValidEntry(GetValueStringOfObject(sender), CheckTheEntrys.patternLiters))
         {
-            ViewModel.BorderColorLiters = Colors.Red;
+            SetBorderColorErrorToLitersField();           
             return;
         }
 
         SetBorderColorDefaultLitersField();
         ViewModel.CalculatePriceOfFuel();
     }
-      
+    
     private void AmountSpentFuel_TextChanged(object sender, EventArgs e)
     {       
         if (string.IsNullOrEmpty(GetValueStringOfObject(sender)))
@@ -392,14 +406,15 @@ public class ToFuelView : BaseContentPage
 
         if (!CheckTheEntrys.IsValidEntry(GetValueStringOfObject(sender), CheckTheEntrys.patternMoney))
         {
-            ViewModel.BorderColorAmountSpentFuel = Colors.Red;
+            SetBorderColorErrorToAmountSpentFuelField();           
             return;
         }
 
         SetBorderColorDefaultAmountSpentFuelField();
+
         ViewModel.CalculatePriceOfFuel();
     }
-
+  
     private void Expenses_TextChanged(object sender, EventArgs e)
     {       
         if (string.IsNullOrEmpty(GetValueStringOfObject(sender)))
@@ -417,14 +432,49 @@ public class ToFuelView : BaseContentPage
         SetBorderColorDefaultExpensesField();
     }
 
-    private void SaveClicked(object sender, EventArgs e)
+    private async void SaveClicked(object sender, EventArgs e)
     {
+        if (!ValidationToFieldsRequireds())
+        {
+            await DisplayAlert("Atenção", "Um ou mais campos precisam de correção. Favor verificar.", "Ok");
+            return;
+        }       
+
         ViewModel.OnSave();
     }
+
+
 
     #endregion
 
     #region Actions
+
+    private bool ValidationToFieldsRequireds()
+    {
+        bool isValid = true;
+
+        if (string.IsNullOrEmpty(ViewModel.Liters))
+        {
+            SetBorderColorErrorToLitersField();
+            isValid = false;
+        }
+        else
+        {
+            SetBorderColorDefaultLitersField();
+        }
+
+        if (string.IsNullOrEmpty(ViewModel.AmountSpentFuel))
+        {
+            SetBorderColorErrorToAmountSpentFuelField();
+            isValid = false;
+        }
+        else
+        {
+            SetBorderColorDefaultAmountSpentFuelField();
+        }
+      
+        return isValid;
+    }
 
     private string GetValueStringOfObject(object sender)
     {
@@ -435,21 +485,46 @@ public class ToFuelView : BaseContentPage
     private void SetBorderColorDefaultLitersField()
     {
         ViewModel.BorderColorLiters = Colors.LightGray;
-        ViewModel.BorderColorFocusedLiters = Colors.Gray;
+        ViewModel.BorderColorFocusedLiters = Colors.Gray;       
     }
 
     private void SetBorderColorDefaultAmountSpentFuelField()
     {
         ViewModel.BorderColorAmountSpentFuel = Colors.LightGray;
-        ViewModel.BorderColorFocusedAmountSpentFuel = Colors.Gray;
+        ViewModel.BorderColorFocusedAmountSpentFuel = Colors.Gray;        
     }
 
     private void SetBorderColorDefaultExpensesField()
     {
         ViewModel.BorderColorExpenses = Colors.LightGray;
-        ViewModel.BorderColorFocusedExpenses = Colors.Gray;
+        ViewModel.BorderColorFocusedExpenses = Colors.Gray;        
+    }
+
+    private void SetBorderColorErrorToLitersField()
+    {
+        ViewModel.BorderColorLiters = Colors.Red;
+        ViewModel.BorderColorFocusedLiters = Colors.Red;
+        ViewModel.IsValidToSave = false;
+    }
+
+    private void SetBorderColorErrorToAmountSpentFuelField()
+    {
+        ViewModel.BorderColorAmountSpentFuel = Colors.Red;
+        ViewModel.BorderColorFocusedAmountSpentFuel = Colors.Red;
+        ViewModel.IsValidToSave = false;
+    }
+
+    private async Task SetBorderColorErrorToDateField()
+    {
+        ViewModel.StrokeDate = Colors.Red;
+        await DisplayAlert("Ops", "A data selecionada não pode ser menor que a data do frete.", "Ok");
+        ViewModel.IsValidToSave = false;
+    }
+
+    private bool CheckIfEverthingOkToSave()
+    {
+        return ViewModel.IsValidToSave;
     }
 
     #endregion
-
 }

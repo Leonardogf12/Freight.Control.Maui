@@ -1,4 +1,5 @@
-﻿using freight.control.maui.MVVM.Base.ViewModels;
+﻿using System.Globalization;
+using freight.control.maui.MVVM.Base.ViewModels;
 using freight.control.maui.MVVM.Models;
 using freight.control.maui.Repositories;
 
@@ -219,6 +220,28 @@ public class ToFuelViewModel : BaseViewModel
         }
     }
 
+    private Color _strokeDate = Colors.LightGray;
+    public Color StrokeDate
+    {
+        get => _strokeDate;
+        set
+        {
+            _strokeDate = value;
+            OnPropertyChanged();
+        }
+    }
+
+    private bool _isValidToSave = true;
+    public bool IsValidToSave
+    {
+        get => _isValidToSave;
+        set
+        {
+            _isValidToSave = value;
+            OnPropertyChanged();
+        }
+    }
+
     #endregion
 
     public ToFuelViewModel()
@@ -231,7 +254,7 @@ public class ToFuelViewModel : BaseViewModel
     {
         if(SelectedToFuelToEdit.Id > 0) {
           
-            var edited = await _toFuelRepository.UpdateAsync(CreateModelToAddOrEdit());
+            var edited = await _toFuelRepository.UpdateAsync(await CreateModelToAddOrEdit());
 
             if (edited > 0)
             {
@@ -244,7 +267,7 @@ public class ToFuelViewModel : BaseViewModel
             return;
         }
        
-        var result = await _toFuelRepository.SaveAsync(CreateModelToAddOrEdit());
+        var result = await _toFuelRepository.SaveAsync(await CreateModelToAddOrEdit());
 
         if (result > 0)
         {
@@ -257,18 +280,37 @@ public class ToFuelViewModel : BaseViewModel
 
     #region Private Methods
 
-    private ToFuelModel CreateModelToAddOrEdit()
+    private async Task<ToFuelModel> CreateModelToAddOrEdit()
     {
         var model = new ToFuelModel();
-        model.FreightModelId = SelectedToFuelToEdit.Id > 0 ? SelectedToFuelToEdit.Id : DetailsFreight.Id;
-        model.Date = Date;
-        model.Liters = double.Parse(Liters);
-        model.AmountSpentFuel = Convert.ToDecimal(AmountSpentFuel);
+        model.Id = SelectedToFuelToEdit.Id > 0 ? SelectedToFuelToEdit.Id : DetailsFreight.Id;
+        model.FreightModelId = SelectedToFuelToEdit.FreightModelId > 0 ? SelectedToFuelToEdit.FreightModelId : DetailsFreight.Id;        
+        model.Date = Date;              
+        model.Liters = Liters.Contains(".") ? double.Parse(Liters.Replace(".", ",")) : double.Parse(Liters.Replace(",", "."));
+        //model.AmountSpentFuel = Convert.ToDecimal(AmountSpentFuel);
+        model.AmountSpentFuel = await CalcDecimalPriceInput(AmountSpentFuel);
         model.ValuePerLiter = Convert.ToDecimal(AmountSpentFuel) / Convert.ToDecimal(Liters);
         model.Expenses = Convert.ToDecimal(Expenses);
         model.Observation = Observation;
 
         return model;
+    }
+
+    private async Task<decimal> CalcDecimalPriceInput(string val)
+    {
+        decimal preco;
+
+        CultureInfo cultureInfo = CultureInfo.InvariantCulture;
+
+        if (decimal.TryParse(val, NumberStyles.Number, cultureInfo, out preco))
+        {
+            return preco;
+        }
+        else
+        {
+            await App.Current.MainPage.DisplayAlert("Ops","O valor informado não está no formato correto. Favor corrigir","Ok");
+        }
+        return preco;
     }
 
     private async void SetValuesToDetail(bool isCreating)

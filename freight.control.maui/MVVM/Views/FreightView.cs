@@ -354,7 +354,7 @@ public class FreightView : BaseContentPage
 
         var iconKm = new Image
         {
-            Source = ImageSource.FromFile("km"),
+            Source = ImageSource.FromFile("km_24"),
             HeightRequest = 25,
             HorizontalOptions = LayoutOptions.End,
             Margin = 10
