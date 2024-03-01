@@ -242,6 +242,18 @@ public class ToFuelViewModel : BaseViewModel
         }
     }
 
+
+    private bool _isEnabledSaveButton = true;
+    public bool IsEnabledSaveButton
+    {
+        get => _isEnabledSaveButton;
+        set
+        {
+            _isEnabledSaveButton = value;
+            OnPropertyChanged();
+        }
+    }
+  
     #endregion
 
     public ToFuelViewModel()
@@ -290,7 +302,8 @@ public class ToFuelViewModel : BaseViewModel
         //model.AmountSpentFuel = Convert.ToDecimal(AmountSpentFuel);
         model.AmountSpentFuel = await CalcDecimalPriceInput(AmountSpentFuel);
         model.ValuePerLiter = Convert.ToDecimal(AmountSpentFuel) / Convert.ToDecimal(Liters);
-        model.Expenses = Convert.ToDecimal(Expenses);
+        //model.Expenses = Convert.ToDecimal(Expenses);
+        model.Expenses = await CalcDecimalPriceInput(Expenses);
         model.Observation = Observation;
 
         return model;

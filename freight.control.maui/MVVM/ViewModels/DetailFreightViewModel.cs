@@ -201,7 +201,7 @@ public class DetailFreightViewModel : BaseViewModel
 
         var list = await _toFuelRepository.GetAllById(SelectedFreightToDetail.Id);
 
-        ToFuelCollection = new ObservableCollection<ToFuelModel>(list);
+        ToFuelCollection = new ObservableCollection<ToFuelModel>(list.OrderByDescending(x=>x.Date).ToList());
 
         CheckForItemsInCollection();
 
