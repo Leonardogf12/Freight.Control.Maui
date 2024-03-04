@@ -1,25 +1,24 @@
 ﻿<Properties GitUserInfo="UsingMD" StartupConfiguration="{15687626-2468-4B49-B8B5-F034392697A3}|Default">
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.Workbench ActiveDocument="freight.control.maui/MVVM/Views/AddFreightView.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="freight.control.maui/MVVM/ViewModels/DetailFreightViewModel.cs">
     <Files>
-      <File FileName="freight.control.maui/MVVM/Views/ToFuelView.cs" Line="437" Column="18" />
-      <File FileName="freight.control.maui/MVVM/ViewModels/ToFuelViewModel.cs" Line="252" Column="23" />
-      <File FileName="freight.control.maui/MVVM/Views/AddFreightView.cs" Line="555" Column="18" />
+      <File FileName="freight.control.maui/MVVM/Views/ToFuelView.cs" Line="457" Column="48" />
+      <File FileName="freight.control.maui/MVVM/ViewModels/ToFuelViewModel.cs" Line="302" Column="70" />
+      <File FileName="freight.control.maui/MVVM/ViewModels/DetailFreightViewModel.cs" Line="202" Column="83" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="freight.control.maui">
-            <Node name="freight.control.maui">
-              <Node name="Components" expanded="True" />
+            <Node name="freight.control.maui" expanded="True">
               <Node name="MVVM" expanded="True">
-                <Node name="Views" expanded="True">
-                  <Node name="AddFreightView.cs" selected="True" />
-                </Node>
+                <Node name="ViewModels" expanded="True" />
+                <Node name="Views" expanded="True" />
               </Node>
               <Node name="Repositories" expanded="True" />
+              <Node name="Resources" expanded="True">
+                <Node name="Images" expanded="True" />
+              </Node>
             </Node>
           </Node>
         </State>
@@ -29,10 +28,12 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <Xamarin.Addins.Core.Project ActiveDebugTarget="MyAppleMacCatalystID" />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.ItemProperties.freight.control.maui PreferredExecutionTarget="MyAppleMacCatalystID" />
+  <Xamarin.Addins.Core.Project ActiveDebugTarget="MyAppleMacCatalystID" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.freight.control.maui PreferredExecutionTarget="MyAppleMacCatalystID" />
   <MonoDevelop.MonoDroid LastDeploySdkVersion="33.0.95" />
 </Properties>

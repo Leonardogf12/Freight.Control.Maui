@@ -1,19 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
+﻿using System.Text;
 using DevExpress.Maui.Controls;
 using freight.control.maui.Components;
 using freight.control.maui.Controls.Animations;
+using freight.control.maui.Models;
 using freight.control.maui.MVVM.Base.Views;
 using freight.control.maui.MVVM.Models;
 using freight.control.maui.MVVM.ViewModels;
 using freight.control.maui.Services;
-using Microsoft.Maui;
-using Microsoft.Maui.Controls;
 using Microsoft.Maui.Controls.Shapes;
-using Microsoft.Maui.Graphics;
+using static System.Net.Mime.MediaTypeNames;
 using Color = Microsoft.Maui.Graphics.Color;
+using Image = Microsoft.Maui.Controls.Image;
 using Style = Microsoft.Maui.Controls.Style;
 
 namespace freight.control.maui.MVVM.Views;
@@ -28,9 +25,9 @@ public class FreightView : BaseContentPage
 
     ClickAnimation ClickAnimation = new();
 
-    public BottomSheet BottomSheetFilter;
+    //public BottomSheet BottomSheetFilter;
 
-    public BottomSheet BottomSheetExport;
+    //public BottomSheet BottomSheetExport;
 
     #endregion
 
@@ -119,6 +116,11 @@ public class FreightView : BaseContentPage
         };
         contentGridStack.Add(title, 1, 0);
 
+        var collectionButtons = CreateHeaderButtonsCollection();
+        contentGridStack.Add(collectionButtons, 0, 1);
+        contentGridStack.SetColumnSpan(collectionButtons, 3);
+
+        /*
         var buttonNew = CreateBaseButton(text: "Novo", style: "buttonDarkLight", clicked: ClickedButtonNew);
         contentGridStack.Add(buttonNew, 0, 1);
 
@@ -126,11 +128,42 @@ public class FreightView : BaseContentPage
         contentGridStack.Add(buttonFilter, 1, 1);
 
         var buttonExport= CreateBaseButton(text: "Exportar", style: "buttonDarkLight", clicked: ClickedButtonExport);
-        contentGridStack.Add(buttonExport, 2, 1);
+        contentGridStack.Add(buttonExport, 2, 1);*/
 
         stack.Children.Add(contentGridStack);
 
         mainGrid.Children.Add(stack);
+    }
+
+    private CollectionView CreateHeaderButtonsCollection()
+    {
+        var collection = new CollectionView
+        {
+            ItemsLayout = new LinearItemsLayout(ItemsLayoutOrientation.Horizontal)
+            {
+                ItemSpacing = 10
+            },           
+            VerticalOptions = LayoutOptions.Center,
+            
+        };
+        collection.SetBinding(ItemsView.ItemsSourceProperty, nameof(ViewModel.HeaderButtonFreightCollection));        
+        collection.ItemTemplate = new DataTemplate(CreateDataTemplateHeaderButton);
+
+        return collection;
+    }
+
+    private View CreateDataTemplateHeaderButton()
+    {        
+        var button = new Button
+        {            
+            Style = App.GetResource<Style>("buttonDarkLight"),
+            VerticalOptions = LayoutOptions.Center,
+            WidthRequest = 120
+        };
+        button.SetBinding(Button.TextProperty, nameof(HeaderButtonFreight.Text));
+        button.SetBinding(Button.CommandProperty, nameof(HeaderButtonFreight.Command));
+
+        return button;
     }
 
     private void CreateCollectionFreight(Grid mainGrid)
@@ -414,7 +447,7 @@ public class FreightView : BaseContentPage
     {
         var label = new Label
         {
-            Text = "Clique em Novo para adicionar um frete",
+            Text = "Clique em Novo para adicionar um frete.",
             FontSize = 14,
             FontFamily = "MontserratRegular",
             TextColor = Colors.Gray,
@@ -430,25 +463,23 @@ public class FreightView : BaseContentPage
     private void CreateBottomSheetFilter(Grid mainGrid)
     {       
         var bottomSheetFilter = new BottomSheetFilterDateCustom(title: "Filtrar", textButton: "Confirmar", EventFilter);
+        bottomSheetFilter.SetBinding(BottomSheet.StateProperty, nameof(ViewModel.BottomSheetFilterState));
         bottomSheetFilter.DatePickerFieldCustomInitialDate.DatePicker.SetBinding(DatePicker.DateProperty, nameof(ViewModel.InitialDate));
         bottomSheetFilter.DatePickerFieldCustomFinalDate.DatePicker.SetBinding(DatePicker.DateProperty, nameof(ViewModel.FinalDate));
 
-        BottomSheetFilter = bottomSheetFilter;
-
-        mainGrid.Add(BottomSheetFilter, 0, 1);
+        mainGrid.Add(bottomSheetFilter, 0, 1);
     }
 
     private void CreateBottomSheetExport(Grid mainGrid)
     {
         var bottomSheetExport = new BottomSheetFilterDateCustom(title: "Exportar", textButton: "Exportar", EventExport);
+        bottomSheetExport.SetBinding(BottomSheet.StateProperty, nameof(ViewModel.BottomSheetExportState));
         bottomSheetExport.DatePickerFieldCustomInitialDate.DatePicker.SetBinding(DatePicker.DateProperty, nameof(ViewModel.InitialDate));
         bottomSheetExport.DatePickerFieldCustomFinalDate.DatePicker.SetBinding(DatePicker.DateProperty, nameof(ViewModel.FinalDate));
-
-        BottomSheetExport = bottomSheetExport;
-
-        mainGrid.Add(BottomSheetExport, 0, 1);
+     
+        mainGrid.Add(bottomSheetExport, 0, 1);
     }
-       
+
     #endregion
 
     #region Events
@@ -468,13 +499,13 @@ public class FreightView : BaseContentPage
     }
 
     private void ClickedButtonFilter(object sender, EventArgs e)
-    {     
-        BottomSheetFilter.State = BottomSheetState.HalfExpanded;
+    {
+        ViewModel.BottomSheetFilterState = BottomSheetState.HalfExpanded;
     }
 
     private void ClickedButtonExport(object sender, EventArgs e)
     {        
-        BottomSheetExport.State = BottomSheetState.HalfExpanded;       
+        ViewModel.BottomSheetExportState = BottomSheetState.HalfExpanded;       
     }
 
     private async void TapGestureRecognizer_Tapped_DeleteItem(object sender, TappedEventArgs e)
@@ -558,7 +589,7 @@ public class FreightView : BaseContentPage
     private async void EventFilter(object sender, EventArgs e)
     {
         await ViewModel.FilterFreights();
-        BottomSheetFilter.State = BottomSheetState.Hidden;
+        ViewModel.BottomSheetFilterState = BottomSheetState.Hidden;
     }
 
     private async void EventExport(object sender, EventArgs e)
@@ -635,7 +666,7 @@ public class FreightView : BaseContentPage
 
             await DisplayAlert("Sucesso", "Arquivo exportado com sucesso. O arquivo foi salvo em: Documentos.", "Ok");
 
-            BottomSheetExport.State = BottomSheetState.Hidden;
+            ViewModel.BottomSheetExportState = BottomSheetState.Hidden;
 
         }
         catch (Exception ex)

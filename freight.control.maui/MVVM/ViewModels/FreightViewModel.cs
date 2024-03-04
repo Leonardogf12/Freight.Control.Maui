@@ -1,7 +1,11 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
+using DevExpress.Maui.Controls;
+using freight.control.maui.Constants;
+using freight.control.maui.Models;
 using freight.control.maui.MVVM.Base.ViewModels;
 using freight.control.maui.MVVM.Models;
+using freight.control.maui.MVVM.Views;
 using freight.control.maui.Repositories;
 
 namespace freight.control.maui.MVVM.ViewModels;
@@ -82,7 +86,47 @@ public class FreightViewModel : BaseViewModel
         }
     }
 
+    private ObservableCollection<HeaderButtonFreight> _headerButtonFreightCollection;
+    public ObservableCollection<HeaderButtonFreight> HeaderButtonFreightCollection
+    {
+        get => _headerButtonFreightCollection;
+        set
+        {
+            _headerButtonFreightCollection = value;
+            OnPropertyChanged();
+        }
+    }
+
+    private BottomSheetState _bottomSheetFilterState;
+    public BottomSheetState BottomSheetFilterState
+    {
+        get => _bottomSheetFilterState;
+        set
+        {
+            _bottomSheetFilterState = value;
+            OnPropertyChanged();
+        }
+    }
+
+    private BottomSheetState _bottomSheetExportState;
+    public BottomSheetState BottomSheetExportState
+    {
+        get => _bottomSheetExportState;
+        set
+        {
+            _bottomSheetExportState = value;
+            OnPropertyChanged();
+        }
+    }
+
+    //BottomSheetFilterState
+
     public ICommand RefreshingCommand;
+    public ICommand NewFreightCommand;
+    public ICommand FilterFreightCommand;
+    public ICommand ExportFreightCommand;
+    public ICommand DeleteAllFreightCommand;
+
 
     #endregion
 
@@ -92,15 +136,87 @@ public class FreightViewModel : BaseViewModel
         _toFuelRepository = new();        
 
         RefreshingCommand = new Command(OnRefreshingCommand);
+        NewFreightCommand = new Command(OnNewFreightCommand);
+        FilterFreightCommand = new Command(OnFilterFreightCommand);
+        ExportFreightCommand = new Command(OnExportFreightCommand);
+        DeleteAllFreightCommand = new Command(OnDeleteAllFreightCommand);
     }
 
+   
     #region Methods Privates
-    
+
     private async void OnRefreshingCommand()
     {
         await LoadFreigths();
 
         IsRefreshingView = false;
+    }
+
+    private async void OnNewFreightCommand()
+    {
+        await App.Current.MainPage.Navigation.PushAsync(new AddFreightView());
+    }
+
+    private void OnFilterFreightCommand()
+    {
+        if (FreightCollection.Count == 0) return;
+
+        BottomSheetFilterState = BottomSheetState.HalfExpanded;
+    }
+
+    private void OnExportFreightCommand()
+    {
+        if (FreightCollection.Count == 0) return;
+
+        BottomSheetExportState = BottomSheetState.HalfExpanded;
+    }
+   
+    private async void OnDeleteAllFreightCommand()
+    {
+        if (FreightCollection.Count == 0) return;
+
+        var response = await App.Current.MainPage.DisplayActionSheet("Você deseja efetivamente excluir todos os registros?",
+                                                                     StringConstants.Cancelar,
+                                                                     null,
+                                                                     new string[] { StringConstants.ExcluirTudo, StringConstants.Exportar } );
+
+        if (response == StringConstants.Cancelar) return;
+
+        if (response == StringConstants.ExcluirTudo)
+        {
+            var res = await App.Current.MainPage.DisplayAlert("Excluir Tudo", "Ao excluir todos os fretes você também eliminará todos os abastecimentos relacionados e eles.", "Aceitar", "Cancelar");
+
+            if (!res) return;
+
+            await DeleteAllFreights();           
+            return;
+        }
+            
+        OnExportFreightCommand();
+    }
+
+    private async Task DeleteAllFreights()
+    {
+        IsBusy = true;
+
+        try
+        {
+            await _toFuelRepository.DeleteAllAsync();
+            await _freightRepository.DeleteAllAsync();
+
+            FreightCollection.Clear();
+
+            await App.Current.MainPage.DisplayAlert("Sucesso", "Todos os registros foram excluídos com sucesso.", "Ok");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+            await App.Current.MainPage.DisplayAlert("Erro", "Ocorreu um erro durante a exclusão. Por favor, tente novamente.", "Ok");
+        }
+        finally
+        {
+            IsBusy = false;
+        }       
     }
 
     private void CheckIfThereAreFreightItemsInCollection()
@@ -154,7 +270,38 @@ public class FreightViewModel : BaseViewModel
 
     public async void OnAppearing()
     {
-        await LoadFreigths();        
+        LoadHeaderButtons();
+        await LoadFreigths();       
+    }
+
+    private void LoadHeaderButtons()
+    {
+        var list = new List<HeaderButtonFreight>
+        {
+            new HeaderButtonFreight
+            {
+                Text = "Novo",
+                Command = NewFreightCommand,
+            },
+            new HeaderButtonFreight
+            {
+                Text = "Filtrar",
+                Command = FilterFreightCommand,
+            },
+            new HeaderButtonFreight
+            {
+                Text = "Exportar",
+                Command = ExportFreightCommand,
+            },
+            new HeaderButtonFreight
+            {
+                Text = "Excluir Todos",
+                Command = DeleteAllFreightCommand,
+            },
+        };
+
+        HeaderButtonFreightCollection = new ObservableCollection<HeaderButtonFreight>(list);
+      
     }
 
     public async Task FilterFreights()

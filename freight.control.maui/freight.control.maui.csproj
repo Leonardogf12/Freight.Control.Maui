@@ -133,6 +133,8 @@
 	  <None Remove="Resources\Images\combobox_24.svg" />
 	  <None Remove="Components\Popups\" />
 	  <None Remove="Resources\Images\liters_24.svg" />
+	  <None Remove="Models\" />
+	  <None Remove="Constants\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="MVVM\" />
@@ -148,6 +150,8 @@
 	  <Folder Include="Repositories\" />
 	  <Folder Include="Services\" />
 	  <Folder Include="Components\Popups\" />
+	  <Folder Include="Models\" />
+	  <Folder Include="Constants\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Compile Remove="MVVM\HomeView2.cs" />

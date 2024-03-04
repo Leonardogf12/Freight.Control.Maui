@@ -331,8 +331,8 @@ public class ToFuelViewModel : BaseViewModel
         if (isCreating)
         {
             DetailTravelDate = DetailsFreight.TravelDateCustom;
-            DetailOrigin = DetailsFreight.Origin;
-            DetailDestination = DetailsFreight.Destination;
+            DetailOrigin = $"{DetailsFreight.Origin} - {DetailsFreight.OriginUf}";
+            DetailDestination = $"{DetailsFreight.Destination} - {DetailsFreight.DestinationUf}";
             return;
         }
         else
