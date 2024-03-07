@@ -9,6 +9,7 @@ namespace freight.control.maui.Constants
         public const string Filtrar = "Filtrar";
         public const string Cancelar = "Cancelar";
 
+        public const string urlDataIbgeService = "https://servicodados.ibge.gov.br/api/v1/localidades/estados/";
     }
 }
 

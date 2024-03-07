@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using freight.control.maui.Constants;
+using Newtonsoft.Json;
 
 namespace freight.control.maui.Services;
 
@@ -40,9 +41,7 @@ public class Localidades
 }
 
 public class DataIbgeService
-{    
-    const string url = "https://servicodados.ibge.gov.br/api/v1/localidades/estados/";
-
+{       
     public static async Task<List<Municipio>> GetCitiesByCodeState(string state)
     {
         using (HttpClient client = new HttpClient())
@@ -50,8 +49,10 @@ public class DataIbgeService
             var codeState = $"{state}/municipios";
 
             try
-            {               
-                HttpResponseMessage response = await client.GetAsync(url + codeState);
+            {
+                if (!ToastFailConectionService.CheckIfConnectionIsSuccessful()) return null;
+
+                HttpResponseMessage response = await client.GetAsync(StringConstants.urlDataIbgeService + codeState);
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -62,12 +63,12 @@ public class DataIbgeService
                     return result;
                 }
 
-                return null;
+                return new List<Municipio>();
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                return null;
+                return new List<Municipio>();
             }
         }
     }

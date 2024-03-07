@@ -1,5 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
+using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Maui.Core;
 using freight.control.maui.Controls;
 using freight.control.maui.MVVM.Base.ViewModels;
 using freight.control.maui.MVVM.Models;
@@ -11,7 +13,7 @@ namespace freight.control.maui.MVVM.ViewModels;
 [QueryProperty(nameof(SelectedFreightToEdit), "SelectedFreightToEdit")]
 public class AddFreightViewModel : BaseViewModel
 {
-    private readonly FreightRepository _freightRepository;
+    private readonly FreightRepository _freightRepository;   
 
     #region Properties
 
@@ -385,6 +387,11 @@ public class AddFreightViewModel : BaseViewModel
         try
         {           
             var list = await DataIbgeService.GetCitiesByCodeState(state);
+
+            if(list == null)
+            {              
+                ToastFailConectionService.ShowToastMessageFailConnection();
+            }
 
             return list.Select(x => x.Nome).ToList();
         }
