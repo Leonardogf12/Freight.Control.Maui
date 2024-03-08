@@ -1,14 +1,10 @@
-﻿using System;
-using DevExpress.Maui.Editors;
+﻿using DevExpress.Maui.Editors;
 using freight.control.maui.Components;
 using freight.control.maui.Controls.Animations;
 using freight.control.maui.Controls.ControlCheckers;
 using freight.control.maui.MVVM.Base.Views;
 using freight.control.maui.MVVM.ViewModels;
-using Microsoft.Maui;
-using Microsoft.Maui.Controls;
 using Microsoft.Maui.Controls.Shapes;
-using Microsoft.Maui.Graphics;
 
 namespace freight.control.maui.MVVM.Views;
 
@@ -17,6 +13,10 @@ public class AddFreightView : BaseContentPage
     public AddFreightViewModel ViewModel = new();
 
     public ClickAnimation ClickAnimation = new();
+
+    public ComboboxEditCustom OriginUfComboboxEditCustom;
+    public ComboboxEditCustom DestinationUfComboboxEditCustom;
+
 
     public AddFreightView()
 	{
@@ -197,17 +197,17 @@ public class AddFreightView : BaseContentPage
         grid.SetColumnSpan(title, 5);
         grid.Add(title, 0, 0);
 
-        var originUf = new ComboboxEditCustom(icon: "uf_24", labelText: "Uf")
+        OriginUfComboboxEditCustom = new ComboboxEditCustom(icon: "uf_24", labelText: "Uf")
         {           
             Margin = new Thickness(10, 0, 5, 0),           
         };
-        originUf.SetBinding(ItemsEditBase.ItemsSourceProperty, nameof(ViewModel.OriginUfCollection));        
-        originUf.SetBinding(ComboBoxEdit.SelectedItemProperty, nameof(ViewModel.SelectedItemOriginUf), BindingMode.TwoWay);
-        originUf.SetBinding(EditBase.BorderColorProperty, nameof(ViewModel.BorderColorOriginUf));
-        originUf.SetBinding(EditBase.FocusedBorderColorProperty, nameof(ViewModel.BorderColorFocusedOriginUf));
-        originUf.SelectionChanged += OriginUf_SelectionChanged;
-        grid.SetColumnSpan(originUf, 2);
-        grid.Add(originUf, 0, 1);
+        OriginUfComboboxEditCustom.SetBinding(ItemsEditBase.ItemsSourceProperty, nameof(ViewModel.OriginUfCollection));
+        OriginUfComboboxEditCustom.SetBinding(ComboBoxEdit.SelectedItemProperty, nameof(ViewModel.SelectedItemOriginUf), BindingMode.TwoWay);
+        OriginUfComboboxEditCustom.SetBinding(EditBase.BorderColorProperty, nameof(ViewModel.BorderColorOriginUf));
+        OriginUfComboboxEditCustom.SetBinding(EditBase.FocusedBorderColorProperty, nameof(ViewModel.BorderColorFocusedOriginUf));
+        OriginUfComboboxEditCustom.SelectionChanged += OriginUf_SelectionChanged;
+        grid.SetColumnSpan(OriginUfComboboxEditCustom, 2);
+        grid.Add(OriginUfComboboxEditCustom, 0, 1);
 
         var origin = new ComboboxEditCustom(icon: "local_24", labelText: "Origem")
         {           
@@ -258,17 +258,17 @@ public class AddFreightView : BaseContentPage
         grid.SetColumnSpan(title, 5);
         grid.Add(title, 0, 0);
 
-        var destinationUf = new ComboboxEditCustom(icon: "uf_24", labelText: "Uf")
+        DestinationUfComboboxEditCustom = new ComboboxEditCustom(icon: "uf_24", labelText: "Uf")
         {
             Margin = new Thickness(10, 0, 5, 0),
         };
-        destinationUf.SetBinding(ItemsEditBase.ItemsSourceProperty, nameof(ViewModel.DestinationUfCollection));        
-        destinationUf.SetBinding(ComboBoxEdit.SelectedItemProperty, nameof(ViewModel.SelectedItemDestinationUf), BindingMode.TwoWay);
-        destinationUf.SetBinding(EditBase.BorderColorProperty, nameof(ViewModel.BorderColorDestinationUf));
-        destinationUf.SetBinding(EditBase.FocusedBorderColorProperty, nameof(ViewModel.BorderColorFocusedDestinationUf));
-        destinationUf.SelectionChanged += DestinationUf_SelectionChanged;
-        grid.SetColumnSpan(destinationUf, 2);
-        grid.Add(destinationUf, 0, 1);
+        DestinationUfComboboxEditCustom.SetBinding(ItemsEditBase.ItemsSourceProperty, nameof(ViewModel.DestinationUfCollection));
+        DestinationUfComboboxEditCustom.SetBinding(ComboBoxEdit.SelectedItemProperty, nameof(ViewModel.SelectedItemDestinationUf), BindingMode.TwoWay);
+        DestinationUfComboboxEditCustom.SetBinding(EditBase.BorderColorProperty, nameof(ViewModel.BorderColorDestinationUf));
+        DestinationUfComboboxEditCustom.SetBinding(EditBase.FocusedBorderColorProperty, nameof(ViewModel.BorderColorFocusedDestinationUf));
+        DestinationUfComboboxEditCustom.SelectionChanged += DestinationUf_SelectionChanged;
+        grid.SetColumnSpan(DestinationUfComboboxEditCustom, 2);
+        grid.Add(DestinationUfComboboxEditCustom, 0, 1);
 
         var destination = new ComboboxEditCustom(icon: "local_24", labelText: "Destino")
         {
@@ -348,6 +348,7 @@ public class AddFreightView : BaseContentPage
                 ViewModel.SelectedItemOriginUf = uf;
                 ViewModel.ChangedItemOriginUf(uf);
                 SetBorderColorDefaultForDropdownOriginUf();
+                OriginUfComboboxEditCustom.Unfocus();
             }
         }
     }
@@ -372,6 +373,7 @@ public class AddFreightView : BaseContentPage
                 ViewModel.SelectedItemDestinationUf = uf;
                 ViewModel.ChangedItemDestinationUf(uf);
                 SetBorderColorDefaultForDropdownDestinationUf();
+                DestinationUfComboboxEditCustom.Unfocus();
             }
         }
     }

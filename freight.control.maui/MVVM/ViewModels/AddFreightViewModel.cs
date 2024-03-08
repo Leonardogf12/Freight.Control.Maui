@@ -389,7 +389,7 @@ public class AddFreightViewModel : BaseViewModel
             var list = await DataIbgeService.GetCitiesByCodeState(state);
 
             if(list == null)
-            {              
+            {                
                 ToastFailConectionService.ShowToastMessageFailConnection();
             }
 
@@ -452,7 +452,7 @@ public class AddFreightViewModel : BaseViewModel
 
     public async void ChangedItemDestinationUf(string state)
     {
-        DestinationCollection = new ObservableCollection<string>(await LoadCitiesByState(state));
+        DestinationCollection = new ObservableCollection<string>(await LoadCitiesByState(state));        
     }
 
     public void OnAppearing()
