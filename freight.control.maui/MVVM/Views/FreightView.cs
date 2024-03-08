@@ -8,7 +8,6 @@ using freight.control.maui.MVVM.Models;
 using freight.control.maui.MVVM.ViewModels;
 using freight.control.maui.Services;
 using Microsoft.Maui.Controls.Shapes;
-using static System.Net.Mime.MediaTypeNames;
 using Color = Microsoft.Maui.Graphics.Color;
 using Image = Microsoft.Maui.Controls.Image;
 using Style = Microsoft.Maui.Controls.Style;
@@ -17,23 +16,22 @@ namespace freight.control.maui.MVVM.Views;
 
 public class FreightView : BaseContentPage
 {
-    private readonly INavigationService _navigationService;
-  
-    public FreightViewModel ViewModel = new();
-
     #region Properties
+
+    private readonly INavigationService _navigationService;
+
+    private readonly IExportDataToExcel _exportDataToExcel;
+
+    public FreightViewModel ViewModel = new();
 
     ClickAnimation ClickAnimation = new();
 
-    //public BottomSheet BottomSheetFilter;
-
-    //public BottomSheet BottomSheetExport;
-
     #endregion
 
-    public FreightView(INavigationService navigationService)
+    public FreightView(INavigationService navigationService, IExportDataToExcel exportDataToExcel)
 	{
-        _navigationService = navigationService;   
+        _navigationService = navigationService;
+        _exportDataToExcel = exportDataToExcel;
 
         BackgroundColor = App.GetResource<Color>("PrimaryDark");
 
@@ -120,16 +118,6 @@ public class FreightView : BaseContentPage
         contentGridStack.Add(collectionButtons, 0, 1);
         contentGridStack.SetColumnSpan(collectionButtons, 3);
 
-        /*
-        var buttonNew = CreateBaseButton(text: "Novo", style: "buttonDarkLight", clicked: ClickedButtonNew);
-        contentGridStack.Add(buttonNew, 0, 1);
-
-        var buttonFilter = CreateBaseButton(text: "Filtrar", style: "buttonDarkLight", clicked: ClickedButtonFilter);
-        contentGridStack.Add(buttonFilter, 1, 1);
-
-        var buttonExport= CreateBaseButton(text: "Exportar", style: "buttonDarkLight", clicked: ClickedButtonExport);
-        contentGridStack.Add(buttonExport, 2, 1);*/
-
         stack.Children.Add(contentGridStack);
 
         mainGrid.Children.Add(stack);
@@ -143,8 +131,7 @@ public class FreightView : BaseContentPage
             {
                 ItemSpacing = 10
             },           
-            VerticalOptions = LayoutOptions.Center,
-            
+            VerticalOptions = LayoutOptions.Center,            
         };
         collection.SetBinding(ItemsView.ItemsSourceProperty, nameof(ViewModel.HeaderButtonFreightCollection));        
         collection.ItemTemplate = new DataTemplate(CreateDataTemplateHeaderButton);
@@ -180,7 +167,7 @@ public class FreightView : BaseContentPage
             BackgroundColor = Colors.White,
             ItemTemplate = new DataTemplate(CreateItemTemplateFreight),
         };
-        collection.SetBinding(CollectionView.ItemsSourceProperty, nameof(FreightViewModel.FreightCollection));       
+        collection.SetBinding(ItemsView.ItemsSourceProperty, nameof(FreightViewModel.FreightCollection));       
 
         refresh.Content = collection;
         mainGrid.Add(refresh, 0, 1);
@@ -237,18 +224,18 @@ public class FreightView : BaseContentPage
     }
    
     private void CreateLabelDate(Grid contentGridBorder)
+    {
+        var labelDate = new Label
         {
-            var labelDate = new Label
-            {
-                TextColor = App.GetResource<Color>("PrimaryDark"),
-                FontFamily = "MontserratSemiBold",
-                FontSize = 16,
-                VerticalOptions = LayoutOptions.Center,
-                HorizontalOptions = LayoutOptions.Center
-            };
-            labelDate.SetBinding(Label.TextProperty, nameof(FreightModel.TravelDateCustom));
-            contentGridBorder.Add(labelDate, 1, 0);
-        }
+            TextColor = App.GetResource<Color>("PrimaryDark"),
+            FontFamily = "MontserratSemiBold",
+            FontSize = 16,
+            VerticalOptions = LayoutOptions.Center,
+            HorizontalOptions = LayoutOptions.Center
+        };
+        labelDate.SetBinding(Label.TextProperty, nameof(FreightModel.TravelDateCustom));
+        contentGridBorder.Add(labelDate, 1, 0);
+    }
 
     private void CreateIconTrash(Grid contentGridBorder)
     {
@@ -597,7 +584,8 @@ public class FreightView : BaseContentPage
         ViewModel.IsBusy = true;
 
         try
-        {            
+        {
+            /*
             string nameFile = $"fretes{DateTime.Now.ToString("dd-MM-yy-hh-mm-ss")}.csv";            
 
             string path = System.IO.Path.Combine(Android.App.Application.Context.FilesDir.AbsolutePath, "/storage/emulated/0/Documents/");
@@ -665,6 +653,10 @@ public class FreightView : BaseContentPage
             }            
 
             await DisplayAlert("Sucesso", "Arquivo exportado com sucesso. O arquivo foi salvo em: Documentos.", "Ok");
+
+            */
+          
+            await _exportDataToExcel.ExportData(await ViewModel.GetFreightsToExport());
 
             ViewModel.BottomSheetExportState = BottomSheetState.Hidden;
 

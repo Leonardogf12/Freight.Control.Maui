@@ -135,7 +135,7 @@ public class FreightViewModel : BaseViewModel
         _freightRepository = new();
         _toFuelRepository = new();        
 
-        RefreshingCommand = new Command(OnRefreshingCommand);
+        RefreshingCommand = new Command(async ()=> await OnRefreshingCommand());
         NewFreightCommand = new Command(OnNewFreightCommand);
         FilterFreightCommand = new Command(OnFilterFreightCommand);
         ExportFreightCommand = new Command(OnExportFreightCommand);
@@ -145,7 +145,7 @@ public class FreightViewModel : BaseViewModel
    
     #region Methods Privates
 
-    private async void OnRefreshingCommand()
+    private async Task OnRefreshingCommand()
     {
         await LoadFreigths();
 
@@ -207,6 +207,8 @@ public class FreightViewModel : BaseViewModel
             FreightCollection.Clear();
 
             await App.Current.MainPage.DisplayAlert("Sucesso", "Todos os registros foram excluídos com sucesso.", "Ok");
+
+            await OnRefreshingCommand();
         }
         catch (Exception ex)
         {
