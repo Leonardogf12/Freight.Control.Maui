@@ -20,9 +20,9 @@ namespace freight.control.maui.Controls
 
             string nameFile = $"fretes{DateTime.Now.ToString("dd-MM-yy-hh-mm-ss")}.csv";
 
-            string path = System.IO.Path.Combine(Android.App.Application.Context.FilesDir.AbsolutePath, "/storage/emulated/0/Documents/");
+            string path = Path.Combine(Android.App.Application.Context.FilesDir.AbsolutePath, "/storage/emulated/0/Documents/");
 
-            string filePath = System.IO.Path.Combine(path, nameFile);
+            string filePath = Path.Combine(path, nameFile);
 
             var utf8 = new UTF8Encoding(true);
                      

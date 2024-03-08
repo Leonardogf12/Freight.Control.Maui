@@ -302,8 +302,7 @@ public class FreightViewModel : BaseViewModel
             },
         };
 
-        HeaderButtonFreightCollection = new ObservableCollection<HeaderButtonFreight>(list);
-      
+        HeaderButtonFreightCollection = new ObservableCollection<HeaderButtonFreight>(list);     
     }
 
     public async Task FilterFreights()
@@ -318,7 +317,7 @@ public class FreightViewModel : BaseViewModel
 
         if (!dataFiltered.Any())
         {
-            await App.Current.MainPage.DisplayAlert("Filtro", "Nenhum registro foi encontrado para o período informado.", "Ok");
+            await App.Current.MainPage.DisplayAlert("Filtro", "Nenhum registro foi encontrado para o período informado. Favor verificar as datas informadas.", "Ok");
             return;
         }
 
