@@ -149,7 +149,7 @@
           }
         }
       },
-      "DotNetMeteor.HotReload.Plugin/3.1.2": {
+      "DotNetMeteor.HotReload.Plugin/3.2.0": {
         "type": "package",
         "compile": {
           "lib/net6.0/DotNet.Meteor.HotReload.Plugin.dll": {
@@ -2871,7 +2871,7 @@
           }
         }
       },
-      "DotNetMeteor.HotReload.Plugin/3.1.2": {
+      "DotNetMeteor.HotReload.Plugin/3.2.0": {
         "type": "package",
         "compile": {
           "lib/net6.0/DotNet.Meteor.HotReload.Plugin.dll": {
@@ -5523,7 +5523,7 @@
           }
         }
       },
-      "DotNetMeteor.HotReload.Plugin/3.1.2": {
+      "DotNetMeteor.HotReload.Plugin/3.2.0": {
         "type": "package",
         "compile": {
           "lib/net6.0/DotNet.Meteor.HotReload.Plugin.dll": {
@@ -8175,7 +8175,7 @@
           }
         }
       },
-      "DotNetMeteor.HotReload.Plugin/3.1.2": {
+      "DotNetMeteor.HotReload.Plugin/3.2.0": {
         "type": "package",
         "compile": {
           "lib/net6.0/DotNet.Meteor.HotReload.Plugin.dll": {
@@ -10827,7 +10827,7 @@
           }
         }
       },
-      "DotNetMeteor.HotReload.Plugin/3.1.2": {
+      "DotNetMeteor.HotReload.Plugin/3.2.0": {
         "type": "package",
         "compile": {
           "lib/net6.0/DotNet.Meteor.HotReload.Plugin.dll": {
@@ -13479,7 +13479,7 @@
           }
         }
       },
-      "DotNetMeteor.HotReload.Plugin/3.1.2": {
+      "DotNetMeteor.HotReload.Plugin/3.2.0": {
         "type": "package",
         "compile": {
           "lib/net6.0/DotNet.Meteor.HotReload.Plugin.dll": {
@@ -16125,7 +16125,7 @@
           }
         }
       },
-      "DotNetMeteor.HotReload.Plugin/3.1.2": {
+      "DotNetMeteor.HotReload.Plugin/3.2.0": {
         "type": "package",
         "compile": {
           "lib/net6.0/DotNet.Meteor.HotReload.Plugin.dll": {
@@ -18772,7 +18772,7 @@
           }
         }
       },
-      "DotNetMeteor.HotReload.Plugin/3.1.2": {
+      "DotNetMeteor.HotReload.Plugin/3.2.0": {
         "type": "package",
         "compile": {
           "lib/net6.0/DotNet.Meteor.HotReload.Plugin.dll": {
@@ -20306,7 +20306,7 @@
           }
         }
       },
-      "DotNetMeteor.HotReload.Plugin/3.1.2": {
+      "DotNetMeteor.HotReload.Plugin/3.2.0": {
         "type": "package",
         "compile": {
           "lib/net6.0/DotNet.Meteor.HotReload.Plugin.dll": {
@@ -21975,7 +21975,7 @@
           }
         }
       },
-      "DotNetMeteor.HotReload.Plugin/3.1.2": {
+      "DotNetMeteor.HotReload.Plugin/3.2.0": {
         "type": "package",
         "compile": {
           "lib/net6.0/DotNet.Meteor.HotReload.Plugin.dll": {
@@ -23644,7 +23644,7 @@
           }
         }
       },
-      "DotNetMeteor.HotReload.Plugin/3.1.2": {
+      "DotNetMeteor.HotReload.Plugin/3.2.0": {
         "type": "package",
         "compile": {
           "lib/net6.0/DotNet.Meteor.HotReload.Plugin.dll": {
@@ -25313,7 +25313,7 @@
           }
         }
       },
-      "DotNetMeteor.HotReload.Plugin/3.1.2": {
+      "DotNetMeteor.HotReload.Plugin/3.2.0": {
         "type": "package",
         "compile": {
           "lib/net6.0/DotNet.Meteor.HotReload.Plugin.dll": {
@@ -26982,7 +26982,7 @@
           }
         }
       },
-      "DotNetMeteor.HotReload.Plugin/3.1.2": {
+      "DotNetMeteor.HotReload.Plugin/3.2.0": {
         "type": "package",
         "compile": {
           "lib/net6.0/DotNet.Meteor.HotReload.Plugin.dll": {
@@ -28663,7 +28663,7 @@
           }
         }
       },
-      "DotNetMeteor.HotReload.Plugin/3.1.2": {
+      "DotNetMeteor.HotReload.Plugin/3.2.0": {
         "type": "package",
         "compile": {
           "lib/net6.0/DotNet.Meteor.HotReload.Plugin.dll": {
@@ -30238,7 +30238,7 @@
           }
         }
       },
-      "DotNetMeteor.HotReload.Plugin/3.1.2": {
+      "DotNetMeteor.HotReload.Plugin/3.2.0": {
         "type": "package",
         "compile": {
           "lib/net6.0/DotNet.Meteor.HotReload.Plugin.dll": {
@@ -31577,7 +31577,7 @@
           }
         }
       },
-      "DotNetMeteor.HotReload.Plugin/3.1.2": {
+      "DotNetMeteor.HotReload.Plugin/3.2.0": {
         "type": "package",
         "compile": {
           "lib/net6.0/DotNet.Meteor.HotReload.Plugin.dll": {
@@ -33064,7 +33064,7 @@
           }
         }
       },
-      "DotNetMeteor.HotReload.Plugin/3.1.2": {
+      "DotNetMeteor.HotReload.Plugin/3.2.0": {
         "type": "package",
         "compile": {
           "lib/net6.0/DotNet.Meteor.HotReload.Plugin.dll": {
@@ -34551,7 +34551,7 @@
           }
         }
       },
-      "DotNetMeteor.HotReload.Plugin/3.1.2": {
+      "DotNetMeteor.HotReload.Plugin/3.2.0": {
         "type": "package",
         "compile": {
           "lib/net6.0/DotNet.Meteor.HotReload.Plugin.dll": {
@@ -36038,7 +36038,7 @@
           }
         }
       },
-      "DotNetMeteor.HotReload.Plugin/3.1.2": {
+      "DotNetMeteor.HotReload.Plugin/3.2.0": {
         "type": "package",
         "compile": {
           "lib/net6.0/DotNet.Meteor.HotReload.Plugin.dll": {
@@ -37525,7 +37525,7 @@
           }
         }
       },
-      "DotNetMeteor.HotReload.Plugin/3.1.2": {
+      "DotNetMeteor.HotReload.Plugin/3.2.0": {
         "type": "package",
         "compile": {
           "lib/net6.0/DotNet.Meteor.HotReload.Plugin.dll": {
@@ -39009,7 +39009,7 @@
           }
         }
       },
-      "DotNetMeteor.HotReload.Plugin/3.1.2": {
+      "DotNetMeteor.HotReload.Plugin/3.2.0": {
         "type": "package",
         "compile": {
           "lib/net6.0/DotNet.Meteor.HotReload.Plugin.dll": {
@@ -40877,14 +40877,14 @@
         "lib/net7.0-ios15.4/DevExpress.Maui.Editors.xml"
       ]
     },
-    "DotNetMeteor.HotReload.Plugin/3.1.2": {
-      "sha512": "RSRqxD6JCVoEMu1ko/UReN3yrzO4niY6k8ua7ikHX0a4pfApWOmgePl6DFikKS9eXzGTJjee+E8U2Tfp1kdcWQ==",
+    "DotNetMeteor.HotReload.Plugin/3.2.0": {
+      "sha512": "9GIJ6LUGCj/zGxGfBGPFhdopkYiRHlJpNBcQ73tvOkx3a3MO8HgTyq4l/Nv+hwyDLT8ZT8PonsxlaQjEqXC3iw==",
       "type": "package",
-      "path": "dotnetmeteor.hotreload.plugin/3.1.2",
+      "path": "dotnetmeteor.hotreload.plugin/3.2.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "dotnetmeteor.hotreload.plugin.3.1.2.nupkg.sha512",
+        "dotnetmeteor.hotreload.plugin.3.2.0.nupkg.sha512",
         "dotnetmeteor.hotreload.plugin.nuspec",
         "lib/net6.0/DotNet.Meteor.HotReload.Plugin.dll",
         "lib/net6.0/DotNet.Meteor.HotReload.Plugin.pdb",
@@ -47480,11 +47480,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/freight.control.maui.csproj",
+      "projectUniqueName": "/Users/leonardofazolo/Projects/GITHUB/Freight.Control.Maui/freight.control.maui/freight.control.maui.csproj",
       "projectName": "freight.control.maui",
-      "projectPath": "/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/freight.control.maui.csproj",
+      "projectPath": "/Users/leonardofazolo/Projects/GITHUB/Freight.Control.Maui/freight.control.maui/freight.control.maui.csproj",
       "packagesPath": "/Users/leonardofazolo/.nuget/packages/",
-      "outputPath": "/Users/leonardofazolo/Projects/GitHub/Freight.Control.Maui/freight.control.maui/obj/",
+      "outputPath": "/Users/leonardofazolo/Projects/GITHUB/Freight.Control.Maui/freight.control.maui/obj/",
       "projectStyle": "PackageReference",
       "crossTargeting": true,
       "configFilePaths": [
@@ -47684,7 +47684,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.313/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.314/RuntimeIdentifierGraph.json"
       },
       "net7.0-ios16.1": {
         "targetAlias": "net7.0-ios",
@@ -47794,7 +47794,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.313/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.314/RuntimeIdentifierGraph.json"
       },
       "net7.0-maccatalyst16.1": {
         "targetAlias": "net7.0-maccatalyst",
@@ -47897,7 +47897,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.313/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.314/RuntimeIdentifierGraph.json"
       }
     },
     "runtimes": {

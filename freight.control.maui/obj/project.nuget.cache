@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "gYxjypUOaGLujSPR2HILNqBjnq5SZtemPnwuAuyem9KOCDBFhhllucSiLZVtXgo89WS9NjCHpoBQroUjDHo/uQ==",
+  "dgSpecHash": "pa9dNC6WW4VJuqnTa8NrkOl6jKRpKq3vOkR81mcPcoKntRBaTX+eEXrQVp1RhmCF3twz5Yh8qup/LGHXvlhuNA==",
   "success": true,
   "projectFilePath": "/Users/leonardofazolo/Projects/GITHUB/Freight.Control.Maui/freight.control.maui/freight.control.maui.csproj",
   "expectedPackageFiles": [
@@ -12,7 +12,7 @@
     "/Users/leonardofazolo/.nuget/packages/devexpress.maui.controls/23.1.8/devexpress.maui.controls.23.1.8.nupkg.sha512",
     "/Users/leonardofazolo/.nuget/packages/devexpress.maui.core/23.1.8/devexpress.maui.core.23.1.8.nupkg.sha512",
     "/Users/leonardofazolo/.nuget/packages/devexpress.maui.editors/23.1.8/devexpress.maui.editors.23.1.8.nupkg.sha512",
-    "/Users/leonardofazolo/.nuget/packages/dotnetmeteor.hotreload.plugin/3.1.2/dotnetmeteor.hotreload.plugin.3.1.2.nupkg.sha512",
+    "/Users/leonardofazolo/.nuget/packages/dotnetmeteor.hotreload.plugin/3.2.0/dotnetmeteor.hotreload.plugin.3.2.0.nupkg.sha512",
     "/Users/leonardofazolo/.nuget/packages/gembox.spreadsheet/49.0.1612/gembox.spreadsheet.49.0.1612.nupkg.sha512",
     "/Users/leonardofazolo/.nuget/packages/googlegson/2.9.1.1/googlegson.2.9.1.1.nupkg.sha512",
     "/Users/leonardofazolo/.nuget/packages/harfbuzzsharp/7.3.0/harfbuzzsharp.7.3.0.nupkg.sha512",

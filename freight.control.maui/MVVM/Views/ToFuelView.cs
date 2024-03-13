@@ -467,8 +467,12 @@ public class ToFuelView : BaseContentPage
         if (ViewModel.BorderColorExpenses == Colors.Red)
         {           
             isValid = false;
-        }     
-      
+        }
+        if (ViewModel.BorderColorLiters == Colors.Red)
+        {
+            isValid = false;
+        }
+
         return isValid;
     }
 

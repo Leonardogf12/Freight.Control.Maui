@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using freight.control.maui.Controls;
 using freight.control.maui.MVVM.Base.ViewModels;
 using freight.control.maui.MVVM.Models;
 using freight.control.maui.Repositories;
@@ -299,33 +300,14 @@ public class ToFuelViewModel : BaseViewModel
         model.FreightModelId = SelectedToFuelToEdit.FreightModelId > 0 ? SelectedToFuelToEdit.FreightModelId : DetailsFreight.Id;        
         model.Date = Date;              
         model.Liters = Liters.Contains(".") ? double.Parse(Liters.Replace(".", ",")) : double.Parse(Liters.Replace(",", "."));
-        //model.AmountSpentFuel = Convert.ToDecimal(AmountSpentFuel);
-        model.AmountSpentFuel = await CalcDecimalPriceInput(AmountSpentFuel);
-        model.ValuePerLiter = Convert.ToDecimal(AmountSpentFuel) / Convert.ToDecimal(Liters);
-        //model.Expenses = Convert.ToDecimal(Expenses);
-        model.Expenses = await CalcDecimalPriceInput(Expenses);
+        model.AmountSpentFuel = await ConvertEntrysStringToDecimal.ConvertValue(AmountSpentFuel);
+        model.ValuePerLiter = await ConvertEntrysStringToDecimal.ConvertValue(AmountSpentFuel) / await ConvertEntrysStringToDecimal.ConvertValue(Liters);        
+        model.Expenses = await ConvertEntrysStringToDecimal.ConvertValue(Expenses);
         model.Observation = Observation;
 
         return model;
     }
-
-    private async Task<decimal> CalcDecimalPriceInput(string val)
-    {
-        decimal preco;
-
-        CultureInfo cultureInfo = CultureInfo.InvariantCulture;
-
-        if (decimal.TryParse(val, NumberStyles.Number, cultureInfo, out preco))
-        {
-            return preco;
-        }
-        else
-        {
-            await App.Current.MainPage.DisplayAlert("Ops","O valor informado não está no formato correto. Favor corrigir","Ok");
-        }
-        return preco;
-    }
-
+  
     private async void SetValuesToDetail(bool isCreating)
     {
         if (isCreating)
@@ -346,17 +328,15 @@ public class ToFuelViewModel : BaseViewModel
             DetailDestination = item.Destination;
             Date = SelectedToFuelToEdit.Date;
             Liters = SelectedToFuelToEdit.Liters.ToString();
-            AmountSpentFuel = SelectedToFuelToEdit.AmountSpentFuel.ToString();
-
+            AmountSpentFuel = SelectedToFuelToEdit.AmountSpentFuel.ToString(CultureInfo.InvariantCulture);
             ValuePerLiter = SelectedToFuelToEdit.ValuePerLiter.ToString("c");
-            Expenses = SelectedToFuelToEdit.Expenses.ToString();
+            Expenses = SelectedToFuelToEdit.Expenses.ToString(CultureInfo.InvariantCulture);
             Observation = SelectedToFuelToEdit.Observation?? "";
         }
     }
 
     public void CalculatePriceOfFuel()
-    {
-        
+    {        
         decimal calc = 0;
 
         if (string.IsNullOrEmpty(AmountSpentFuel) || string.IsNullOrEmpty(Liters))

@@ -1,40 +1,41 @@
-﻿<Properties GitUserInfo="UsingMD" StartupConfiguration="{15687626-2468-4B49-B8B5-F034392697A3}|Default">
+﻿<Properties StartupConfiguration="{15687626-2468-4B49-B8B5-F034392697A3}|Default" GitUserInfo="UsingMD">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.freight.control.maui PreferredExecutionTarget="Android.RQCT702DM4M" />
-  <MonoDevelop.MonoDroid LastDeploySdkVersion="33.0.95" />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/leonardofazolo/Projects/GITHUB/Freight.Control.Maui/freight.control.maui/MVVM/ViewModels/AddFreightViewModel.cs" relfile="freight.control.maui/MVVM/ViewModels/AddFreightViewModel.cs" line="421" column="1" />
-    </BreakpointStore>
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.Workbench ActiveDocument="freight.control.maui/MVVM/ViewModels/AddFreightViewModel.cs">
     <Files>
-      <File FileName="freight.control.maui/MVVM/ViewModels/AddFreightViewModel.cs" Line="420" Column="1" />
-      <File FileName="freight.control.maui/MVVM/Views/AddFreightView.cs" Line="337" Column="1" />
+      <File FileName="freight.control.maui/MVVM/ViewModels/DetailFreightViewModel.cs" />
+      <File FileName="freight.control.maui/MVVM/ViewModels/ToFuelViewModel.cs" />
+      <File FileName="freight.control.maui/MVVM/ViewModels/AddFreightViewModel.cs" Line="378" Column="1" />
+      <File FileName="freight.control.maui/Controls/ControlCheckers/CheckTheEntrys.cs" />
+      <File FileName="freight.control.maui/MVVM/Views/ToFuelView.cs" />
+      <File FileName="freight.control.maui/Controls/ConvertEntrysStringToDecimal.cs" />
+      <File FileName="freight.control.maui/MVVM/Views/AddFreightView.cs" />
+      <File FileName="freight.control.maui/Controls/ConvertEntrysStringToDouble.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="freight.control.maui" expanded="True">
             <Node name="freight.control.maui" expanded="True">
-              <Node name="Constants" expanded="True" />
               <Node name="MVVM" expanded="True">
-                <Node name="ViewModels" expanded="True" />
-                <Node name="Views" expanded="True" />
+                <Node name="ViewModels" expanded="True">
+                  <Node name="AddFreightViewModel.cs" selected="True" />
+                </Node>
               </Node>
-              <Node name="Services" expanded="True" />
             </Node>
           </Node>
-        </State>
-      </Pad>
-      <Pad Id="MonoDevelop.Debugger.WatchPad">
-        <State>
-          <Value>access != NetworkAccess.Internet</Value>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MultiItemStartupConfigurations />
-  <Xamarin.Addins.Core.Project ActiveDebugTarget="Android.RQCT702DM4M" />
+  <Xamarin.Addins.Core.Project ActiveDebugTarget="MyAppleMacCatalystID" />
+  <MonoDevelop.Ide.ItemProperties.freight.control.maui PreferredExecutionTarget="MyAppleMacCatalystID" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/leonardofazolo/Projects/GITHUB/Freight.Control.Maui/freight.control.maui/MVVM/ViewModels/AddFreightViewModel.cs" relfile="freight.control.maui/MVVM/ViewModels/AddFreightViewModel.cs" line="423" column="1" />
+      <Breakpoint file="/Users/leonardofazolo/Projects/GITHUB/Freight.Control.Maui/freight.control.maui/MVVM/ViewModels/AddFreightViewModel.cs" relfile="freight.control.maui/MVVM/ViewModels/AddFreightViewModel.cs" line="371" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.MonoDroid LastDeploySdkVersion="33.0.95" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

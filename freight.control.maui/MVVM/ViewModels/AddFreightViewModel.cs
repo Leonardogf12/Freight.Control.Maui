@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Windows.Input;
 using freight.control.maui.Controls;
 using freight.control.maui.MVVM.Base.ViewModels;
@@ -338,8 +339,8 @@ public class AddFreightViewModel : BaseViewModel
                 Origin = SelectedItemOrigin,
                 DestinationUf = SelectedItemDestinationUf,
                 Destination = SelectedItemDestination,
-                Kilometer = Convert.ToDouble(Kilometer),
-                FreightValue = Convert.ToDecimal(FreightValue),
+                Kilometer = await ConvertEntrysStringToDouble.ConvertValue(Kilometer),
+                FreightValue = await ConvertEntrysStringToDecimal.ConvertValue(FreightValue),
                 Observation = Observation
             };
 
@@ -368,8 +369,8 @@ public class AddFreightViewModel : BaseViewModel
             TravelDate = SelectedFreightToEdit.TravelDate;
             SelectedItemOriginUf = SelectedFreightToEdit.OriginUf;
             SelectedItemOrigin = SelectedFreightToEdit.Origin;            
-            Kilometer = SelectedFreightToEdit.Kilometer.ToString();
-            FreightValue = SelectedFreightToEdit.FreightValue.ToString();
+            Kilometer = SelectedFreightToEdit.Kilometer.ToString(CultureInfo.InvariantCulture);
+            FreightValue = SelectedFreightToEdit.FreightValue.ToString(CultureInfo.InvariantCulture);
             Observation = SelectedFreightToEdit.Observation;
             SelectedItemDestinationUf = SelectedFreightToEdit.DestinationUf;
             SelectedItemDestination = SelectedFreightToEdit.Destination;
@@ -404,19 +405,22 @@ public class AddFreightViewModel : BaseViewModel
         }      
     }
 
-    private FreightModel CreateObjectFreightModelToSave()
+    private async Task<FreightModel> CreateObjectFreightModelToSave()
     {
-        return new FreightModel()
+        var model  = new FreightModel()
         {
             TravelDate = TravelDate.Date,
             OriginUf = SelectedItemOriginUf,
             Origin = SelectedItemOrigin,
             DestinationUf = SelectedItemDestinationUf,
             Destination = SelectedItemDestination,
-            Kilometer = ConvertAndCheckedValueStringToDouble(Kilometer),
-            FreightValue = ConvertAndCheckedValueStringToDecimal(FreightValue),
+            //Kilometer = ConvertAndCheckedValueStringToDouble(Kilometer),
+            Kilometer = await ConvertEntrysStringToDouble.ConvertValue(Kilometer),
+            FreightValue = await ConvertEntrysStringToDecimal.ConvertValue(FreightValue),
             Observation = Observation,
         };
+
+        return model;
     }
 
     private double ConvertAndCheckedValueStringToDouble(string value)
@@ -432,6 +436,7 @@ public class AddFreightViewModel : BaseViewModel
         return 0;
     }
 
+    /*
     private decimal ConvertAndCheckedValueStringToDecimal(string value)
     {
         if (string.IsNullOrEmpty(value)) return 0;
@@ -444,6 +449,7 @@ public class AddFreightViewModel : BaseViewModel
 
         return 0;
     }
+    */
 
     private void LoadStateAcronyms()
     {
@@ -463,7 +469,7 @@ public class AddFreightViewModel : BaseViewModel
             return;
         }
                
-        var result = await _freightRepository.SaveAsync(CreateObjectFreightModelToSave());
+        var result = await _freightRepository.SaveAsync(await CreateObjectFreightModelToSave());
 
         if(result > 0)
         {
