@@ -1,23 +1,36 @@
-﻿using freight.control.maui.Constants;
+﻿using System.IO.Compression;
+using freight.control.maui.Constants;
 using Newtonsoft.Json;
 
 namespace freight.control.maui.Services;
+
+public class Regiao
+{
+    public int Id { get; set; }
+    public string Nome { get; set; }
+    public string Sigla { get; set; }
+}
+
+public class UF
+{
+    public int Id { get; set; }
+    public string Nome { get; set; }
+    public string Sigla { get; set; }
+    public Regiao Regiao { get; set; }
+}
 
 public class RegiaoIntermediaria
 {
     public int Id { get; set; }
     public string Nome { get; set; }
-}
-
-public class RegiaoImediata
-{
-    public int Id { get; set; }
-    public string Nome { get; set; }
-    public RegiaoIntermediaria RegiaoIntermediaria { get; set; }
+    public UF UF { get; set; }
 }
 
 public class Mesorregiao
 {
+    public int Id { get; set; }
+    public string Nome { get; set; }
+    public UF UF { get; set; }
 }
 
 public class Microrregiao
@@ -25,7 +38,6 @@ public class Microrregiao
     public int Id { get; set; }
     public string Nome { get; set; }
     public Mesorregiao Mesorregiao { get; set; }
-    public RegiaoImediata RegiaoImediata { get; set; }
 }
 
 public class Municipio
@@ -35,10 +47,6 @@ public class Municipio
     public Microrregiao Microrregiao { get; set; }
 }
 
-public class Localidades
-{
-    public List<Municipio> Municipios { get; set; }
-}
 
 public class DataIbgeService
 {       
@@ -56,11 +64,20 @@ public class DataIbgeService
 
                 if (response.IsSuccessStatusCode)
                 {
-                    var content = await response.Content.ReadAsStringAsync();
+                    //var downloaded = new System.Net.WebClient().DownloadString(StringConstants.urlDataIbgeService + codeState);
+                    //var result = JsonConvert.DeserializeObject<List<Municipio>>(downloaded);
+                    //return result;
 
-                    var result = JsonConvert.DeserializeObject<List<Municipio>>(content);
+                    using (var stream = await response.Content.ReadAsStreamAsync())
+                    using (var decompressedStream = new GZipStream(stream, CompressionMode.Decompress))
+                    using (var reader = new StreamReader(decompressedStream))
+                    {
+                        var content = await reader.ReadToEndAsync();
 
-                    return result;
+                        var result = JsonConvert.DeserializeObject<List<Municipio>>(content);
+
+                        return result;
+                    }
                 }
 
                 return new List<Municipio>();
