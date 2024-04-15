@@ -413,8 +413,7 @@ public class AddFreightViewModel : BaseViewModel
             OriginUf = SelectedItemOriginUf,
             Origin = SelectedItemOrigin,
             DestinationUf = SelectedItemDestinationUf,
-            Destination = SelectedItemDestination,
-            //Kilometer = ConvertAndCheckedValueStringToDouble(Kilometer),
+            Destination = SelectedItemDestination,           
             Kilometer = await ConvertEntrysStringToDouble.ConvertValue(Kilometer),
             FreightValue = await ConvertEntrysStringToDecimal.ConvertValue(FreightValue),
             Observation = Observation,
@@ -422,39 +421,13 @@ public class AddFreightViewModel : BaseViewModel
 
         return model;
     }
-
-    private double ConvertAndCheckedValueStringToDouble(string value)
-    {
-        if (string.IsNullOrEmpty(value)) return 0;
-
-        double parsedValue = 0;
-
-        var valueReplaced = value.Replace(".", ",");
-
-        if (double.TryParse(valueReplaced, out parsedValue)) return parsedValue;
-
-        return 0;
-    }
-
-    /*
-    private decimal ConvertAndCheckedValueStringToDecimal(string value)
-    {
-        if (string.IsNullOrEmpty(value)) return 0;
-
-        decimal parsedValue = 0;
-
-        var valueReplaced = value.Replace(".", ",");
-
-        if (decimal.TryParse(valueReplaced, out parsedValue)) return parsedValue;
-
-        return 0;
-    }
-    */
-
+   
     private void LoadStateAcronyms()
     {
-        OriginUfCollection = new ObservableCollection<string>(StateAcronymsStr.GetAll());
-        DestinationUfCollection = new ObservableCollection<string>(StateAcronymsStr.GetAll());
+        var list = new ObservableCollection<string>(StateAcronymsStr.GetAll());
+
+        OriginUfCollection = list;
+        DestinationUfCollection = list;
     }
 
     #endregion
