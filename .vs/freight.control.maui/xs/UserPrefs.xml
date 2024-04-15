@@ -1,41 +1,44 @@
-﻿<Properties StartupConfiguration="{15687626-2468-4B49-B8B5-F034392697A3}|Default" GitUserInfo="UsingMD">
+﻿<Properties GitUserInfo="UsingMD" StartupConfiguration="{15687626-2468-4B49-B8B5-F034392697A3}|Default">
+  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/leonardofazolo/Projects/GITHUB/Freight.Control.Maui/freight.control.maui/MVVM/ViewModels/AddFreightViewModel.cs" relfile="freight.control.maui/MVVM/ViewModels/AddFreightViewModel.cs" line="423" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.ItemProperties.freight.control.maui PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.5AD4B3BC-4741-4021-970D-A32CEB140179" />
+  <MonoDevelop.MonoDroid LastDeploySdkVersion="33.0.95" />
   <MonoDevelop.Ide.Workbench ActiveDocument="freight.control.maui/MVVM/ViewModels/AddFreightViewModel.cs">
     <Files>
       <File FileName="freight.control.maui/MVVM/ViewModels/DetailFreightViewModel.cs" />
-      <File FileName="freight.control.maui/MVVM/ViewModels/ToFuelViewModel.cs" />
-      <File FileName="freight.control.maui/MVVM/ViewModels/AddFreightViewModel.cs" Line="378" Column="1" />
-      <File FileName="freight.control.maui/Controls/ControlCheckers/CheckTheEntrys.cs" />
-      <File FileName="freight.control.maui/MVVM/Views/ToFuelView.cs" />
-      <File FileName="freight.control.maui/Controls/ConvertEntrysStringToDecimal.cs" />
-      <File FileName="freight.control.maui/MVVM/Views/AddFreightView.cs" />
-      <File FileName="freight.control.maui/Controls/ConvertEntrysStringToDouble.cs" />
+      <File FileName="freight.control.maui/Controls/ExportDataToExcel.cs" Line="27" Column="49" />
+      <File FileName="freight.control.maui/App.xaml.cs" Line="101" Column="1" />
+      <File FileName="freight.control.maui/Constants/StringConstants.cs" Line="13" Column="11" />
+      <File FileName="freight.control.maui/Repositories/ToFuelRepository.cs" Line="7" Column="2" />
+      <File FileName="freight.control.maui/Repositories/FreightRepository.cs" Line="12" Column="51" />
+      <File FileName="freight.control.maui/Repositories/GenericRepository.cs" Line="9" Column="28" />
+      <File FileName="freight.control.maui/MVVM/ViewModels/AddFreightViewModel.cs" Line="425" Column="1" />
+      <File FileName="freight.control.maui/Platforms/iOS/Program.cs" Line="12" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="freight.control.maui" expanded="True">
-            <Node name="freight.control.maui" expanded="True">
+          <Node name="freight.control.maui">
+            <Node name="freight.control.maui" selected="True">
+              <Node name="Data" expanded="True" />
               <Node name="MVVM" expanded="True">
-                <Node name="ViewModels" expanded="True">
-                  <Node name="AddFreightViewModel.cs" selected="True" />
-                </Node>
+                <Node name="ViewModels" expanded="True" />
               </Node>
+              <Node name="App.xaml" expanded="True" />
             </Node>
           </Node>
         </State>
       </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MultiItemStartupConfigurations />
-  <Xamarin.Addins.Core.Project ActiveDebugTarget="MyAppleMacCatalystID" />
-  <MonoDevelop.Ide.ItemProperties.freight.control.maui PreferredExecutionTarget="MyAppleMacCatalystID" />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/leonardofazolo/Projects/GITHUB/Freight.Control.Maui/freight.control.maui/MVVM/ViewModels/AddFreightViewModel.cs" relfile="freight.control.maui/MVVM/ViewModels/AddFreightViewModel.cs" line="423" column="1" />
-      <Breakpoint file="/Users/leonardofazolo/Projects/GITHUB/Freight.Control.Maui/freight.control.maui/MVVM/ViewModels/AddFreightViewModel.cs" relfile="freight.control.maui/MVVM/ViewModels/AddFreightViewModel.cs" line="371" column="1" />
-    </BreakpointStore>
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.MonoDroid LastDeploySdkVersion="33.0.95" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <Xamarin.Addins.Core.Project ActiveDebugTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.5AD4B3BC-4741-4021-970D-A32CEB140179" />
 </Properties>

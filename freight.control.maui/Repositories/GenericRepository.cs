@@ -8,7 +8,7 @@ public class GenericRepository<T> where T : new()
 
 	public GenericRepository()
 	{
-		_db = new SQLiteAsyncConnection(App.dbPath);
+		_db = new SQLiteAsyncConnection(App.DbPath);
 		_db.CreateTableAsync<T>().Wait();
 	}
 

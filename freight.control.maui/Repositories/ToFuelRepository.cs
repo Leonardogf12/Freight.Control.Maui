@@ -9,7 +9,7 @@ public class ToFuelRepository : GenericRepository<ToFuelModel>
 
 	public ToFuelRepository()
 	{
-		_db = new SQLiteAsyncConnection(App.dbPath);
+		_db = new SQLiteAsyncConnection(App.DbPath);
     }
 
 	public async Task<IEnumerable<ToFuelModel>> GetAllById(int id)

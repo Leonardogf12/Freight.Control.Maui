@@ -20,8 +20,12 @@ namespace freight.control.maui.Controls
 
             string nameFile = $"fretes{DateTime.Now.ToString("dd-MM-yy-hh-mm-ss")}.csv";
 
-            string path = Path.Combine(Android.App.Application.Context.FilesDir.AbsolutePath, "/storage/emulated/0/Documents/");
-
+            string path = string.Empty;
+#if ANDROID
+            path = Path.Combine(Android.App.Application.Context.FilesDir.AbsolutePath, "/storage/emulated/0/Documents/");
+#else
+//Todo Implement local storage to save csv file.
+#endif
             string filePath = Path.Combine(path, nameFile);
 
             var utf8 = new UTF8Encoding(true);

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using freight.control.maui.Components.Popups;
+using freight.control.maui.Constants;
 using freight.control.maui.Data;
 using Microsoft.Maui.Controls;
 using SkiaSharp.Extended.UI.Controls;
@@ -18,6 +19,8 @@ public partial class App : Application
     public App()
 	{
         CheckDevice();
+
+        SetDatabasePathDevice();
 
         InitializeComponent();
 
@@ -51,18 +54,51 @@ public partial class App : Application
     private static DbApp _dbApp;
     public static DbApp DbApp
     {
+    #if ANDROID
+        
         get
         {
             if(_dbApp == null)
             {
-                _dbApp = new DbApp(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "confretedata.db3"));
+                _dbApp = new DbApp(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), StringConstants.DatabaseName));
             }
 
             return _dbApp;
         }
+
+    #else
+
+        get
+        {
+            if (_dbApp == null)
+            {
+                _dbApp = new DbApp(Path.Combine(FileSystem.AppDataDirectory, StringConstants.DatabaseName));
+            }
+
+            return _dbApp;
+        }
+
+    #endif
     }
 
-    public const string dbPath = "/data/user/0/com.companyname.freight.control.maui/files/confretedata.db3";
+    public static string DbPath = string.Empty;
+
+    public void SetDatabasePathDevice()
+    {
+
+#if ANDROID
+        DbPath = "/data/user/0/com.companyname.freight.control.maui/files/confretedata.db3";
+
+
+#else
+
+        string documentsPath = FileSystem.AppDataDirectory;
+        string databaseName = "nomedodatabase.db3";
+        DbPath = databaseName;
+
+#endif
+       
+    }
 
     #endregion
 }

@@ -9,7 +9,7 @@ public class FreightRepository : GenericRepository<FreightModel>
 
     public FreightRepository()
     {
-        _db = new SQLiteAsyncConnection(App.dbPath);
+        _db = new SQLiteAsyncConnection(App.DbPath);
     }
 
     public async Task<FreightModel> GetById(int id)
