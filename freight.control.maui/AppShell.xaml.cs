@@ -13,6 +13,10 @@ public partial class AppShell : Shell
         Routing.RegisterRoute(nameof(AddFreightView), typeof(AddFreightView));
         Routing.RegisterRoute(nameof(DetailFreightView), typeof(DetailFreightView));
         Routing.RegisterRoute(nameof(ToFuelView), typeof(ToFuelView));
+        Routing.RegisterRoute(nameof(LoginView), typeof(LoginView));
+        Routing.RegisterRoute(nameof(RegisterView), typeof(RegisterView));
+
+
     }
 }
 

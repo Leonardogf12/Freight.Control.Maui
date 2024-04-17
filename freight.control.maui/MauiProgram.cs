@@ -40,6 +40,8 @@ public static class MauiProgram
         builder.Services.AddTransient<AddFreightView>();
         builder.Services.AddTransient<DetailFreightView>();
         builder.Services.AddTransient<ToFuelView>();
+        builder.Services.AddTransient<RegisterView>();
+
 
         builder.Services.AddTransient<FreightViewModel>();
         builder.Services.AddTransient<AddFreightViewModel>();
