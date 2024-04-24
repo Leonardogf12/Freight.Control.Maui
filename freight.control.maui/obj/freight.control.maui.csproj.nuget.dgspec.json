@@ -71,6 +71,18 @@
               "target": "Package",
               "version": "[3.*, )"
             },
+            "FirebaseAdmin": {
+              "target": "Package",
+              "version": "[2.4.1, )"
+            },
+            "FirebaseAuthentication.net": {
+              "target": "Package",
+              "version": "[3.7.2, )"
+            },
+            "FirebaseDatabase.net": {
+              "target": "Package",
+              "version": "[4.2.0, )"
+            },
             "GemBox.Spreadsheet": {
               "target": "Package",
               "version": "[49.0.1612, )"
@@ -236,6 +248,18 @@
               "target": "Package",
               "version": "[3.*, )"
             },
+            "FirebaseAdmin": {
+              "target": "Package",
+              "version": "[2.4.1, )"
+            },
+            "FirebaseAuthentication.net": {
+              "target": "Package",
+              "version": "[3.7.2, )"
+            },
+            "FirebaseDatabase.net": {
+              "target": "Package",
+              "version": "[4.2.0, )"
+            },
             "GemBox.Spreadsheet": {
               "target": "Package",
               "version": "[49.0.1612, )"
@@ -337,6 +361,18 @@
             "DotNetMeteor.HotReload.Plugin": {
               "target": "Package",
               "version": "[3.*, )"
+            },
+            "FirebaseAdmin": {
+              "target": "Package",
+              "version": "[2.4.1, )"
+            },
+            "FirebaseAuthentication.net": {
+              "target": "Package",
+              "version": "[3.7.2, )"
+            },
+            "FirebaseDatabase.net": {
+              "target": "Package",
+              "version": "[4.2.0, )"
             },
             "GemBox.Spreadsheet": {
               "target": "Package",

@@ -1,8 +1,6 @@
-﻿using DevExpress.Maui.Editors;
-using freight.control.maui.Components;
+﻿using freight.control.maui.Components;
 using freight.control.maui.MVVM.Base.Views;
 using freight.control.maui.MVVM.ViewModels;
-using freight.control.maui.Services;
 
 namespace freight.control.maui.MVVM.Views
 {
@@ -18,6 +16,8 @@ namespace freight.control.maui.MVVM.Views
 
 			BindingContext = ViewModel;
         }
+
+        #region UI
 
         private Grid CreateMainGrid()
         {
@@ -51,33 +51,37 @@ namespace freight.control.maui.MVVM.Views
 
         private void CreateEmailField(Grid mainGrid)
         {
-            var email = new TextEditCustom(icon:"",placeholder: "Email",keyboard: Keyboard.Email)
+            var email = new TextEditCustom(icon: "", placeholder: "Email", keyboard: Keyboard.Email)
             {
                 Margin = 10
             };
+            email.SetBinding(TextEditCustom.TextProperty, nameof(ViewModel.Email));
 
             mainGrid.Add(email, 0, 0);
         }
 
         private void CreatePasswordField(Grid mainGrid)
         {
-            var password = new PasswordEdit()
+            var password = new PasswordEditCustom(icon: "", placeholder: "Senha")
             {
                 Margin = 10
             };
+            password.SetBinding(TextEditCustom.TextProperty, nameof(ViewModel.Password));
 
             mainGrid.Add(password, 0, 1);
         }
 
         private void CreateLoginButton(Grid mainGrid)
         {
-            var button = new Button
+            var buttonLogin = new Button
             {
                 Text = "Login",
                 Style = (Style)App.Current.Resources["buttonDarkPrimary"]
             };
 
-            mainGrid.Add(button, 0, 2);
+            buttonLogin.Clicked += ButtonLogin_Clicked;
+
+            mainGrid.Add(buttonLogin, 0, 2);
         }
 
         private void CreateRegisterButton(Grid mainGrid)
@@ -93,11 +97,6 @@ namespace freight.control.maui.MVVM.Views
             mainGrid.Add(buttonRegister, 0, 3);
         }
 
-        private async void ButtonRegister_Clicked(object sender, EventArgs e)
-        {
-            await App.Current.MainPage.Navigation.PushAsync(new RegisterView());
-        }
-
         private void CreateForgetPasswordButton(Grid mainGrid)
         {
             var button = new Button
@@ -108,6 +107,22 @@ namespace freight.control.maui.MVVM.Views
 
             mainGrid.Add(button, 0, 4);
         }
+
+        #endregion
+
+        #region Events
+
+        private async void ButtonLogin_Clicked(object sender, EventArgs e)
+        {
+            await ViewModel.Login();
+        }
+
+        private async void ButtonRegister_Clicked(object sender, EventArgs e)
+        {
+            await App.Current.MainPage.Navigation.PushAsync(new RegisterView());
+        }
+
+        #endregion
     }
 }
 
