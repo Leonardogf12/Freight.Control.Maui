@@ -32,7 +32,8 @@ namespace freight.control.maui.MVVM.Views
                     new() {Height = GridLength.Auto},
                     new() {Height = GridLength.Auto},
 
-                },               
+                },
+                RowSpacing = 10,
                 VerticalOptions = LayoutOptions.Center
             };
         }

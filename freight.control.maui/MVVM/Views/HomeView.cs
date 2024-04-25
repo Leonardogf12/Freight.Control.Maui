@@ -1,15 +1,18 @@
 ﻿using freight.control.maui.Controls.Animations;
 using freight.control.maui.MVVM.Base.Views;
+using freight.control.maui.Services;
 using Microsoft.Maui.Controls.Shapes;
 
 namespace freight.control.maui.MVVM.Views;
 
 public class HomeView : BaseContentPage
 {
+    private readonly INavigationService _navigationService;
+
     ClickAnimation ClickAnimation = new();
 
     public HomeView()
-	{               
+	{       
         BackgroundColor = App.GetResource<Color>("PrimaryDark");
       
 		Content = BuildHomeView();       
@@ -66,12 +69,11 @@ public class HomeView : BaseContentPage
     {
         View element = sender as Border;
 
-        await ClickAnimation.SetFadeOnElement(element);
+        await ClickAnimation.SetFadeOnElement(element);        
 
-        await Shell.Current.GoToAsync("FreightView");
-        //await App.Current.MainPage.Navigation.PushAsync(new FreightView(null));
+        await Shell.Current.GoToAsync("FreightView");        
     }
 
     #endregion
-
+    
 }

@@ -6,9 +6,13 @@
     xmlns:views="clr-namespace:freight.control.maui.MVVM.Views"
     Shell.FlyoutBehavior="Disabled">
 
+    <FlyoutItem Route="Login">
+        <ShellContent ContentTemplate="{DataTemplate views:LoginView}"/>
+    </FlyoutItem>
+
     <ShellContent
         Title="Home"
-        ContentTemplate="{DataTemplate views:LoginView}"
-        Route="HomeView" />
+        ContentTemplate="{DataTemplate views:HomeView}"
+        Route="home" />
 </Shell>
 

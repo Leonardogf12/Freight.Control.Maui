@@ -99,21 +99,30 @@ namespace freight.control.maui.MVVM.Views
 
         private void CreateForgetPasswordButton(Grid mainGrid)
         {
-            var button = new Button
+            var buttonForgotPassword = new Button
             {
                 Text = "Esqueceu a Senha?",
                 Style = (Style)App.Current.Resources["buttonDarkPrimary"]
             };
 
-            mainGrid.Add(button, 0, 4);
+            buttonForgotPassword.Clicked += ButtonForgotPassword_Clicked;
+
+            mainGrid.Add(buttonForgotPassword, 0, 4);
         }
 
         #endregion
 
         #region Events
 
-        private async void ButtonLogin_Clicked(object sender, EventArgs e)
+        private async void ButtonForgotPassword_Clicked(object sender, EventArgs e)
         {
+            await App.Current.MainPage.Navigation.PushAsync(new ResetPasswordView());
+        }
+
+        private async void ButtonLogin_Clicked(object sender, EventArgs e)
+        {            
+            if (string.IsNullOrEmpty(ViewModel.Email) || string.IsNullOrEmpty(ViewModel.Password)) return;
+            
             await ViewModel.Login();
         }
 

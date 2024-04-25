@@ -1,9 +1,6 @@
-﻿using System;
-using System.IO;
-using freight.control.maui.Components.Popups;
+﻿using freight.control.maui.Components.Popups;
 using freight.control.maui.Constants;
 using freight.control.maui.Data;
-using Microsoft.Maui.Controls;
 using SkiaSharp.Extended.UI.Controls;
 
 namespace freight.control.maui;

@@ -51,18 +51,22 @@ namespace freight.control.maui.MVVM.ViewModels
 
         public async Task RegisterNewLogin()
         {
+            IsBusy = true;
+
             try
             {               
                 var authProvider = new FirebaseAuthProvider(new FirebaseConfig(StringConstants.webApiFirebaseAuthKey));
                 var auth = await authProvider.CreateUserWithEmailAndPasswordAsync(Email, Password);
-
-                var tokenResult = auth.FirebaseToken;
 
                 await App.Current.MainPage.DisplayAlert("Sucesso", "Usuário registrado com sucesso!", "Voltar");
             }
             catch (Exception ex)
             {
                 await App.Current.MainPage.DisplayAlert("Ops", ex.Message, "Ok");
+            }
+            finally
+            {
+                IsBusy = false;
             }
         }
     }

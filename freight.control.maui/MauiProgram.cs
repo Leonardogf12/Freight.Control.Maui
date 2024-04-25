@@ -46,7 +46,7 @@ public static class MauiProgram
         builder.Services.AddTransient<FreightViewModel>();
         builder.Services.AddTransient<AddFreightViewModel>();
         builder.Services.AddTransient<DetailFreightViewModel>();
-        builder.Services.AddTransient<ToFuelViewModel>();
+        builder.Services.AddTransient<ToFuelViewModel>();        
 
         builder.Services.AddSingleton<INavigationService, NavigationService>();
         builder.Services.AddSingleton<IFileSaver>(FileSaver.Default);
