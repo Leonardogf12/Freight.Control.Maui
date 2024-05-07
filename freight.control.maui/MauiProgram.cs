@@ -2,14 +2,13 @@
 using CommunityToolkit.Maui.Storage;
 using DevExpress.Maui;
 using DotNet.Meteor.HotReload.Plugin;
-using freight.control.maui.Controls;
+using freight.control.maui.Controls.Excel;
 using freight.control.maui.MVVM.ViewModels;
 using freight.control.maui.MVVM.Views;
 using freight.control.maui.Services;
-using Microsoft.Extensions.DependencyInjection;
+using freight.control.maui.Services.Authentication;
+using freight.control.maui.Services.Navigation;
 using Microsoft.Extensions.Logging;
-using Microsoft.Maui.Controls.Hosting;
-using Microsoft.Maui.Hosting;
 using SkiaSharp.Views.Maui.Controls.Hosting;
 
 namespace freight.control.maui;
@@ -42,16 +41,15 @@ public static class MauiProgram
         builder.Services.AddTransient<ToFuelView>();
         builder.Services.AddTransient<RegisterView>();
 
-
         builder.Services.AddTransient<FreightViewModel>();
         builder.Services.AddTransient<AddFreightViewModel>();
         builder.Services.AddTransient<DetailFreightViewModel>();
-        builder.Services.AddTransient<ToFuelViewModel>();        
+        builder.Services.AddTransient<ToFuelViewModel>();
 
-        builder.Services.AddSingleton<INavigationService, NavigationService>();
         builder.Services.AddSingleton<IFileSaver>(FileSaver.Default);
+        builder.Services.AddSingleton<INavigationService, NavigationService>();       
         builder.Services.AddSingleton<IExportDataToExcel, ExportDataToExcel>();
-
+        builder.Services.AddSingleton<IAuthenticationService, AuthenticationService>();
 
 #if DEBUG
         builder.Logging.AddDebug();

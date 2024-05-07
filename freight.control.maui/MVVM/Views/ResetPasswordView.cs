@@ -15,36 +15,82 @@ namespace freight.control.maui.MVVM.Views
 
 			Content = BuildResetPasswordView();
 
+            CreateLoadingPopupView(this, ViewModel);
+
             BindingContext = ViewModel;
         }
 
-        private View BuildResetPasswordView()
-        {
-            var mainGrid = CreateMainGrid();
-
-            CreateEmailField(mainGrid);      
-            CreateResetButton(mainGrid);
-            CreateBackButton(mainGrid);
-
-            return mainGrid;
-        }
-
-
         #region UI
-
+        
         private Grid CreateMainGrid()
         {
             return new Grid
             {
                 RowDefinitions = new RowDefinitionCollection
                 {
-                    new() {Height = GridLength.Auto},
-                    new() {Height = GridLength.Auto},
-                    new() {Height = GridLength.Auto},           
+                    new() {Height = 200},
+                    new() {Height = GridLength.Star},
                 },
-                RowSpacing = 10,
+            };
+        }
+
+        private View BuildResetPasswordView()
+        {
+            var mainGrid = CreateMainGrid();
+
+            CreatePhrases(mainGrid);
+
+            CreateInputAndButtons(mainGrid);
+
+            return mainGrid;
+        }
+
+        private void CreatePhrases(Grid mainGrid)
+        {
+            var stack = new StackLayout
+            {
+                Spacing = 5,
+                Orientation = StackOrientation.Vertical,
                 VerticalOptions = LayoutOptions.Center
             };
+
+            var title = new Label
+            {
+                Text = "Esqueceu a Senha?",
+                Style = (Style)App.Current.Resources["labelTitleForgotPassword"]
+            };
+
+            var phrase = new Label
+            {
+                Text = "Sem problemas, nós enviaremos um email com as instruções para redefinição.",
+                Style = (Style)App.Current.Resources["labelPhraseForgotPassword"]
+            };
+
+            stack.Children.Add(title);
+            stack.Children.Add(phrase);
+
+            mainGrid.Add(stack, 0, 0);
+        }
+
+        private void CreateInputAndButtons(Grid mainGrid)
+        {
+            var grid = new Grid
+            {
+                RowDefinitions = new RowDefinitionCollection
+                {
+                    new() {Height = GridLength.Auto},
+                    new() {Height = GridLength.Auto},
+                    new() {Height = GridLength.Auto},
+                },
+                RowSpacing = 8,
+                VerticalOptions = LayoutOptions.Start
+            };
+
+            CreateEmailField(grid);
+            CreateResetButton(grid);
+            CreateBackButton(grid);
+
+            mainGrid.Add(grid, 0, 1);
         }       
 
         private void CreateEmailField(Grid mainGrid)
@@ -65,7 +111,7 @@ namespace freight.control.maui.MVVM.Views
             var buttonReset = new Button
             {
                 Text = "Redefinir Senha",
-                Style = (Style)App.Current.Resources["buttonDarkPrimary"]
+                Style = (Style)App.Current.Resources["buttonLoginDarkPrimary"]
             };
 
             buttonReset.Clicked += ButtonReset_Clicked; ;
@@ -78,7 +124,7 @@ namespace freight.control.maui.MVVM.Views
             var buttonBack = new Button
             {
                 Text = "Voltar",
-                Style = (Style)App.Current.Resources["buttonDarkPrimary"],
+                Style = (Style)App.Current.Resources["buttonLoginSecondaryDarkPrimary"],                
             };
 
             buttonBack.Clicked += ButtonBack_Clicked;
@@ -103,6 +149,12 @@ namespace freight.control.maui.MVVM.Views
         private async void ButtonReset_Clicked(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(ViewModel.Email)) return;
+
+            if (!ViewModel.Email.Contains("@"))
+            {
+                await DisplayAlert("Ops", "Parece que este não é um email válido. Favor verificar.", "Ok");
+                return;
+            }
 
             await ViewModel.ResetPassword();
         }

@@ -138,6 +138,15 @@
 	  <None Remove="Resources\Images\liters_24.svg" />
 	  <None Remove="Models\" />
 	  <None Remove="Constants\" />
+	  <None Remove="Resources\Images\settings_24.svg" />
+	  <None Remove="Resources\Images\settings_white_24.svg" />
+	  <None Remove="Resources\Images\logoff_24.svg" />
+	  <None Remove="Resources\Images\login_256.svg" />
+	  <None Remove="Resources\Images\login_gray_256.svg" />
+	  <None Remove="MVVM\Models\IBGE\" />
+	  <None Remove="Services\Authentication\" />
+	  <None Remove="Controls\Excel\" />
+	  <None Remove="Services\Navigation\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="MVVM\" />
@@ -155,6 +164,10 @@
 	  <Folder Include="Components\Popups\" />
 	  <Folder Include="Models\" />
 	  <Folder Include="Constants\" />
+	  <Folder Include="MVVM\Models\IBGE\" />
+	  <Folder Include="Services\Authentication\" />
+	  <Folder Include="Controls\Excel\" />
+	  <Folder Include="Services\Navigation\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Compile Remove="MVVM\HomeView2.cs" />
@@ -207,6 +220,11 @@
 	  <BundleResource Include="Resources\Images\uf_24.svg" />
 	  <BundleResource Include="Resources\Images\combobox_24.svg" />
 	  <BundleResource Include="Resources\Images\liters_24.svg" />
+	  <BundleResource Include="Resources\Images\settings_24.svg" />
+	  <BundleResource Include="Resources\Images\settings_white_24.svg" />
+	  <BundleResource Include="Resources\Images\logoff_24.svg" />
+	  <BundleResource Include="Resources\Images\login_256.svg" />
+	  <BundleResource Include="Resources\Images\login_gray_256.svg" />
 	</ItemGroup>
 	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0-android'">
 	  <PackageReference Include="DevExpress.Maui.Controls" Version="23.1.8" />

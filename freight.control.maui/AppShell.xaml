@@ -7,7 +7,7 @@
     Shell.FlyoutBehavior="Disabled">
 
     <FlyoutItem Route="Login">
-        <ShellContent ContentTemplate="{DataTemplate views:LoginView}"/>
+        <ShellContent ContentTemplate="{DataTemplate views:LoginView}" Route="login"/>
     </FlyoutItem>
 
     <ShellContent

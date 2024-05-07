@@ -3,7 +3,7 @@ using freight.control.maui.Controls.Animations;
 using freight.control.maui.MVVM.Base.Views;
 using freight.control.maui.MVVM.Models;
 using freight.control.maui.MVVM.ViewModels;
-using freight.control.maui.Services;
+using freight.control.maui.Services.Navigation;
 using Microsoft.Maui.Controls.Shapes;
 
 namespace freight.control.maui.MVVM.Views;

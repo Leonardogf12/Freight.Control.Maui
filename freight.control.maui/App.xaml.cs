@@ -1,5 +1,6 @@
 ﻿using freight.control.maui.Components.Popups;
 using freight.control.maui.Constants;
+using freight.control.maui.Controls;
 using freight.control.maui.Data;
 using SkiaSharp.Extended.UI.Controls;
 
@@ -18,13 +19,24 @@ public partial class App : Application
         CheckDevice();
 
         SetDatabasePathDevice();
-
+      
         InitializeComponent();
+       
+        MainPage = new AppShell();
 
-		MainPage = new AppShell();
-	}
+        CheckUserHasLogged();
+    }
 
-	public void CheckDevice()
+    private async void CheckUserHasLogged()
+    {       
+        var value = ControlPreferences.GetKeyOfPreferences(StringConstants.firebaseAuthTokenKey);
+
+        if (string.IsNullOrEmpty(value)) return;
+
+        await Shell.Current.GoToAsync("//home");                         
+    }
+
+    public void CheckDevice()
 	{
         if (Device.RuntimePlatform == Device.iOS)
         {

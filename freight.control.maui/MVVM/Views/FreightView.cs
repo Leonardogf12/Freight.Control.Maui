@@ -1,12 +1,12 @@
-﻿using System.Text;
-using DevExpress.Maui.Controls;
+﻿using DevExpress.Maui.Controls;
 using freight.control.maui.Components;
 using freight.control.maui.Controls.Animations;
+using freight.control.maui.Controls.Excel;
 using freight.control.maui.Models;
 using freight.control.maui.MVVM.Base.Views;
 using freight.control.maui.MVVM.Models;
 using freight.control.maui.MVVM.ViewModels;
-using freight.control.maui.Services;
+using freight.control.maui.Services.Navigation;
 using Microsoft.Maui.Controls.Shapes;
 using Color = Microsoft.Maui.Graphics.Color;
 using Image = Microsoft.Maui.Controls.Image;

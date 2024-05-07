@@ -31,7 +31,6 @@ namespace freight.control.maui.MVVM.Views
                     new() {Height = GridLength.Auto},
                     new() {Height = GridLength.Auto},
                     new() {Height = GridLength.Auto},
-
                 },
                 RowSpacing = 10,
                 VerticalOptions = LayoutOptions.Center
@@ -128,7 +127,7 @@ namespace freight.control.maui.MVVM.Views
 
         private async void ButtonRegister_Clicked(object sender, EventArgs e)
         {
-            await ViewModel.RegisterNewLogin();
+            await ViewModel.RegisterNewUser();
         }
 
 

@@ -1,26 +1,22 @@
-﻿using Firebase.Auth;
-using freight.control.maui.Constants;
-using freight.control.maui.MVVM.Base.ViewModels;
-using Newtonsoft.Json;
+﻿using freight.control.maui.MVVM.Base.ViewModels;
+using freight.control.maui.Services.Authentication;
 
 namespace freight.control.maui.MVVM.ViewModels
 {
     public class LoginViewModel : BaseViewModel
-	{
-
+    {
         #region Properties
 
         private string _email;
-		public string Email
-		{
-			get => _email;
-			set
-			{
-				_email = value;
-				OnPropertyChanged();
-			}
-		}
-
+        public string Email
+        {
+            get => _email;
+            set
+            {
+                _email = value;
+                OnPropertyChanged();
+            }
+        }
 
         private string _password;
         public string Password
@@ -36,7 +32,7 @@ namespace freight.control.maui.MVVM.ViewModels
         #endregion
 
         public LoginViewModel()
-		{           
+        {           
         }
 
         public async Task Login()
@@ -44,30 +40,20 @@ namespace freight.control.maui.MVVM.ViewModels
             IsBusy = true;
 
             try
-            {
-                var authProvider = new FirebaseAuthProvider(new FirebaseConfig(StringConstants.webApiFirebaseAuthKey));
-                var auth = await authProvider.SignInWithEmailAndPasswordAsync(Email, Password);              
-                var content = await auth.GetFreshAuthAsync();
+            {               
+                var instanceAuthenticationLogin = MyInterfaceFactoryAuthenticationService.CreateInstance();
 
-                var serializeContent = JsonConvert.SerializeObject(content);
-
-                Preferences.Set("FirebaseAuthToken", serializeContent);
-
-                await NavigateToHomeView();
+                await instanceAuthenticationLogin.LoginAsync(Email, Password);                
             }
             catch (Exception ex)
             {
-                await App.Current.MainPage.DisplayAlert("Ops", "Email ou senha inválidos. Favor verificar.", "Ok");
+                Console.WriteLine(ex.Message);
+                await App.Current.MainPage.DisplayAlert("Ops", "Ocorreu um erro inesperado. Tente novamente em alguns instantes.", "Ok");
             }
             finally
             {
                 IsBusy = false;
-            }                 
-        }
-
-        private async Task NavigateToHomeView()
-        {      
-            await Shell.Current.GoToAsync("//home");           
+            }
         }
     }
 }

@@ -1,6 +1,5 @@
-﻿using Firebase.Auth;
-using freight.control.maui.Constants;
-using freight.control.maui.MVVM.Base.ViewModels;
+﻿using freight.control.maui.MVVM.Base.ViewModels;
+using freight.control.maui.Services.Authentication;
 
 namespace freight.control.maui.MVVM.ViewModels
 {
@@ -49,20 +48,20 @@ namespace freight.control.maui.MVVM.ViewModels
 		{
 		}
 
-        public async Task RegisterNewLogin()
+        public async Task RegisterNewUser()
         {
             IsBusy = true;
 
             try
-            {               
-                var authProvider = new FirebaseAuthProvider(new FirebaseConfig(StringConstants.webApiFirebaseAuthKey));
-                var auth = await authProvider.CreateUserWithEmailAndPasswordAsync(Email, Password);
+            {
+                var instanceAuthenticationRegisterNewUser = MyInterfaceFactoryAuthenticationService.CreateInstance();
 
-                await App.Current.MainPage.DisplayAlert("Sucesso", "Usuário registrado com sucesso!", "Voltar");
+                await instanceAuthenticationRegisterNewUser.RegisterNewUser(Email, Password);
             }
             catch (Exception ex)
             {
-                await App.Current.MainPage.DisplayAlert("Ops", ex.Message, "Ok");
+                Console.WriteLine(ex.Message);
+                await App.Current.MainPage.DisplayAlert("Ops", "Ocorreu um erro inesperado. Tente novamente em alguns instantes.", "Ok");
             }
             finally
             {

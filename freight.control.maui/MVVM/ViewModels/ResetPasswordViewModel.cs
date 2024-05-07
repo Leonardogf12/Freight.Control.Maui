@@ -1,13 +1,10 @@
-﻿using Firebase.Auth;
-using freight.control.maui.Constants;
-using freight.control.maui.MVVM.Base.ViewModels;
+﻿using freight.control.maui.MVVM.Base.ViewModels;
+using freight.control.maui.Services.Authentication;
 
 namespace freight.control.maui.MVVM.ViewModels
 {
     public class ResetPasswordViewModel : BaseViewModel
-	{
-        #region Properties
-
+	{       
         private string _email;
 		public string Email
 		{
@@ -19,28 +16,26 @@ namespace freight.control.maui.MVVM.ViewModels
 			}
 		}
 
-		#endregion
-
         public ResetPasswordViewModel()
 		{
 		}
 
 		public async Task ResetPassword()
 		{
-			try
-			{
-				IsBusy = true;
+            IsBusy = true;
 
-                var authProvider = new FirebaseAuthProvider(new FirebaseConfig(StringConstants.webApiFirebaseAuthKey));
-                await authProvider.SendPasswordResetEmailAsync(Email);
+            try
+            {               
+                var instanceAuthenticationResetPassword = MyInterfaceFactoryAuthenticationService.CreateInstance();
 
-                await App.Current.MainPage.DisplayAlert("Sucesso", $"Enviamos um email para que possa redefinir sua senha da conta: {Email}.", "Ok");
+                await instanceAuthenticationResetPassword.ResetPassword(Email);
             }
-			catch (Exception ex)
-			{
-                await App.Current.MainPage.DisplayAlert("Ops", "Parece que ocorreu um erro com o email informado. Por favor, tente novamente em alguns minutos.", "Ok");
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                await App.Current.MainPage.DisplayAlert("Ops", "Ocorreu um erro inesperado. Tente novamente em alguns instantes.", "Ok");
             }
-			finally
+            finally
 			{
                 IsBusy = false;
             }   

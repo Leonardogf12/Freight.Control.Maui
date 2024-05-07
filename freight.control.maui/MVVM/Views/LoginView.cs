@@ -1,20 +1,23 @@
 ﻿using freight.control.maui.Components;
 using freight.control.maui.MVVM.Base.Views;
 using freight.control.maui.MVVM.ViewModels;
+using Microsoft.Maui.Controls.Shapes;
 
 namespace freight.control.maui.MVVM.Views
 {
     public class LoginView : BaseContentPage
-	{        
-		public LoginViewModel ViewModel = new();
+	{
+        public LoginViewModel ViewModel = new();
 
         public LoginView()
 		{           
-            BackgroundColor = Colors.White;
+            BackgroundColor = App.GetResource<Color>("PrimaryDark");
 
             Content = BuildLoginView();
 
-			BindingContext = ViewModel;
+            CreateLoadingPopupView(this, ViewModel);
+
+            BindingContext = ViewModel;
         }
 
         #region UI
@@ -25,28 +28,68 @@ namespace freight.control.maui.MVVM.Views
             {
                 RowDefinitions = new RowDefinitionCollection
                 {
-                    new() {Height = GridLength.Auto},
-                    new() {Height = GridLength.Auto},
-                    new() {Height = GridLength.Auto},
-                    new() {Height = GridLength.Auto},
-                    new() {Height = GridLength.Auto},
-                },
-                RowSpacing = 10,
-                VerticalOptions = LayoutOptions.Center
+                    new() {Height = 200},
+                    new() {Height = GridLength.Star},                  
+                },                              
             };
         }
-
+      
         private View BuildLoginView()
         {
             var mainGrid = CreateMainGrid();
 
-            CreateEmailField(mainGrid);
-            CreatePasswordField(mainGrid);
-            CreateLoginButton(mainGrid);
-            CreateRegisterButton(mainGrid);
-            CreateForgetPasswordButton(mainGrid);
+            CreateImageLogin(mainGrid);
 
+            CreateContentOfWhiteFrame(mainGrid);
+           
             return mainGrid;
+        }
+
+        private void CreateContentOfWhiteFrame(Grid mainGrid)
+        {
+            var whiteFrame = new Border
+            {
+                BackgroundColor = Colors.White,                
+                StrokeShape = new RoundRectangle
+                {
+                    CornerRadius = new CornerRadius(20,20,0,0)
+                },
+                StrokeThickness = 0                                
+            };
+
+            var contentGrid = new Grid
+            {
+                RowDefinitions = new RowDefinitionCollection
+                {
+                    new() {Height = GridLength.Auto},
+                    new() {Height = GridLength.Auto},
+                    new() {Height = GridLength.Auto},
+                    new() {Height = GridLength.Auto},         
+                },
+                RowSpacing = 10,
+                VerticalOptions = LayoutOptions.Start,
+                Margin = new Thickness(0,30,0,0)
+            };
+
+            CreateEmailField(contentGrid);
+            CreatePasswordField(contentGrid);
+            CreateLoginButton(contentGrid);
+            CreateForgetPasswordButton(contentGrid);
+
+            whiteFrame.Content = contentGrid;
+
+            mainGrid.Add(whiteFrame,0,1);
+        }
+
+        private void CreateImageLogin(Grid mainGrid)
+        {
+            var iconUser = new Image
+            {
+                Source = ImageSource.FromFile("login_gray_256"),
+                HeightRequest = 100
+            };
+
+            mainGrid.Add(iconUser, 0, 0);
         }
 
         private void CreateEmailField(Grid mainGrid)
@@ -76,7 +119,7 @@ namespace freight.control.maui.MVVM.Views
             var buttonLogin = new Button
             {
                 Text = "Login",
-                Style = (Style)App.Current.Resources["buttonDarkPrimary"]
+                Style = (Style)App.Current.Resources["buttonLoginDarkPrimary"]
             };
 
             buttonLogin.Clicked += ButtonLogin_Clicked;
@@ -94,20 +137,22 @@ namespace freight.control.maui.MVVM.Views
 
             buttonRegister.Clicked += ButtonRegister_Clicked;
 
-            mainGrid.Add(buttonRegister, 0, 3);
+            mainGrid.Add(buttonRegister, 0, 4);
         }
 
         private void CreateForgetPasswordButton(Grid mainGrid)
         {
-            var buttonForgotPassword = new Button
+            var buttonForgotPassword = new Label
             {
                 Text = "Esqueceu a Senha?",
-                Style = (Style)App.Current.Resources["buttonDarkPrimary"]
+                Style = (Style)App.Current.Resources["labelForgotPassword"]
             };
 
-            buttonForgotPassword.Clicked += ButtonForgotPassword_Clicked;
+            var tapGesture = new TapGestureRecognizer();
+            tapGesture.Tapped += ButtonForgotPassword_Clicked;
+            buttonForgotPassword.GestureRecognizers.Add(tapGesture);
 
-            mainGrid.Add(buttonForgotPassword, 0, 4);
+            mainGrid.Add(buttonForgotPassword, 0, 3);
         }
 
         #endregion
@@ -131,7 +176,7 @@ namespace freight.control.maui.MVVM.Views
             await App.Current.MainPage.Navigation.PushAsync(new RegisterView());
         }
 
-        #endregion
+        #endregion       
     }
 }
 
