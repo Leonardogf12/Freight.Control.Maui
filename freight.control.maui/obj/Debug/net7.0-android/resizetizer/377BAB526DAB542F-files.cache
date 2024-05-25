@@ -14,6 +14,7 @@ obj/Debug/net7.0-android/resizetizer/r/drawable-xhdpi/shipment.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-xhdpi/add.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-xhdpi/km_24.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-xhdpi/settings_24.png
+obj/Debug/net7.0-android/resizetizer/r/drawable-xhdpi/user_24.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-xhdpi/money_24.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-xhdpi/dotnet_bot.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-xhdpi/combobox_24.png
@@ -45,6 +46,7 @@ obj/Debug/net7.0-android/resizetizer/r/drawable-xxhdpi/shipment.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-xxhdpi/add.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-xxhdpi/km_24.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-xxhdpi/settings_24.png
+obj/Debug/net7.0-android/resizetizer/r/drawable-xxhdpi/user_24.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-xxhdpi/money_24.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-xxhdpi/dotnet_bot.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-xxhdpi/combobox_24.png
@@ -76,6 +78,7 @@ obj/Debug/net7.0-android/resizetizer/r/drawable-hdpi/shipment.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-hdpi/add.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-hdpi/km_24.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-hdpi/settings_24.png
+obj/Debug/net7.0-android/resizetizer/r/drawable-hdpi/user_24.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-hdpi/money_24.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-hdpi/dotnet_bot.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-hdpi/combobox_24.png
@@ -107,6 +110,7 @@ obj/Debug/net7.0-android/resizetizer/r/drawable-mdpi/shipment.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-mdpi/add.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-mdpi/km_24.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-mdpi/settings_24.png
+obj/Debug/net7.0-android/resizetizer/r/drawable-mdpi/user_24.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-mdpi/money_24.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-mdpi/dotnet_bot.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-mdpi/combobox_24.png
@@ -141,6 +145,7 @@ obj/Debug/net7.0-android/resizetizer/r/drawable-xxxhdpi/shipment.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-xxxhdpi/add.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-xxxhdpi/km_24.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-xxxhdpi/settings_24.png
+obj/Debug/net7.0-android/resizetizer/r/drawable-xxxhdpi/user_24.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-xxxhdpi/money_24.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-xxxhdpi/dotnet_bot.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-xxxhdpi/combobox_24.png

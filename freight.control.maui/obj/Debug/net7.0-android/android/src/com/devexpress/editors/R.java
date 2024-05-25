@@ -840,7 +840,7 @@ public final class R {
 		public static final int test_level_drawable = 0x7f070126;
 		public static final int tooltip_frame_dark = 0x7f070127;
 		public static final int tooltip_frame_light = 0x7f070128;
-		public static final int watermark = 0x7f07012c;
+		public static final int watermark = 0x7f07012d;
 	}
 	public static final class id {
 		public static final int accessibility_action_clickable_span = 0x7f08000f;

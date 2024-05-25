@@ -14,6 +14,8 @@ public partial class App : Application
 
     public static PopupLoadingView PopupLoading = new();
 
+    public static string UserLocalIdLogged = string.Empty;
+
     public App()
 	{
         CheckDevice();
@@ -33,7 +35,14 @@ public partial class App : Application
 
         if (string.IsNullOrEmpty(value)) return;
 
+        SetLocalIdByUserLogged();
+       
         await Shell.Current.GoToAsync("//home");                         
+    }
+
+    public static void SetLocalIdByUserLogged()
+    {
+        UserLocalIdLogged = ControlPreferences.GetKeyOfPreferences(StringConstants.firebaseUserLocalIdKey);      
     }
 
     public void CheckDevice()

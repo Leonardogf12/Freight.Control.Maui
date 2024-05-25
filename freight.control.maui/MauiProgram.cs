@@ -40,11 +40,13 @@ public static class MauiProgram
         builder.Services.AddTransient<DetailFreightView>();
         builder.Services.AddTransient<ToFuelView>();
         builder.Services.AddTransient<RegisterView>();
+        builder.Services.AddTransient<EditUserView>();
 
         builder.Services.AddTransient<FreightViewModel>();
         builder.Services.AddTransient<AddFreightViewModel>();
         builder.Services.AddTransient<DetailFreightViewModel>();
         builder.Services.AddTransient<ToFuelViewModel>();
+        builder.Services.AddTransient<HomeViewModel>();
 
         builder.Services.AddSingleton<IFileSaver>(FileSaver.Default);
         builder.Services.AddSingleton<INavigationService, NavigationService>();       

@@ -7,6 +7,8 @@ public class FreightModel
     [PrimaryKey, AutoIncrement]
     public int Id { get; set; }
 
+    public string UserLocalId { get; set; }
+
     public DateTime TravelDate { get; set; }
 
 	public string OriginUf { get; set; }

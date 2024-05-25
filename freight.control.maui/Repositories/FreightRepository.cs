@@ -20,8 +20,14 @@ public class FreightRepository : GenericRepository<FreightModel>
     public async Task<List<FreightModel>> GetByDateInitialAndFinal(DateTime initial, DateTime final)
     {
         var res = await _db.Table<FreightModel>().Where(x => x.TravelDate >= initial.Date &&
-                                                        x.TravelDate <= final.Date).ToListAsync();
+                                                        x.TravelDate <= final.Date &&
+                                                        x.UserLocalId == App.UserLocalIdLogged).ToListAsync();
 
         return res;
+    }
+
+    public async Task<List<FreightModel>> GetByUserLocalId(string id)
+    {
+        return await _db.Table<FreightModel>().Where(x => x.UserLocalId == id).ToListAsync();
     }
 }

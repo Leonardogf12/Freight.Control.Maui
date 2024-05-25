@@ -334,6 +334,7 @@ public class AddFreightViewModel : BaseViewModel
             var item = new FreightModel
             {
                 Id = SelectedFreightToEdit.Id,
+                UserLocalId = SelectedFreightToEdit.UserLocalId,
                 TravelDate = TravelDate.Date,
                 OriginUf = SelectedItemOriginUf,
                 Origin = SelectedItemOrigin,
@@ -407,8 +408,9 @@ public class AddFreightViewModel : BaseViewModel
 
     private async Task<FreightModel> CreateObjectFreightModelToSave()
     {
-        var model  = new FreightModel()
+        var model = new FreightModel()
         {
+            UserLocalId = App.UserLocalIdLogged,
             TravelDate = TravelDate.Date,
             OriginUf = SelectedItemOriginUf,
             Origin = SelectedItemOrigin,

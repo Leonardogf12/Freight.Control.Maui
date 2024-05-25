@@ -147,6 +147,7 @@
 	  <None Remove="Services\Authentication\" />
 	  <None Remove="Controls\Excel\" />
 	  <None Remove="Services\Navigation\" />
+	  <None Remove="Resources\Images\user_24.svg" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="MVVM\" />
@@ -225,6 +226,7 @@
 	  <BundleResource Include="Resources\Images\logoff_24.svg" />
 	  <BundleResource Include="Resources\Images\login_256.svg" />
 	  <BundleResource Include="Resources\Images\login_gray_256.svg" />
+	  <BundleResource Include="Resources\Images\user_24.svg" />
 	</ItemGroup>
 	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0-android'">
 	  <PackageReference Include="DevExpress.Maui.Controls" Version="23.1.8" />

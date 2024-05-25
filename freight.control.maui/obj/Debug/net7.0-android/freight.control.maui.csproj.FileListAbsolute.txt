@@ -2538,3 +2538,8 @@
 /Users/leonardofazolo/Projects/GITHUB/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-android/resizetizer/r/drawable-xhdpi/login_gray_256.png
 /Users/leonardofazolo/Projects/GITHUB/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-android/resizetizer/r/drawable-xxhdpi/login_gray_256.png
 /Users/leonardofazolo/Projects/GITHUB/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-android/resizetizer/r/drawable-xxxhdpi/login_gray_256.png
+/Users/leonardofazolo/Projects/GITHUB/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-android/resizetizer/r/drawable-hdpi/user_24.png
+/Users/leonardofazolo/Projects/GITHUB/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-android/resizetizer/r/drawable-mdpi/user_24.png
+/Users/leonardofazolo/Projects/GITHUB/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-android/resizetizer/r/drawable-xhdpi/user_24.png
+/Users/leonardofazolo/Projects/GITHUB/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-android/resizetizer/r/drawable-xxhdpi/user_24.png
+/Users/leonardofazolo/Projects/GITHUB/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-android/resizetizer/r/drawable-xxxhdpi/user_24.png

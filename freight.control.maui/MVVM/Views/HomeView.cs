@@ -3,6 +3,7 @@ using freight.control.maui.Constants;
 using freight.control.maui.Controls;
 using freight.control.maui.Controls.Animations;
 using freight.control.maui.MVVM.Base.Views;
+using freight.control.maui.MVVM.ViewModels;
 using Microsoft.Maui.Controls.Shapes;
 
 namespace freight.control.maui.MVVM.Views;
@@ -10,6 +11,8 @@ namespace freight.control.maui.MVVM.Views;
 public class HomeView : BaseContentPage
 {
     #region Properties
+
+    public HomeViewModel ViewModel = new();
 
     ClickAnimation ClickAnimation = new();
 
@@ -21,9 +24,10 @@ public class HomeView : BaseContentPage
 
     public HomeView()
     {
-        BackgroundColor = App.GetResource<Color>("PrimaryDark");
-        
+        BackgroundColor = App.GetResource<Color>("PrimaryDark");        
         Content = BuildHomeView();
+
+        BindingContext = ViewModel;
     }
 
     #region UI
@@ -121,19 +125,68 @@ public class HomeView : BaseContentPage
 
     private View CreateContentDxPopupSettings()
     {
+        var items = new StackLayout
+        {
+            WidthRequest = 130,
+            HeightRequest = 100,
+            Orientation = StackOrientation.Vertical,
+            Spacing = 5
+        };
+
+        CreateUserButton(items);
+
+        CreateLogoffButton(items);               
+
+        return items;
+    }
+
+    private void CreateUserButton(StackLayout items)
+    {
         var content = new StackLayout
         {
-            WidthRequest = 100,
-            HeightRequest = 75,
-            Spacing = 5,
-            Orientation = StackOrientation.Horizontal,           
-            Margin = new Thickness(10,10,0,0),           
+            Spacing = 10,
+            Orientation = StackOrientation.Horizontal,
+            Margin = new Thickness(10, 10, 0, 0),
         };
 
         var icon = new Image
         {
             VerticalOptions = LayoutOptions.Start,
-            Source = ImageSource.FromFile("logoff_24"),           
+            Source = ImageSource.FromFile("user_24"),
+            HeightRequest = 20
+        };
+
+        var tapGestureRecognizer = new TapGestureRecognizer();
+        tapGestureRecognizer.Tapped += TapGestureRecognizer_Tapped_UserLogged;
+        content.GestureRecognizers.Add(tapGestureRecognizer);
+
+        var text = new Label
+        {
+            VerticalOptions = LayoutOptions.Start,
+            TextColor = App.GetResource<Color>("PrimaryDark"),
+            FontFamily = "MontserratSemibold",
+            FontSize = 16,            
+        };
+        text.SetBinding(Label.TextProperty, nameof(ViewModel.NameUserLogged));
+
+        content.Children.Add(icon);
+        content.Children.Add(text);
+        items.Children.Add(content);
+    }
+    
+    private void CreateLogoffButton(StackLayout items)
+    {
+        var content = new StackLayout
+        {
+            Spacing = 10,
+            Orientation = StackOrientation.Horizontal,
+            Margin = new Thickness(10, 10, 0, 0),
+        };
+
+        var icon = new Image
+        {
+            VerticalOptions = LayoutOptions.Start,
+            Source = ImageSource.FromFile("logoff_24"),
             HeightRequest = 20
         };
 
@@ -152,10 +205,9 @@ public class HomeView : BaseContentPage
 
         content.Children.Add(icon);
         content.Children.Add(text);
-
-        return content;
+        items.Children.Add(content);
     }
-    
+
     #endregion
 
     #region Events
@@ -195,11 +247,35 @@ public class HomeView : BaseContentPage
             if (!result) return;
 
             ControlPreferences.RemoveKeyFromPreferences(StringConstants.firebaseAuthTokenKey);
+            ControlPreferences.RemoveKeyFromPreferences(StringConstants.firebaseUserLocalIdKey);
 
             await Shell.Current.GoToAsync("//login");
         }
     }
 
+    private async void TapGestureRecognizer_Tapped_UserLogged(object sender, TappedEventArgs e)
+    {
+        if (sender is StackLayout element)
+        {
+            await ClickAnimation.SetFadeOnElement(element);
+
+            SettingsDxPopup.IsOpen = false;
+
+            await Shell.Current.GoToAsync("/EditUserView");
+        }
+    }
+
+
     #endregion
 
+    #region Actions
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+
+        ViewModel.LoadInfoByUserLogged();
+    }
+
+    #endregion
 }

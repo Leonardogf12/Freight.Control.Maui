@@ -15,8 +15,8 @@ public class AddFreightView : BaseContentPage
     public ClickAnimation ClickAnimation = new();
 
     public ComboboxEditCustom OriginUfComboboxEditCustom;
-    public ComboboxEditCustom DestinationUfComboboxEditCustom;
 
+    public ComboboxEditCustom DestinationUfComboboxEditCustom;
 
     public AddFreightView()
 	{
@@ -32,16 +32,16 @@ public class AddFreightView : BaseContentPage
     #region UI
 
     private View BuildAddFreightView()
-    {
+    {       
         var mainGrid = CreateMainGrid();
 
-        CreateStackTitle(mainGrid);
+        CreateHeader(mainGrid);
 
         CreateForm(mainGrid);
 
-        CreateButtonSave(mainGrid);
+        CreateSaveButton(mainGrid);     
 
-        return mainGrid;
+        return mainGrid;       
     }
 
     private Grid CreateMainGrid()
@@ -52,12 +52,12 @@ public class AddFreightView : BaseContentPage
             {
                 new () {Height = 100},
                 new () {Height = GridLength.Star},
-                new () {Height = 50},
+                new () {Height = 50},               
             }
         };
     }
 
-    private void CreateStackTitle(Grid mainGrid)
+    private void CreateHeader(Grid mainGrid)
     {
         var stackTitle = new StackLayout
         {
@@ -110,6 +110,12 @@ public class AddFreightView : BaseContentPage
 
     private void CreateForm(Grid mainGrid)
     {
+        var scroll = new ScrollView
+        {
+            Orientation = ScrollOrientation.Vertical,
+            VerticalScrollBarVisibility = ScrollBarVisibility.Always
+        };
+
         var borderForm = new Border
         {
             Stroke = Colors.LightGray,
@@ -130,7 +136,7 @@ public class AddFreightView : BaseContentPage
                 new () {Height = GridLength.Auto},
                 new () {Height = GridLength.Auto},
                 new () {Height = GridLength.Auto},
-                new () {Height = GridLength.Auto},
+                new () {Height = GridLength.Auto},           
             },
             ColumnDefinitions = new ColumnDefinitionCollection
             {
@@ -152,10 +158,12 @@ public class AddFreightView : BaseContentPage
         CreateFreightValueFieldForm(contentGridBorderForm);
 
         CreateObservationFieldCustom(contentGridBorderForm);
-    
+        
         borderForm.Content = contentGridBorderForm;
 
-        mainGrid.Add(borderForm, 0, 1);
+        scroll.Content = borderForm;
+
+        mainGrid.Add(scroll, 0, 1);
     }
    
     private void CreateTravelDateFieldForm(Grid contentGridBorderForm)
@@ -319,10 +327,10 @@ public class AddFreightView : BaseContentPage
         var observation = new MultilineEditCustom(icon: "comment_24", placeholder: "Observacão");
         observation.SetBinding(TextEditBase.TextProperty, nameof(ViewModel.Observation));
         contentGridBorderForm.SetColumnSpan(observation, 4);
-        contentGridBorderForm.Add(observation, 0, 5);
+        contentGridBorderForm.Add(observation, 0, 4);
     }
-
-    private void CreateButtonSave(Grid mainGrid)
+  
+    private void CreateSaveButton(Grid mainGrid)
     {
         var button = new Button
         {
@@ -334,7 +342,7 @@ public class AddFreightView : BaseContentPage
 
         mainGrid.Add(button, 0, 2);
     }
-
+    
     #endregion
 
     #region Events

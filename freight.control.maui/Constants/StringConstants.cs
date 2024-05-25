@@ -13,6 +13,9 @@ namespace freight.control.maui.Constants
         public const string webApiFirebaseAuthKey = "AIzaSyCCPH8VnM3b4Tu_8KBVE7rAPHHafhD33k0";
         public const string authDomainFirebaseAddress = "com.companyname.freight.control.maui";
         public const string firebaseAuthTokenKey = "FirebaseAuthToken";
+        public const string firebaseUserLocalIdKey = "firebaseUserLocalId";
+        public const string Usuario = "Usuário";
+        public const string IsBusy = "IsBusy";
     }
 }
 

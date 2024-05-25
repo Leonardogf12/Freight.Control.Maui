@@ -8,7 +8,6 @@ namespace freight.control.maui.MVVM.Views
 	{
         public ResetPasswordViewModel ViewModel = new();
 
-
         public ResetPasswordView()
 		{
 			BackgroundColor = Colors.White;

@@ -31,6 +31,7 @@ namespace freight.control.maui.MVVM.Views
                     new() {Height = GridLength.Auto},
                     new() {Height = GridLength.Auto},
                     new() {Height = GridLength.Auto},
+                    new() {Height = GridLength.Auto},
                 },
                 RowSpacing = 10,
                 VerticalOptions = LayoutOptions.Center
@@ -41,6 +42,7 @@ namespace freight.control.maui.MVVM.Views
         {
             var mainGrid = CreateMainGrid();
 
+            CreateNameField(mainGrid);
             CreateEmailField(mainGrid);
             CreatePasswordField(mainGrid);
             CreateSecondPasswordField(mainGrid);
@@ -50,6 +52,19 @@ namespace freight.control.maui.MVVM.Views
             return mainGrid;
         }
       
+        private void CreateNameField(Grid mainGrid)
+        {
+            var name = new TextEditCustom(icon: "", placeholder: "Nome", keyboard: Keyboard.Email)
+            {
+                Margin = new Thickness(10, 0, 10, 0)
+            };
+            name.SetBinding(TextEditBase.TextProperty, nameof(ViewModel.Name));
+
+            name.TextChanged += Name_TextChanged;
+
+            mainGrid.Add(name, 0, 0);
+        }
+
         private void CreateEmailField(Grid mainGrid)
         {
             var email = new TextEditCustom(icon: "", placeholder: "Email", keyboard: Keyboard.Email)
@@ -60,9 +75,9 @@ namespace freight.control.maui.MVVM.Views
 
             email.TextChanged += Email_TextChanged;
 
-            mainGrid.Add(email, 0, 0);
+            mainGrid.Add(email, 0, 1);
         }
-      
+
         private void CreatePasswordField(Grid mainGrid)
         {
             var password = new PasswordEditCustom(icon: "", placeholder: "Senha")
@@ -71,7 +86,7 @@ namespace freight.control.maui.MVVM.Views
             };
             password.SetBinding(TextEditBase.TextProperty, nameof(ViewModel.Password));
 
-            mainGrid.Add(password, 0, 1);
+            mainGrid.Add(password, 0, 2);
         }
 
         private void CreateSecondPasswordField(Grid mainGrid)
@@ -82,7 +97,7 @@ namespace freight.control.maui.MVVM.Views
             };
             secondPassword.SetBinding(TextEditBase.TextProperty, nameof(ViewModel.SecondPassword));
 
-            mainGrid.Add(secondPassword, 0, 2);
+            mainGrid.Add(secondPassword, 0, 3);
         }
 
         private void CreateRegisterButton(Grid mainGrid)
@@ -95,7 +110,7 @@ namespace freight.control.maui.MVVM.Views
 
             buttonRegister.Clicked += ButtonRegister_Clicked;
 
-            mainGrid.Add(buttonRegister, 0, 3);
+            mainGrid.Add(buttonRegister, 0, 4);
         }
      
         private void CreateBackButton(Grid mainGrid)
@@ -108,16 +123,16 @@ namespace freight.control.maui.MVVM.Views
 
             buttonBack.Clicked += ButtonBack_Clicked;
 
-            mainGrid.Add(buttonBack, 0, 4);
+            mainGrid.Add(buttonBack, 0, 5);
         }
 
         #endregion
 
         #region Events
-
-        private async void ButtonBack_Clicked(object sender, EventArgs e)
+       
+        private void Name_TextChanged(object sender, EventArgs e)
         {
-            await App.Current.MainPage.Navigation.PopAsync();
+            //throw new NotImplementedException();
         }
 
         private void Email_TextChanged(object sender, EventArgs e)
@@ -130,6 +145,10 @@ namespace freight.control.maui.MVVM.Views
             await ViewModel.RegisterNewUser();
         }
 
+        private async void ButtonBack_Clicked(object sender, EventArgs e)
+        {
+            await App.Current.MainPage.Navigation.PopAsync();
+        }
 
         #endregion
     }

@@ -7,7 +7,7 @@ namespace freight.control.maui.Services
 
 		Task ResetPassword(string email);
 
-		Task RegisterNewUser(string email, string password);
+		Task RegisterNewUser(string name, string email, string password);
     }
 }
 

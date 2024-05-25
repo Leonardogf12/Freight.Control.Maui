@@ -11089,7 +11089,8 @@ public final class R {
     public static final int trash=0x7f070129;
     public static final int truck=0x7f07012a;
     public static final int uf_24=0x7f07012b;
-    public static final int watermark=0x7f07012c;
+    public static final int user_24=0x7f07012c;
+    public static final int watermark=0x7f07012d;
   }
   public static final class id {
     public static final int ALT=0x7f080000;

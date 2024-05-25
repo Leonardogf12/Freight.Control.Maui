@@ -118,15 +118,12 @@ public class FreightViewModel : BaseViewModel
             OnPropertyChanged();
         }
     }
-
-    //BottomSheetFilterState
-
+   
     public ICommand RefreshingCommand;
     public ICommand NewFreightCommand;
     public ICommand FilterFreightCommand;
     public ICommand ExportFreightCommand;
     public ICommand DeleteAllFreightCommand;
-
 
     #endregion
 
@@ -230,8 +227,8 @@ public class FreightViewModel : BaseViewModel
     {
         FreightCollection.Clear();
 
-        var list = await _freightRepository.GetAllAsync();
-
+        var list = await _freightRepository.GetByUserLocalId(App.UserLocalIdLogged);
+        
         FreightCollection = new ObservableCollection<FreightModel>(list.OrderByDescending(x=>x.TravelDate));
 
         CheckIfThereAreFreightItemsInCollection();

@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using CommunityToolkit.Maui.Views;
+using freight.control.maui.Constants;
 using freight.control.maui.MVVM.Base.ViewModels;
 
 namespace freight.control.maui.MVVM.Base.Views;
@@ -10,7 +11,7 @@ public class BaseContentPage : ContentPage
 	{
         Shell.SetNavBarIsVisible(this, false);
 		
-        Content = new ScrollView
+        Content = new Grid
 		{			
 		};
 	}
@@ -21,7 +22,7 @@ public class BaseContentPage : ContentPage
         {
             var vm = s as BaseViewModel;
             
-            if (a.PropertyName == "IsBusy")
+            if (a.PropertyName == StringConstants.IsBusy)
             {
                 MainThread.BeginInvokeOnMainThread(async () => {
                    
@@ -46,5 +47,4 @@ public class BaseContentPage : ContentPage
             }
         };       
     }
-
 }

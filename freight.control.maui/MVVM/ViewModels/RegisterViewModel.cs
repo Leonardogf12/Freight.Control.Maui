@@ -6,7 +6,19 @@ namespace freight.control.maui.MVVM.ViewModels
     public class RegisterViewModel : BaseViewModel
 	{
         #region Properties
-        
+
+        private string _name;
+        public string Name
+        {
+            get => _name;
+            set
+            {
+                _name = value;
+                OnPropertyChanged();
+            }
+        }
+
+
         private string _email;
         public string Email
         {
@@ -56,7 +68,7 @@ namespace freight.control.maui.MVVM.ViewModels
             {
                 var instanceAuthenticationRegisterNewUser = MyInterfaceFactoryAuthenticationService.CreateInstance();
 
-                await instanceAuthenticationRegisterNewUser.RegisterNewUser(Email, Password);
+                await instanceAuthenticationRegisterNewUser.RegisterNewUser(Name, Email, Password);
             }
             catch (Exception ex)
             {

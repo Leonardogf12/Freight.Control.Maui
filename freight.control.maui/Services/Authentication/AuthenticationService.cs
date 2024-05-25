@@ -24,10 +24,10 @@ namespace freight.control.maui.Services.Authentication
                 var auth = await authProvider.SignInWithEmailAndPasswordAsync(email, password);
                 var content = await auth.GetFreshAuthAsync();
 
-                ControlPreferences.AddKeyOnPreferences(key: StringConstants.firebaseAuthTokenKey, contentOfObject: content);
+                SaveKeysOnPreferences(content);
+                App.SetLocalIdByUserLogged();
 
                 await Shell.Current.GoToAsync("//home");
-
             }
             catch (FirebaseAuthException f)
             {
@@ -41,7 +41,13 @@ namespace freight.control.maui.Services.Authentication
                 Console.WriteLine(e.StackTrace.ToString());
                 await App.Current.MainPage.DisplayAlert("Ops", "Ocorreu um erro inesperado ao tentar realizar login. Tente novamente em alguns instantes.", "Ok");
             }            
-        }        
+        }
+
+        private void SaveKeysOnPreferences(FirebaseAuthLink content)
+        {
+            ControlPreferences.AddKeyOnPreferences(key: StringConstants.firebaseAuthTokenKey, contentOfObject: content);
+            ControlPreferences.AddKeyOnPreferences(key: StringConstants.firebaseUserLocalIdKey, contentOfObject: content.User.LocalId);
+        }
 
         public async Task ResetPassword(string email)
         {
@@ -65,13 +71,16 @@ namespace freight.control.maui.Services.Authentication
             }
         }
 
-        public async Task RegisterNewUser(string email, string password)
+        public async Task RegisterNewUser(string name, string email, string password)
         {           
             try
             {
                 var authProvider = GetFirebaseAuthProvider();
+                
                 var auth = await authProvider.CreateUserWithEmailAndPasswordAsync(email, password);
 
+                await auth.UpdateProfileAsync(name, string.Empty);
+                
                 await App.Current.MainPage.DisplayAlert("Sucesso", "Usuário registrado com sucesso!", "Voltar");
             }
             catch (Exception e)
