@@ -1,9 +1,5 @@
-﻿using System;
-using DevExpress.Maui.Controls;
-using Microsoft.Maui;
-using Microsoft.Maui.Controls;
+﻿using DevExpress.Maui.Controls;
 using Microsoft.Maui.Controls.Shapes;
-using Microsoft.Maui.Graphics;
 
 namespace freight.control.maui.Components;
 

@@ -9,6 +9,8 @@ public class HomeViewModel : BaseViewModel
 {
     private readonly UserRepository _userRepository;
 
+    private readonly FreightRepository _freightRepository;
+
     private UserModel _userLogged;
 	public UserModel UserLogged
 	{
@@ -34,6 +36,7 @@ public class HomeViewModel : BaseViewModel
     public HomeViewModel()
 	{
         _userRepository = new();
+        _freightRepository = new();
     }
 
     public async void LoadInfoByUserLogged()
@@ -48,5 +51,13 @@ public class HomeViewModel : BaseViewModel
         {
             NameUserLogged = StringConstants.Usuario;
         }
+    }
+
+    public async Task<int> CheckIfExistRecordsToNavigate()
+    {
+        var result = await _freightRepository.GetByDateInitialAndFinal(initial: new DateTime(DateTime.Now.Year, 01, 01),
+                                                                        final: new DateTime(DateTime.Now.Year, 12, 31));
+
+        return result.Count();
     }
 }

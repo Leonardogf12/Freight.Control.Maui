@@ -37,7 +37,7 @@ public partial class App : Application
 
         SetLocalIdByUserLogged();
        
-        await Shell.Current.GoToAsync("//home");                         
+        await Shell.Current.GoToAsync("//home");                                 
     }
 
     public static void SetLocalIdByUserLogged()

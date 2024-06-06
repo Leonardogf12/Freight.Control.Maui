@@ -73,6 +73,7 @@
 		<PackageReference Include="FirebaseDatabase.net" Version="4.2.0" />
 		<PackageReference Include="FirebaseAdmin" Version="2.4.1" />
 		<PackageReference Include="FirebaseAuthentication.net" Version="3.7.2" />
+		<PackageReference Include="Microcharts.Maui" Version="0.9.5.9" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -148,6 +149,12 @@
 	  <None Remove="Controls\Excel\" />
 	  <None Remove="Services\Navigation\" />
 	  <None Remove="Resources\Images\user_24.svg" />
+	  <None Remove="Components\UI\" />
+	  <None Remove="Resources\Images\charts_256.svg" />
+	  <None Remove="Resources\AppIcon\appiconfig.svg" />
+	  <None Remove="Models\Chart\" />
+	  <None Remove="Components\Chart\" />
+	  <None Remove="Services\Chart\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="MVVM\" />
@@ -169,6 +176,10 @@
 	  <Folder Include="Services\Authentication\" />
 	  <Folder Include="Controls\Excel\" />
 	  <Folder Include="Services\Navigation\" />
+	  <Folder Include="Components\UI\" />
+	  <Folder Include="Models\Chart\" />
+	  <Folder Include="Components\Chart\" />
+	  <Folder Include="Services\Chart\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Compile Remove="MVVM\HomeView2.cs" />
@@ -227,13 +238,18 @@
 	  <BundleResource Include="Resources\Images\login_256.svg" />
 	  <BundleResource Include="Resources\Images\login_gray_256.svg" />
 	  <BundleResource Include="Resources\Images\user_24.svg" />
+	  <BundleResource Include="Resources\Images\charts_256.svg" />
+	  <BundleResource Include="Resources\AppIcon\appiconfig.svg" />
 	</ItemGroup>
+
 	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0-android'">
 	  <PackageReference Include="DevExpress.Maui.Controls" Version="23.1.8" />
 	  <PackageReference Include="DevExpress.Maui.Editors" Version="23.1.8" />
+	  <PackageReference Include="DevExpress.Maui.Charts" Version="23.1.8" />
 	</ItemGroup>
 	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0-ios'">
 	  <PackageReference Include="DevExpress.Maui.Controls" Version="23.1.8" />
 	  <PackageReference Include="DevExpress.Maui.Editors" Version="23.1.8" />
+	  <PackageReference Include="DevExpress.Maui.Charts" Version="23.1.8" />
 	</ItemGroup>
 </Project>

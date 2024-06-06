@@ -1,10 +1,10 @@
 ﻿using DevExpress.Maui.Controls;
+using freight.control.maui.Components.UI;
 using freight.control.maui.Constants;
 using freight.control.maui.Controls;
 using freight.control.maui.Controls.Animations;
 using freight.control.maui.MVVM.Base.Views;
 using freight.control.maui.MVVM.ViewModels;
-using Microsoft.Maui.Controls.Shapes;
 
 namespace freight.control.maui.MVVM.Views;
 
@@ -39,12 +39,16 @@ public class HomeView : BaseContentPage
         CreateSettingsButton(mainGrid);
 
         CreateDxPopupSettings(mainGrid);
+
+        CreateButtonsHomeMenu(mainGrid);
        
-        CreateFreightButton(mainGrid);
+        //CreateFreightButton(mainGrid);
+
+        //CreateChartsButton(mainGrid);
 
         return mainGrid;  
     }
-
+    
     private Grid CreateMainGrid()
     {
         return new Grid
@@ -52,48 +56,45 @@ public class HomeView : BaseContentPage
             RowDefinitions = new RowDefinitionCollection
             {
                 new () {Height = 50},
-                new () {Height = GridLength.Star},
+                new () {Height = GridLength.Star},                
             },
             RowSpacing = 5,
             Margin = 20
         };
     }
 
-    private void CreateFreightButton(Grid mainGrid)
+    private void CreateButtonsHomeMenu(Grid mainGrid)
     {
         var stack = new StackLayout
         {
-            VerticalOptions = LayoutOptions.Center
+            VerticalOptions = LayoutOptions.Center,
+            Orientation = StackOrientation.Vertical,
+            Spacing = 30
         };
 
-        var border = new Border
-        {
-            HeightRequest = 150,
-            WidthRequest = 150,
-            BackgroundColor = App.GetResource<Color>("SecondaryGreen"),
-            StrokeThickness = 0,
-            StrokeShape = new RoundRectangle
-            {
-                CornerRadius = 20,
-            }
-        };
+        var freightButton = new ButtonHomeMenu(iconName: "truck", eventTap: TapGestureRecognizer_Tapped_GoToFreightView);
+        stack.Children.Add(freightButton);
 
-        var tapGestureRecognizer = new TapGestureRecognizer();
-        tapGestureRecognizer.Tapped += TapGestureRecognizer_Tapped_GoToFreightView;
-        border.GestureRecognizers.Add(tapGestureRecognizer);
-
-        var imagemButton = new Image
-        {
-            Source = ImageSource.FromFile("truck"),
-            HeightRequest = 80
-        };
-
-        border.Content = imagemButton;
-        stack.Children.Add(border);
+        var chartsButton = new ButtonHomeMenu(iconName: "charts_256", eventTap: TapGestureRecognizer_Tapped_GoToChartsView);
+        stack.Children.Add(chartsButton);
 
         mainGrid.Add(stack, 0, 1);
     }
-       
+
+    private void CreateFreightButton(Grid mainGrid)
+    {
+        var element = new ButtonHomeMenu(iconName: "truck", TapGestureRecognizer_Tapped_GoToFreightView);
+
+        mainGrid.Add(element, 0, 1);
+    }
+
+    private void CreateChartsButton(Grid mainGrid)
+    {
+        var element = new ButtonHomeMenu(iconName: "charts_256", TapGestureRecognizer_Tapped_GoToChartsView);
+
+        mainGrid.Add(element, 0, 1);
+    }
+      
     private void CreateSettingsButton(Grid mainGrid)
     {     
         var icon = new Image
@@ -231,6 +232,24 @@ public class HomeView : BaseContentPage
             await ClickAnimation.SetFadeOnElement(element);
 
             await Shell.Current.GoToAsync("FreightView");
+        }
+    }
+
+    private async void TapGestureRecognizer_Tapped_GoToChartsView(object sender, TappedEventArgs e)
+    {
+        if (sender is Border element)
+        {
+            await ClickAnimation.SetFadeOnElement(element);
+
+           var result = await ViewModel.CheckIfExistRecordsToNavigate();
+
+            if (result == 0)
+            {
+                await App.Current.MainPage.DisplayAlert("Ops", "Nenhum registro encontrado.", "Ok");
+                return;
+            }
+
+            await Shell.Current.GoToAsync("ChartsView");
         }
     }
 

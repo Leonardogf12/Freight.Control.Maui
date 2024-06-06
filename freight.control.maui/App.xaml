@@ -14,6 +14,9 @@
             <Color x:Key="ColorOfIcons">#6A7777</Color>
             <Color x:Key="BorderGray400">#919191</Color>
             <Color x:Key="ColorForgotPassword">#1353B2</Color>
+            <Color x:Key="ColorFilterButtonSelected">#08CF96</Color>
+
+            
 
             
           
@@ -23,6 +26,26 @@
                 <Setter Property="HeightRequest" Value="30" />
                 <Setter Property="CornerRadius" Value="15" />
                 <Setter Property="BackgroundColor" Value="{StaticResource PrimaryDarkLight}" />
+                <Setter Property="FontFamily" Value="MontserratSemiBold" />  
+                <Setter Property="TextColor" Value="White" />
+            </Style>
+
+             <Style x:Key="buttonDarkLightFilterPrimary" TargetType="Button">
+                <Setter Property="Padding" Value="1" />
+                <Setter Property="HeightRequest" Value="60" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="CornerRadius" Value="0" />
+                <Setter Property="BackgroundColor" Value="{StaticResource PrimaryDarkLight}" />
+                <Setter Property="FontFamily" Value="MontserratSemiBold" />  
+                <Setter Property="TextColor" Value="White" />
+            </Style>
+
+             <Style x:Key="buttonDarkLightFilterSecondary" TargetType="Button">
+                <Setter Property="Padding" Value="1" />
+                <Setter Property="HeightRequest" Value="60" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="CornerRadius" Value="0" />
+                <Setter Property="BackgroundColor" Value="{StaticResource ColorFilterButtonSelected}" />
                 <Setter Property="FontFamily" Value="MontserratSemiBold" />  
                 <Setter Property="TextColor" Value="White" />
             </Style>

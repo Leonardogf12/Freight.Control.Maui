@@ -14,6 +14,7 @@
   <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
   <permission android:name="com.companyname.freight.control.maui.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" android:protectionLevel="signature" />
   <uses-permission android:name="com.companyname.freight.control.maui.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+  <uses-feature android:glEsVersion="0x00020000" android:required="true"></uses-feature>
   <application android:name="crc64e54784af4b2d4a6d.MainApplication" android:allowBackup="true" android:appComponentFactory="androidx.core.app.CoreComponentFactory" android:debuggable="true" android:extractNativeLibs="true" android:icon="@mipmap/appicon" android:label="ConFrete" android:roundIcon="@mipmap/appicon_round" android:supportsRtl="true">
     <activity android:name="crc64e54784af4b2d4a6d.MainActivity" android:configChanges="density|orientation|smallestScreenSize|screenLayout|screenSize|uiMode" android:exported="true" android:theme="@style/Maui.SplashTheme">
       <intent-filter>

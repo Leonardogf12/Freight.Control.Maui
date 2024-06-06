@@ -18,6 +18,7 @@ obj/Debug/net7.0-android/resizetizer/r/drawable-xhdpi/user_24.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-xhdpi/money_24.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-xhdpi/dotnet_bot.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-xhdpi/combobox_24.png
+obj/Debug/net7.0-android/resizetizer/r/drawable-xhdpi/charts_256.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-xhdpi/fuel.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-xhdpi/export.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-xhdpi/splash_load.png
@@ -50,6 +51,7 @@ obj/Debug/net7.0-android/resizetizer/r/drawable-xxhdpi/user_24.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-xxhdpi/money_24.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-xxhdpi/dotnet_bot.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-xxhdpi/combobox_24.png
+obj/Debug/net7.0-android/resizetizer/r/drawable-xxhdpi/charts_256.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-xxhdpi/fuel.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-xxhdpi/export.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-xxhdpi/splash_load.png
@@ -82,6 +84,7 @@ obj/Debug/net7.0-android/resizetizer/r/drawable-hdpi/user_24.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-hdpi/money_24.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-hdpi/dotnet_bot.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-hdpi/combobox_24.png
+obj/Debug/net7.0-android/resizetizer/r/drawable-hdpi/charts_256.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-hdpi/fuel.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-hdpi/export.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-hdpi/splash_load.png
@@ -114,6 +117,7 @@ obj/Debug/net7.0-android/resizetizer/r/drawable-mdpi/user_24.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-mdpi/money_24.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-mdpi/dotnet_bot.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-mdpi/combobox_24.png
+obj/Debug/net7.0-android/resizetizer/r/drawable-mdpi/charts_256.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-mdpi/fuel.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-mdpi/export.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-mdpi/splash_load.png
@@ -149,6 +153,7 @@ obj/Debug/net7.0-android/resizetizer/r/drawable-xxxhdpi/user_24.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-xxxhdpi/money_24.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-xxxhdpi/dotnet_bot.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-xxxhdpi/combobox_24.png
+obj/Debug/net7.0-android/resizetizer/r/drawable-xxxhdpi/charts_256.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-xxxhdpi/fuel.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-xxxhdpi/export.png
 obj/Debug/net7.0-android/resizetizer/r/drawable-xxxhdpi/splash_load.png

@@ -7,7 +7,9 @@ using freight.control.maui.MVVM.ViewModels;
 using freight.control.maui.MVVM.Views;
 using freight.control.maui.Services;
 using freight.control.maui.Services.Authentication;
+using freight.control.maui.Services.Chart;
 using freight.control.maui.Services.Navigation;
+using Microcharts.Maui;
 using Microsoft.Extensions.Logging;
 using SkiaSharp.Views.Maui.Controls.Hosting;
 
@@ -22,6 +24,7 @@ public static class MauiProgram
 			.UseMauiApp<App>()
             .UseSkiaSharp()
             .UseDevExpress()
+            .UseMicrocharts()
             .UseMauiCommunityToolkit()
 #if DEBUG
             .EnableHotReload()
@@ -41,17 +44,21 @@ public static class MauiProgram
         builder.Services.AddTransient<ToFuelView>();
         builder.Services.AddTransient<RegisterView>();
         builder.Services.AddTransient<EditUserView>();
+        builder.Services.AddTransient<ChartsView>();
 
         builder.Services.AddTransient<FreightViewModel>();
         builder.Services.AddTransient<AddFreightViewModel>();
         builder.Services.AddTransient<DetailFreightViewModel>();
         builder.Services.AddTransient<ToFuelViewModel>();
         builder.Services.AddTransient<HomeViewModel>();
+        builder.Services.AddTransient<ChartsViewModel>();
 
         builder.Services.AddSingleton<IFileSaver>(FileSaver.Default);
         builder.Services.AddSingleton<INavigationService, NavigationService>();       
         builder.Services.AddSingleton<IExportDataToExcel, ExportDataToExcel>();
         builder.Services.AddSingleton<IAuthenticationService, AuthenticationService>();
+        builder.Services.AddSingleton<IChartService, ChartService>();
+
 
 #if DEBUG
         builder.Logging.AddDebug();

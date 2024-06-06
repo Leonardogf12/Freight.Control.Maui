@@ -20,10 +20,10 @@ public final class R {
 		public static final int nav_default_pop_exit_anim = 0x7f020023;
 	}
 	public static final class integer {
-		public static final int config_navAnimTime = 0x7f090009;
+		public static final int config_navAnimTime = 0x7f0a0009;
 	}
 	public static final class string {
-		public static final int nav_app_bar_navigate_up_description = 0x7f0f008f;
-		public static final int nav_app_bar_open_drawer_description = 0x7f0f0090;
+		public static final int nav_app_bar_navigate_up_description = 0x7f100090;
+		public static final int nav_app_bar_open_drawer_description = 0x7f100091;
 	}
 }

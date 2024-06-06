@@ -59,6 +59,10 @@
               "target": "Package",
               "version": "[3.3.1, )"
             },
+            "DevExpress.Maui.Charts": {
+              "target": "Package",
+              "version": "[23.1.8, )"
+            },
             "DevExpress.Maui.Controls": {
               "target": "Package",
               "version": "[23.1.8, )"
@@ -86,6 +90,10 @@
             "GemBox.Spreadsheet": {
               "target": "Package",
               "version": "[49.0.1612, )"
+            },
+            "Microcharts.Maui": {
+              "target": "Package",
+              "version": "[0.9.5.9, )"
             },
             "Microsoft.Extensions.Configuration": {
               "target": "Package",
@@ -236,6 +244,10 @@
               "target": "Package",
               "version": "[3.3.1, )"
             },
+            "DevExpress.Maui.Charts": {
+              "target": "Package",
+              "version": "[23.1.8, )"
+            },
             "DevExpress.Maui.Controls": {
               "target": "Package",
               "version": "[23.1.8, )"
@@ -263,6 +275,10 @@
             "GemBox.Spreadsheet": {
               "target": "Package",
               "version": "[49.0.1612, )"
+            },
+            "Microcharts.Maui": {
+              "target": "Package",
+              "version": "[0.9.5.9, )"
             },
             "Microsoft.Extensions.Configuration": {
               "target": "Package",
@@ -377,6 +393,10 @@
             "GemBox.Spreadsheet": {
               "target": "Package",
               "version": "[49.0.1612, )"
+            },
+            "Microcharts.Maui": {
+              "target": "Package",
+              "version": "[0.9.5.9, )"
             },
             "Microsoft.Extensions.Configuration": {
               "target": "Package",

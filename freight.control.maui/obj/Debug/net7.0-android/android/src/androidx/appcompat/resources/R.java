@@ -8,7 +8,7 @@ package androidx.appcompat.resources;
 
 public final class R {
 	public static final class drawable {
-		public static final int abc_vector_test = 0x7f070079;
+		public static final int abc_vector_test = 0x7f080079;
 	}
 	public static final class styleable {
 		public static final int[] AnimatedStateListDrawableCompat = new int[] { 0x0101011c, 0x01010194, 0x01010195, 0x01010196, 0x0101030c, 0x0101030d };
