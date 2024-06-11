@@ -1,7 +1,4 @@
 ﻿using DevExpress.Maui.Editors;
-using Microsoft.Maui;
-using Microsoft.Maui.Controls;
-using Microsoft.Maui.Graphics;
 
 namespace freight.control.maui.Components;
 
@@ -15,7 +12,7 @@ public class ComboboxEditCustom : ComboBoxEdit
         IsLabelFloating = true;        
         HeightRequest = 60;
         Keyboard = Keyboard.Default;
-        Margin = new Thickness(10, 0, 5, 0); // Margin = new Thickness(0, 15, 10, 0),
+        Margin = new Thickness(10, 0, 5, 0);
         CornerRadius = 10;                     
         IconIndent = 5;
         StartIcon = ImageSource.FromFile(icon);

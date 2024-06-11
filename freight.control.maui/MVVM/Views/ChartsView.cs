@@ -1,9 +1,7 @@
 ﻿using freight.control.maui.Controls.Animations;
 using freight.control.maui.MVVM.Base.Views;
 using freight.control.maui.MVVM.ViewModels;
-using Microcharts;
 using Microcharts.Maui;
-using SkiaSharp;
 
 namespace freight.control.maui.MVVM.Views;
 
@@ -116,21 +114,21 @@ public class ChartsView : BaseContentPage
             ColumnSpacing = 0
         };
 
-        var yearButton = new Button
+        var monthlyButton = new Button
         {
-            Text = "Anual",           
+            Text = "Mensal",           
         };
-        yearButton.SetBinding(Button.StyleProperty, nameof(ViewModel.YearButtonStyle));
-        yearButton.Clicked += YearButton_Clicked;
-        grid.Add(yearButton, 0, 0);
+        monthlyButton.SetBinding(Button.StyleProperty, nameof(ViewModel.MonthButtonStyle));
+        monthlyButton.Clicked += MonthlyButton_Clicked;
+        grid.Add(monthlyButton, 0, 0);
 
-        var mounthButton = new Button
+        var dailyButton = new Button
         {
-            Text = "Mensal",                 
+            Text = "Diário",                 
         };
-        mounthButton.SetBinding(Button.StyleProperty, nameof(ViewModel.MounthButtonStyle));
-        mounthButton.Clicked += MounthButton_Clicked;
-        grid.Add(mounthButton, 1, 0);
+        dailyButton.SetBinding(Button.StyleProperty, nameof(ViewModel.DayButtonStyle));
+        dailyButton.Clicked += DailyButton_Clicked;
+        grid.Add(dailyButton, 1, 0);
         
         return grid;
     }
@@ -165,12 +163,12 @@ public class ChartsView : BaseContentPage
         };
         stackFreight.Children.Add(freightChartTitle);
 
-        var scrollViewYear = new ScrollView
+        var scrollViewMonthly = new ScrollView
         {
             Orientation = ScrollOrientation.Horizontal,
             Content = CreateLineChartFreight()
         };
-        stackFreight.Children.Add(scrollViewYear);
+        stackFreight.Children.Add(scrollViewMonthly);
 
         grid.Add(stackFreight, 0, 0);
 
@@ -185,14 +183,14 @@ public class ChartsView : BaseContentPage
             Text = "Abastecimento",
             Margin = new Thickness(10, 0, 0, 0)
         };
-        stackFreight.Children.Add(toFuelChartTitle);
+        stackToFuel.Children.Add(toFuelChartTitle);
         
-        var scrollViewMounth= new ScrollView
+        var scrollViewChartToFuel = new ScrollView
         {
             Orientation = ScrollOrientation.Horizontal,
-            Content = CreateLineChartMounth()
+            Content = CreateLineChartToFuel()
         };
-        stackFreight.Children.Add(scrollViewMounth);
+        stackToFuel.Children.Add(scrollViewChartToFuel);
 
         grid.Add(stackToFuel, 0, 1);    
 
@@ -209,8 +207,7 @@ public class ChartsView : BaseContentPage
             Margin = new Thickness(10),
             HeightRequest = 200,         
             HorizontalOptions = LayoutOptions.Center,
-            FlowDirection = FlowDirection.LeftToRight,
-            Chart = ViewModel.FreightChart,            
+            FlowDirection = FlowDirection.LeftToRight,                    
         };
         chart.SetBinding(WidthRequestProperty, nameof(ViewModel.WidthLineChartFreight));
         chart.SetBinding(ChartView.ChartProperty, nameof(ViewModel.FreightChart));
@@ -218,40 +215,24 @@ public class ChartsView : BaseContentPage
         return chart;
     }
 
-    private View CreateLineChartMounth()
+    private View CreateLineChartToFuel()
     {
         var chart = new ChartView
         {
+            BindingContext = ViewModel,
             Margin = new Thickness(10),
-            HeightRequest = 500,
-            WidthRequest = 1000,
-            HorizontalOptions = LayoutOptions.CenterAndExpand,
-            FlowDirection = FlowDirection.LeftToRight,
-
-            Chart = new LineChart
-            {
-                Entries = new ChartEntry[new int { }],
-                IsAnimated = true,
-                LineMode = LineMode.Straight,
-                PointMode = PointMode.Square,
-                LabelTextSize = 30,
-                PointSize = 15,
-                MaxValue = 100,
-                MinValue = 0,
-                Margin = 80,
-                LabelOrientation = Orientation.Horizontal,
-                ValueLabelOrientation = Orientation.Horizontal,
-                BackgroundColor = SKColor.Parse("#333850"),
-                LabelColor = SKColor.Parse("#FFFFFF"),
-                Typeface = SKTypeface.Default,
-            }
+            HeightRequest = 200,
+            HorizontalOptions = LayoutOptions.Center,
+            FlowDirection = FlowDirection.LeftToRight,                  
         };
         
-        return chart;
-    }
-   
-    #endregion
+        chart.SetBinding(WidthRequestProperty, nameof(ViewModel.WidthLineChartToFuel));
+        chart.SetBinding(ChartView.ChartProperty, nameof(ViewModel.ToFuelChart));        
 
+        return chart;        
+    }
+
+    #endregion
 
     #region Events
 
@@ -264,18 +245,23 @@ public class ChartsView : BaseContentPage
         await App.Current.MainPage.Navigation.PopAsync();
     }
     
-    private void YearButton_Clicked(object sender, EventArgs e)
+    private async void MonthlyButton_Clicked(object sender, EventArgs e)
     {
-        ViewModel.YearButtonStyle = App.GetResource<Style>("buttonDarkLightFilterSecondary");
-        ViewModel.MounthButtonStyle = App.GetResource<Style>("buttonDarkLightFilterPrimary");              
-    }
+        ViewModel.MonthButtonStyle = App.GetResource<Style>("buttonDarkLightFilterSecondary");
+        ViewModel.DayButtonStyle = App.GetResource<Style>("buttonDarkLightFilterPrimary");
 
-    private void MounthButton_Clicked(object sender, EventArgs e)
+        await LoadMonthlyCharts();        
+    }
+    
+    private async void DailyButton_Clicked(object sender, EventArgs e)
     {
-        ViewModel.MounthButtonStyle = App.GetResource<Style>("buttonDarkLightFilterSecondary");
-        ViewModel.YearButtonStyle = App.GetResource<Style>("buttonDarkLightFilterPrimary");             
-    }
+        ViewModel.DayButtonStyle = App.GetResource<Style>("buttonDarkLightFilterSecondary");
+        ViewModel.MonthButtonStyle = App.GetResource<Style>("buttonDarkLightFilterPrimary");
 
+        await LoadDailyCharts();
+       
+    }
+   
     #endregion
 
     #region Actions
@@ -283,10 +269,20 @@ public class ChartsView : BaseContentPage
     protected async override void OnAppearing()
     {
         base.OnAppearing();
-        await ViewModel.LoadEntrysToCharts();
+        await LoadMonthlyCharts();
+    }
+
+    private async Task LoadMonthlyCharts()
+    {
+        await ViewModel.LoadEntriesFreightChartMonthly();
+        await ViewModel.LoadEntriesToFuelChartMonthly();
+    }
+
+    private async Task LoadDailyCharts()
+    {
+        await ViewModel.LoadEntriesFreightChartsDaily();
+        await ViewModel.LoadEntriesToFuelChartsDaily();
     }
 
     #endregion
-
-
 }

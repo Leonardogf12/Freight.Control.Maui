@@ -5,7 +5,13 @@ namespace freight.control.maui.Services.Chart
 {
     public interface IChartService
 	{
-        ChartEntry[] GenerateLineChartFreight(List<FreightModel> model);
+        ChartEntry[] GenerateLineChartFreightMonthly(List<FreightModel> model);
+
+        ChartEntry[] GenerateLineChartFreightDaily(List<FreightModel> model);
+
+        Task<ChartEntry[]> GenerateLineChartToFuelMonthly(List<FreightModel> model);
+
+        Task<ChartEntry[]> GenerateLineChartToFuelDaily(List<FreightModel> model);
     }
 }
 
