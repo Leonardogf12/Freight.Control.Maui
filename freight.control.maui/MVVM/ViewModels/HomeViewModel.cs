@@ -3,61 +3,70 @@ using freight.control.maui.MVVM.Base.ViewModels;
 using freight.control.maui.MVVM.Models;
 using freight.control.maui.Repositories;
 
-namespace freight.control.maui.MVVM.ViewModels;
-
-public class HomeViewModel : BaseViewModel
-{
-    private readonly UserRepository _userRepository;
-
-    private readonly FreightRepository _freightRepository;
-
-    private UserModel _userLogged;
-	public UserModel UserLogged
-	{
-		get => _userLogged;
-		set
-		{
-			_userLogged = value;
-			OnPropertyChanged();
-		}
-	}
-
-    private string _nameUserLogged = StringConstants.Usuario;
-    public string NameUserLogged
+namespace freight.control.maui.MVVM.ViewModels
+{ 
+    public class HomeViewModel : BaseViewModel
     {
-        get => _nameUserLogged;
-        set
+        #region Properties
+
+        private readonly UserRepository _userRepository;
+
+        private readonly FreightRepository _freightRepository;
+
+        private UserModel _userLogged;
+	    public UserModel UserLogged
+	    {
+		    get => _userLogged;
+		    set
+		    {
+			    _userLogged = value;
+			    OnPropertyChanged();
+		    }
+	    }
+
+        private string _nameUserLogged = StringConstants.Usuario;
+        public string NameUserLogged
         {
-            _nameUserLogged = value;
-            OnPropertyChanged();
+            get => _nameUserLogged;
+            set
+            {
+                _nameUserLogged = value;
+                OnPropertyChanged();
+            }
         }
-    }
 
-    public HomeViewModel()
-	{
-        _userRepository = new();
-        _freightRepository = new();
-    }
+        #endregion
 
-    public async void LoadInfoByUserLogged()
-    {
-        var user = await _userRepository.GetUserByFirebaseLocalId(App.UserLocalIdLogged);
+        public HomeViewModel()
+	    {
+            _userRepository = new();
+            _freightRepository = new();
+        }
 
-        if(user != null)
+        #region Public Methods
+
+        public async void LoadInfoByUserLogged()
         {
-            NameUserLogged = user.Name;
+            var user = await _userRepository.GetUserByFirebaseLocalId(App.UserLocalIdLogged);
+
+            if(user != null)
+            {
+                NameUserLogged = user.Name;
+            }
+            else
+            {
+                NameUserLogged = StringConstants.Usuario;
+            }
         }
-        else
+
+        public async Task<int> CheckIfExistRecordsToNavigate()
         {
-            NameUserLogged = StringConstants.Usuario;
+            var result = await _freightRepository.GetByDateInitialAndFinal(initial: new DateTime(DateTime.Now.Year, 01, 01),
+                                                                            final: new DateTime(DateTime.Now.Year, 12, 31));
+
+            return result.Count();
         }
-    }
 
-    public async Task<int> CheckIfExistRecordsToNavigate()
-    {
-        var result = await _freightRepository.GetByDateInitialAndFinal(initial: new DateTime(DateTime.Now.Year, 01, 01),
-                                                                        final: new DateTime(DateTime.Now.Year, 12, 31));
-
-        return result.Count();
+        #endregion
     }
 }

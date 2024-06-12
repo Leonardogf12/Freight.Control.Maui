@@ -3,47 +3,50 @@ using freight.control.maui.Constants;
 using Newtonsoft.Json;
 using freight.control.maui.MVVM.Models.IBGE;
 
-namespace freight.control.maui.Services;
-
-public class DataIbgeService
-{       
-    public static async Task<List<Municipio>> GetCitiesByCodeState(string state)
+namespace freight.control.maui.Services
+{
+    public class DataIbgeService
     {
-        using (HttpClient client = new HttpClient())
+        public static async Task<List<Municipio>> GetCitiesByCodeState(string state)
         {
-            var codeState = $"{state}/municipios";
-
-            try
+            using (HttpClient client = new HttpClient())
             {
-                if (!ToastFailConectionService.CheckIfConnectionIsSuccessful()) return null;
+                var codeState = $"{state}/municipios";
 
-                HttpResponseMessage response = await client.GetAsync(StringConstants.urlDataIbgeService + codeState);
-
-                if (response.IsSuccessStatusCode)
+                try
                 {
-                    //var downloaded = new System.Net.WebClient().DownloadString(StringConstants.urlDataIbgeService + codeState);
-                    //var result = JsonConvert.DeserializeObject<List<Municipio>>(downloaded);
-                    //return result;
+                    if (!ToastFailConectionService.CheckIfConnectionIsSuccessful()) return null;
 
-                    using (var stream = await response.Content.ReadAsStreamAsync())
-                    using (var decompressedStream = new GZipStream(stream, CompressionMode.Decompress))
-                    using (var reader = new StreamReader(decompressedStream))
+                    HttpResponseMessage response = await client.GetAsync(StringConstants.urlDataIbgeService + codeState);
+
+                    if (response.IsSuccessStatusCode)
                     {
-                        var content = await reader.ReadToEndAsync();
+                        //var downloaded = new System.Net.WebClient().DownloadString(StringConstants.urlDataIbgeService + codeState);
+                        //var result = JsonConvert.DeserializeObject<List<Municipio>>(downloaded);
+                        //return result;
 
-                        var result = JsonConvert.DeserializeObject<List<Municipio>>(content);
+                        using (var stream = await response.Content.ReadAsStreamAsync())
+                        using (var decompressedStream = new GZipStream(stream, CompressionMode.Decompress))
+                        using (var reader = new StreamReader(decompressedStream))
+                        {
+                            var content = await reader.ReadToEndAsync();
 
-                        return result;
+                            var result = JsonConvert.DeserializeObject<List<Municipio>>(content);
+
+                            return result;
+                        }
                     }
-                }
 
-                return new List<Municipio>();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                return new List<Municipio>();
+                    return new List<Municipio>();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return new List<Municipio>();
+                }
             }
         }
     }
 }
+
+

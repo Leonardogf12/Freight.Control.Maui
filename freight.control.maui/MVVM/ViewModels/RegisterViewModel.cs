@@ -18,7 +18,6 @@ namespace freight.control.maui.MVVM.ViewModels
             }
         }
 
-
         private string _email;
         public string Email
         {
@@ -30,7 +29,6 @@ namespace freight.control.maui.MVVM.ViewModels
             }
         }
 
-
         private string _password;
         public string Password
         {
@@ -41,7 +39,6 @@ namespace freight.control.maui.MVVM.ViewModels
                 OnPropertyChanged();
             }
         }
-
 
         private string _secondPassword;
         public string SecondPassword

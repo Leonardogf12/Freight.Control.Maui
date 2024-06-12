@@ -23,7 +23,6 @@ namespace freight.control.maui.Controls
         {
             return Preferences.Get(key, "");
         }
-
     }
 }
 

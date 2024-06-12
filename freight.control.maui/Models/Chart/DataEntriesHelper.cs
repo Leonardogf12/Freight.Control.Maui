@@ -1,7 +1,6 @@
-﻿using System;
-namespace freight.control.maui.Models.Chart
+﻿namespace freight.control.maui.Models.Chart
 {
-	public class DataEntriesHelper
+    public class DataEntriesHelper
 	{		
         public DateTime DateFilter { get; set; }
         public int DayFilter { get; set; }

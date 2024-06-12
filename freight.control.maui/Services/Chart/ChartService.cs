@@ -10,7 +10,6 @@ namespace freight.control.maui.Services.Chart
     {
         private readonly ToFuelRepository _toFuelRepository;
 
-
         public ChartService()
         {
             _toFuelRepository = new();

@@ -1,9 +1,8 @@
-﻿using System;
-using SkiaSharp;
+﻿using SkiaSharp;
 
 namespace freight.control.maui.Models.Chart
 {
-	public class DataEntries
+    public class DataEntries
 	{
         public float Value { get; set; }
         public string Label { get; set; }

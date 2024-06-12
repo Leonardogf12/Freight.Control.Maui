@@ -1,33 +1,36 @@
 ﻿using freight.control.maui.MVVM.Models;
 using SQLite;
 
-namespace freight.control.maui.Repositories;
-
-public class FreightRepository : GenericRepository<FreightModel>
+namespace freight.control.maui.Repositories
 {
-    private readonly SQLiteAsyncConnection _db;
-
-    public FreightRepository()
+    public class FreightRepository : GenericRepository<FreightModel>
     {
-        _db = new SQLiteAsyncConnection(App.DbPath);
-    }
+        private readonly SQLiteAsyncConnection _db;
 
-    public async Task<FreightModel> GetById(int id)
-    {
-        return await _db.Table<FreightModel>().Where(x => x.Id == id).FirstAsync();
-    }
+        public FreightRepository()
+        {
+            _db = new SQLiteAsyncConnection(App.DbPath);
+        }
 
-    public async Task<List<FreightModel>> GetByDateInitialAndFinal(DateTime initial, DateTime final)
-    {
-        var res = await _db.Table<FreightModel>().Where(x => x.TravelDate >= initial.Date &&
-                                                        x.TravelDate <= final.Date &&
-                                                        x.UserLocalId == App.UserLocalIdLogged).ToListAsync();
+        public async Task<FreightModel> GetById(int id)
+        {
+            return await _db.Table<FreightModel>().Where(x => x.Id == id).FirstAsync();
+        }
 
-        return res;
-    }
+        public async Task<List<FreightModel>> GetByDateInitialAndFinal(DateTime initial, DateTime final)
+        {
+            var res = await _db.Table<FreightModel>().Where(x => x.TravelDate >= initial.Date &&
+                                                            x.TravelDate <= final.Date &&
+                                                            x.UserLocalId == App.UserLocalIdLogged).ToListAsync();
 
-    public async Task<List<FreightModel>> GetByUserLocalId(string id)
-    {
-        return await _db.Table<FreightModel>().Where(x => x.UserLocalId == id).ToListAsync();
+            return res;
+        }
+
+        public async Task<List<FreightModel>> GetByUserLocalId(string id)
+        {
+            return await _db.Table<FreightModel>().Where(x => x.UserLocalId == id).ToListAsync();
+        }
     }
 }
+
+

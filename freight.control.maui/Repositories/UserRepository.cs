@@ -1,19 +1,22 @@
 ﻿using freight.control.maui.MVVM.Models;
 using SQLite;
 
-namespace freight.control.maui.Repositories;
-
-public class UserRepository : GenericRepository<UserModel>
+namespace freight.control.maui.Repositories
 {
-    private readonly SQLiteAsyncConnection _db;
-
-    public UserRepository()
+    public class UserRepository : GenericRepository<UserModel>
     {
-        _db = new SQLiteAsyncConnection(App.DbPath);
-    }
+        private readonly SQLiteAsyncConnection _db;
 
-    public async Task<UserModel> GetUserByFirebaseLocalId(string localId)
-    {
-        return await _db.Table<UserModel>().Where(x => x.FirebaseLocalId == localId).FirstOrDefaultAsync();
+        public UserRepository()
+        {
+            _db = new SQLiteAsyncConnection(App.DbPath);
+        }
+
+        public async Task<UserModel> GetUserByFirebaseLocalId(string localId)
+        {
+            return await _db.Table<UserModel>().Where(x => x.FirebaseLocalId == localId).FirstOrDefaultAsync();
+        }
     }
 }
+
+

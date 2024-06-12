@@ -3,71 +3,81 @@ using freight.control.maui.MVVM.Base.ViewModels;
 using freight.control.maui.MVVM.Models;
 using freight.control.maui.Repositories;
 
-namespace freight.control.maui.MVVM.ViewModels;
-
-public class EditUserViewModel : BaseViewModel
+namespace freight.control.maui.MVVM.ViewModels
 {
-    private readonly UserRepository _userRepository;
-
-    private string _name;
-    public string Name
+    public class EditUserViewModel : BaseViewModel
     {
-        get => _name;
-        set
+        #region Properties
+
+        private readonly UserRepository _userRepository;
+
+        private string _name;
+        public string Name
         {
-            _name = value;
-            OnPropertyChanged();
-        }
-    }
-
-    public EditUserViewModel()
-	{
-        _userRepository = new();
-    }
-
-    public async Task SetNameForUser()
-    {
-        IsBusy = true;
-
-        try
-        {
-            var user = await _userRepository.GetUserByFirebaseLocalId(App.UserLocalIdLogged);
-
-            if (user != null && user.Name != StringConstants.Usuario)
+            get => _name;
+            set
             {
-                await _userRepository.UpdateAsync(CreateModelToEdit(user));
-                await App.Current.MainPage.DisplayAlert("Sucesso", "Nome de Usuário editado com sucesso!", "Ok");
-                return;
+                _name = value;
+                OnPropertyChanged();
             }
-
-            await _userRepository.SaveAsync(CreateModelToSave());
-
-            await App.Current.MainPage.DisplayAlert("Sucesso", "Nome Usuário definido com sucesso!", "Ok");
         }
-        catch (Exception ex)
+
+        #endregion
+
+        public EditUserViewModel()
         {
-            Console.WriteLine(ex.Message);
+            _userRepository = new();
         }
-        finally
+
+        #region Private Methods
+
+        private UserModel CreateModelToEdit(UserModel oldModel)
         {
-            IsBusy = false;
+            var newModel = oldModel;
+            newModel.Name = Name;
+
+            return newModel;
         }
-    }
 
-    private UserModel CreateModelToEdit(UserModel oldModel)
-    {
-        var newModel = oldModel;
-        newModel.Name = Name;
-
-        return newModel;       
-    }
-
-    private UserModel CreateModelToSave()
-    {
-        return new UserModel
+        private UserModel CreateModelToSave()
         {
-            Name = Name,
-            FirebaseLocalId = App.UserLocalIdLogged
-        };
+            return new UserModel
+            {
+                Name = Name,
+                FirebaseLocalId = App.UserLocalIdLogged
+            };
+        }
+
+        #endregion
+
+        public async Task SetNameForUser()
+        {
+            IsBusy = true;
+
+            try
+            {
+                var user = await _userRepository.GetUserByFirebaseLocalId(App.UserLocalIdLogged);
+
+                if (user != null && user.Name != StringConstants.Usuario)
+                {
+                    await _userRepository.UpdateAsync(CreateModelToEdit(user));
+                    await App.Current.MainPage.DisplayAlert("Sucesso", "Nome de Usuário editado com sucesso!", "Ok");
+                    return;
+                }
+
+                await _userRepository.SaveAsync(CreateModelToSave());
+
+                await App.Current.MainPage.DisplayAlert("Sucesso", "Nome Usuário definido com sucesso!", "Ok");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+              
     }
 }

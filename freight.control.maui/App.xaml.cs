@@ -65,7 +65,17 @@ public partial class App : Application
         }
        
         return default(T);
-    }  
+    }
+
+    #region Style - Colors
+
+    public static Color GetRedColor() => Colors.Red;
+
+    public static Color GetLightGrayColor() => Colors.LightGray;
+
+    public static Color GetGrayColor() => Colors.Gray;
+
+    #endregion
 
     #region DB
 

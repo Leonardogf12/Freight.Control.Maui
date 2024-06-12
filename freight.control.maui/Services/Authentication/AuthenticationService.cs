@@ -93,8 +93,7 @@ namespace freight.control.maui.Services.Authentication
         private FirebaseAuthProvider GetFirebaseAuthProvider()
         {
             return new FirebaseAuthProvider(new FirebaseConfig(StringConstants.webApiFirebaseAuthKey));
-        }
-       
+        }       
     }
 
     public class MyInterfaceFactoryAuthenticationService

@@ -1,17 +1,20 @@
 ﻿using freight.control.maui.MVVM.Models;
 using SQLite;
 
-namespace freight.control.maui.Data;
-
-public class DbApp
+namespace freight.control.maui.Data
 {
-	private readonly SQLiteAsyncConnection _dbApp;
+    public class DbApp
+    {
+        private readonly SQLiteAsyncConnection _dbApp;
 
-	public DbApp(string path)
-	{
-		_dbApp = new SQLiteAsyncConnection(path);
+        public DbApp(string path)
+        {
+            _dbApp = new SQLiteAsyncConnection(path);
 
-		_dbApp.CreateTableAsync<FreightModel>();
-        _dbApp.CreateTableAsync<ToFuelModel>();
+            _dbApp.CreateTableAsync<FreightModel>();
+            _dbApp.CreateTableAsync<ToFuelModel>();
+        }
     }
 }
+
+

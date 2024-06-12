@@ -1,41 +1,44 @@
 ﻿using Microsoft.Maui.Controls.Shapes;
 
-namespace freight.control.maui.Components.UI;
-
-public class ButtonHomeMenu : StackLayout
+namespace freight.control.maui.Components.UI
 {
-	public ButtonHomeMenu(string iconName, EventHandler<TappedEventArgs> eventTap)
-	{
-        var stack = new StackLayout
+    public class ButtonHomeMenu : StackLayout
+    {
+        public ButtonHomeMenu(string iconName, EventHandler<TappedEventArgs> eventTap)
         {
-            VerticalOptions = LayoutOptions.Center
-        };
-
-        var border = new Border
-        {
-            HeightRequest = 150,
-            WidthRequest = 150,
-            BackgroundColor = App.GetResource<Color>("SecondaryGreen"),
-            StrokeThickness = 0,
-            StrokeShape = new RoundRectangle
+            var stack = new StackLayout
             {
-                CornerRadius = 20,
-            }
-        };
+                VerticalOptions = LayoutOptions.Center
+            };
 
-        var tapGestureRecognizer = new TapGestureRecognizer();
-        tapGestureRecognizer.Tapped += eventTap;
-        border.GestureRecognizers.Add(tapGestureRecognizer);
+            var border = new Border
+            {
+                HeightRequest = 150,
+                WidthRequest = 150,
+                BackgroundColor = App.GetResource<Color>("SecondaryGreen"),
+                StrokeThickness = 0,
+                StrokeShape = new RoundRectangle
+                {
+                    CornerRadius = 20,
+                }
+            };
 
-        var imagemButton = new Image
-        {
-            Source = ImageSource.FromFile(iconName),
-            HeightRequest = 80
-        };
+            var tapGestureRecognizer = new TapGestureRecognizer();
+            tapGestureRecognizer.Tapped += eventTap;
+            border.GestureRecognizers.Add(tapGestureRecognizer);
 
-        border.Content = imagemButton;
-        stack.Children.Add(border);
+            var imagemButton = new Image
+            {
+                Source = ImageSource.FromFile(iconName),
+                HeightRequest = 80
+            };
 
-        Children.Add(stack);
+            border.Content = imagemButton;
+            stack.Children.Add(border);
+
+            Children.Add(stack);
+        }
     }
 }
+
+

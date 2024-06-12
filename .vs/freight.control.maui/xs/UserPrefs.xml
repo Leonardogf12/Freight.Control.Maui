@@ -10,7 +10,7 @@
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="freight.control.maui">
+          <Node name="freight.control.maui" expanded="True">
             <Node name="freight.control.maui" expanded="True">
               <Node name="Models" expanded="True" />
               <Node name="Services" expanded="True">
