@@ -46,7 +46,7 @@ namespace freight.control.maui.MVVM.Views
             return mainGrid;
         }
 
-        private Grid CreateMainGrid()
+        private static Grid CreateMainGrid()
         {
             return new Grid
             {
@@ -101,8 +101,8 @@ namespace freight.control.maui.MVVM.Views
             var labelTitle = new Label
             {
                 Text = "Abastecimento",
-                TextColor = (Color)App.Current.Resources["PrimaryDark"],
-                Style = (Style)App.Current.Resources["labelTitleView"],
+                TextColor = (Color)Application.Current.Resources["PrimaryDark"],
+                Style = (Style)Application.Current.Resources["labelTitleView"],
             };
             contentGridStackTitle.Add(labelTitle, 1, 0);
 
@@ -202,7 +202,7 @@ namespace freight.control.maui.MVVM.Views
                 Stroke = App.GetLightGrayColor(),
                 Background = Colors.Transparent,
                 StrokeThickness = 1,
-                Margin = Device.RuntimePlatform == Device.Android ? 10 : 20,
+                Margin = DeviceInfo.Platform == DevicePlatform.Android ? 10 : 20,
                 StrokeShape = new RoundRectangle
                 {
                     CornerRadius = new CornerRadius(10)
@@ -256,7 +256,7 @@ namespace freight.control.maui.MVVM.Views
                 Stroke = App.GetLightGrayColor(),
                 Background = Colors.Transparent,
                 StrokeThickness = 1,
-                Margin = Device.RuntimePlatform == Device.Android ? 10 : 20,
+                Margin = DeviceInfo.Platform == DevicePlatform.Android ? 10 : 20,
                 StrokeShape = new RoundRectangle
                 {
                     CornerRadius = new CornerRadius(10)
@@ -343,7 +343,7 @@ namespace freight.control.maui.MVVM.Views
             var button = new Button
             {
                 Text = "Salvar",
-                Style = (Style)App.Current.Resources["buttonDarkPrimary"]
+                Style = (Style)Application.Current.Resources["buttonDarkPrimary"]
             };
             button.SetBinding(IsEnabledProperty, nameof(ViewModel.IsEnabledSaveButton));
 
@@ -378,7 +378,7 @@ namespace freight.control.maui.MVVM.Views
 
             await ClickAnimation.SetFadeOnElement(element);
 
-            await App.Current.MainPage.Navigation.PopAsync();
+            await Application.Current.MainPage.Navigation.PopAsync();
         }
 
         private void Liters_TextChanged(object sender, EventArgs e)
@@ -481,7 +481,7 @@ namespace freight.control.maui.MVVM.Views
             return isValid;
         }
 
-        private string GetValueStringOfObject(object sender)
+        private static string GetValueStringOfObject(object sender)
         {
             var element = sender as TextEdit;
             return element.Text;

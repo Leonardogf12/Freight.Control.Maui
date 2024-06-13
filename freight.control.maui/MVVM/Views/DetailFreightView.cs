@@ -35,13 +35,13 @@ namespace freight.control.maui.MVVM.Views
 
         private View BuildDetailFreightView()
         {
-            var mainGrid = CreateMainGrid();
+            var mainGrid = DetailFreightView.CreateMainGrid();
 
             CreateStackHeader(mainGrid);
 
             CreateDetailsFreight(mainGrid);
 
-            CreateTitleToFuel(mainGrid);
+            DetailFreightView.CreateTitleToFuel(mainGrid);
 
             CreateCollectionDetailFreight(mainGrid);
 
@@ -50,7 +50,7 @@ namespace freight.control.maui.MVVM.Views
             return mainGrid;
         }
 
-        private Grid CreateMainGrid()
+        private static Grid CreateMainGrid()
         {
             return new Grid
             {
@@ -166,7 +166,7 @@ namespace freight.control.maui.MVVM.Views
             mainGrid.Add(grid, 0, 1);
         }
 
-        public View CreateDetailOfFreight(string title)
+        public static View CreateDetailOfFreight(string title)
         {
             var stack = new StackLayout
             {
@@ -197,7 +197,7 @@ namespace freight.control.maui.MVVM.Views
             return stack;
         }
 
-        private void CreateTitleToFuel(Grid mainGrid)
+        private static void CreateTitleToFuel(Grid mainGrid)
         {
             var stack = new StackLayout
             {
@@ -239,14 +239,14 @@ namespace freight.control.maui.MVVM.Views
         }
 
         private View CreateItemTemplateDetailFreight()
-        {
+        {           
             var border = new Border
             {
                 BackgroundColor = Colors.Transparent,
                 StrokeThickness = 1,
                 Stroke = App.GetResource<Color>("PrimaryGreen"),
                 HeightRequest = 230,
-                Margin = Device.RuntimePlatform == Device.Android ? 10 : 20,
+                Margin = DeviceInfo.Platform == DevicePlatform.Android ? 10 : 20,               
                 StrokeShape = new RoundRectangle
                 {
                     CornerRadius = 10,
@@ -272,19 +272,19 @@ namespace freight.control.maui.MVVM.Views
                 }
             };
 
-            CreateLabelDate(contentGridBorder);
+            DetailFreightView.CreateLabelDate(contentGridBorder);
 
             CreateIconTrash(contentGridBorder);
 
-            CreateStackLiters(contentGridBorder);
+            DetailFreightView.CreateStackLiters(contentGridBorder);
 
-            CreateStackAmountSpentLiters(contentGridBorder);
+            DetailFreightView.CreateStackAmountSpentLiters(contentGridBorder);
 
-            CreateStackValuePerLiter(contentGridBorder);
+            DetailFreightView.CreateStackValuePerLiter(contentGridBorder);
 
-            CreateStackExpenses(contentGridBorder);
+            DetailFreightView.CreateStackExpenses(contentGridBorder);
 
-            CreateStackObservation(contentGridBorder);
+            DetailFreightView.CreateStackObservation(contentGridBorder);
 
             CreateStackButtonsActions(contentGridBorder);
 
@@ -293,7 +293,7 @@ namespace freight.control.maui.MVVM.Views
             return border;
         }
 
-        private void CreateLabelDate(Grid contentGridBorder)
+        private static void CreateLabelDate(Grid contentGridBorder)
         {
             var stack = new StackLayout
             {
@@ -345,7 +345,7 @@ namespace freight.control.maui.MVVM.Views
             contentGridBorder.Add(iconTrash, 1, 0);
         }
 
-        private void CreateStackLiters(Grid contentGridBorder)
+        private static void CreateStackLiters(Grid contentGridBorder)
         {
             var stackLiters = new StackLayout
             {
@@ -379,7 +379,7 @@ namespace freight.control.maui.MVVM.Views
             contentGridBorder.Add(stackLiters, 0, 1);
         }
 
-        private void CreateStackAmountSpentLiters(Grid contentGridBorder)
+        private static void CreateStackAmountSpentLiters(Grid contentGridBorder)
         {
             var stackAmountSpentFuel = new StackLayout
             {
@@ -413,7 +413,7 @@ namespace freight.control.maui.MVVM.Views
             contentGridBorder.Add(stackAmountSpentFuel, 1, 1);
         }
 
-        private void CreateStackValuePerLiter(Grid contentGridBorder)
+        private static void CreateStackValuePerLiter(Grid contentGridBorder)
         {
             var stackValuePerLiter = new StackLayout
             {
@@ -449,7 +449,7 @@ namespace freight.control.maui.MVVM.Views
 
         }
 
-        private void CreateStackExpenses(Grid contentGridBorder)
+        private static void CreateStackExpenses(Grid contentGridBorder)
         {
             var stackExpenses = new StackLayout
             {
@@ -484,7 +484,7 @@ namespace freight.control.maui.MVVM.Views
             contentGridBorder.Add(stackExpenses, 0, 3);
         }
 
-        private void CreateStackObservation(Grid contentGridBorder)
+        private static void CreateStackObservation(Grid contentGridBorder)
         {
             var stackObservation = new Grid
             {
@@ -525,7 +525,7 @@ namespace freight.control.maui.MVVM.Views
 
         private void CreateStackButtonsActions(Grid contentGridBorder)
         {
-            var buttonEdit = CreateBaseButton("Editar", "buttonTertiaryGreen", ClickedButtonEdit);
+            var buttonEdit = DetailFreightView.CreateBaseButton("Editar", "buttonTertiaryGreen", ClickedButtonEdit);
             buttonEdit.WidthRequest = 80;
             buttonEdit.Margin = new Thickness(0, 0, 10, 10);
             buttonEdit.HorizontalOptions = LayoutOptions.End;
@@ -587,17 +587,17 @@ namespace freight.control.maui.MVVM.Views
             {
                 if (element.BindingContext is ToFuelModel item)
                 {
-                    Dictionary<string, object> obj = new Dictionary<string, object>
-                {
-                    { "SelectedToFuelToEdit", item }
-                };
+                    Dictionary<string, object> obj = new()
+                    {
+                        { "SelectedToFuelToEdit", item }
+                    };
 
                     await _navigationService.NavigationToPageAsync<ToFuelView>(parameters: obj);
                 }
             }
         }
 
-        private Button CreateBaseButton(string text, string style, EventHandler clicked)
+        private static Button CreateBaseButton(string text, string style, EventHandler clicked)
         {
             var button = new Button
             {

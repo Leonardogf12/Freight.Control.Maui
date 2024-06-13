@@ -101,7 +101,7 @@ namespace freight.control.maui.MVVM.Views
                 Placement = DevExpress.Maui.Core.Placement.Bottom,
                 HorizontalAlignment = PopupHorizontalAlignment.Left,
                 CornerRadius = 8,
-                BackgroundColor = App.GetResource<Color>("White")
+                BackgroundColor = App.GetResource<Color>("White"),               
             };
 
             mainGrid.Add(SettingsDxPopup, 0, 0);

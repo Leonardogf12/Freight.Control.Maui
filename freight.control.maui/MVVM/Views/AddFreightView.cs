@@ -48,7 +48,7 @@ namespace freight.control.maui.MVVM.Views
             return mainGrid;
         }
 
-        private Grid CreateMainGrid()
+        private static Grid CreateMainGrid()
         {
             return new Grid
             {
@@ -101,8 +101,8 @@ namespace freight.control.maui.MVVM.Views
 
             var labelTitle = new Label
             {
-                TextColor = (Color)App.Current.Resources["PrimaryDark"],
-                Style = (Style)App.Current.Resources["labelTitleView"],
+                TextColor = App.GetResource<Color>("PrimaryDark"), //(Color)Application.Current.Resources["PrimaryDark"],
+                Style = App.GetResource<Style>("labelTitleView") //(Style)Application.Current.Resources["labelTitleView"],
             };
             labelTitle.SetBinding(Label.TextProperty, nameof(ViewModel.TextTitlePage));
             contentGridStackTitle.Add(labelTitle, 1, 0);
@@ -125,7 +125,7 @@ namespace freight.control.maui.MVVM.Views
                 Stroke = App.GetLightGrayColor(),
                 Background = Colors.Transparent,
                 StrokeThickness = 1,
-                Margin = Device.RuntimePlatform == Device.Android ? 10 : 20,
+                Margin = DeviceInfo.Platform == DevicePlatform.Android ? 10 : 20,
                 StrokeShape = new RoundRectangle
                 {
                     CornerRadius = new CornerRadius(10)
@@ -170,7 +170,7 @@ namespace freight.control.maui.MVVM.Views
             mainGrid.Add(scroll, 0, 1);
         }
 
-        private void CreateTravelDateFieldForm(Grid contentGridBorderForm)
+        private static void CreateTravelDateFieldForm(Grid contentGridBorderForm)
         {
             var travel = new DatePickerFieldCustom();
             travel.DatePicker.SetBinding(DatePicker.DateProperty, nameof(AddFreightViewModel.TravelDate));
@@ -339,7 +339,7 @@ namespace freight.control.maui.MVVM.Views
             var button = new Button
             {
                 Text = "Salvar",
-                Style = (Style)App.Current.Resources["buttonDarkPrimary"]
+                Style = (Style)Application.Current.Resources["buttonDarkPrimary"]
             };
 
             button.Clicked += SaveClicked;
@@ -369,7 +369,7 @@ namespace freight.control.maui.MVVM.Views
         {
             if (sender is ComboBoxEdit element)
             {
-                if (element.SelectedItem is string city)
+                if (element.SelectedItem is string)
                 {
                     SetBorderColorDefaultForDropdownOrigin();
                 }
@@ -394,7 +394,7 @@ namespace freight.control.maui.MVVM.Views
         {
             if (sender is ComboBoxEdit element)
             {
-                if (element.SelectedItem is string city)
+                if (element.SelectedItem is string)
                 {
                     SetBorderColorDefaultForDropdownDestination();
                 }
@@ -442,7 +442,7 @@ namespace freight.control.maui.MVVM.Views
 
             await ClickAnimation.SetFadeOnElement(element);
 
-            await App.Current.MainPage.Navigation.PopAsync();
+            await Application.Current.MainPage.Navigation.PopAsync();
         }
 
         #endregion

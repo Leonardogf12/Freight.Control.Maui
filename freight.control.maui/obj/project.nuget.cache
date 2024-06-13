@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "6zpTpPXO+NQ2+qFGVlZyokeWRVZ4QMVg8r1gxpo4F4LfWdh+jL5Zw5Dmkcwq1x2wwIl64uXMxZGYcWAtfNzvyQ==",
+  "dgSpecHash": "nrEEV6yZl0bSTXYBR2ppEemrk6RlDJD+DO4nKj1L/ej7RYB5gSpywn5wT7otfNrrH3c7NYYEDxmfk8VyC+PPtA==",
   "success": true,
   "projectFilePath": "/Users/leonardofazolo/Projects/GITHUB/Freight.Control.Maui/freight.control.maui/freight.control.maui.csproj",
   "expectedPackageFiles": [
@@ -42,6 +42,8 @@
     "/Users/leonardofazolo/.nuget/packages/microsoft.extensions.options/7.0.0/microsoft.extensions.options.7.0.0.nupkg.sha512",
     "/Users/leonardofazolo/.nuget/packages/microsoft.extensions.primitives/7.0.0/microsoft.extensions.primitives.7.0.0.nupkg.sha512",
     "/Users/leonardofazolo/.nuget/packages/microsoft.maui.graphics/7.0.101/microsoft.maui.graphics.7.0.101.nupkg.sha512",
+    "/Users/leonardofazolo/.nuget/packages/microsoft.net.illink.analyzers/7.0.100-1.23401.1/microsoft.net.illink.analyzers.7.0.100-1.23401.1.nupkg.sha512",
+    "/Users/leonardofazolo/.nuget/packages/microsoft.net.illink.tasks/7.0.100-1.23401.1/microsoft.net.illink.tasks.7.0.100-1.23401.1.nupkg.sha512",
     "/Users/leonardofazolo/.nuget/packages/microsoft.netcore.platforms/1.1.0/microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "/Users/leonardofazolo/.nuget/packages/microsoft.netcore.platforms/3.1.0/microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "/Users/leonardofazolo/.nuget/packages/microsoft.netcore.platforms/3.1.4/microsoft.netcore.platforms.3.1.4.nupkg.sha512",
@@ -269,7 +271,13 @@
     "/Users/leonardofazolo/.nuget/packages/xamarin.kotlin.stdlib.jdk7/1.7.20.1/xamarin.kotlin.stdlib.jdk7.1.7.20.1.nupkg.sha512",
     "/Users/leonardofazolo/.nuget/packages/xamarin.kotlin.stdlib.jdk8/1.7.20.1/xamarin.kotlin.stdlib.jdk8.1.7.20.1.nupkg.sha512",
     "/Users/leonardofazolo/.nuget/packages/xamarin.kotlinx.coroutines.android/1.6.4.1/xamarin.kotlinx.coroutines.android.1.6.4.1.nupkg.sha512",
-    "/Users/leonardofazolo/.nuget/packages/xamarin.kotlinx.coroutines.core.jvm/1.6.4.1/xamarin.kotlinx.coroutines.core.jvm.1.6.4.1.nupkg.sha512"
+    "/Users/leonardofazolo/.nuget/packages/xamarin.kotlinx.coroutines.core.jvm/1.6.4.1/xamarin.kotlinx.coroutines.core.jvm.1.6.4.1.nupkg.sha512",
+    "/Users/leonardofazolo/.nuget/packages/microsoft.aspnetcore.app.ref/7.0.20/microsoft.aspnetcore.app.ref.7.0.20.nupkg.sha512",
+    "/Users/leonardofazolo/.nuget/packages/microsoft.netcore.app.ref/7.0.20/microsoft.netcore.app.ref.7.0.20.nupkg.sha512",
+    "/Users/leonardofazolo/.nuget/packages/microsoft.aspnetcore.app.ref/7.0.20/microsoft.aspnetcore.app.ref.7.0.20.nupkg.sha512",
+    "/Users/leonardofazolo/.nuget/packages/microsoft.netcore.app.ref/7.0.20/microsoft.netcore.app.ref.7.0.20.nupkg.sha512",
+    "/Users/leonardofazolo/.nuget/packages/microsoft.aspnetcore.app.ref/7.0.20/microsoft.aspnetcore.app.ref.7.0.20.nupkg.sha512",
+    "/Users/leonardofazolo/.nuget/packages/microsoft.netcore.app.ref/7.0.20/microsoft.netcore.app.ref.7.0.20.nupkg.sha512"
   ],
   "logs": []
 }

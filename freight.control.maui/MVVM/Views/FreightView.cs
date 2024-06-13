@@ -24,7 +24,7 @@ namespace freight.control.maui.MVVM.Views
 
         public FreightViewModel ViewModel = new();
 
-        ClickAnimation ClickAnimation = new();
+        readonly ClickAnimation ClickAnimation = new();
 
         #endregion
 
@@ -59,7 +59,7 @@ namespace freight.control.maui.MVVM.Views
             return mainGrid;
         }
 
-        private Grid CreateMainGrid()
+        private static Grid CreateMainGrid()
         {
             return new Grid
             {
@@ -182,7 +182,7 @@ namespace freight.control.maui.MVVM.Views
                 StrokeThickness = 1,
                 Stroke = App.GetResource<Color>("PrimaryGreen"),
                 HeightRequest = 200,
-                Margin = Device.RuntimePlatform == Device.Android ? 10 : 20,
+                Margin = DeviceInfo.Platform == DevicePlatform.Android ? 10 : 20,
                 StrokeShape = new RoundRectangle
                 {
                     CornerRadius = 10,
@@ -224,7 +224,7 @@ namespace freight.control.maui.MVVM.Views
             return border;
         }
 
-        private void CreateLabelDate(Grid contentGridBorder)
+        private static void CreateLabelDate(Grid contentGridBorder)
         {
             var labelDate = new Label
             {
@@ -254,7 +254,7 @@ namespace freight.control.maui.MVVM.Views
             contentGridBorder.Add(iconTrash, 2, 0);
         }
 
-        private void CreateStackOrigin(Grid contentGridBorder)
+        private static void CreateStackOrigin(Grid contentGridBorder)
         {
             var stackOrigin = new StackLayout
             {
@@ -309,7 +309,7 @@ namespace freight.control.maui.MVVM.Views
             contentGridBorder.Add(stackOrigin, 0, 1);
         }
 
-        private void CreateStackDestination(Grid contentGridBorder)
+        private static void CreateStackDestination(Grid contentGridBorder)
         {
             var stackDestination = new StackLayout
             {
@@ -364,7 +364,7 @@ namespace freight.control.maui.MVVM.Views
             contentGridBorder.Add(stackDestination, 0, 2);
         }
 
-        private void CreateStackKilometer(Grid contentGridBorder)
+        private static void CreateStackKilometer(Grid contentGridBorder)
         {
             var stackKm = new StackLayout
             {
@@ -442,7 +442,7 @@ namespace freight.control.maui.MVVM.Views
                 VerticalOptions = LayoutOptions.Center,
                 HorizontalOptions = LayoutOptions.Center
             };
-            label.SetBinding(Label.IsVisibleProperty, nameof(ViewModel.IsVisibleTextAddNewFreight));
+            label.SetBinding(IsVisibleProperty, nameof(ViewModel.IsVisibleTextAddNewFreight));
 
             contentGridBorder.SetRowSpan(label, 3);
             contentGridBorder.Children.Add(label);
@@ -478,12 +478,12 @@ namespace freight.control.maui.MVVM.Views
 
             await ClickAnimation.SetFadeOnElement(element);
 
-            await App.Current.MainPage.Navigation.PopAsync();
+            await Application.Current.MainPage.Navigation.PopAsync();
         }
 
         private async void ClickedButtonNew(object sender, EventArgs e)
         {
-            await App.Current.MainPage.Navigation.PushAsync(new AddFreightView());
+            await Application.Current.MainPage.Navigation.PushAsync(new AddFreightView());
         }
 
         private void ClickedButtonFilter(object sender, EventArgs e)
@@ -519,10 +519,10 @@ namespace freight.control.maui.MVVM.Views
             {
                 if (element.BindingContext is FreightModel item)
                 {
-                    Dictionary<string, object> obj = new Dictionary<string, object>
-                {
-                    { "SelectedFreightToDetail", item }
-                };
+                    Dictionary<string, object> obj = new()
+                    {
+                        { "SelectedFreightToDetail", item }
+                    };
 
                     await _navigationService.NavigationToPageAsync<DetailFreightView>(parameters: obj);
                 }
@@ -535,10 +535,10 @@ namespace freight.control.maui.MVVM.Views
             {
                 if (element.BindingContext is FreightModel item)
                 {
-                    Dictionary<string, object> obj = new Dictionary<string, object>
-                {
-                    { "DetailsFreight", item }
-                };
+                    Dictionary<string, object> obj = new()
+                    {
+                        { "DetailsFreight", item }
+                    };
 
                     await _navigationService.NavigationToPageAsync<ToFuelView>(parameters: obj);
                 }
@@ -551,17 +551,17 @@ namespace freight.control.maui.MVVM.Views
             {
                 if (element.BindingContext is FreightModel item)
                 {
-                    Dictionary<string, object> obj = new Dictionary<string, object>
-                {
-                    { "SelectedFreightToEdit", item }
-                };
+                    Dictionary<string, object> obj = new()
+                    {
+                        { "SelectedFreightToEdit", item }
+                    };
 
                     await _navigationService.NavigationToPageAsync<AddFreightView>(parameters: obj);
                 }
             }
         }
 
-        private Button CreateBaseButton(string text, string style, EventHandler clicked)
+        private static Button CreateBaseButton(string text, string style, EventHandler clicked)
         {
             var button = new Button
             {

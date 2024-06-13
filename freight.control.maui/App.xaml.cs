@@ -12,7 +12,7 @@ public partial class App : Application
 
     public static SKLottieView SKLottieViewIsBusy { get; set; }
 
-    public static PopupLoadingView PopupLoading = new();
+    private static PopupLoadingView popupLoading = new();
 
     public static string UserLocalIdLogged = string.Empty;
 
@@ -20,7 +20,7 @@ public partial class App : Application
 	{
         CheckDevice();
 
-        SetDatabasePathDevice();
+        App.SetDatabasePathDevice();
       
         InitializeComponent();
        
@@ -47,11 +47,11 @@ public partial class App : Application
 
     public void CheckDevice()
 	{
-        if (Device.RuntimePlatform == Device.iOS)
+        if (DeviceInfo.Platform == DevicePlatform.iOS)
         {
             WhatIsThePlatform = "ios";
         }
-        else if (Device.RuntimePlatform == Device.Android)
+        else if (DeviceInfo.Platform == DevicePlatform.Android)
         {
             WhatIsThePlatform = "android";
         }
@@ -64,7 +64,7 @@ public partial class App : Application
             return typedResource;
         }
        
-        return default(T);
+        return default;
     }
 
     #region Style - Colors
@@ -109,9 +109,11 @@ public partial class App : Application
     #endif
     }
 
+    public static PopupLoadingView PopupLoading { get => popupLoading; set => popupLoading = value; }
+
     public static string DbPath = string.Empty;
 
-    public void SetDatabasePathDevice()
+    public static void SetDatabasePathDevice()
     {
 
 #if ANDROID

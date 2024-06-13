@@ -1,33 +1,22 @@
 ﻿<Properties StartupConfiguration="{15687626-2468-4B49-B8B5-F034392697A3}|Default" GitUserInfo="UsingMD" NuGet.AddPackagesDialog.IncludePrerelease="True">
+  <MonoDevelop.Ide.ItemProperties.freight.control.maui PreferredExecutionTarget="MyAppleMacCatalystID" />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.MonoDroid LastDeploySdkVersion="34.0.95" />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <Xamarin.Addins.Core.Project ActiveDebugTarget="MyAppleMacCatalystID" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/leonardofazolo/Projects/GITHUB/Freight.Control.Maui/freight.control.maui/MVVM/ViewModels/RegisterViewModel.cs" relfile="freight.control.maui/MVVM/ViewModels/RegisterViewModel.cs" line="79" column="1" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.Workbench>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="freight.control.maui" expanded="True">
-            <Node name="freight.control.maui" expanded="True">
-              <Node name="Models" expanded="True" />
-              <Node name="Services" expanded="True">
-                <Node name="Chart" expanded="True" />
-              </Node>
-              <Node name="App.xaml" expanded="True">
-                <Node name="App.xaml.cs" selected="True" />
-              </Node>
-              <Node name="AppShell.xaml" expanded="True" />
-            </Node>
+          <Node name="freight.control.maui" expanded="True" selected="True">
+            <Node name="freight.control.maui" expanded="True" />
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.freight.control.maui PreferredExecutionTarget="Android.RQCT702DM4M" />
-  <MonoDevelop.MonoDroid LastDeploySdkVersion="34.0.95" />
-  <Xamarin.Addins.Core.Project ActiveDebugTarget="Android.RQCT702DM4M" />
-  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>
