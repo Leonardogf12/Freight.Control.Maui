@@ -14,7 +14,7 @@ namespace freight.control.maui.MVVM.Views
 
         public HomeViewModel ViewModel = new();
 
-        ClickAnimation ClickAnimation = new();
+        readonly ClickAnimation ClickAnimation = new();
 
         public DXPopup SettingsDxPopup = new();
 
@@ -46,7 +46,7 @@ namespace freight.control.maui.MVVM.Views
             return mainGrid;
         }
 
-        private Grid CreateMainGrid()
+        private static Grid CreateMainGrid()
         {
             return new Grid
             {
@@ -228,7 +228,7 @@ namespace freight.control.maui.MVVM.Views
 
                 if (result == 0)
                 {
-                    await App.Current.MainPage.DisplayAlert("Ops", "Nenhum registro encontrado.", "Ok");
+                    await DisplayAlert("Ops", "Nenhum registro encontrado.", "Ok");
                     return;
                 }
 
@@ -242,7 +242,7 @@ namespace freight.control.maui.MVVM.Views
             {
                 await ClickAnimation.SetFadeOnElement(element);
 
-                var result = await App.Current.MainPage.DisplayAlert("Sair", "Deseja realmente deslogar sua conta?", "Sim", "Cancelar");
+                var result = await DisplayAlert("Sair", "Deseja realmente deslogar sua conta?", "Sim", "Cancelar");
 
                 SettingsDxPopup.IsOpen = false;
 

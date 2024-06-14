@@ -1,7 +1,9 @@
 ﻿using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Windows.Input;
 using DevExpress.Maui.Controls;
 using freight.control.maui.Constants;
+using freight.control.maui.Controls.Benchmark;
 using freight.control.maui.Models;
 using freight.control.maui.MVVM.Base.ViewModels;
 using freight.control.maui.MVVM.Models;
@@ -24,6 +26,17 @@ namespace freight.control.maui.MVVM.ViewModels
             set
             {
                 _freightCollection = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private List<FreightModel> _freightListRemainingItems = new();
+        public List<FreightModel> FreightListRemainingItems
+        {
+            get => _freightListRemainingItems;
+            set
+            {
+                _freightListRemainingItems = value;
                 OnPropertyChanged();
             }
         }
@@ -118,11 +131,25 @@ namespace freight.control.maui.MVVM.ViewModels
             }
         }
 
+        private bool _isLoadingMoreFreightItems;
+        public bool IsLoadingMoreFreightItems
+        {
+            get => _isLoadingMoreFreightItems;
+            set
+            {
+                _isLoadingMoreFreightItems = value;
+                OnPropertyChanged();
+            }
+        }
+       
+        private readonly int _freightQtyItemsPage = 3;
+
         public ICommand RefreshingCommand;
         public ICommand NewFreightCommand;
         public ICommand FilterFreightCommand;
         public ICommand ExportFreightCommand;
         public ICommand DeleteAllFreightCommand;
+        public ICommand LoadMoreItemFreightCommand;
 
         #endregion
 
@@ -136,8 +163,9 @@ namespace freight.control.maui.MVVM.ViewModels
             FilterFreightCommand = new Command(OnFilterFreightCommand);
             ExportFreightCommand = new Command(OnExportFreightCommand);
             DeleteAllFreightCommand = new Command(OnDeleteAllFreightCommand);
+            LoadMoreItemFreightCommand = new Command(OnLoadMoreItemFreightCommand);
         }
-
+      
         #region Methods Privates
 
         private async Task OnRefreshingCommand()
@@ -149,7 +177,7 @@ namespace freight.control.maui.MVVM.ViewModels
 
         private async void OnNewFreightCommand()
         {
-            await App.Current.MainPage.Navigation.PushAsync(new AddFreightView());
+            await Application.Current.MainPage.Navigation.PushAsync(new AddFreightView());
         }
 
         private void OnFilterFreightCommand()
@@ -170,7 +198,7 @@ namespace freight.control.maui.MVVM.ViewModels
         {
             if (FreightCollection.Count == 0) return;
 
-            var response = await App.Current.MainPage.DisplayActionSheet("Você deseja efetivamente excluir todos os registros?",
+            var response = await Application.Current.MainPage.DisplayActionSheet("Você deseja efetivamente excluir todos os registros?",
                                                                          StringConstants.Cancelar,
                                                                          null,
                                                                          new string[] { StringConstants.ExcluirTudo, StringConstants.Exportar });
@@ -179,7 +207,7 @@ namespace freight.control.maui.MVVM.ViewModels
 
             if (response == StringConstants.ExcluirTudo)
             {
-                var res = await App.Current.MainPage.DisplayAlert("Excluir Tudo", "Ao excluir todos os fretes você também eliminará todos os abastecimentos relacionados e eles.", "Aceitar", "Cancelar");
+                var res = await Application.Current.MainPage.DisplayAlert("Excluir Tudo", "Ao excluir todos os fretes você também eliminará todos os abastecimentos relacionados e eles.", "Aceitar", "Cancelar");
 
                 if (!res) return;
 
@@ -201,14 +229,14 @@ namespace freight.control.maui.MVVM.ViewModels
 
                 FreightCollection.Clear();
 
-                await App.Current.MainPage.DisplayAlert("Sucesso", "Todos os registros foram excluídos com sucesso.", "Ok");
+                await Application.Current.MainPage.DisplayAlert("Sucesso", "Todos os registros foram excluídos com sucesso.", "Ok");
 
                 await OnRefreshingCommand();
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                await App.Current.MainPage.DisplayAlert("Erro", "Ocorreu um erro durante a exclusão. Por favor, tente novamente.", "Ok");
+                await Application.Current.MainPage.DisplayAlert("Erro", "Ocorreu um erro durante a exclusão. Por favor, tente novamente.", "Ok");
             }
             finally
             {
@@ -222,14 +250,48 @@ namespace freight.control.maui.MVVM.ViewModels
         }
 
         private async Task LoadFreigths()
-        {
+        {        
             FreightCollection.Clear();
 
-            var list = await _freightRepository.GetByUserLocalId(App.UserLocalIdLogged);
+            FreightListRemainingItems = await _freightRepository.GetByUserLocalId(App.UserLocalIdLogged);
 
-            FreightCollection = new ObservableCollection<FreightModel>(list.OrderByDescending(x => x.TravelDate));
+            App.Current.Dispatcher.Dispatch(() => {
 
-            CheckIfThereAreFreightItemsInCollection();
+                var toBeAdded = FreightListRemainingItems.Take(_freightQtyItemsPage).ToList();                
+
+                toBeAdded.ForEach(FreightCollection.Add);
+            });
+        }
+
+        private async void OnLoadMoreItemFreightCommand()
+        {
+            Stopwatch testStopwatch = new();
+            BenchmarkTests.StartStopWatch(stopWatch: testStopwatch);
+
+            if (IsLoadingMoreFreightItems) return;
+
+            try
+            {
+                if (FreightListRemainingItems?.Count > 0 && FreightCollection.Count < FreightListRemainingItems?.Count)
+                {
+                    IsLoadingMoreFreightItems = true;
+
+                    await Task.Delay(700);
+
+                    var remaningItems = FreightListRemainingItems.Skip(FreightCollection.Count).Take(_freightQtyItemsPage).ToList();
+                    
+                    remaningItems.ForEach(FreightCollection.Add);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);               
+            }
+            finally
+            {
+                IsLoadingMoreFreightItems = false;
+                BenchmarkTests.StopWatchResult(testStopwatch);
+            }                       
         }
 
         private bool CheckDatesToFilterData()
@@ -284,11 +346,11 @@ namespace freight.control.maui.MVVM.ViewModels
             {
                 FreightCollection.Remove(model);
 
-                await App.Current.MainPage.DisplayAlert("Sucesso", "Item excluido com sucesso!", "Ok");
+                await Application.Current.MainPage.DisplayAlert("Sucesso", "Item excluido com sucesso!", "Ok");
             }
             else
             {
-                await App.Current.MainPage.DisplayAlert("Ops", "Parece que ocorreu um problema ao tentar excluir os abastecimentos deste Frete. Favor conferir.", "Ok");
+                await Application.Current.MainPage.DisplayAlert("Ops", "Parece que ocorreu um problema ao tentar excluir os abastecimentos deste Frete. Favor conferir.", "Ok");
             }
 
             CheckIfThereAreFreightItemsInCollection();
@@ -304,7 +366,7 @@ namespace freight.control.maui.MVVM.ViewModels
         {
             if (!CheckDatesToFilterData())
             {
-                await App.Current.MainPage.DisplayAlert("Ops", "A data final deve ser maior ou igual a data inicial. Favor verificar.", "Ok");
+                await Application.Current.MainPage.DisplayAlert("Ops", "A data final deve ser maior ou igual a data inicial. Favor verificar.", "Ok");
                 return;
             }
 
@@ -312,7 +374,7 @@ namespace freight.control.maui.MVVM.ViewModels
 
             if (!dataFiltered.Any())
             {
-                await App.Current.MainPage.DisplayAlert("Filtro", "Nenhum registro foi encontrado para o período informado. Favor verificar as datas informadas.", "Ok");
+                await Application.Current.MainPage.DisplayAlert("Filtro", "Nenhum registro foi encontrado para o período informado. Favor verificar as datas informadas.", "Ok");
                 return;
             }
 
@@ -325,7 +387,7 @@ namespace freight.control.maui.MVVM.ViewModels
         {
             if (!CheckDatesToFilterData())
             {
-                await App.Current.MainPage.DisplayAlert("Ops", "A data final deve ser maior ou igual a data inicial. Favor verificar.", "Ok");
+                await Application.Current.MainPage.DisplayAlert("Ops", "A data final deve ser maior ou igual a data inicial. Favor verificar.", "Ok");
                 return null;
             }
 
@@ -333,7 +395,7 @@ namespace freight.control.maui.MVVM.ViewModels
 
             if (!dataFiltered.Any())
             {
-                await App.Current.MainPage.DisplayAlert("Filtro", "Nenhum registro foi encontrado para o período informado.", "Ok");
+                await Application.Current.MainPage.DisplayAlert("Filtro", "Nenhum registro foi encontrado para o período informado.", "Ok");
                 return null;
             }
 
@@ -347,7 +409,7 @@ namespace freight.control.maui.MVVM.ViewModels
             return list.ToList();
         }
 
-        #endregion
+        #endregion              
     }
 }
 

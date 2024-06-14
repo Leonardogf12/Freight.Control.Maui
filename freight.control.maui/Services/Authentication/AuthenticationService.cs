@@ -33,13 +33,13 @@ namespace freight.control.maui.Services.Authentication
             {
                 if (f.ResponseData.Contains("INVALID_LOGIN_CREDENTIALS"))
                 {
-                    await App.Current.MainPage.DisplayAlert("Ops", "Email ou senha inválidos. Favor verificar.", "Ok");
+                    await Application.Current.MainPage.DisplayAlert("Ops", "Email ou senha inválidos. Favor verificar.", "Ok");
                 }
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.StackTrace.ToString());
-                await App.Current.MainPage.DisplayAlert("Ops", "Ocorreu um erro inesperado ao tentar realizar login. Tente novamente em alguns instantes.", "Ok");
+                await Application.Current.MainPage.DisplayAlert("Ops", "Ocorreu um erro inesperado ao tentar realizar login. Tente novamente em alguns instantes.", "Ok");
             }            
         }
 
@@ -62,12 +62,12 @@ namespace freight.control.maui.Services.Authentication
                 var authProvider = GetFirebaseAuthProvider();
                 await authProvider.SendPasswordResetEmailAsync(email);
 
-                await App.Current.MainPage.DisplayAlert("Sucesso", $"Enviamos um email para ({email}) com as instruções para redefinir a senha.", "Ok");
+                await Application.Current.MainPage.DisplayAlert("Sucesso", $"Enviamos um email para ({email}) com as instruções para redefinir a senha.", "Ok");
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.StackTrace.ToString());                
-                await App.Current.MainPage.DisplayAlert("Ops", "Ocorreu um erro inesperado ao tentar redefinir nova senha. Tente novamente em alguns instantes.", "Ok");
+                await Application.Current.MainPage.DisplayAlert("Ops", "Ocorreu um erro inesperado ao tentar redefinir nova senha. Tente novamente em alguns instantes.", "Ok");
             }
         }
 
@@ -81,12 +81,12 @@ namespace freight.control.maui.Services.Authentication
 
                 await auth.UpdateProfileAsync(name, string.Empty);
                 
-                await App.Current.MainPage.DisplayAlert("Sucesso", "Usuário registrado com sucesso!", "Voltar");
+                await Application.Current.MainPage.DisplayAlert("Sucesso", "Usuário registrado com sucesso!", "Voltar");
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.StackTrace.ToString());
-                await App.Current.MainPage.DisplayAlert("Ops", "Ocorreu um erro inesperado ao tentar registrar um novo usuário. Tente novamente em alguns instantes.", "Ok");
+                await Application.Current.MainPage.DisplayAlert("Ops", "Ocorreu um erro inesperado ao tentar registrar um novo usuário. Tente novamente em alguns instantes.", "Ok");
             }           
         }
 

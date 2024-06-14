@@ -1,5 +1,5 @@
 ﻿using DevExpress.Maui.Controls;
-using freight.control.maui.Components;
+using freight.control.maui.Components.UI;
 using freight.control.maui.Controls.Animations;
 using freight.control.maui.Controls.Excel;
 using freight.control.maui.Models;
@@ -167,11 +167,28 @@ namespace freight.control.maui.MVVM.Views
             {
                 BackgroundColor = Colors.White,
                 ItemTemplate = new DataTemplate(CreateItemTemplateFreight),
+                RemainingItemsThreshold = 1,
+                Footer = new StackLayout()
+                {
+                    Children =
+                    {
+                        CreateActiveIndicatorFooterRegion()
+                    }
+                }
             };
-            collection.SetBinding(ItemsView.ItemsSourceProperty, nameof(FreightViewModel.FreightCollection));
+            collection.SetBinding(ItemsView.ItemsSourceProperty, nameof(ViewModel.FreightCollection));
+            collection.RemainingItemsThresholdReachedCommand = ViewModel.LoadMoreItemFreightCommand;
 
             refresh.Content = collection;
             mainGrid.Add(refresh, 0, 1);
+        }
+       
+        private View CreateActiveIndicatorFooterRegion()
+        {
+            var activeIndicatorFooterFreightCollection = new FooterActivityIndicator();
+            activeIndicatorFooterFreightCollection.SetBinding(IsVisibleProperty, nameof(ViewModel.IsLoadingMoreFreightItems));
+
+            return activeIndicatorFooterFreightCollection;
         }
 
         private View CreateItemTemplateFreight()
@@ -478,12 +495,12 @@ namespace freight.control.maui.MVVM.Views
 
             await ClickAnimation.SetFadeOnElement(element);
 
-            await Application.Current.MainPage.Navigation.PopAsync();
+            await Navigation.PopAsync();
         }
 
         private async void ClickedButtonNew(object sender, EventArgs e)
         {
-            await Application.Current.MainPage.Navigation.PushAsync(new AddFreightView());
+            await Navigation.PushAsync(new AddFreightView());
         }
 
         private void ClickedButtonFilter(object sender, EventArgs e)
@@ -600,7 +617,7 @@ namespace freight.control.maui.MVVM.Views
                 ViewModel.IsBusy = false;
             }
         }
-
+       
         #endregion
 
         #region Actions

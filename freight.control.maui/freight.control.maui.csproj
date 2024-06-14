@@ -74,6 +74,7 @@
 		<PackageReference Include="FirebaseAdmin" Version="2.4.1" />
 		<PackageReference Include="FirebaseAuthentication.net" Version="3.7.2" />
 		<PackageReference Include="Microcharts.Maui" Version="0.9.5.9" />
+		<PackageReference Include="Refractored.MvvmHelpers" Version="1.6.2" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -155,6 +156,7 @@
 	  <None Remove="Models\Chart\" />
 	  <None Remove="Components\Chart\" />
 	  <None Remove="Services\Chart\" />
+	  <None Remove="Controls\Benchmark\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="MVVM\" />
@@ -180,6 +182,7 @@
 	  <Folder Include="Models\Chart\" />
 	  <Folder Include="Components\Chart\" />
 	  <Folder Include="Services\Chart\" />
+	  <Folder Include="Controls\Benchmark\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Compile Remove="MVVM\HomeView2.cs" />

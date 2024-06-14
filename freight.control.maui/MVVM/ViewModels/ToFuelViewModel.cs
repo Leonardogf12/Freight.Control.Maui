@@ -259,11 +259,11 @@ namespace freight.control.maui.MVVM.ViewModels
 
                 if (edited > 0)
                 {
-                    await App.Current.MainPage.DisplayAlert("Sucesso", "Abastecimento editado com sucesso!", "Ok");
+                    await Application.Current.MainPage.DisplayAlert("Sucesso", "Abastecimento editado com sucesso!", "Ok");
                     return;
                 }
 
-                await App.Current.MainPage.DisplayAlert("Ops", "Parece que houve um erro durante a edição do abastecimento. Por favor, tente novamente.", "Ok");
+                await Application.Current.MainPage.DisplayAlert("Ops", "Parece que houve um erro durante a edição do abastecimento. Por favor, tente novamente.", "Ok");
 
                 return;
             }
@@ -272,11 +272,11 @@ namespace freight.control.maui.MVVM.ViewModels
 
             if (result > 0)
             {
-                await App.Current.MainPage.DisplayAlert("Sucesso", "Abastecimento criado com sucesso!", "Ok");
+                await Application.Current.MainPage.DisplayAlert("Sucesso", "Abastecimento criado com sucesso!", "Ok");
                 return;
             }
 
-            await App.Current.MainPage.DisplayAlert("Ops", "Parece que houve um erro durante a criação do abastecimento. Por favor, tente novamente.", "Ok");
+            await Application.Current.MainPage.DisplayAlert("Ops", "Parece que houve um erro durante a criação do abastecimento. Por favor, tente novamente.", "Ok");
         }
 
         public void CalculatePriceOfFuel()

@@ -1,5 +1,5 @@
 ﻿using DevExpress.Maui.Editors;
-using freight.control.maui.Components;
+using freight.control.maui.Components.UI;
 using freight.control.maui.Controls.Animations;
 using freight.control.maui.Controls.ControlCheckers;
 using freight.control.maui.MVVM.Base.Views;
@@ -101,8 +101,8 @@ namespace freight.control.maui.MVVM.Views
 
             var labelTitle = new Label
             {
-                TextColor = App.GetResource<Color>("PrimaryDark"), //(Color)Application.Current.Resources["PrimaryDark"],
-                Style = App.GetResource<Style>("labelTitleView") //(Style)Application.Current.Resources["labelTitleView"],
+                TextColor = App.GetResource<Color>("PrimaryDark"), //(Color)App.Current.Resources["PrimaryDark"],
+                Style = App.GetResource<Style>("labelTitleView") //(Style)App.Current.Resources["labelTitleView"],
             };
             labelTitle.SetBinding(Label.TextProperty, nameof(ViewModel.TextTitlePage));
             contentGridStackTitle.Add(labelTitle, 1, 0);
@@ -339,7 +339,7 @@ namespace freight.control.maui.MVVM.Views
             var button = new Button
             {
                 Text = "Salvar",
-                Style = (Style)Application.Current.Resources["buttonDarkPrimary"]
+                Style = App.GetResource<Style>("buttonDarkPrimary")
             };
 
             button.Clicked += SaveClicked;
@@ -442,7 +442,7 @@ namespace freight.control.maui.MVVM.Views
 
             await ClickAnimation.SetFadeOnElement(element);
 
-            await Application.Current.MainPage.Navigation.PopAsync();
+            await Navigation.PopAsync();
         }
 
         #endregion

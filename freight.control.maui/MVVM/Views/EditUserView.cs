@@ -1,4 +1,4 @@
-﻿using freight.control.maui.Components;
+﻿using freight.control.maui.Components.UI;
 using freight.control.maui.MVVM.Base.Views;
 using freight.control.maui.MVVM.ViewModels;
 
@@ -94,7 +94,7 @@ namespace freight.control.maui.MVVM.Views
             var buttonSave = new Button
             {
                 Text = "Salvar",
-                Style = (Style)App.Current.Resources["buttonLoginDarkPrimary"]
+                Style = (Style)Application.Current.Resources["buttonLoginDarkPrimary"]
             };
 
             buttonSave.Clicked += ButtonReset_Clicked; ;
@@ -107,7 +107,7 @@ namespace freight.control.maui.MVVM.Views
             var buttonBack = new Button
             {
                 Text = "Voltar",
-                Style = (Style)App.Current.Resources["buttonLoginSecondaryDarkPrimary"],
+                Style = (Style)Application.Current.Resources["buttonLoginSecondaryDarkPrimary"],
             };
 
             buttonBack.Clicked += ButtonBack_Clicked;
@@ -121,7 +121,7 @@ namespace freight.control.maui.MVVM.Views
 
         private async void ButtonBack_Clicked(object sender, EventArgs e)
         {
-            await App.Current.MainPage.Navigation.PopAsync();
+            await Application.Current.MainPage.Navigation.PopAsync();
         }
 
         private void Name_TextChanged(object sender, EventArgs e)

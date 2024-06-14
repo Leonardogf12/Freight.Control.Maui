@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Windows.Input;
 using freight.control.maui.MVVM.Base.ViewModels;
 using freight.control.maui.MVVM.Models;
 using freight.control.maui.Repositories;
@@ -20,6 +21,18 @@ namespace freight.control.maui.MVVM.ViewModels
             set
             {
                 _toFuelCollection = value;
+                OnPropertyChanged();
+            }
+        }
+
+        //FreightListRemainingItems
+        private List<ToFuelModel> _toFuelListRemainingItems = new();
+        public List<ToFuelModel> ToFuelListRemainingItems
+        {
+            get => _toFuelListRemainingItems;
+            set
+            {
+                _toFuelListRemainingItems = value;
                 OnPropertyChanged();
             }
         }
@@ -55,6 +68,17 @@ namespace freight.control.maui.MVVM.ViewModels
             set
             {
                 _isVisibleTextPhraseToFuelEmpty = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _isLoadingMoreToFuelItems;
+        public bool IsLoadingMoreToFuelItems
+        {
+            get => _isLoadingMoreToFuelItems;
+            set
+            {
+                _isLoadingMoreToFuelItems = value;
                 OnPropertyChanged();
             }
         }
@@ -162,13 +186,19 @@ namespace freight.control.maui.MVVM.ViewModels
 
         #endregion
 
+        private readonly int _toFuelQtyItemsPage = 3;
+
+        public ICommand LoadMoreItemToFuelCommand;
+
         #endregion
 
         public DetailFreightViewModel()
         {
             _toFuelRepository = new();
-        }
 
+            LoadMoreItemToFuelCommand = new Command(OnLoadMoreItemToFuelCommand);
+        }
+       
         #region Private Methods
 
         private void SetValuesToDetails()
@@ -185,17 +215,45 @@ namespace freight.control.maui.MVVM.ViewModels
             IsVisibleTextPhraseToFuelEmpty = ToFuelCollection.Count == 0;
         }
 
-        private async void LoadCollection()
-        {
+        private async Task LoadCollection()
+        {           
             ToFuelCollection.Clear();
 
-            var list = await _toFuelRepository.GetAllById(SelectedFreightToDetail.Id);
+            ToFuelListRemainingItems = await _toFuelRepository.GetAllById(SelectedFreightToDetail.Id);
 
-            ToFuelCollection = new ObservableCollection<ToFuelModel>(list.OrderByDescending(x => x.Date).ToList());
+            App.Current.Dispatcher.Dispatch(() => {
 
-            CheckForItemsInCollection();
+                var toBeAdded = ToFuelListRemainingItems.Take(_toFuelQtyItemsPage).ToList();
 
-            CalcTotalFuelAndSpent();
+                toBeAdded.ForEach(ToFuelCollection.Add);
+            });
+        }
+
+        private async void OnLoadMoreItemToFuelCommand()
+        {
+            if (IsLoadingMoreToFuelItems) return;
+
+            try
+            {
+                if (ToFuelListRemainingItems?.Count > 0 && ToFuelCollection.Count < ToFuelListRemainingItems?.Count)
+                {
+                    IsLoadingMoreToFuelItems = true;
+
+                    await Task.Delay(700);
+
+                    var remaningItems = ToFuelListRemainingItems.Skip(ToFuelCollection.Count).Take(_toFuelQtyItemsPage).ToList();
+
+                    remaningItems.ForEach(ToFuelCollection.Add);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                IsLoadingMoreToFuelItems = false;               
+            }
         }
 
         private void CalcTotalFuelAndSpent()
@@ -216,20 +274,20 @@ namespace freight.control.maui.MVVM.ViewModels
             {
                 ToFuelCollection.Remove(model);
 
-                await App.Current.MainPage.DisplayAlert("Sucesso", "Item excluido com sucesso!", "Ok");
+                await Application.Current.MainPage.DisplayAlert("Sucesso", "Item excluido com sucesso!", "Ok");
             }
             else
             {
-                await App.Current.MainPage.DisplayAlert("Ops", "Parece que ocorreu um problema. Favor tentar novamente.", "Ok");
+                await Application.Current.MainPage.DisplayAlert("Ops", "Parece que ocorreu um problema. Favor tentar novamente.", "Ok");
             }
 
             CheckForItemsInCollection();
             CalcTotalFuelAndSpent();
         }
 
-        public void OnAppearing()
+        public async Task OnAppearing()
         {
-            LoadCollection();
+            await LoadCollection();
         }
 
         #endregion

@@ -12,7 +12,7 @@ namespace freight.control.maui.Repositories
             _db = new SQLiteAsyncConnection(App.DbPath);
         }
 
-        public async Task<IEnumerable<ToFuelModel>> GetAllById(int id)
+        public async Task<List<ToFuelModel>> GetAllById(int id)
         {
             return await _db.Table<ToFuelModel>().Where(x => x.FreightModelId == id).ToListAsync();
         }

@@ -1,5 +1,5 @@
 ﻿using DevExpress.Maui.Editors;
-using freight.control.maui.Components;
+using freight.control.maui.Components.UI;
 using freight.control.maui.MVVM.Base.Views;
 using freight.control.maui.MVVM.ViewModels;
 
@@ -105,7 +105,7 @@ namespace freight.control.maui.MVVM.Views
             var buttonRegister = new Button
             {
                 Text = "Registrar",
-                Style = (Style)App.Current.Resources["buttonDarkPrimary"]
+                Style = (Style)Application.Current.Resources["buttonDarkPrimary"]
             };
 
             buttonRegister.Clicked += ButtonRegister_Clicked;
@@ -118,7 +118,7 @@ namespace freight.control.maui.MVVM.Views
             var buttonBack = new Button
             {
                 Text = "Voltar",
-                Style = (Style)App.Current.Resources["buttonDarkPrimary"],
+                Style = (Style)Application.Current.Resources["buttonDarkPrimary"],
             };
 
             buttonBack.Clicked += ButtonBack_Clicked;
@@ -147,7 +147,7 @@ namespace freight.control.maui.MVVM.Views
 
         private async void ButtonBack_Clicked(object sender, EventArgs e)
         {
-            await App.Current.MainPage.Navigation.PopAsync();
+            await Application.Current.MainPage.Navigation.PopAsync();
         }
 
         #endregion

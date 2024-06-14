@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("freight.control.maui")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+eca48333b12db1a56039a733db425a022a3d62a5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+9378c8884fc1510346782bc5bfd2a6916c358813")]
 [assembly: System.Reflection.AssemblyProductAttribute("freight.control.maui")]
 [assembly: System.Reflection.AssemblyTitleAttribute("freight.control.maui")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

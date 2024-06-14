@@ -1583,6 +1583,8 @@
 /Users/leonardofazolo/Projects/GITHUB/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-android/android/assets/Mono.Android.Export.pdb
 /Users/leonardofazolo/Projects/GITHUB/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-android/android/assets/Mono.Android.pdb
 /Users/leonardofazolo/Projects/GITHUB/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-android/android/assets/mscorlib.dll
+/Users/leonardofazolo/Projects/GITHUB/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-android/android/assets/MvvmHelpers.dll
+/Users/leonardofazolo/Projects/GITHUB/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-android/android/assets/MvvmHelpers.pdb
 /Users/leonardofazolo/Projects/GITHUB/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-android/android/assets/netstandard.dll
 /Users/leonardofazolo/Projects/GITHUB/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-android/android/assets/Newtonsoft.Json.dll
 /Users/leonardofazolo/Projects/GITHUB/Freight.Control.Maui/freight.control.maui/obj/Debug/net7.0-android/android/assets/SixLabors.Fonts.dll

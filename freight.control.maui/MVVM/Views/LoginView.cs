@@ -1,4 +1,4 @@
-﻿using freight.control.maui.Components;
+﻿using freight.control.maui.Components.UI;
 using freight.control.maui.MVVM.Base.Views;
 using freight.control.maui.MVVM.ViewModels;
 using Microsoft.Maui.Controls.Shapes;
@@ -119,7 +119,7 @@ namespace freight.control.maui.MVVM.Views
             var buttonLogin = new Button
             {
                 Text = "Login",
-                Style = (Style)App.Current.Resources["buttonLoginDarkPrimary"]
+                Style = (Style)Application.Current.Resources["buttonLoginDarkPrimary"]
             };
 
             buttonLogin.Clicked += ButtonLogin_Clicked;
@@ -132,7 +132,7 @@ namespace freight.control.maui.MVVM.Views
             var buttonRegister = new Button
             {
                 Text = "Registrar",
-                Style = (Style)App.Current.Resources["buttonDarkPrimary"]
+                Style = (Style)Application.Current.Resources["buttonDarkPrimary"]
             };
 
             buttonRegister.Clicked += ButtonRegister_Clicked;
@@ -145,7 +145,7 @@ namespace freight.control.maui.MVVM.Views
             var buttonForgotPassword = new Label
             {
                 Text = "Esqueceu a Senha?",
-                Style = (Style)App.Current.Resources["labelForgotPassword"]
+                Style = (Style)Application.Current.Resources["labelForgotPassword"]
             };
 
             var tapGesture = new TapGestureRecognizer();
@@ -161,7 +161,7 @@ namespace freight.control.maui.MVVM.Views
 
         private async void ButtonForgotPassword_Clicked(object sender, EventArgs e)
         {
-            await App.Current.MainPage.Navigation.PushAsync(new ResetPasswordView());
+            await Application.Current.MainPage.Navigation.PushAsync(new ResetPasswordView());
         }
 
         private async void ButtonLogin_Clicked(object sender, EventArgs e)
@@ -173,7 +173,7 @@ namespace freight.control.maui.MVVM.Views
 
         private async void ButtonRegister_Clicked(object sender, EventArgs e)
         {
-            await App.Current.MainPage.Navigation.PushAsync(new RegisterView());
+            await Application.Current.MainPage.Navigation.PushAsync(new RegisterView());
         }
 
         #endregion       

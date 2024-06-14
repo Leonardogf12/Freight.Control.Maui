@@ -8,7 +8,7 @@ namespace freight.control.maui;
 
 public partial class App : Application
 {
-    public static string WhatIsThePlatform;
+    private static string whatIsThePlatform;
 
     public static SKLottieView SKLottieViewIsBusy { get; set; }
 
@@ -18,18 +18,18 @@ public partial class App : Application
 
     public App()
 	{
-        CheckDevice();
+        App.CheckDevice();
 
-        App.SetDatabasePathDevice();
+        SetDatabasePathDevice();
       
         InitializeComponent();
        
         MainPage = new AppShell();
 
-        CheckUserHasLogged();
+        App.CheckUserHasLogged();
     }
 
-    private async void CheckUserHasLogged()
+    private static async void CheckUserHasLogged()
     {       
         var value = ControlPreferences.GetKeyOfPreferences(StringConstants.firebaseAuthTokenKey);
 
@@ -45,7 +45,7 @@ public partial class App : Application
         UserLocalIdLogged = ControlPreferences.GetKeyOfPreferences(StringConstants.firebaseUserLocalIdKey);      
     }
 
-    public void CheckDevice()
+    public static void CheckDevice()
 	{
         if (DeviceInfo.Platform == DevicePlatform.iOS)
         {
@@ -59,7 +59,7 @@ public partial class App : Application
 
     public static T GetResource<T>(string name)
     {
-        if (App.Current.Resources.TryGetValue(name, out var resourceValue) && resourceValue is T typedResource)
+        if (Current.Resources.TryGetValue(name, out var resourceValue) && resourceValue is T typedResource)
         {
             return typedResource;
         }
@@ -110,10 +110,11 @@ public partial class App : Application
     }
 
     public static PopupLoadingView PopupLoading { get => popupLoading; set => popupLoading = value; }
+    public static string WhatIsThePlatform { get => whatIsThePlatform; set => whatIsThePlatform = value; }
 
     public static string DbPath = string.Empty;
 
-    public static void SetDatabasePathDevice()
+    public void SetDatabasePathDevice()
     {
 
 #if ANDROID

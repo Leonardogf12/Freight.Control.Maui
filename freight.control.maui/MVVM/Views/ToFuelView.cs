@@ -1,5 +1,5 @@
 ﻿using DevExpress.Maui.Editors;
-using freight.control.maui.Components;
+using freight.control.maui.Components.UI;
 using freight.control.maui.Controls.Animations;
 using freight.control.maui.Controls.ControlCheckers;
 using freight.control.maui.MVVM.Base.Views;
@@ -101,8 +101,8 @@ namespace freight.control.maui.MVVM.Views
             var labelTitle = new Label
             {
                 Text = "Abastecimento",
-                TextColor = (Color)Application.Current.Resources["PrimaryDark"],
-                Style = (Style)Application.Current.Resources["labelTitleView"],
+                TextColor = App.GetResource<Color>("PrimaryDark"),
+                Style = App.GetResource<Style>("labelTitleView"),              
             };
             contentGridStackTitle.Add(labelTitle, 1, 0);
 
@@ -343,7 +343,7 @@ namespace freight.control.maui.MVVM.Views
             var button = new Button
             {
                 Text = "Salvar",
-                Style = (Style)Application.Current.Resources["buttonDarkPrimary"]
+                Style = App.GetResource<Style>("buttonDarkPrimary")
             };
             button.SetBinding(IsEnabledProperty, nameof(ViewModel.IsEnabledSaveButton));
 
@@ -378,7 +378,7 @@ namespace freight.control.maui.MVVM.Views
 
             await ClickAnimation.SetFadeOnElement(element);
 
-            await Application.Current.MainPage.Navigation.PopAsync();
+            await Navigation.PopAsync();
         }
 
         private void Liters_TextChanged(object sender, EventArgs e)

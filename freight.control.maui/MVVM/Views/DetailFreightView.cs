@@ -1,4 +1,5 @@
 ﻿using freight.control.maui.Components.Others;
+using freight.control.maui.Components.UI;
 using freight.control.maui.Controls.Animations;
 using freight.control.maui.MVVM.Base.Views;
 using freight.control.maui.MVVM.Models;
@@ -35,13 +36,13 @@ namespace freight.control.maui.MVVM.Views
 
         private View BuildDetailFreightView()
         {
-            var mainGrid = DetailFreightView.CreateMainGrid();
+            var mainGrid = CreateMainGrid();
 
             CreateStackHeader(mainGrid);
 
             CreateDetailsFreight(mainGrid);
 
-            DetailFreightView.CreateTitleToFuel(mainGrid);
+            CreateTitleToFuel(mainGrid);
 
             CreateCollectionDetailFreight(mainGrid);
 
@@ -230,12 +231,29 @@ namespace freight.control.maui.MVVM.Views
         {
             var collection = new CollectionView
             {
+                RemainingItemsThreshold = 1,
                 BackgroundColor = Colors.White,
                 ItemTemplate = new DataTemplate(CreateItemTemplateDetailFreight),
+                Footer = new StackLayout()
+                {
+                    Children =
+                    {
+                        CreateActiveIndicatorFooterRegion()
+                    }
+                }
             };
-            collection.SetBinding(CollectionView.ItemsSourceProperty, nameof(ViewModel.ToFuelCollection));
+            collection.SetBinding(ItemsView.ItemsSourceProperty, nameof(ViewModel.ToFuelCollection));
+            collection.RemainingItemsThresholdReachedCommand = ViewModel.LoadMoreItemToFuelCommand;
 
             mainGrid.Add(collection, 0, 3);
+        }
+
+        private View CreateActiveIndicatorFooterRegion()
+        {
+            var activeIndicatorFooterToFuelCollection = new FooterActivityIndicator();
+            activeIndicatorFooterToFuelCollection.SetBinding(IsVisibleProperty, nameof(ViewModel.IsLoadingMoreToFuelItems));
+
+            return activeIndicatorFooterToFuelCollection;
         }
 
         private View CreateItemTemplateDetailFreight()
@@ -272,19 +290,19 @@ namespace freight.control.maui.MVVM.Views
                 }
             };
 
-            DetailFreightView.CreateLabelDate(contentGridBorder);
+            CreateLabelDate(contentGridBorder);
 
             CreateIconTrash(contentGridBorder);
 
-            DetailFreightView.CreateStackLiters(contentGridBorder);
+            CreateStackLiters(contentGridBorder);
 
-            DetailFreightView.CreateStackAmountSpentLiters(contentGridBorder);
+            CreateStackAmountSpentLiters(contentGridBorder);
 
-            DetailFreightView.CreateStackValuePerLiter(contentGridBorder);
+            CreateStackValuePerLiter(contentGridBorder);
 
-            DetailFreightView.CreateStackExpenses(contentGridBorder);
+            CreateStackExpenses(contentGridBorder);
 
-            DetailFreightView.CreateStackObservation(contentGridBorder);
+            CreateStackObservation(contentGridBorder);
 
             CreateStackButtonsActions(contentGridBorder);
 
@@ -525,7 +543,7 @@ namespace freight.control.maui.MVVM.Views
 
         private void CreateStackButtonsActions(Grid contentGridBorder)
         {
-            var buttonEdit = DetailFreightView.CreateBaseButton("Editar", "buttonTertiaryGreen", ClickedButtonEdit);
+            var buttonEdit = CreateBaseButton("Editar", "buttonTertiaryGreen", ClickedButtonEdit);
             buttonEdit.WidthRequest = 80;
             buttonEdit.Margin = new Thickness(0, 0, 10, 10);
             buttonEdit.HorizontalOptions = LayoutOptions.End;
@@ -614,13 +632,13 @@ namespace freight.control.maui.MVVM.Views
 
         #region Actions
 
-        protected override void OnAppearing()
+        protected async override void OnAppearing()
         {
             base.OnAppearing();
 
             var vm = BindingContext as DetailFreightViewModel;
 
-            vm.OnAppearing();
+            await vm.OnAppearing();
         }
 
         #endregion

@@ -52,6 +52,7 @@ public class MonoPackageManager_Resources {
 		"Microsoft.Maui.Graphics.dll",
 		"Newtonsoft.Json.dll",
 		"BouncyCastle.Crypto.dll",
+		"MvvmHelpers.dll",
 		"SixLabors.Fonts.dll",
 		"SixLabors.ImageSharp.dll",
 		"SixLabors.ImageSharp.Drawing.dll",
