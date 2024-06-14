@@ -26,10 +26,10 @@ namespace freight.control.maui.MVVM.Views
             return new Grid
             {
                 RowDefinitions = new RowDefinitionCollection
-            {
-                new() {Height = 200},
-                new() {Height = GridLength.Star},
-            },
+                {
+                    new() {Height = 200},
+                    new() {Height = GridLength.Star},
+                },
             };
         }
 

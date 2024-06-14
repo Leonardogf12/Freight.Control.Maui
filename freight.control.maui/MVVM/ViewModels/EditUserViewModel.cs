@@ -60,14 +60,12 @@ namespace freight.control.maui.MVVM.ViewModels
 
                 if (user != null && user.Name != StringConstants.Usuario)
                 {
-                    await _userRepository.UpdateAsync(CreateModelToEdit(user));
-                    await App.Current.MainPage.DisplayAlert("Sucesso", "Nome de Usuário editado com sucesso!", "Ok");
-                    return;
+                    await _userRepository.UpdateAsync(CreateModelToEdit(user));                                   
                 }
-
-                await _userRepository.SaveAsync(CreateModelToSave());
-
-                await App.Current.MainPage.DisplayAlert("Sucesso", "Nome Usuário definido com sucesso!", "Ok");
+                else
+                {
+                    await _userRepository.SaveAsync(CreateModelToSave());
+                }                
             }
             catch (Exception ex)
             {

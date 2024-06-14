@@ -66,7 +66,7 @@ namespace freight.control.maui.MVVM.Views
             {
                 VerticalOptions = LayoutOptions.Center,
                 Orientation = StackOrientation.Vertical,
-                Spacing = 30
+                Spacing = 60
             };
 
             var freightButton = new ButtonHomeMenu(iconName: "truck", eventTap: TapGestureRecognizer_Tapped_GoToFreightView);
@@ -101,6 +101,7 @@ namespace freight.control.maui.MVVM.Views
                 Placement = DevExpress.Maui.Core.Placement.Bottom,
                 HorizontalAlignment = PopupHorizontalAlignment.Left,
                 CornerRadius = 8,
+                MaximumWidthRequest = 200, 
                 BackgroundColor = App.GetResource<Color>("White"),               
             };
 
@@ -126,15 +127,20 @@ namespace freight.control.maui.MVVM.Views
 
         private void CreateUserButton(StackLayout items)
         {
-            var content = new StackLayout
-            {
-                Spacing = 10,
-                Orientation = StackOrientation.Horizontal,
-                Margin = new Thickness(10, 10, 0, 0),
+            var content = new Grid
+            {                
+                ColumnDefinitions = new ColumnDefinitionCollection
+                {
+                    new () { Width = GridLength.Auto },
+                    new () { Width = GridLength.Star },
+                },
+                ColumnSpacing = 5,
+                Margin = 10
             };
 
             var icon = new Image
             {
+                HorizontalOptions = LayoutOptions.Start,
                 VerticalOptions = LayoutOptions.Start,
                 Source = ImageSource.FromFile("user_24"),
                 HeightRequest = 20
@@ -146,27 +152,35 @@ namespace freight.control.maui.MVVM.Views
 
             var text = new Label
             {
+                HorizontalOptions = LayoutOptions.Start,
                 VerticalOptions = LayoutOptions.Start,
                 TextColor = App.GetResource<Color>("PrimaryDark"),
                 FontFamily = "MontserratSemibold",
                 FontSize = 16,
+                MaxLines = 1,
+                LineBreakMode = LineBreakMode.TailTruncation
             };
             text.SetBinding(Label.TextProperty, nameof(ViewModel.NameUserLogged));
+            
+            content.Add(icon, 0, 0);
+            content.Add(text, 1, 0);
 
-            content.Children.Add(icon);
-            content.Children.Add(text);
             items.Children.Add(content);
         }
 
         private void CreateLogoffButton(StackLayout items)
         {
-            var content = new StackLayout
+            var content = new Grid
             {
-                Spacing = 10,
-                Orientation = StackOrientation.Horizontal,
-                Margin = new Thickness(10, 10, 0, 0),
+                ColumnDefinitions = new ColumnDefinitionCollection
+                {
+                    new () { Width = GridLength.Auto },
+                    new () { Width = GridLength.Star },
+                },
+                ColumnSpacing = 5,
+                Margin = 10
             };
-
+            
             var icon = new Image
             {
                 VerticalOptions = LayoutOptions.Start,
@@ -187,8 +201,9 @@ namespace freight.control.maui.MVVM.Views
                 Text = "Sair",
             };
 
-            content.Children.Add(icon);
-            content.Children.Add(text);
+            content.Add(icon, 0, 0);
+            content.Add(text, 1, 0);
+
             items.Children.Add(content);
         }
 
@@ -238,7 +253,7 @@ namespace freight.control.maui.MVVM.Views
 
         private async void TapGestureRecognizer_Tapped_Logoff(object sender, TappedEventArgs e)
         {
-            if (sender is StackLayout element)
+            if (sender is Grid element)
             {
                 await ClickAnimation.SetFadeOnElement(element);
 
@@ -257,7 +272,7 @@ namespace freight.control.maui.MVVM.Views
 
         private async void TapGestureRecognizer_Tapped_UserLogged(object sender, TappedEventArgs e)
         {
-            if (sender is StackLayout element)
+            if (sender is Grid element)
             {
                 await ClickAnimation.SetFadeOnElement(element);
 

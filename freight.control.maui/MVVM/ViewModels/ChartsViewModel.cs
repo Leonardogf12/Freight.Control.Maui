@@ -147,9 +147,10 @@ namespace freight.control.maui.MVVM.ViewModels
 
             try
             {
-                if (ListFreightChartMonthlyBackup.Count() > 0)
+                if (ListFreightChartMonthlyBackup.Length > 0)
                 {
-                    LoadFreightChartEntriesWithListsBackup(ListFreightChartMonthlyBackup);
+                    LoadFreightChartEntriesWithListsBackup(chartEntries: ListFreightChartMonthlyBackup);
+                    SetWidthRequestToFreightChart(length: ListFreightChartMonthlyBackup.Length);
                     return;
                 }
 
@@ -157,11 +158,9 @@ namespace freight.control.maui.MVVM.ViewModels
 
                 var instanceChartService = MyInterfaceFactoryChartService.CreateInstance();
 
-                var lineChartFreight = instanceChartService.GenerateLineChartFreightMonthly(list);
-
-                ListFreightChartMonthlyBackup = lineChartFreight;
-
-                SetWidthRequestToFreightChart(count: lineChartFreight.Count());
+                ListFreightChartMonthlyBackup = instanceChartService.GenerateLineChartFreightMonthly(list);
+                
+                SetWidthRequestToFreightChart(length: ListFreightChartMonthlyBackup.Length);
 
                 FreightChart = ChartStyleCustom.GetLineChartCustom(ListFreightChartMonthlyBackup);
             }
@@ -183,7 +182,8 @@ namespace freight.control.maui.MVVM.ViewModels
             {
                 if (ListFreightChartDailyBackup.Count() > 0)
                 {
-                    LoadFreightChartEntriesWithListsBackup(ListFreightChartDailyBackup);
+                    LoadFreightChartEntriesWithListsBackup(chartEntries: ListFreightChartDailyBackup);
+                    SetWidthRequestToFreightChart(length: ListFreightChartDailyBackup.Length);
                     return;
                 }
 
@@ -191,11 +191,9 @@ namespace freight.control.maui.MVVM.ViewModels
 
                 var instanceChartService = MyInterfaceFactoryChartService.CreateInstance();
 
-                var lineChartFreightMonthly = instanceChartService.GenerateLineChartFreightDaily(list);
-
-                ListFreightChartDailyBackup = lineChartFreightMonthly;
-
-                SetWidthRequestToFreightChart(count: lineChartFreightMonthly.Count());
+                ListFreightChartDailyBackup = instanceChartService.GenerateLineChartFreightDaily(list);
+                 
+                SetWidthRequestToFreightChart(length: ListFreightChartDailyBackup.Length);
 
                 FreightChart = ChartStyleCustom.GetLineChartCustom(ListFreightChartDailyBackup);
             }
@@ -219,9 +217,10 @@ namespace freight.control.maui.MVVM.ViewModels
 
             try
             {
-                if (ListToFuelChartMonthlyBackup.Count() > 0)
+                if (ListToFuelChartMonthlyBackup.Length > 0)
                 {
-                    LoadToFuelChartEntriesWithListsBackup(ListToFuelChartMonthlyBackup);
+                    LoadToFuelChartEntriesWithListsBackup(chartEntries: ListToFuelChartMonthlyBackup);
+                    SetWidthRequestToFuelChart(length: ListToFuelChartMonthlyBackup.Length);
                     return;
                 }
 
@@ -229,11 +228,9 @@ namespace freight.control.maui.MVVM.ViewModels
 
                 var instanceChartService = MyInterfaceFactoryChartService.CreateInstance();
 
-                var lineChartFreight = await instanceChartService.GenerateLineChartToFuelMonthly(list);
-
-                ListToFuelChartMonthlyBackup = lineChartFreight;
-
-                SetWidthRequestToFuelChart(count: lineChartFreight.Count());
+                ListToFuelChartMonthlyBackup = await instanceChartService.GenerateLineChartToFuelMonthly(list);
+                 
+                SetWidthRequestToFuelChart(length: ListToFuelChartMonthlyBackup.Length);
 
                 ToFuelChart = ChartStyleCustom.GetLineChartCustom(ListToFuelChartMonthlyBackup);
             }
@@ -253,9 +250,10 @@ namespace freight.control.maui.MVVM.ViewModels
 
             try
             {
-                if (ListToFuelChartDailyBackup.Count() > 0)
+                if (ListToFuelChartDailyBackup.Length > 0)
                 {
-                    LoadToFuelChartEntriesWithListsBackup(ListToFuelChartDailyBackup);
+                    LoadToFuelChartEntriesWithListsBackup(chartEntries: ListToFuelChartDailyBackup);
+                    SetWidthRequestToFuelChart(length: ListToFuelChartDailyBackup.Length);
                     return;
                 }
 
@@ -263,11 +261,9 @@ namespace freight.control.maui.MVVM.ViewModels
 
                 var instanceChartService = MyInterfaceFactoryChartService.CreateInstance();
 
-                var lineChartFreightMonthly = await instanceChartService.GenerateLineChartToFuelDaily(list);
+                ListToFuelChartDailyBackup = await instanceChartService.GenerateLineChartToFuelDaily(list);
 
-                ListToFuelChartDailyBackup = lineChartFreightMonthly;
-
-                SetWidthRequestToFuelChart(count: lineChartFreightMonthly.Count());
+                SetWidthRequestToFuelChart(length: ListToFuelChartDailyBackup.Length);
 
                 ToFuelChart = ChartStyleCustom.GetLineChartCustom(ListToFuelChartDailyBackup);
             }
@@ -297,22 +293,22 @@ namespace freight.control.maui.MVVM.ViewModels
             ToFuelChart = ChartStyleCustom.GetLineChartCustom(chartEntries);
         }
 
-        private void SetWidthRequestToFreightChart(int count)
+        private void SetWidthRequestToFreightChart(int length)
         {
             var displayInfo = DeviceDisplay.MainDisplayInfo;
             double screenWidthPixels = displayInfo.Width / displayInfo.Density;
 
-            var calc = count * 100 - 100;
+            var calc = length * 100 - 100;
 
             WidthLineChartFreight = calc > screenWidthPixels ? calc : screenWidthPixels;
         }
 
-        private void SetWidthRequestToFuelChart(int count)
+        private void SetWidthRequestToFuelChart(int length)
         {
             var displayInfo = DeviceDisplay.MainDisplayInfo;
             double screenWidthPixels = displayInfo.Width / displayInfo.Density;
 
-            var calc = count * 100 - 100;
+            var calc = length * 100 - 100;
 
             WidthLineChartToFuel = calc > screenWidthPixels ? calc : screenWidthPixels;
         }

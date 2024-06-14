@@ -1,9 +1,6 @@
-﻿using System;
-using AndroidX.Lifecycle;
-
-namespace freight.control.maui.Components.UI
+﻿namespace freight.control.maui.Components.UI
 {
-	public class FooterActivityIndicator : ActivityIndicator
+    public class FooterActivityIndicator : ActivityIndicator
 	{
 		public FooterActivityIndicator()
 		{           

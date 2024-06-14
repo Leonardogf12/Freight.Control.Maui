@@ -81,18 +81,18 @@ namespace freight.control.maui.MVVM.Views
             var contentGridStack = new Grid
             {
                 RowDefinitions = new RowDefinitionCollection
-            {
-                new () {Height = 50},
-                new () {Height = 100},
-            },
+                {
+                    new () {Height = 50},
+                    new () {Height = 100},
+                },
                 ColumnDefinitions = new ColumnDefinitionCollection
-            {
-                new(){Width = GridLength.Star},
-                new(){Width = GridLength.Star},
-                new(){Width = GridLength.Star},
-            },
+                {
+                    new(){Width = GridLength.Star},
+                    new(){Width = GridLength.Star},
+                    new(){Width = GridLength.Star},
+                },
                 ColumnSpacing = 15,
-                Margin = 10
+                Margin = new Thickness(10,10,0,10)
             };
 
             var iconGoBack = new Image
