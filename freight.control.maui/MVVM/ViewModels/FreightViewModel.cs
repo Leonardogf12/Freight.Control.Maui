@@ -1,9 +1,7 @@
 ﻿using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Windows.Input;
 using DevExpress.Maui.Controls;
 using freight.control.maui.Constants;
-using freight.control.maui.Controls.Benchmark;
 using freight.control.maui.Models;
 using freight.control.maui.MVVM.Base.ViewModels;
 using freight.control.maui.MVVM.Models;
@@ -199,15 +197,15 @@ namespace freight.control.maui.MVVM.ViewModels
             if (FreightCollection.Count == 0) return;
 
             var response = await Application.Current.MainPage.DisplayActionSheet("Você deseja efetivamente excluir todos os registros?",
-                                                                         StringConstants.Cancelar,
-                                                                         null,
-                                                                         new string[] { StringConstants.ExcluirTudo, StringConstants.Exportar });
+                            StringConstants.Cancelar, null, new string[] { StringConstants.ExcluirTudo, StringConstants.Exportar });
 
             if (response == StringConstants.Cancelar) return;
 
             if (response == StringConstants.ExcluirTudo)
             {
-                var res = await Application.Current.MainPage.DisplayAlert("Excluir Tudo", "Ao excluir todos os fretes você também eliminará todos os abastecimentos relacionados e eles.", "Aceitar", "Cancelar");
+                var res = await Application.Current.MainPage.DisplayAlert("Excluir Tudo",
+                            "Ao excluir todos os fretes você também eliminará todos os abastecimentos relacionados e eles.",
+                            "Aceitar", "Cancelar");
 
                 if (!res) return;
 
@@ -217,57 +215,9 @@ namespace freight.control.maui.MVVM.ViewModels
 
             OnExportFreightCommand();
         }
-
-        private async Task DeleteAllFreights()
-        {
-            IsBusy = true;
-
-            try
-            {
-                await _toFuelRepository.DeleteAllAsync();
-                await _freightRepository.DeleteAllAsync();
-
-                FreightCollection.Clear();
-
-                await Application.Current.MainPage.DisplayAlert("Sucesso", "Todos os registros foram excluídos com sucesso.", "Ok");
-
-                await OnRefreshingCommand();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                await Application.Current.MainPage.DisplayAlert("Erro", "Ocorreu um erro durante a exclusão. Por favor, tente novamente.", "Ok");
-            }
-            finally
-            {
-                IsBusy = false;
-            }
-        }
-
-        private void CheckIfThereAreFreightItemsInCollection()
-        {
-            IsVisibleTextAddNewFreight = FreightCollection.Count == 0;
-        }
-
-        private async Task LoadFreigths()
-        {        
-            FreightCollection.Clear();
-
-            FreightListRemainingItems = await _freightRepository.GetByUserLocalId(App.UserLocalIdLogged);
-
-            App.Current.Dispatcher.Dispatch(() => {
-
-                var toBeAdded = FreightListRemainingItems.Take(_freightQtyItemsPage).ToList();                
-
-                toBeAdded.ForEach(FreightCollection.Add);
-            });
-        }
-
+     
         private async void OnLoadMoreItemFreightCommand()
-        {
-            Stopwatch testStopwatch = new();
-            BenchmarkTests.StartStopWatch(stopWatch: testStopwatch);
-
+        {           
             if (IsLoadingMoreFreightItems) return;
 
             try
@@ -289,9 +239,52 @@ namespace freight.control.maui.MVVM.ViewModels
             }
             finally
             {
-                IsLoadingMoreFreightItems = false;
-                BenchmarkTests.StopWatchResult(testStopwatch);
+                IsLoadingMoreFreightItems = false;               
             }                       
+        }
+
+        private async Task DeleteAllFreights()
+        {
+            IsBusy = true;
+
+            try
+            {                
+                await _toFuelRepository.DeleteAllAsync();
+                               
+                await _freightRepository.DeleteAllAsync();
+
+                FreightCollection.Clear();
+
+                await Application.Current.MainPage.DisplayAlert("Sucesso", "Todos os registros foram excluídos com sucesso.", "Ok");
+
+                await OnRefreshingCommand();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                await Application.Current.MainPage.DisplayAlert("Erro", "Ocorreu um erro durante a exclusão. Por favor, tente novamente.", "Ok");
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+        private async Task LoadFreigths()
+        {
+            FreightCollection.Clear();
+
+            FreightListRemainingItems = await _freightRepository.GetByUserLocalId(App.UserLocalIdLogged);
+
+            /* App.Current.Dispatcher.Dispatch(() => { */
+
+            var toBeAdded = FreightListRemainingItems.Take(_freightQtyItemsPage).ToList();
+
+            toBeAdded.ForEach(FreightCollection.Add);
+
+            /* });*/
+
+            CheckIfThereAreFreightItemsInCollection();
         }
 
         private bool CheckDatesToFilterData()
@@ -332,41 +325,64 @@ namespace freight.control.maui.MVVM.ViewModels
             HeaderButtonFreightCollection = new ObservableCollection<HeaderButtonFreight>(list);
         }
 
+        private void CheckIfThereAreFreightItemsInCollection()
+        {
+            IsVisibleTextAddNewFreight = FreightCollection.Count == 0;
+        }
+
         #endregion
 
         #region Methods Publics
-
-        public async Task DeleteFreight(FreightModel model)
-        {
-            var result = await _freightRepository.DeleteAsync(model);
-
-            var isDeletedAll = await _toFuelRepository.DeleteByIdFreightAsync(model.Id);
-
-            if (result > 0 && isDeletedAll)
-            {
-                FreightCollection.Remove(model);
-
-                await Application.Current.MainPage.DisplayAlert("Sucesso", "Item excluido com sucesso!", "Ok");
-            }
-            else
-            {
-                await Application.Current.MainPage.DisplayAlert("Ops", "Parece que ocorreu um problema ao tentar excluir os abastecimentos deste Frete. Favor conferir.", "Ok");
-            }
-
-            CheckIfThereAreFreightItemsInCollection();
-        }
 
         public async void OnAppearing()
         {
             LoadHeaderButtons();
             await LoadFreigths();
+            CheckIfThereAreFreightItemsInCollection();
         }
 
+        public async Task DeleteFreight(FreightModel model)
+        {
+            try
+            {
+                var supplys = await _toFuelRepository.GetAllById(model.Id);
+
+                if (supplys.Any())
+                {
+                    _ = await _toFuelRepository.DeleteByIdFreightAsync(model.Id);
+                }                    
+
+                var result = await _freightRepository.DeleteAsync(model);
+
+                if (result > 0)
+                {
+                    FreightCollection.Remove(model);
+
+                    await Application.Current.MainPage.DisplayAlert("Sucesso", "Item excluido com sucesso!", "Ok");
+                }
+                else
+                {
+                    await Application.Current.MainPage.DisplayAlert("Ops",
+                        "Parece que ocorreu um problema ao tentar excluir este Frete ou seus abastecimentos. Favor conferir.", "Ok");
+
+                    return;
+                }
+
+                CheckIfThereAreFreightItemsInCollection();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }           
+        }
+       
         public async Task FilterFreights()
         {
             if (!CheckDatesToFilterData())
             {
-                await Application.Current.MainPage.DisplayAlert("Ops", "A data final deve ser maior ou igual a data inicial. Favor verificar.", "Ok");
+                await Application.Current.MainPage.DisplayAlert("Ops",
+                    "A data final deve ser maior ou igual a data inicial. Favor verificar.", "Ok");
+
                 return;
             }
 
@@ -374,7 +390,9 @@ namespace freight.control.maui.MVVM.ViewModels
 
             if (!dataFiltered.Any())
             {
-                await Application.Current.MainPage.DisplayAlert("Filtro", "Nenhum registro foi encontrado para o período informado. Favor verificar as datas informadas.", "Ok");
+                await Application.Current.MainPage.DisplayAlert("Filtro",
+                    "Nenhum registro foi encontrado para o período informado. Favor verificar as datas informadas.", "Ok");
+
                 return;
             }
 
@@ -387,7 +405,9 @@ namespace freight.control.maui.MVVM.ViewModels
         {
             if (!CheckDatesToFilterData())
             {
-                await Application.Current.MainPage.DisplayAlert("Ops", "A data final deve ser maior ou igual a data inicial. Favor verificar.", "Ok");
+                await Application.Current.MainPage.DisplayAlert("Ops",
+                    "A data final deve ser maior ou igual a data inicial. Favor verificar.", "Ok");
+
                 return null;
             }
 
@@ -395,7 +415,9 @@ namespace freight.control.maui.MVVM.ViewModels
 
             if (!dataFiltered.Any())
             {
-                await Application.Current.MainPage.DisplayAlert("Filtro", "Nenhum registro foi encontrado para o período informado.", "Ok");
+                await Application.Current.MainPage.DisplayAlert("Filtro",
+                    "Nenhum registro foi encontrado para o período informado.", "Ok");
+
                 return null;
             }
 

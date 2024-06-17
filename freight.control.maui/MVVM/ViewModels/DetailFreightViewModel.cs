@@ -24,8 +24,7 @@ namespace freight.control.maui.MVVM.ViewModels
                 OnPropertyChanged();
             }
         }
-
-        //FreightListRemainingItems
+      
         private List<ToFuelModel> _toFuelListRemainingItems = new();
         public List<ToFuelModel> ToFuelListRemainingItems
         {
@@ -220,13 +219,10 @@ namespace freight.control.maui.MVVM.ViewModels
             ToFuelCollection.Clear();
 
             ToFuelListRemainingItems = await _toFuelRepository.GetAllById(SelectedFreightToDetail.Id);
+           
+            var toBeAdded = ToFuelListRemainingItems.Take(_toFuelQtyItemsPage).ToList();
 
-            App.Current.Dispatcher.Dispatch(() => {
-
-                var toBeAdded = ToFuelListRemainingItems.Take(_toFuelQtyItemsPage).ToList();
-
-                toBeAdded.ForEach(ToFuelCollection.Add);
-            });
+            toBeAdded.ForEach(ToFuelCollection.Add);          
         }
 
         private async void OnLoadMoreItemToFuelCommand()
@@ -258,8 +254,8 @@ namespace freight.control.maui.MVVM.ViewModels
 
         private void CalcTotalFuelAndSpent()
         {
-            TotalFuel = ToFuelCollection.Select(x => x.Liters).Sum().ToString();
-            TotalSpentLiters = ToFuelCollection.Select(x => x.AmountSpentFuel).Sum().ToString("c");
+            TotalFuel = ToFuelListRemainingItems.Select(x => x.Liters).Sum().ToString();
+            TotalSpentLiters = ToFuelListRemainingItems.Select(x => x.AmountSpentFuel).Sum().ToString("c");
         }
 
         #endregion
@@ -288,6 +284,7 @@ namespace freight.control.maui.MVVM.ViewModels
         public async Task OnAppearing()
         {
             await LoadCollection();
+            CalcTotalFuelAndSpent();
         }
 
         #endregion

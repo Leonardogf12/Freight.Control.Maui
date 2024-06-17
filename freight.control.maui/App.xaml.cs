@@ -2,6 +2,7 @@
 using freight.control.maui.Constants;
 using freight.control.maui.Controls;
 using freight.control.maui.Data;
+using freight.control.maui.MVVM.Views;
 using SkiaSharp.Extended.UI.Controls;
 
 namespace freight.control.maui
@@ -62,7 +63,7 @@ namespace freight.control.maui
 
             SetLocalIdByUserLogged();
 
-            await Shell.Current.GoToAsync("//home");
+            await Shell.Current.GoToAsync("//home");          
         }
 
         #region Style - Colors

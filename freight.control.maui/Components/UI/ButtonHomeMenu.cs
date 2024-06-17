@@ -24,7 +24,10 @@ namespace freight.control.maui.Components.UI
                 }
             };
 
-            var tapGestureRecognizer = new TapGestureRecognizer();
+            var tapGestureRecognizer = new TapGestureRecognizer
+            {
+                NumberOfTapsRequired = 1,                
+            };
             tapGestureRecognizer.Tapped += eventTap;
             border.GestureRecognizers.Add(tapGestureRecognizer);
 

@@ -6,12 +6,15 @@ using freight.control.maui.Controls.Animations;
 using freight.control.maui.Controls.Resources;
 using freight.control.maui.MVVM.Base.Views;
 using freight.control.maui.MVVM.ViewModels;
+using freight.control.maui.Services.Navigation;
 
 namespace freight.control.maui.MVVM.Views
 {
     public class HomeView : BaseContentPage
     {
         #region Properties
+
+        private readonly INavigationService _navigationService;
 
         public HomeViewModel ViewModel = new();
 
@@ -23,8 +26,10 @@ namespace freight.control.maui.MVVM.Views
 
         #endregion
 
-        public HomeView()
+        public HomeView(INavigationService navigationService)
         {
+            _navigationService = navigationService;
+
             BackgroundColor = ControlResources.GetResource<Color>("PrimaryDark");
 
             Content = BuildHomeView();
@@ -229,8 +234,8 @@ namespace freight.control.maui.MVVM.Views
             if (sender is Border element)
             {
                 await ClickAnimation.SetFadeOnElement(element);
-
-                await Shell.Current.GoToAsync("FreightView");
+               
+                await _navigationService.NavigationToPageAsync<FreightView>();
             }
         }
 
@@ -248,7 +253,7 @@ namespace freight.control.maui.MVVM.Views
                     return;
                 }
 
-                await Shell.Current.GoToAsync("ChartsView");
+                await _navigationService.NavigationToPageAsync<ChartsView>();              
             }
         }
 
@@ -267,7 +272,7 @@ namespace freight.control.maui.MVVM.Views
                 ControlPreferences.RemoveKeyFromPreferences(StringConstants.firebaseAuthTokenKey);
                 ControlPreferences.RemoveKeyFromPreferences(StringConstants.firebaseUserLocalIdKey);
 
-                await Shell.Current.GoToAsync("//login");
+                await _navigationService.NavigationToPageAsync<LoginView>();               
             }
         }
 
@@ -279,7 +284,7 @@ namespace freight.control.maui.MVVM.Views
 
                 SettingsDxPopup.IsOpen = false;
 
-                await Shell.Current.GoToAsync("/EditUserView");
+                await _navigationService.NavigationToPageAsync<EditUserView>();               
             }
         }
 

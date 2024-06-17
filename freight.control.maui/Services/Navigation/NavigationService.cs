@@ -1,27 +1,31 @@
-﻿namespace freight.control.maui.Services.Navigation;
-
-public class NavigationService : INavigationService
+﻿namespace freight.control.maui.Services.Navigation
 {
-    public bool IsBrowsing = false;
-
-    public async Task NavigationToPageAsync<T>(Dictionary<string, object> parameters = null,
-                                         View view = null) where T : IView
+    public class NavigationService : INavigationService
     {
-        if (IsBrowsing) return;
+        public bool IsBrowsing = false;
 
-        IsBrowsing = true;
-
-        var typeView = typeof(T);
-
-        if(parameters != null)
+        public async Task NavigationToPageAsync<T>(Dictionary<string, object> parameters = null,
+                                             View view = null) where T : IView
         {
-            await Shell.Current.GoToAsync($"{typeView.Name}", parameters);
-        }
-        else
-        {
-            await Shell.Current.GoToAsync($"{typeView.Name}");
-        }
+            if (IsBrowsing) return;
 
-        IsBrowsing = false;
+            IsBrowsing = true;
+
+            var typeView = typeof(T);
+
+            if (parameters != null)
+            {
+                await Shell.Current.GoToAsync($"{typeView.Name}", parameters);
+            }
+            else
+            {
+                await Shell.Current.GoToAsync($"{typeView.Name}");
+            }
+
+            IsBrowsing = false;
+        }
     }
 }
+
+
+

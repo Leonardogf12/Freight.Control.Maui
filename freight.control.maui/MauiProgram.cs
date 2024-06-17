@@ -38,6 +38,7 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 			});
 
+        builder.Services.AddTransient<HomeView>();
         builder.Services.AddTransient<FreightView>();
         builder.Services.AddTransient<AddFreightView>();
         builder.Services.AddTransient<DetailFreightView>();
