@@ -2,6 +2,7 @@
 using freight.control.maui.Components.UI;
 using freight.control.maui.Controls.Animations;
 using freight.control.maui.Controls.Excel;
+using freight.control.maui.Controls.Resources;
 using freight.control.maui.Models;
 using freight.control.maui.MVVM.Base.Views;
 using freight.control.maui.MVVM.Models;
@@ -33,7 +34,7 @@ namespace freight.control.maui.MVVM.Views
             _navigationService = navigationService;
             _exportDataToExcel = exportDataToExcel;
 
-            BackgroundColor = App.GetResource<Color>("PrimaryDark");
+            BackgroundColor = ControlResources.GetResource<Color>("PrimaryDark");
 
             Content = BuildFreightView();
 
@@ -75,7 +76,7 @@ namespace freight.control.maui.MVVM.Views
         {
             var stack = new StackLayout
             {
-                BackgroundColor = App.GetResource<Color>("PrimaryDark"),
+                BackgroundColor = ControlResources.GetResource<Color>("PrimaryDark"),
             };
 
             var contentGridStack = new Grid
@@ -111,7 +112,7 @@ namespace freight.control.maui.MVVM.Views
             var title = new Label
             {
                 Text = "Fretes",
-                Style = App.GetResource<Style>("labelTitleView"),
+                Style = ControlResources.GetResource<Style>("labelTitleView"),
             };
             contentGridStack.Add(title, 1, 0);
 
@@ -144,7 +145,7 @@ namespace freight.control.maui.MVVM.Views
         {
             var button = new Button
             {
-                Style = App.GetResource<Style>("buttonDarkLight"),
+                Style = ControlResources.GetResource<Style>("buttonDarkLight"),
                 VerticalOptions = LayoutOptions.Center,
                 WidthRequest = 120
             };
@@ -158,7 +159,7 @@ namespace freight.control.maui.MVVM.Views
         {
             var refresh = new RefreshView
             {
-                RefreshColor = App.GetResource<Color>("PrimaryDark")
+                RefreshColor = ControlResources.GetResource<Color>("PrimaryDark")
             };
             refresh.SetBinding(RefreshView.IsRefreshingProperty, nameof(ViewModel.IsRefreshingView));
             refresh.Command = ViewModel.RefreshingCommand;
@@ -197,7 +198,7 @@ namespace freight.control.maui.MVVM.Views
             {
                 BackgroundColor = Colors.Transparent,
                 StrokeThickness = 1,
-                Stroke = App.GetResource<Color>("PrimaryGreen"),
+                Stroke = ControlResources.GetResource<Color>("PrimaryGreen"),
                 HeightRequest = 200,
                 Margin = DeviceInfo.Platform == DevicePlatform.Android ? 10 : 20,
                 StrokeShape = new RoundRectangle
@@ -245,7 +246,7 @@ namespace freight.control.maui.MVVM.Views
         {
             var labelDate = new Label
             {
-                TextColor = App.GetResource<Color>("PrimaryDark"),
+                TextColor = ControlResources.GetResource<Color>("PrimaryDark"),
                 FontFamily = "MontserratSemiBold",
                 FontSize = 16,
                 VerticalOptions = LayoutOptions.Center,
@@ -291,7 +292,7 @@ namespace freight.control.maui.MVVM.Views
 
             var labelOrigin = new Label
             {
-                TextColor = App.GetResource<Color>("PrimaryDark"),
+                TextColor = ControlResources.GetResource<Color>("PrimaryDark"),
                 FontFamily = "MontserratRegular",
                 FontSize = 16,
                 VerticalOptions = LayoutOptions.Center,
@@ -303,7 +304,7 @@ namespace freight.control.maui.MVVM.Views
             var divider = new Label
             {
                 Text = "-",
-                TextColor = App.GetResource<Color>("PrimaryDark"),
+                TextColor = ControlResources.GetResource<Color>("PrimaryDark"),
                 FontFamily = "MontserratRegular",
                 FontSize = 16,
                 VerticalOptions = LayoutOptions.Center,
@@ -313,7 +314,7 @@ namespace freight.control.maui.MVVM.Views
 
             var labelUf = new Label
             {
-                TextColor = App.GetResource<Color>("PrimaryDark"),
+                TextColor = ControlResources.GetResource<Color>("PrimaryDark"),
                 FontFamily = "MontserratRegular",
                 FontSize = 16,
                 VerticalOptions = LayoutOptions.Center,
@@ -346,7 +347,7 @@ namespace freight.control.maui.MVVM.Views
 
             var labelDestination = new Label
             {
-                TextColor = App.GetResource<Color>("PrimaryDark"),
+                TextColor = ControlResources.GetResource<Color>("PrimaryDark"),
                 FontFamily = "MontserratRegular",
                 FontSize = 16,
                 VerticalOptions = LayoutOptions.Center,
@@ -358,7 +359,7 @@ namespace freight.control.maui.MVVM.Views
             var divider = new Label
             {
                 Text = "-",
-                TextColor = App.GetResource<Color>("PrimaryDark"),
+                TextColor = ControlResources.GetResource<Color>("PrimaryDark"),
                 FontFamily = "MontserratRegular",
                 FontSize = 16,
                 VerticalOptions = LayoutOptions.Center,
@@ -368,7 +369,7 @@ namespace freight.control.maui.MVVM.Views
 
             var labelUf = new Label
             {
-                TextColor = App.GetResource<Color>("PrimaryDark"),
+                TextColor = ControlResources.GetResource<Color>("PrimaryDark"),
                 FontFamily = "MontserratRegular",
                 FontSize = 16,
                 VerticalOptions = LayoutOptions.Center,
@@ -401,7 +402,7 @@ namespace freight.control.maui.MVVM.Views
 
             var labelKm = new Label
             {
-                TextColor = App.GetResource<Color>("PrimaryDark"),
+                TextColor = ControlResources.GetResource<Color>("PrimaryDark"),
                 FontFamily = "MontserratRegular",
                 FontSize = 16,
                 VerticalOptions = LayoutOptions.Center,
@@ -583,7 +584,7 @@ namespace freight.control.maui.MVVM.Views
             var button = new Button
             {
                 Text = text,
-                Style = App.GetResource<Style>(style),
+                Style = ControlResources.GetResource<Style>(style),
             };
 
             button.Clicked += clicked;

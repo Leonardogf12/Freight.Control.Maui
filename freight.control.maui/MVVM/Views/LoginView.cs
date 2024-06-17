@@ -1,4 +1,5 @@
 ﻿using freight.control.maui.Components.UI;
+using freight.control.maui.Controls.Resources;
 using freight.control.maui.MVVM.Base.Views;
 using freight.control.maui.MVVM.ViewModels;
 using Microsoft.Maui.Controls.Shapes;
@@ -11,7 +12,7 @@ namespace freight.control.maui.MVVM.Views
 
         public LoginView()
 		{           
-            BackgroundColor = App.GetResource<Color>("PrimaryDark");
+            BackgroundColor = ControlResources.GetResource<Color>("PrimaryDark");
 
             Content = BuildLoginView();
 

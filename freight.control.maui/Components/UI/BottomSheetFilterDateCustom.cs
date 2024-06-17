@@ -1,4 +1,5 @@
 ﻿using DevExpress.Maui.Controls;
+using freight.control.maui.Controls.Resources;
 using Microsoft.Maui.Controls.Shapes;
 
 namespace freight.control.maui.Components.UI
@@ -41,8 +42,8 @@ namespace freight.control.maui.Components.UI
             var labelTitle = new Label
             {
                 Text = title,
-                TextColor = App.GetResource<Color>("PrimaryDark"),
-                Style = App.GetResource<Style>("labelTitleView"),               
+                TextColor = ControlResources.GetResource<Color>("PrimaryDark"),
+                Style = ControlResources.GetResource<Style>("labelTitleView"),               
                 HorizontalOptions = LayoutOptions.Center
             };
             mainGrid.Add(labelTitle, 0, 0);
@@ -79,8 +80,8 @@ namespace freight.control.maui.Components.UI
             var titleInitialDate = new Label
             {
                 Text = "Data de:",
-                TextColor = App.GetResource<Color>("PrimaryDark"),
-                Style = App.GetResource<Style>("labelTitleView"),              
+                TextColor = ControlResources.GetResource<Color>("PrimaryDark"),
+                Style = ControlResources.GetResource<Style>("labelTitleView"),              
                 FontFamily = "MontserratRegular",
                 HorizontalOptions = LayoutOptions.Start,
                 Margin = new Thickness(10, 10, 0, 0),
@@ -103,8 +104,8 @@ namespace freight.control.maui.Components.UI
             var titleFinalDate = new Label
             {
                 Text = "Data até:",
-                TextColor = App.GetResource<Color>("PrimaryDark"),         
-                Style = App.GetResource<Style>("labelTitleView"),              
+                TextColor = ControlResources.GetResource<Color>("PrimaryDark"),         
+                Style = ControlResources.GetResource<Style>("labelTitleView"),              
                 FontFamily = "MontserratRegular",
                 HorizontalOptions = LayoutOptions.Start,
                 Margin = new Thickness(10, 10, 0, 0),
@@ -128,7 +129,7 @@ namespace freight.control.maui.Components.UI
             var button = new Button
             {
                 Text = text,
-                Style = App.GetResource<Style>("buttonDarkPrimary"),               
+                Style = ControlResources.GetResource<Style>("buttonDarkPrimary"),               
             };
 
             button.Clicked += eventHandler;

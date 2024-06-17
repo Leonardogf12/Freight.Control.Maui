@@ -1,6 +1,7 @@
 ﻿using freight.control.maui.Components.Others;
 using freight.control.maui.Components.UI;
 using freight.control.maui.Controls.Animations;
+using freight.control.maui.Controls.Resources;
 using freight.control.maui.MVVM.Base.Views;
 using freight.control.maui.MVVM.Models;
 using freight.control.maui.MVVM.ViewModels;
@@ -25,7 +26,7 @@ namespace freight.control.maui.MVVM.Views
         {
             _navigationService = navigationService;
 
-            BackgroundColor = App.GetResource<Color>("PrimaryDark");
+            BackgroundColor = ControlResources.GetResource<Color>("PrimaryDark");
 
             Content = BuildDetailFreightView();
 
@@ -70,7 +71,7 @@ namespace freight.control.maui.MVVM.Views
         {
             var stack = new StackLayout
             {
-                BackgroundColor = App.GetResource<Color>("PrimaryDark"),
+                BackgroundColor = ControlResources.GetResource<Color>("PrimaryDark"),
             };
 
             var contentGridStack = new Grid
@@ -105,13 +106,13 @@ namespace freight.control.maui.MVVM.Views
             var title = new Label
             {
                 Text = "Detalhes",
-                Style = App.GetResource<Style>("labelTitleView"),
+                Style = ControlResources.GetResource<Style>("labelTitleView"),
             };
             contentGridStack.Add(title, 1, 0);
 
             var date = new Label
             {
-                Style = App.GetResource<Style>("labelTitleView"),
+                Style = ControlResources.GetResource<Style>("labelTitleView"),
                 FontSize = 16
             };
             date.SetBinding(Label.TextProperty, nameof(ViewModel.DetailTravelDate));
@@ -178,7 +179,7 @@ namespace freight.control.maui.MVVM.Views
             var titleLabel = new Label
             {
                 Text = title,
-                TextColor = App.GetResource<Color>("PrimaryDark"),
+                TextColor = ControlResources.GetResource<Color>("PrimaryDark"),
                 FontFamily = "MontserratSemiBold",
                 FontSize = 16,
                 VerticalOptions = LayoutOptions.Center,
@@ -186,7 +187,7 @@ namespace freight.control.maui.MVVM.Views
 
             var content = new Label
             {
-                TextColor = App.GetResource<Color>("PrimaryDark"),
+                TextColor = ControlResources.GetResource<Color>("PrimaryDark"),
                 FontFamily = "MontserratRegular",
                 FontSize = 16,
                 VerticalOptions = LayoutOptions.Center
@@ -219,8 +220,8 @@ namespace freight.control.maui.MVVM.Views
             var titleToFuel = new Label
             {
                 Text = "Abastecimentos",
-                Style = App.GetResource<Style>("labelTitleView"),
-                TextColor = App.GetResource<Color>("PrimaryDark")
+                Style = ControlResources.GetResource<Style>("labelTitleView"),
+                TextColor = ControlResources.GetResource<Color>("PrimaryDark")
             };
             stack.Children.Add(titleToFuel);
 
@@ -262,7 +263,7 @@ namespace freight.control.maui.MVVM.Views
             {
                 BackgroundColor = Colors.Transparent,
                 StrokeThickness = 1,
-                Stroke = App.GetResource<Color>("PrimaryGreen"),
+                Stroke = ControlResources.GetResource<Color>("PrimaryGreen"),
                 HeightRequest = 230,
                 Margin = DeviceInfo.Platform == DevicePlatform.Android ? 10 : 20,               
                 StrokeShape = new RoundRectangle
@@ -323,7 +324,7 @@ namespace freight.control.maui.MVVM.Views
             var title = new Label
             {
                 Text = "Data:",
-                TextColor = App.GetResource<Color>("PrimaryDark"),
+                TextColor = ControlResources.GetResource<Color>("PrimaryDark"),
                 FontFamily = "MontserratSemiBold",
                 FontSize = 16,
                 VerticalOptions = LayoutOptions.Center,
@@ -334,7 +335,7 @@ namespace freight.control.maui.MVVM.Views
 
             var labelDate = new Label
             {
-                TextColor = App.GetResource<Color>("PrimaryDark"),
+                TextColor = ControlResources.GetResource<Color>("PrimaryDark"),
                 FontFamily = "MontserratRegular",
                 FontSize = 16,
                 VerticalOptions = LayoutOptions.Center,
@@ -375,7 +376,7 @@ namespace freight.control.maui.MVVM.Views
             var labelTitle = new Label
             {
                 Text = "Litros:",
-                TextColor = App.GetResource<Color>("PrimaryDark"),
+                TextColor = ControlResources.GetResource<Color>("PrimaryDark"),
                 FontFamily = "MontserratSemiBold",
                 FontSize = 16,
                 VerticalOptions = LayoutOptions.Center,
@@ -385,7 +386,7 @@ namespace freight.control.maui.MVVM.Views
 
             var labelQtyLiters = new Label
             {
-                TextColor = App.GetResource<Color>("PrimaryDark"),
+                TextColor = ControlResources.GetResource<Color>("PrimaryDark"),
                 FontFamily = "MontserratRegular",
                 FontSize = 16,
                 VerticalOptions = LayoutOptions.Center,
@@ -409,7 +410,7 @@ namespace freight.control.maui.MVVM.Views
             var labelTitle = new Label
             {
                 Text = "Valor:",
-                TextColor = App.GetResource<Color>("PrimaryDark"),
+                TextColor = ControlResources.GetResource<Color>("PrimaryDark"),
                 FontFamily = "MontserratSemiBold",
                 FontSize = 16,
                 VerticalOptions = LayoutOptions.Center,
@@ -419,7 +420,7 @@ namespace freight.control.maui.MVVM.Views
 
             var labelAmountSpentFuel = new Label
             {
-                TextColor = App.GetResource<Color>("PrimaryDark"),
+                TextColor = ControlResources.GetResource<Color>("PrimaryDark"),
                 FontFamily = "MontserratRegular",
                 FontSize = 16,
                 VerticalOptions = LayoutOptions.Center,
@@ -443,7 +444,7 @@ namespace freight.control.maui.MVVM.Views
             var labelTitle = new Label
             {
                 Text = "Valor/Litro:",
-                TextColor = App.GetResource<Color>("PrimaryDark"),
+                TextColor = ControlResources.GetResource<Color>("PrimaryDark"),
                 FontFamily = "MontserratSemiBold",
                 FontSize = 16,
                 VerticalOptions = LayoutOptions.Center,
@@ -453,7 +454,7 @@ namespace freight.control.maui.MVVM.Views
 
             var labelValuePerLiter = new Label
             {
-                TextColor = App.GetResource<Color>("PrimaryDark"),
+                TextColor = ControlResources.GetResource<Color>("PrimaryDark"),
                 FontFamily = "MontserratRegular",
                 FontSize = 16,
                 VerticalOptions = LayoutOptions.Center,
@@ -479,7 +480,7 @@ namespace freight.control.maui.MVVM.Views
             var labelTitle = new Label
             {
                 Text = "Despesas:",
-                TextColor = App.GetResource<Color>("PrimaryDark"),
+                TextColor = ControlResources.GetResource<Color>("PrimaryDark"),
                 FontFamily = "MontserratSemiBold",
                 FontSize = 16,
                 VerticalOptions = LayoutOptions.Center,
@@ -489,7 +490,7 @@ namespace freight.control.maui.MVVM.Views
 
             var labelExpenses = new Label
             {
-                TextColor = App.GetResource<Color>("PrimaryDark"),
+                TextColor = ControlResources.GetResource<Color>("PrimaryDark"),
                 FontFamily = "MontserratRegular",
                 FontSize = 16,
                 VerticalOptions = LayoutOptions.Center,
@@ -517,7 +518,7 @@ namespace freight.control.maui.MVVM.Views
             var labelTitle = new Label
             {
                 Text = "Observação:",
-                TextColor = App.GetResource<Color>("PrimaryDark"),
+                TextColor = ControlResources.GetResource<Color>("PrimaryDark"),
                 FontFamily = "MontserratSemiBold",
                 FontSize = 16,
                 VerticalOptions = LayoutOptions.Center,
@@ -527,7 +528,7 @@ namespace freight.control.maui.MVVM.Views
 
             var labelObservation = new Label
             {
-                TextColor = App.GetResource<Color>("PrimaryDark"),
+                TextColor = ControlResources.GetResource<Color>("PrimaryDark"),
                 FontFamily = "MontserratRegular",
                 FontSize = 16,
                 VerticalOptions = LayoutOptions.Center,
@@ -620,7 +621,7 @@ namespace freight.control.maui.MVVM.Views
             var button = new Button
             {
                 Text = text,
-                Style = App.GetResource<Style>(style),
+                Style = ControlResources.GetResource<Style>(style),
             };
 
             button.Clicked += clicked;

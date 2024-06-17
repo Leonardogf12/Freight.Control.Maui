@@ -63,6 +63,9 @@ gradlew
 gradlew.bat
 .idea/
 .local/
+*.cache
+*.apk
+*.gl
 
 # .NET specific
 project.lock.json

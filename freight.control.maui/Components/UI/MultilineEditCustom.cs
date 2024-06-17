@@ -1,4 +1,5 @@
 ﻿using DevExpress.Maui.Editors;
+using freight.control.maui.Controls.Resources;
 
 namespace freight.control.maui.Components.UI
 {
@@ -20,10 +21,10 @@ namespace freight.control.maui.Components.UI
             PlaceholderColor = Colors.LightGray;
             FocusedBorderColor = Colors.Gray;
             BorderColor = Colors.LightGray;
-            TextColor = App.GetResource<Color>("PrimaryDark");
-            CursorColor = App.GetResource<Color>("BorderGray400");
-            ClearIconColor = App.GetResource<Color>("BorderGray400");
-            IconColor = App.GetResource<Color>("ColorOfIcons");
+            TextColor = ControlResources.GetResource<Color>("PrimaryDark");
+            CursorColor = ControlResources.GetResource<Color>("BorderGray400");
+            ClearIconColor = ControlResources.GetResource<Color>("BorderGray400");
+            IconColor = ControlResources.GetResource<Color>("ColorOfIcons");
             IconVerticalAlignment = LayoutAlignment.Start;
             TextVerticalAlignment = TextAlignment.Start;
             FlowDirection = FlowDirection.LeftToRight;

@@ -3,6 +3,7 @@ using freight.control.maui.Components.UI;
 using freight.control.maui.Constants;
 using freight.control.maui.Controls;
 using freight.control.maui.Controls.Animations;
+using freight.control.maui.Controls.Resources;
 using freight.control.maui.MVVM.Base.Views;
 using freight.control.maui.MVVM.ViewModels;
 
@@ -24,7 +25,7 @@ namespace freight.control.maui.MVVM.Views
 
         public HomeView()
         {
-            BackgroundColor = App.GetResource<Color>("PrimaryDark");
+            BackgroundColor = ControlResources.GetResource<Color>("PrimaryDark");
 
             Content = BuildHomeView();
 
@@ -102,7 +103,7 @@ namespace freight.control.maui.MVVM.Views
                 HorizontalAlignment = PopupHorizontalAlignment.Left,
                 CornerRadius = 8,
                 MaximumWidthRequest = 200, 
-                BackgroundColor = App.GetResource<Color>("White"),               
+                BackgroundColor = ControlResources.GetResource<Color>("White"),               
             };
 
             mainGrid.Add(SettingsDxPopup, 0, 0);
@@ -154,7 +155,7 @@ namespace freight.control.maui.MVVM.Views
             {
                 HorizontalOptions = LayoutOptions.Start,
                 VerticalOptions = LayoutOptions.Start,
-                TextColor = App.GetResource<Color>("PrimaryDark"),
+                TextColor = ControlResources.GetResource<Color>("PrimaryDark"),
                 FontFamily = "MontserratSemibold",
                 FontSize = 16,
                 MaxLines = 1,
@@ -195,7 +196,7 @@ namespace freight.control.maui.MVVM.Views
             var text = new Label
             {
                 VerticalOptions = LayoutOptions.Start,
-                TextColor = App.GetResource<Color>("PrimaryDark"),
+                TextColor = ControlResources.GetResource<Color>("PrimaryDark"),
                 FontFamily = "MontserratSemibold",
                 FontSize = 16,
                 Text = "Sair",

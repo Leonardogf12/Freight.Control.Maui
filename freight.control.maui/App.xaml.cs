@@ -4,97 +4,95 @@ using freight.control.maui.Controls;
 using freight.control.maui.Data;
 using SkiaSharp.Extended.UI.Controls;
 
-namespace freight.control.maui;
-
-public partial class App : Application
+namespace freight.control.maui
 {
-    private static string whatIsThePlatform;
-
-    public static SKLottieView SKLottieViewIsBusy { get; set; }
-
-    private static PopupLoadingView popupLoading = new();
-
-    public static string UserLocalIdLogged = string.Empty;
-
-    public App()
-	{
-        App.CheckDevice();
-
-        SetDatabasePathDevice();
-      
-        InitializeComponent();
-       
-        MainPage = new AppShell();
-
-        App.CheckUserHasLogged();
-    }
-
-    private static async void CheckUserHasLogged()
-    {       
-        var value = ControlPreferences.GetKeyOfPreferences(StringConstants.firebaseAuthTokenKey);
-
-        if (string.IsNullOrEmpty(value)) return;
-
-        SetLocalIdByUserLogged();
-       
-        await Shell.Current.GoToAsync("//home");                                 
-    }
-
-    public static void SetLocalIdByUserLogged()
+    public partial class App : Application
     {
-        UserLocalIdLogged = ControlPreferences.GetKeyOfPreferences(StringConstants.firebaseUserLocalIdKey);      
-    }
+        #region Properties
 
-    public static void CheckDevice()
-	{
-        if (DeviceInfo.Platform == DevicePlatform.iOS)
+        private static string whatIsThePlatform;
+
+        public static string WhatIsThePlatform { get => whatIsThePlatform; set => whatIsThePlatform = value; }
+
+        private static PopupLoadingView popupLoading = new();
+
+        public static PopupLoadingView PopupLoading { get => popupLoading; set => popupLoading = value; }
+
+        public static SKLottieView SKLottieViewIsBusy { get; set; }
+
+        public static string UserLocalIdLogged = string.Empty;
+
+        #endregion
+
+        public App()
         {
-            WhatIsThePlatform = "ios";
+            CheckDevice();
+
+            SetDatabasePathDevice();
+
+            InitializeComponent();
+
+            MainPage = new AppShell();
+
+            CheckUserHasLogged();
         }
-        else if (DeviceInfo.Platform == DevicePlatform.Android)
+
+        public static void CheckDevice()
         {
-            WhatIsThePlatform = "android";
-        }
-    }
-
-    public static T GetResource<T>(string name)
-    {
-        if (Current.Resources.TryGetValue(name, out var resourceValue) && resourceValue is T typedResource)
-        {
-            return typedResource;
-        }
-       
-        return default;
-    }
-
-    #region Style - Colors
-
-    public static Color GetRedColor() => Colors.Red;
-
-    public static Color GetLightGrayColor() => Colors.LightGray;
-
-    public static Color GetGrayColor() => Colors.Gray;
-
-    #endregion
-
-    #region DB
-
-    private static DbApp _dbApp;
-    public static DbApp DbApp
-    {
-    #if ANDROID
-        
-        get
-        {
-            if(_dbApp == null)
+            if (DeviceInfo.Platform == DevicePlatform.iOS)
             {
-                _dbApp = new DbApp(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), StringConstants.DatabaseName));
+                WhatIsThePlatform = "ios";
+            }
+            else if (DeviceInfo.Platform == DevicePlatform.Android)
+            {
+                WhatIsThePlatform = "android";
+            }
+        }
+
+        public static void SetLocalIdByUserLogged()
+        {
+            UserLocalIdLogged = ControlPreferences.GetKeyOfPreferences(StringConstants.firebaseUserLocalIdKey);
+        }
+
+        private static async void CheckUserHasLogged()
+        {
+            var value = ControlPreferences.GetKeyOfPreferences(StringConstants.firebaseAuthTokenKey);
+
+            if (string.IsNullOrEmpty(value)) return;
+
+            SetLocalIdByUserLogged();
+
+            await Shell.Current.GoToAsync("//home");
+        }
+
+        #region Style - Colors
+
+        public static Color GetRedColor() => Colors.Red;
+
+        public static Color GetLightGrayColor() => Colors.LightGray;
+
+        public static Color GetGrayColor() => Colors.Gray;
+
+        #endregion
+
+        #region DB
+
+        private static DbApp _dbApp;
+        public static DbApp DbApp
+        {
+#if ANDROID
+
+            get
+            {
+                if (_dbApp == null)
+                {
+                    _dbApp = new DbApp(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), StringConstants.DatabaseName));
+                }
+
+                return _dbApp;
             }
 
-            return _dbApp;
-        }
-
-    #else
+#else
 
         get
         {
@@ -106,19 +104,16 @@ public partial class App : Application
             return _dbApp;
         }
 
-    #endif
-    }
+#endif
+        }
 
-    public static PopupLoadingView PopupLoading { get => popupLoading; set => popupLoading = value; }
-    public static string WhatIsThePlatform { get => whatIsThePlatform; set => whatIsThePlatform = value; }
+        public static string DbPath = string.Empty;
 
-    public static string DbPath = string.Empty;
-
-    public void SetDatabasePathDevice()
-    {
+        public void SetDatabasePathDevice()
+        {
 
 #if ANDROID
-        DbPath = "/data/user/0/com.companyname.freight.control.maui/files/confretedata.db3";
+            DbPath = "/data/user/0/com.companyname.freight.control.maui/files/confretedata.db3";
 
 
 #else
@@ -128,9 +123,12 @@ public partial class App : Application
         DbPath = databaseName;
 
 #endif
-       
-    }
 
-    #endregion
+        }
+
+        #endregion
+    }
 }
+
+
 

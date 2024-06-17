@@ -1,4 +1,5 @@
 ﻿using freight.control.maui.Controls.Animations;
+using freight.control.maui.Controls.Resources;
 using freight.control.maui.MVVM.Base.Views;
 using freight.control.maui.MVVM.ViewModels;
 using Microcharts.Maui;
@@ -17,7 +18,7 @@ namespace freight.control.maui.MVVM.Views
 
         public ChartsView()
         {
-            BackgroundColor = App.GetResource<Color>("PrimaryDark");
+            BackgroundColor = ControlResources.GetResource<Color>("PrimaryDark");
 
             Content = BuildChartsView();
 
@@ -54,7 +55,7 @@ namespace freight.control.maui.MVVM.Views
         {
             var stack = new StackLayout
             {
-                BackgroundColor = App.GetResource<Color>("PrimaryDark"),
+                BackgroundColor = ControlResources.GetResource<Color>("PrimaryDark"),
             };
 
             var contentGridStack = new Grid
@@ -89,7 +90,7 @@ namespace freight.control.maui.MVVM.Views
             var title = new Label
             {
                 Text = "Análise",
-                Style = App.GetResource<Style>("labelTitleView"),
+                Style = ControlResources.GetResource<Style>("labelTitleView"),
             };
             contentGridStack.Add(title, 1, 0);
 
@@ -247,16 +248,16 @@ namespace freight.control.maui.MVVM.Views
 
         private async void MonthlyButton_Clicked(object sender, EventArgs e)
         {
-            ViewModel.MonthButtonStyle = App.GetResource<Style>("buttonDarkLightFilterSecondary");
-            ViewModel.DayButtonStyle = App.GetResource<Style>("buttonDarkLightFilterPrimary");
+            ViewModel.MonthButtonStyle = ControlResources.GetResource<Style>("buttonDarkLightFilterSecondary");
+            ViewModel.DayButtonStyle = ControlResources.GetResource<Style>("buttonDarkLightFilterPrimary");
 
             await LoadMonthlyCharts();
         }
 
         private async void DailyButton_Clicked(object sender, EventArgs e)
         {
-            ViewModel.DayButtonStyle = App.GetResource<Style>("buttonDarkLightFilterSecondary");
-            ViewModel.MonthButtonStyle = App.GetResource<Style>("buttonDarkLightFilterPrimary");
+            ViewModel.DayButtonStyle = ControlResources.GetResource<Style>("buttonDarkLightFilterSecondary");
+            ViewModel.MonthButtonStyle = ControlResources.GetResource<Style>("buttonDarkLightFilterPrimary");
 
             await LoadDailyCharts();
 

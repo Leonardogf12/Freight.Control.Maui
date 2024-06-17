@@ -2,6 +2,7 @@
 using freight.control.maui.Components.UI;
 using freight.control.maui.Controls.Animations;
 using freight.control.maui.Controls.ControlCheckers;
+using freight.control.maui.Controls.Resources;
 using freight.control.maui.MVVM.Base.Views;
 using freight.control.maui.MVVM.ViewModels;
 using Microsoft.Maui.Controls.Shapes;
@@ -101,8 +102,8 @@ namespace freight.control.maui.MVVM.Views
             var labelTitle = new Label
             {
                 Text = "Abastecimento",
-                TextColor = App.GetResource<Color>("PrimaryDark"),
-                Style = App.GetResource<Style>("labelTitleView"),              
+                TextColor = ControlResources.GetResource<Color>("PrimaryDark"),
+                Style = ControlResources.GetResource<Style>("labelTitleView"),              
             };
             contentGridStackTitle.Add(labelTitle, 1, 0);
 
@@ -130,14 +131,14 @@ namespace freight.control.maui.MVVM.Views
                 Text = "Data:",
                 FontFamily = "MontserratSemiBold",
                 FontSize = 14,
-                TextColor = App.GetResource<Color>("PrimaryDark")
+                TextColor = ControlResources.GetResource<Color>("PrimaryDark")
             };
             stackDate.Children.Add(titleDate);
             var contentDate = new Label
             {
                 FontFamily = "MontserratRegular",
                 FontSize = 14,
-                TextColor = App.GetResource<Color>("PrimaryDark")
+                TextColor = ControlResources.GetResource<Color>("PrimaryDark")
             };
             contentDate.SetBinding(Label.TextProperty, nameof(ViewModel.DetailTravelDate));
             stackDate.Children.Add(contentDate);
@@ -154,14 +155,14 @@ namespace freight.control.maui.MVVM.Views
                 Text = "Origem:",
                 FontFamily = "MontserratSemiBold",
                 FontSize = 14,
-                TextColor = App.GetResource<Color>("PrimaryDark")
+                TextColor = ControlResources.GetResource<Color>("PrimaryDark")
             };
             stackOrigin.Children.Add(titleOrigin);
             var contentOrigin = new Label
             {
                 FontFamily = "MontserratRegular",
                 FontSize = 14,
-                TextColor = App.GetResource<Color>("PrimaryDark")
+                TextColor = ControlResources.GetResource<Color>("PrimaryDark")
             };
             contentOrigin.SetBinding(Label.TextProperty, nameof(ViewModel.DetailOrigin));
             stackOrigin.Children.Add(contentOrigin);
@@ -178,14 +179,14 @@ namespace freight.control.maui.MVVM.Views
                 Text = "Destino:",
                 FontFamily = "MontserratSemiBold",
                 FontSize = 14,
-                TextColor = App.GetResource<Color>("PrimaryDark")
+                TextColor = ControlResources.GetResource<Color>("PrimaryDark")
             };
             stackDestination.Children.Add(titleDestination);
             var contentDestination = new Label
             {
                 FontFamily = "MontserratRegular",
                 FontSize = 14,
-                TextColor = App.GetResource<Color>("PrimaryDark")
+                TextColor = ControlResources.GetResource<Color>("PrimaryDark")
             };
             contentDestination.SetBinding(Label.TextProperty, nameof(ViewModel.DetailDestination));
             stackDestination.Children.Add(contentDestination);
@@ -297,7 +298,7 @@ namespace freight.control.maui.MVVM.Views
                 Text = "Valor do Litro:",
                 FontFamily = "MontserratRegular",
                 FontSize = 16,
-                TextColor = App.GetResource<Color>("PrimaryDark"),
+                TextColor = ControlResources.GetResource<Color>("PrimaryDark"),
                 Margin = new Thickness(10, 0, 0, 10),
             };
             gridFuel.Add(titleValuePerLiter, 0, 1);
@@ -343,7 +344,7 @@ namespace freight.control.maui.MVVM.Views
             var button = new Button
             {
                 Text = "Salvar",
-                Style = App.GetResource<Style>("buttonDarkPrimary")
+                Style = ControlResources.GetResource<Style>("buttonDarkPrimary")
             };
             button.SetBinding(IsEnabledProperty, nameof(ViewModel.IsEnabledSaveButton));
 

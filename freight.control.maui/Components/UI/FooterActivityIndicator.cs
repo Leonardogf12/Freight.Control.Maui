@@ -1,10 +1,12 @@
-﻿namespace freight.control.maui.Components.UI
+﻿using freight.control.maui.Controls.Resources;
+
+namespace freight.control.maui.Components.UI
 {
     public class FooterActivityIndicator : ActivityIndicator
 	{
 		public FooterActivityIndicator()
 		{           
-            Color = App.GetResource<Color>("PrimaryDark");
+            Color = ControlResources.GetResource<Color>("PrimaryDark");
             IsRunning = true;
             HeightRequest = 40;
             WidthRequest = 40;

@@ -1,4 +1,5 @@
 ﻿using freight.control.maui.Components.Chart;
+using freight.control.maui.Controls.Resources;
 using freight.control.maui.MVVM.Base.ViewModels;
 using freight.control.maui.Repositories;
 using freight.control.maui.Services.Chart;
@@ -108,7 +109,7 @@ namespace freight.control.maui.MVVM.ViewModels
 
         #endregion
 
-        private Style _monthButtonStyle = App.GetResource<Style>("buttonDarkLightFilterSecondary");
+        private Style _monthButtonStyle = ControlResources.GetResource<Style>("buttonDarkLightFilterSecondary");
         public Style MonthButtonStyle
         {
             get => _monthButtonStyle;
@@ -119,7 +120,7 @@ namespace freight.control.maui.MVVM.ViewModels
             }
         }
 
-        private Style _dayButtonStyle = App.GetResource<Style>("buttonDarkLightFilterPrimary");
+        private Style _dayButtonStyle = ControlResources.GetResource<Style>("buttonDarkLightFilterPrimary");
         public Style DayButtonStyle
         {
             get => _dayButtonStyle;

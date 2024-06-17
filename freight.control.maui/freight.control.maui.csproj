@@ -157,6 +157,7 @@
 	  <None Remove="Components\Chart\" />
 	  <None Remove="Services\Chart\" />
 	  <None Remove="Controls\Benchmark\" />
+	  <None Remove="Controls\Resources\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="MVVM\" />
@@ -183,6 +184,7 @@
 	  <Folder Include="Components\Chart\" />
 	  <Folder Include="Services\Chart\" />
 	  <Folder Include="Controls\Benchmark\" />
+	  <Folder Include="Controls\Resources\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Compile Remove="MVVM\HomeView2.cs" />

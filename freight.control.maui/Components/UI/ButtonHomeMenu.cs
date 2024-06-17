@@ -1,4 +1,5 @@
-﻿using Microsoft.Maui.Controls.Shapes;
+﻿using freight.control.maui.Controls.Resources;
+using Microsoft.Maui.Controls.Shapes;
 
 namespace freight.control.maui.Components.UI
 {
@@ -15,7 +16,7 @@ namespace freight.control.maui.Components.UI
             {
                 HeightRequest = 150,
                 WidthRequest = 150,
-                BackgroundColor = App.GetResource<Color>("SecondaryGreen"),
+                BackgroundColor = ControlResources.GetResource<Color>("SecondaryGreen"),
                 StrokeThickness = 0,
                 StrokeShape = new RoundRectangle
                 {
