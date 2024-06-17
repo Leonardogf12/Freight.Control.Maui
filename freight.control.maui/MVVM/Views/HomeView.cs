@@ -272,7 +272,7 @@ namespace freight.control.maui.MVVM.Views
                 ControlPreferences.RemoveKeyFromPreferences(StringConstants.firebaseAuthTokenKey);
                 ControlPreferences.RemoveKeyFromPreferences(StringConstants.firebaseUserLocalIdKey);
 
-                await _navigationService.NavigationToPageAsync<LoginView>();               
+                await Shell.Current.GoToAsync("//login");              
             }
         }
 
